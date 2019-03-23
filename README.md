@@ -1,2 +1,2 @@
-# cicdTryout1
-Tryout for CI/CD
+# CI-CD Pipeline components for Informatica projects
+
