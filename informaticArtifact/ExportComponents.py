@@ -1,5 +1,5 @@
 
-import IDQ
+import informaticArtifact.developer as IDQ
 
 	
 def main():

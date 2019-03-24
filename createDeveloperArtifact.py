@@ -1,4 +1,4 @@
-import IDQScripts.IDQ as idq
+import informaticArtifact.developer as idq
 
 
 def main():
