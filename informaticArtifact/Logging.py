@@ -1,8 +1,7 @@
 
 import os
-import shutil
 import logging
-import informaticArtifact.Settings as s
+import supporting.settings as s
 import time
 
 
@@ -20,7 +19,7 @@ def getArtifactLogger():
     debug_log.setFormatter(formatter)
 
     #to log errors
-    error_log = logging.FileHandler(os.path.join(s.logDir, 'error_' + str(RunStartTime) +'.err'))
+    error_log = logging.FileHandler(os.path.join(s.logDir, 'error_' + str(RunStartTime) +'.log'))
     error_log.setLevel(logging.ERROR)
     error_log.setFormatter(formatter)
 

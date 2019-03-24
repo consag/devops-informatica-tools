@@ -2,31 +2,32 @@
 # Check for generic environment settings
 # @Since: 22-MAR-2019
 # @Author: Jac. Beekers
-# @Version: 20190322.0 - JBE - Initial
+# @Version: 20190324.0 - JBE - Initial
 
 import os, supporting.errorcodes as err
 import supporting, logging
 import supporting.environmentvars as env
+import supporting.settings as settings
 
 def envArtifactChecks():
-    thisProc="envArtifactChecks"
-    supporting.log(logging.DEBUG, thisProc, 'started')
+    thisproc="envArtifactChecks"
+    supporting.log(logging.DEBUG, thisproc, 'started')
 
-    supporting.log(logging.DEBUG, thisProc, 'Checking envvar >' + env.varLogDir +"<.")
-    logDir = os.environ.get(env.varLogDir, '.')
-    if not logDir:
+    supporting.log(logging.DEBUG, thisproc, 'getting environment variables')
+    settings.getenvvars()
+
+    supporting.log(logging.DEBUG, thisproc, 'Checking envvar >' + env.varLogDir +"<.")
+    if not settings.logDir:
         retCode = err.LOGDIR_NOTSET.code
         retMsg = err.LOGDIR_NOTSET.message
         retResolution = err.LOGDIR_NOTSET.resolution + " " + env.varLogDir
         retArea = err.LOGDIR_NOTSET.area
         retLevel = err.LOGDIR_NOTSET.level
-        supporting.log(retLevel, thisProc, retArea + " " + retCode + " " + retMsg + ": " + retResolution)
-        supporting.log(logging.DEBUG, thisProc, 'completed with >' + err.LOGDIR_NOTSET.code +"<.")
+        supporting.log(retLevel, thisproc, retArea + " " + retCode + " " + retMsg + ": " + retResolution)
+        supporting.log(logging.DEBUG, thisproc, 'completed with >' + err.LOGDIR_NOTSET.code +"<.")
         return err.LOGDIR_NOTSET
 
-    supporting.log(logging.DEBUG, thisProc, 'setting LogDir to >' + logDir +"<.")
-    supporting.LogDir=logDir
-    supporting.log(logging.DEBUG, thisProc, 'LogDir is now >' + supporting.LogDir +"<.")
+    supporting.log(logging.DEBUG, thisproc, 'LogDir is now >' + settings.logDir +"<.")
 
-    supporting.log(logging.DEBUG, thisProc, 'completed with >' + str(err.OK.rc) +"<.")
+    supporting.log(logging.DEBUG, thisproc, 'completed with >' + str(err.OK.rc) +"<.")
     return err.OK

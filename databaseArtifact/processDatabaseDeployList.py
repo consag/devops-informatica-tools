@@ -2,13 +2,14 @@
 # Process deploy list for database artifacts
 # @Since: 23-MAR-2019
 # @Author: Jac. Beekers
-# @Version: 20190323.0 - JBE - Initial
+# @Version: 20190324.0 - JBE - Initial
 
 import supporting.errorcodes as err
 import supporting, logging, os
 import supporting.environmentvars as env
 import supporting.filehandling as filehandling
 import re
+import supporting.settings as settings
 
 def processList(deployList):
     thisproc = "processList"
@@ -54,19 +55,10 @@ def processEntry(deployEntry):
 def generate_orderedsql(schema, input_sqlfile):
     thisproc = "generate_orderedsql"
     result = err.OK
-    sourcesqldir = os.environ.get(env.varSourceSqlDir)
-    if not sourcesqldir:
-        supporting.log(logging.ERROR, thisproc, "SourceSqlDir is not set")
-        return err.SOURCESQLDIR_NOTSET
 
-    targetsqldir = os.environ.get(env.varTargetSqlDir)
-    if not targetsqldir:
-        supporting.log(logging.ERROR, thisproc, "TargetSqlDir is not set")
-        return err.TARGETSQLDIR_NOTSET
-
-    the_source_sqldir  = sourcesqldir + "/" + schema + "/"
+    the_source_sqldir  = settings.sourcesqldir + "/" + schema + "/"
     the_source_sqlfile = input_sqlfile
-    orderedsqlfilename = targetsqldir + "/" + "%02d" % entrynr + "_ordered.sql"
+    orderedsqlfilename = settings.targetsqldir + "/" + "%02d" % entrynr + "_ordered.sql"
 
     filehandling.removefile(orderedsqlfilename)
     processlines(the_source_sqldir, the_source_sqlfile, orderedsqlfilename)

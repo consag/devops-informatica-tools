@@ -20,5 +20,5 @@ FILE_NW=err.Errorcode(1,'ENV-0005', 'Cannot write to file','Check the file\'s pa
 
 # Database artifact errors. Return code will be 10
 NO_DEPLOYLIST=err.Errorcode(10,'DBDEPLOY-0001','No deploylist defined','Set the environment variable','DatabaseArtifact',logging.FATAL)
-SOURCESQLDIR_NOTSET=err.Errorcode(10,'DBDEPLOY-0002','SourceSqlDir is not define', 'Set the environment variable','DatabaseArtifact', logging.ERROR)
-TARGETSQLDIR_NOTSET=err.Errorcode(10,'DBDEPLOY-0003','TargetSqlDir is not define', 'Set the environment variable','DatabaseArtifact', logging.ERROR)
+SOURCESQLDIR_NOTSET=err.Errorcode(10,'DBDEPLOY-0002','SourceSqlDir is not defined', 'Set the environment variable','DatabaseArtifact', logging.ERROR)
+TARGETSQLDIR_NOTSET=err.Errorcode(10,'DBDEPLOY-0003','TargetSqlDir is not defined', 'Set the environment variable','DatabaseArtifact', logging.ERROR)

@@ -12,35 +12,35 @@ import os
 import supporting.environmentvars as env
 import supporting.constants as constants
 import databaseArtifact.processDatabaseDeployList
+import supporting.settings as settings
 
 now = datetime.datetime.now()
-result=err.OK
+result = err.OK
+
 
 def main():
-    thisProc ='MAIN'
+    thisproc = 'MAIN'
 
-    supporting.log(logging.DEBUG, thisProc, 'Started')
+    supporting.log(logging.DEBUG, thisproc, 'Started')
 
     # Check environment, log etc
-    result=envchecks.envArtifactChecks()
-    if(result.rc != 0):
+    result = envchecks.envArtifactChecks()
+    if (result.rc != 0):
         supporting.exitscript(result)
 
-    supporting.log(logging.DEBUG, thisProc, 'logDir is >' + supporting.LogDir +"<.")
+    supporting.log(logging.DEBUG, thisproc, 'logDir is >' + settings.logDir + "<.")
 
     # Check requirements for artifact generation
-    result=dbchecks.dbArtifactChecks()
-    if(result.rc != 0):
+    result = dbchecks.dbArtifactChecks()
+    if (result.rc != 0):
         supporting.exitscript(result)
 
-    deployList = os.environ.get(env.varOracleDeployList, constants.NOT_SET)
+    result = databaseArtifact.processDatabaseDeployList.processList(settings.deploylist)
 
-    result=databaseArtifact.processDatabaseDeployList.processList(deployList)
-
-
-    supporting.log(logging.DEBUG, thisProc, 'Completed with return code >' + str(result.rc)
-                   +'< and result code >' + result.code +"<.")
+    supporting.log(logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
+                   + '< and result code >' + result.code + "<.")
     supporting.writeresult(result)
     return result.rc
+
 
 main()
