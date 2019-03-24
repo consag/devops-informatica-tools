@@ -8,20 +8,21 @@ import os, supporting.errorcodes as err
 import supporting, logging
 import supporting.environmentvars as env
 
-def dbArtifactChecks():
-    thisProc="dbArtifactChecks"
-    supporting.log(logging.DEBUG, thisProc, 'started')
 
-    schemaname = os.environ.get(env.varOracleDeployList, None)
-    if not schemaname:
+def dbArtifactChecks():
+    thisproc = "dbArtifactChecks"
+    supporting.log(logging.DEBUG, thisproc, 'started')
+
+    deploylist = os.environ.get(env.varOracleDeployList, None)
+    if not deploylist:
         retCode = err.NO_DEPLOYLIST.code
         retMsg = err.NO_DEPLOYLIST.message
         retResolution = err.NO_DEPLOYLIST.resolution + " " + env.varOracleDeployList
         retArea = err.NO_DEPLOYLIST.area
         retLevel = err.NO_DEPLOYLIST.level
-        supporting.log(retLevel, thisProc, retArea + " " + retCode + " " + retMsg + ": " + retResolution)
-        supporting.log(logging.DEBUG, thisProc, 'completed with >' + retCode +"<.")
+        supporting.log(retLevel, thisproc, retArea + " " + retCode + " " + retMsg + ": " + retResolution)
+        supporting.log(logging.DEBUG, thisproc, 'completed with >' + retCode + "<.")
         return err.NO_DEPLOYLIST
 
-    supporting.log(logging.DEBUG, thisProc, 'completed with >' + str(err.OK.rc) +"<.")
+    supporting.log(logging.DEBUG, thisproc, 'completed with >' + str(err.OK.rc) + "<.")
     return err.OK

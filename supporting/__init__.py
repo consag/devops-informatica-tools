@@ -8,15 +8,16 @@ import logging, datetime, os
 import supporting.environmentvars as env
 import databaseArtifact
 
-def configureLogger():
+
+def configurelogger():
     now = datetime.datetime.now()
-    LogDir = os.environ.get(env.varLogDir, None)
-    LogFileName = LogDir + "/" + now.strftime("%Y%m%d-%H%M%S.%f") + '.' + 'databaseArtifact.log'
-    #logger = logging.getLogger('build-and-deploy')
+    logdir = os.environ.get(env.varLogDir, None)
+    logfilename = logdir + "/" + now.strftime("%Y%m%d-%H%M%S.%f") + '.' + 'databaseArtifact.log'
+    # logger = logging.getLogger('build-and-deploy')
     logger = logging.getLogger()
     formatter = logging.Formatter('%(asctime)s %(name)s %(levelname)s %(message)s')
     logger.setLevel(logging.DEBUG)
-    fh = logging.FileHandler(LogFileName)
+    fh = logging.FileHandler(logfilename)
     fh.setLevel(logging.DEBUG)
     fh.setFormatter(formatter)
     logger.addHandler(fh)
@@ -24,36 +25,38 @@ def configureLogger():
     ch.setLevel(logging.ERROR)
     ch.setFormatter(formatter)
     logger.addHandler(ch)
-    databaseArtifact.configDone=1
+    databaseArtifact.configDone = 1
     return
+
 
 def log(level, area, message):
-    if(databaseArtifact.configDone == 0):
-        configureLogger()
+    if (databaseArtifact.configDone == 0):
+        configurelogger()
 
-    databaseArtifact.configDone=1
+    databaseArtifact.configDone = 1
     logging.getLogger(area)
-    logging.log(level, area +": " + message)
+    logging.log(level, area + ": " + message)
     return
 
-def writeResult(result):
+
+def writeresult(result):
     now = datetime.datetime.now()
     ResultDir = os.environ.get(env.varResultDir, '.')
     ResultFileName = ResultDir + "/" + now.strftime("%Y%m%d-%H%M%S.%f") + '.' + 'databaseArtifact.result'
 
     with open(ResultFileName, 'w') as the_result_file:
-        the_result_file.write('RC=' +str(result.rc) +'\n')
-        the_result_file.write('CODE=' +result.code +'\n')
-        the_result_file.write('MSG='+ result.message +'\n')
-        the_result_file.write('RESOLUTION='+ result.resolution +'\n')
-        the_result_file.write('AREA='+ result.area +'\n')
-        the_result_file.write('ERRLEVEL='+ str(result.level) +'\n')
+        the_result_file.write('RC=' + str(result.rc) + '\n')
+        the_result_file.write('CODE=' + result.code + '\n')
+        the_result_file.write('MSG=' + result.message + '\n')
+        the_result_file.write('RESOLUTION=' + result.resolution + '\n')
+        the_result_file.write('AREA=' + result.area + '\n')
+        the_result_file.write('ERRLEVEL=' + str(result.level) + '\n')
     return
 
 
 def exitscript(result):
-    thisProc="exitscript"
+    thisProc = "exitscript"
     log(logging.ERROR, thisProc, result.area +
-                   ' exit requested. Return code >' + str(result.rc) + "< and code >" + result.code + "<.")
-    writeResult(result)
+        ' exit requested. Return code >' + str(result.rc) + "< and code >" + result.code + "<.")
+    writeresult(result)
     raise SystemExit

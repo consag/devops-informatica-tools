@@ -40,7 +40,7 @@ def main():
 
     supporting.log(logging.DEBUG, thisProc, 'Completed with return code >' + str(result.rc)
                    +'< and result code >' + result.code +"<.")
-    supporting.writeResult(result)
+    supporting.writeresult(result)
     return result.rc
 
 main()
