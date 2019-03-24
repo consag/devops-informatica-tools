@@ -13,7 +13,7 @@ def envArtifactChecks():
     supporting.log(logging.DEBUG, thisProc, 'started')
 
     supporting.log(logging.DEBUG, thisProc, 'Checking envvar >' + env.varLogDir +"<.")
-    logDir = os.environ.get(env.varLogDir, None)
+    logDir = os.environ.get(env.varLogDir, '.')
     if not logDir:
         retCode = err.LOGDIR_NOTSET.code
         retMsg = err.LOGDIR_NOTSET.message
