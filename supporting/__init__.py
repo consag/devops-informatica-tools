@@ -7,11 +7,12 @@
 import logging, datetime, os
 import supporting.environmentvars as env
 import databaseArtifact
+import supporting.constants as constants
 
 
 def configurelogger():
     now = datetime.datetime.now()
-    logdir = os.environ.get(env.varLogDir, None)
+    logdir = os.environ.get(env.varLogDir, constants.DEFAULT_LOGDIR)
     logfilename = logdir + "/" + now.strftime("%Y%m%d-%H%M%S.%f") + '.' + 'databaseArtifact.log'
     # logger = logging.getLogger('build-and-deploy')
     logger = logging.getLogger()

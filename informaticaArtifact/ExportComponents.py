@@ -1,20 +1,13 @@
 
-import informaticArtifact.developer as IDQ
+import informaticaArtifact.developer as IDQ
 
 	
 def main():
 
 
-	IDQDEV = {
-		"Path": "$INFA_HOME/server/bin/infacmd.sh",
-		"Domain": "Domain_Demo",
-		"Repository": "MRS_Demo",
-	}
-
 	filepath = "/tmp/"
 	ExportFileName = "exp_Demo.xml"
 	ExportFilePath = filepath + ExportFileName
-	InfaComponents = []
 
 	
 
@@ -32,7 +25,4 @@ def main():
 		
 	return()
 
-
-if __name__ == '__main__':
-
-	main()
+main()
