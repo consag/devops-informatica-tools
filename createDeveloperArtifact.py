@@ -1,4 +1,4 @@
-import informaticArtifact.developer as idq
+import informaticaArtifact.developer as idq
 
 
 def main():
