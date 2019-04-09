@@ -1,4 +1,3 @@
-#!/usr/bin/env python2
 import os, logging
 import supporting.environmentvars as env
 import supporting.constants as constants
