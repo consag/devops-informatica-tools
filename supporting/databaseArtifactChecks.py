@@ -6,8 +6,7 @@
 
 import os, supporting.errorcodes as err
 import supporting, logging
-import supporting.environmentvars as env
-import supporting.constants as constants
+import supporting.constants as env
 import supporting.settings as settings
 
 def dbArtifactChecks():

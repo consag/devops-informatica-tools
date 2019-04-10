@@ -4,6 +4,23 @@
 # @Author: Jac. Beekers
 # @Version: 20190324.0 - JBE - Initial
 
+##
+# Environment variable values
+##
+# Generic
+varLogDir='LOGDIR'
+varResultDir='RESULTDIR'
+# Database artifacts
+varOracleSchemaName='ORACLE_SCHEMANAME'
+varOracleDeployList='ORACLE_DEPLOYLIST'
+varSourceSqlDir='ORACLE_SOURCE_SQLDIR'
+varTargetSqlDir='ORACLE_TARGET_SQLDIR'
+# Informatica artifacts
+varOracleDeployList='INFA_DEPLOYLIST'
+
+##
+#
+##
 NOT_SET = 'NotSet'
 
 ##

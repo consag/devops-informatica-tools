@@ -6,7 +6,7 @@
 
 import os, supporting.errorcodes as err
 import supporting, logging
-import supporting.environmentvars as env
+import supporting.constants as constants
 import supporting.settings as settings
 
 def envArtifactChecks():
@@ -16,11 +16,11 @@ def envArtifactChecks():
     supporting.log(logging.DEBUG, thisproc, 'getting environment variables')
     settings.getenvvars()
 
-    supporting.log(logging.DEBUG, thisproc, 'Checking envvar >' + env.varLogDir +"<.")
+    supporting.log(logging.DEBUG, thisproc, 'Checking envvar >' + constants.varLogDir +"<.")
     if not settings.logDir:
         retCode = err.LOGDIR_NOTSET.code
         retMsg = err.LOGDIR_NOTSET.message
-        retResolution = err.LOGDIR_NOTSET.resolution + " " + env.varLogDir
+        retResolution = err.LOGDIR_NOTSET.resolution + " " + constants.varLogDir
         retArea = err.LOGDIR_NOTSET.area
         retLevel = err.LOGDIR_NOTSET.level
         supporting.log(retLevel, thisproc, retArea + " " + retCode + " " + retMsg + ": " + retResolution)

@@ -2,29 +2,33 @@
 # Supporting modules
 # @Since: 22-MAR-2019
 # @Author: Jac. Beekers
-# @Version: 20190322.0 - JBE - Initial
+# @Version: 20190410.0 - JBE - Initial
 
 import logging, datetime, os
-import supporting.environmentvars as env
+import supporting.constants as constants
 import databaseArtifact
 
 
 def configurelogger():
     now = datetime.datetime.now()
-    logdir = os.environ.get(env.varLogDir, None)
-    logfilename = logdir + "/" + now.strftime("%Y%m%d-%H%M%S.%f") + '.' + 'databaseArtifact.log'
-    # logger = logging.getLogger('build-and-deploy')
+    logdir = os.environ.get(constants.varLogDir, None)
     logger = logging.getLogger()
     formatter = logging.Formatter('%(asctime)s %(name)s %(levelname)s %(message)s')
-    logger.setLevel(logging.DEBUG)
-    fh = logging.FileHandler(logfilename)
-    fh.setLevel(logging.DEBUG)
-    fh.setFormatter(formatter)
-    logger.addHandler(fh)
-    ch = logging.StreamHandler()
-    ch.setLevel(logging.ERROR)
-    ch.setFormatter(formatter)
-    logger.addHandler(ch)
+
+    if ( logdir is None ):
+        ch = logging.StreamHandler()
+        ch.setLevel(logging.ERROR)
+        ch.setFormatter(formatter)
+        logger.addHandler(ch)
+    else:
+        logfilename = logdir + "/" + now.strftime("%Y%m%d-%H%M%S.%f") + '.' + '.log'
+        # logger = logging.getLogger('build-and-deploy')
+        logger.setLevel(logging.DEBUG)
+        fh = logging.FileHandler(logfilename)
+        fh.setLevel(logging.DEBUG)
+        fh.setFormatter(formatter)
+        logger.addHandler(fh)
+
     databaseArtifact.configDone = 1
     return
 
@@ -41,7 +45,7 @@ def log(level, area, message):
 
 def writeresult(result):
     now = datetime.datetime.now()
-    ResultDir = os.environ.get(env.varResultDir, '.')
+    ResultDir = os.environ.get(constants.varResultDir, '.')
     ResultFileName = ResultDir + "/" + now.strftime("%Y%m%d-%H%M%S.%f") + '.' + 'databaseArtifact.result'
 
     with open(ResultFileName, 'w') as the_result_file:

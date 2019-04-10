@@ -6,36 +6,17 @@
 
 import supporting.errorcodes as err
 import supporting, logging, os
-import supporting.environmentvars as env
 import supporting.filehandling as filehandling
 import re
 import supporting.settings as settings
+import supporting.deploylist
 
-def processList(deployList):
-    thisproc = "processList"
-    latestError = err.OK
-    global entrynr
-    entrynr = 0
-    global level
-    level = 0
-    supporting.log(logging.DEBUG, thisproc, "Started to work on deploy list >" + deployList + "<.")
-
-    try:
-        with open(deployList) as theList:
-            for line in theList:
-                entrynr += 1
-                level = 0
-                result = processEntry(line.rstrip('\n'))
-                if (result.rc != err.OK.rc):
-                    latestError = result
-    except IOError:
-        supporting.log(logging.ERROR, thisproc, "File not found")
-        latestError = err.FILE_NF
-
-    supporting.log(logging.DEBUG, thisproc,
-                   "Completed with rc >" + str(latestError.rc) + "< and code >" + latestError.code + "<.")
-    return latestError
-
+def processList(deployFile):
+    latestResult = err.OK
+    supporting.deploylist.getWorkitemList(deployFile)
+    for deployEntry in supporting.deploylist.deployItems:
+        latestResult = processEntry(deployEntry)
+    return latestResult
 
 def processEntry(deployEntry):
     thisproc = "processEntry"

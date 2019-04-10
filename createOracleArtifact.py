@@ -8,8 +8,6 @@ import logging, datetime, supporting
 import supporting.errorcodes as err
 import supporting.databaseArtifactChecks as dbchecks
 import supporting.environmentChecks as envchecks
-import os
-import supporting.environmentvars as env
 import supporting.constants as constants
 import databaseArtifact.processDatabaseDeployList
 import supporting.settings as settings
