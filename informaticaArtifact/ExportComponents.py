@@ -1,23 +1,17 @@
-import informaticArtifact.developer as IDQ
+import informaticaArtifact.developer as IDQ
 
+## DUMMY ##
 
 def main():
 
 
-    IDQDEV = {
-        "Path": "$INFA_HOME/server/bin/infacmd.sh",
-        "Domain": "Domain_Demo",
-        "Repository": "MRS_Demo",
-    }
-
     filepath = "/tmp/"
     ExportFileName = "exp_Demo.xml"
     ExportFilePath = filepath + ExportFileName
-    InfaComponents = []
 
 
 
-    IDQ.Import(
+    IDQ.Export(
         InfaPath = "$INFA_HOME/server/bin/infacmd.sh",
         Tool = "Export",
         Domain = "Domain_Demo",
@@ -27,11 +21,6 @@ def main():
         OverwriteExportFile = "true"
     )
 
-
-
     return()
 
-
-if __name__ == '__main__':
-
-    main()
+main()

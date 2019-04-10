@@ -1,47 +1,14 @@
 """IDQ Importer Exporter
 
 This script defines Import and Export functions through which it can communicate with
-a Informatica Data Quality Model Repository.
+a Informatica Model Repository.
 
 It also provides some related functions, such as:
 	- Create IDQ folder
 	- Check in IDQ components
 """
 
-###############################################################################################
-###############################################################################################
-# To Do #######################################################################################
-###############################################################################################
-
-# - Get environment-dependent variables from bash profile
-
-# Export IDQ component
-# Check in imported components
-
-# Global variable:
-# - domain name
-# - User name
-# - Password
-# - Security Domain (Native)
-# - repository service
-# -
-
-# Input arguments:
-# - Project name
-# - export file path
-# - component name(s)
-# -
-
-
-# # import os.path, time
-# from os import listdir
-# from os.path import isfile, join
-
-# import lxml.etree as ET
-
 import subprocess, datetime
-from pprint import pprint, pformat
-# from Logging import MyLogger
 import supporting, logging
 
 
@@ -59,13 +26,8 @@ def ExecuteBash(bashCommands):
 
 
 def ExecuteInfacmd(bashCommands):
-    """Execute a linux command, after sourcing IDQ connection details """
 
-    InitializationCommands = """. ~/.bash_profile 
-    . ~/infa_env.sh
-
-"""
-    output, error = ExecuteBash(InitializationCommands + bashCommands)
+    output, error = ExecuteBash(bashCommands)
 
     return (output, error)
 
@@ -94,8 +56,6 @@ def BuildCommand(**KeyWordArguments):
         "ByObjectPathName": "-bopn",
         "ByUser": "-bu",
         "ObjectPathName": "-opn",
-        "MappingName": "-m",
-        "ApplicationName": "-a",
     }
 
     # Create a lookup dictionary with the IDQ tools (program + command combination) recognized bu this function
@@ -105,7 +65,6 @@ def BuildCommand(**KeyWordArguments):
         "CreateFolder": ("mrs", "CreateFolder"),
         "ListCheckOutObjects": ("mrs", "listCheckedOutObjects"),
         "CheckIn": ("mrs", "checkInObject"),
-        "RunMapping": ("ms", "RunMapping"),
     }
 
     # Process the input aruguments to compose the IDQ command
@@ -239,12 +198,3 @@ def CheckInMutiple(**KeyWordArguments):
 
     return (output, error)
 
-
-def RunMapping(**KeyWordArguments):
-    """Run an IDQ mapping"""
-
-    KeyWordArguments["Tool"] = "RunMapping"
-    CheckInCommand = BuildCommand(**KeyWordArguments)
-    output, error = ExecuteInfacmd(CheckInCommand)
-
-    return (output, error)
