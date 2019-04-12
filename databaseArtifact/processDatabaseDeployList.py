@@ -8,8 +8,12 @@ import supporting.errorcodes as err
 import supporting, logging, os
 import supporting.filehandling as filehandling
 import re
-import supporting.settings as settings
+import supporting.dbSettings as settings
 import supporting.deploylist
+
+logger = logging.getLogger(__name__)
+entrynr =0
+level =0
 
 def processList(deployFile):
     latestResult = err.OK
@@ -21,24 +25,26 @@ def processList(deployFile):
 def processEntry(deployEntry):
     thisproc = "processEntry"
     result = err.OK
-    supporting.log(logging.DEBUG, thisproc, "Started to work on deploy entry >" + deployEntry + "<.")
+    supporting.log(logger, logging.DEBUG, thisproc, "Started to work on deploy entry >" + deployEntry + "<.")
 
     schema, sqlfile = deployEntry.split(':', 2)
-    supporting.log(logging.DEBUG, thisproc, 'Schema is >' + schema + '< and sqlfile is >' + sqlfile + '<')
+    supporting.log(logger, logging.DEBUG, thisproc, 'Schema is >' + schema + '< and sqlfile is >' + sqlfile + '<')
 
     result = generate_orderedsql(schema, sqlfile)
 
-    supporting.log(logging.DEBUG, thisproc,
+    supporting.log(logger, logging.DEBUG, thisproc,
                    "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")
     return result
 
 
 def generate_orderedsql(schema, input_sqlfile):
     thisproc = "generate_orderedsql"
+    global entrynr
     result = err.OK
 
     the_source_sqldir  = settings.sourcesqldir + "/" + schema + "/"
     the_source_sqlfile = input_sqlfile
+    entrynr = entrynr + 1
     orderedsqlfilename = settings.targetsqldir + "/" + "%02d" % entrynr + "_ordered.sql"
 
     filehandling.removefile(orderedsqlfilename)
@@ -63,7 +69,7 @@ def processlines(the_source_sqldir, the_source_sqlfile, orderedsqlfilename):
     global level
     level +=1
     thisproc="processlines-" + "%03d" % level
-    supporting.log(logging.DEBUG, thisproc, "level is >" + "%03d" % level +"<.")
+    supporting.log(logger, logging.DEBUG, thisproc, "level is >" + "%03d" % level +"<.")
 
     try:
         with open(the_source_sqldir + the_source_sqlfile) as thesql:
@@ -71,11 +77,11 @@ def processlines(the_source_sqldir, the_source_sqlfile, orderedsqlfilename):
                 if (ignoreline(line)):
                     continue
                 if (calltosubsql(line)):
-                    supporting.log(logging.DEBUG, thisproc, "Found '@@', a call to another script.")
+                    supporting.log(logger, logging.DEBUG, thisproc, "Found '@@', a call to another script.")
                     write2file(orderedsqlfilename, "-- Start expansion -- " + line)
                     subsql = line[2:-1].split(' ', 1)[0]
                     completepathsql = the_source_sqldir + subsql
-                    supporting.log(logging.DEBUG, thisproc, "Sub file name determined as >" + subsql +"<. Complete file path >"
+                    supporting.log(logger, logging.DEBUG, thisproc, "Sub file name determined as >" + subsql +"<. Complete file path >"
                                    + completepathsql +"<.")
                     #thesubsqlfile = the_source_sqldir + subsql
                     processlines(the_source_sqldir, subsql, orderedsqlfilename)
@@ -84,7 +90,7 @@ def processlines(the_source_sqldir, the_source_sqlfile, orderedsqlfilename):
                     write2file(orderedsqlfilename, line)
 
     except IOError:
-        supporting.log(logging.ERROR, thisproc, "Could not find file >" + the_source_sqlfile + "<.")
+        supporting.log(logger, logging.ERROR, thisproc, "Could not find file >" + the_source_sqlfile + "<.")
         write2file(orderedsqlfilename,"ERROR: Could not find file >" + the_source_sqlfile +"<.")
         result = err.FILE_NF
 
@@ -101,7 +107,7 @@ def write2file(filename, line):
             else:
                 the_result_file.write(line +"\n")
     except IOError:
-        supporting.log(logging.ERROR, thisproc, "Could not write to file >" + filename + "<.")
+        supporting.log(logger, logging.ERROR, thisproc, "Could not write to file >" + filename + "<.")
         result = err.FILE_NW
 
     return result

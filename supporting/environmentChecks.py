@@ -6,17 +6,19 @@
 
 import os, supporting.errorcodes as err
 import supporting, logging
-import supporting.constants as constants
-import supporting.settings as settings
+import supporting.generalConstants as constants
+import supporting.generalSettings as settings
+
+logger = logging.getLogger(__name__)
 
 def envArtifactChecks():
     thisproc="envArtifactChecks"
-    supporting.log(logging.DEBUG, thisproc, 'started')
+    supporting.log(logger, logging.DEBUG, thisproc, 'started')
 
-    supporting.log(logging.DEBUG, thisproc, 'getting environment variables')
+    supporting.log(logger, logging.DEBUG, thisproc, 'getting environment variables')
     settings.getenvvars()
 
-    supporting.log(logging.DEBUG, thisproc, 'Checking envvar >' + constants.varLogDir +"<.")
+    supporting.log(logger, logging.DEBUG, thisproc, 'Checking envvar >' + constants.varLogDir +"<.")
     if not settings.logDir:
         retCode = err.LOGDIR_NOTSET.code
         retMsg = err.LOGDIR_NOTSET.message
@@ -24,10 +26,10 @@ def envArtifactChecks():
         retArea = err.LOGDIR_NOTSET.area
         retLevel = err.LOGDIR_NOTSET.level
         supporting.log(retLevel, thisproc, retArea + " " + retCode + " " + retMsg + ": " + retResolution)
-        supporting.log(logging.DEBUG, thisproc, 'completed with >' + err.LOGDIR_NOTSET.code +"<.")
+        supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + err.LOGDIR_NOTSET.code +"<.")
         return err.LOGDIR_NOTSET
 
-    supporting.log(logging.DEBUG, thisproc, 'LogDir is now >' + settings.logDir +"<.")
+    supporting.log(logger, logging.DEBUG, thisproc, 'LogDir is now >' + settings.logDir +"<.")
 
-    supporting.log(logging.DEBUG, thisproc, 'completed with >' + str(err.OK.rc) +"<.")
+    supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + str(err.OK.rc) +"<.")
     return err.OK

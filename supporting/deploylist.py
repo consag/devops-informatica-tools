@@ -1,6 +1,7 @@
 import supporting.errorcodes as err
 import logging, supporting
 
+logger = logging.getLogger(__name__)
 deployItems = []
 
 def getWorkitemList(deployList):
@@ -10,7 +11,7 @@ def getWorkitemList(deployList):
     entrynr = 0
     global level
     level = 0
-    supporting.log(logging.DEBUG, thisproc, "Started to work on deploy list >" + deployList + "<.")
+    supporting.log(logger, logging.DEBUG, thisproc, "Started to work on deploy list >" + deployList + "<.")
 
     try:
         with open(deployList) as theList:
@@ -19,9 +20,9 @@ def getWorkitemList(deployList):
                 level = 0
                 deployItems.append( line.rstrip('\n'))
     except IOError:
-        supporting.log(logging.ERROR, thisproc, "File not found")
+        supporting.log(logger, logging.ERROR, thisproc, "File not found")
         latestError = err.FILE_NF
 
-    supporting.log(logging.DEBUG, thisproc,
+    supporting.log(logger, logging.DEBUG, thisproc,
                    "Completed with rc >" + str(latestError.rc) + "< and code >" + latestError.code + "<.")
     return latestError, deployItems

@@ -8,25 +8,30 @@ import logging, datetime, supporting
 import supporting.errorcodes as err
 import supporting.databaseArtifactChecks as dbchecks
 import supporting.environmentChecks as envchecks
-import supporting.constants as constants
+import supporting.dbConstants as constants
 import databaseArtifact.processDatabaseDeployList
-import supporting.settings as settings
+import supporting.dbSettings as settings
+import supporting.generalSettings as generalsettings
 
 now = datetime.datetime.now()
 result = err.OK
 
 
 def main():
-    thisproc = 'MAIN'
+    thisproc = "MAIN"
+    mainProc='CreateOracleArtifact'
 
-    supporting.log(logging.DEBUG, thisproc, 'Started')
+    supporting.configurelogger(mainProc)
+    logger = logging.getLogger(mainProc)
+
+    supporting.log(logger, logging.DEBUG, thisproc, 'Started')
 
     # Check environment, log etc
     result = envchecks.envArtifactChecks()
     if (result.rc != 0):
         supporting.exitscript(result)
 
-    supporting.log(logging.DEBUG, thisproc, 'logDir is >' + settings.logDir + "<.")
+    supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalsettings.logDir + "<.")
 
     # Check requirements for artifact generation
     result = dbchecks.dbArtifactChecks()
@@ -35,7 +40,7 @@ def main():
 
     result = databaseArtifact.processDatabaseDeployList.processList(settings.deploylist)
 
-    supporting.log(logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
+    supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
     supporting.writeresult(result)
     return result.rc

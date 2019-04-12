@@ -6,12 +6,14 @@
 
 import os, supporting.errorcodes as err
 import supporting, logging
-import supporting.constants as env
-import supporting.settings as settings
+import supporting.dbConstants as env
+import supporting.dbSettings as settings
+
+logger = logging.getLogger(__name__)
 
 def dbArtifactChecks():
     thisproc = "dbArtifactChecks"
-    supporting.log(logging.DEBUG, thisproc, 'started')
+    supporting.log(logger, logging.DEBUG, thisproc, 'started')
 
     settings.getdbenvvars()
 
@@ -21,10 +23,10 @@ def dbArtifactChecks():
         retResolution = err.NO_DEPLOYLIST.resolution + " " + env.varOracleDeployList
         retArea = err.NO_DEPLOYLIST.area
         retLevel = err.NO_DEPLOYLIST.level
-        supporting.log(retLevel, thisproc, retArea + " " + retCode + " " + retMsg + ": " + retResolution)
-        supporting.log(logging.DEBUG, thisproc, 'completed with >' + retCode + "<.")
+        supporting.log(logger, retLevel, thisproc, retArea + " " + retCode + " " + retMsg + ": " + retResolution)
+        supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + retCode + "<.")
         return err.NO_DEPLOYLIST
 
 
-    supporting.log(logging.DEBUG, thisproc, 'completed with >' + str(err.OK.rc) + "<.")
+    supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + str(err.OK.rc) + "<.")
     return err.OK

@@ -2,54 +2,55 @@
 # Supporting modules
 # @Since: 22-MAR-2019
 # @Author: Jac. Beekers
-# @Version: 20190410.0 - JBE - Initial
+# @Version: 20190412.0 - JBE - Initial
 
 import logging, datetime, os
-import supporting.constants as constants
-import databaseArtifact
-import supporting.constants as constants
+import supporting.generalConstants as constants
+
+now = datetime.datetime.now()
 
 
-def configurelogger():
-    now = datetime.datetime.now()
-    logdir = os.environ.get(env.varLogDir, constants.DEFAULT_LOGDIR)
-    logfilename = logdir + "/" + now.strftime("%Y%m%d-%H%M%S.%f") + '.' + 'databaseArtifact.log'
-    # logger = logging.getLogger('build-and-deploy')
-    logger = logging.getLogger()
-    formatter = logging.Formatter('%(asctime)s %(name)s %(levelname)s %(message)s')
+def configurelogger(mainProc):
 
-    if ( logdir is None ):
-        ch = logging.StreamHandler()
-        ch.setLevel(logging.ERROR)
-        ch.setFormatter(formatter)
-        logger.addHandler(ch)
-    else:
-        logfilename = logdir + "/" + now.strftime("%Y%m%d-%H%M%S.%f") + '.' + '.log'
-        # logger = logging.getLogger('build-and-deploy')
-        logger.setLevel(logging.DEBUG)
-        fh = logging.FileHandler(logfilename)
-        fh.setLevel(logging.DEBUG)
-        fh.setFormatter(formatter)
-        logger.addHandler(fh)
+    logdir = os.environ.get(constants.varLogDir, constants.DEFAULT_LOGDIR)
+    logging.basicConfig(filename= logdir +"/" + now.strftime("%Y%m%d-%H%M%S.%f") + '-' + mainProc + '.log'
+                        , level=logging.DEBUG
+                        , format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-    databaseArtifact.configDone = 1
+    ResultDir = os.environ.get(constants.varResultDir, '.')
+    ResultFileName = ResultDir + "/" + now.strftime("%Y%m%d-%H%M%S.%f") + '.' + '.result'
+
+    resultlogger = logging.getLogger('result_logger')
+    resultlogger.setLevel(logging.INFO)
+    # create file handler which logs even debug messages
+    fh = logging.FileHandler(ResultFileName)
+    fh.setLevel(logging.INFO)
+    # create formatter and add it to the handler
+    formatter = logging.Formatter('%(message)s')
+    fh.setFormatter(formatter)
+    # add the handlers to logger
+    resultlogger.addHandler(fh)
+
     return
 
 
-def log(level, area, message):
-    if (databaseArtifact.configDone == 0):
-        configurelogger()
+def log(logger, level, area, message):
 
-    databaseArtifact.configDone = 1
-    logging.getLogger(area)
-    logging.log(level, area + ": " + message)
+    logger.log(level, area + " - " + message)
     return
+
+def writeresult2(resultlogger, result):
+    resultlogger.info('RC=' +str(result.rc) +'\n')
+    resultlogger.info('CODE=' + result.code + '\n')
+    resultlogger.info('MSG=' + result.message + '\n')
+    resultlogger.info('RESOLUTION=' + result.resolution + '\n')
+    resultlogger.info('AREA=' + result.area + '\n')
+    resultlogger.info('ERRLEVEL=' + str(result.level) + '\n')
 
 
 def writeresult(result):
-    now = datetime.datetime.now()
     ResultDir = os.environ.get(constants.varResultDir, '.')
-    ResultFileName = ResultDir + "/" + now.strftime("%Y%m%d-%H%M%S.%f") + '.' + 'databaseArtifact.result'
+    ResultFileName = ResultDir + "/" + now.strftime("%Y%m%d-%H%M%S.%f") + '.' + '.result'
 
     with open(ResultFileName, 'w') as the_result_file:
         the_result_file.write('RC=' + str(result.rc) + '\n')
@@ -67,3 +68,5 @@ def exitscript(result):
         ' exit requested. Return code >' + str(result.rc) + "< and code >" + result.code + "<.")
     writeresult(result)
     raise SystemExit
+
+#configurelogger()

@@ -10,62 +10,42 @@ It also provides some related functions, such as:
 
 import subprocess, datetime
 import supporting, logging
+import supporting.infaConstants as infaConstants
+import os
+import informaticaArtifact as infa
+
+logger = logging.getLogger(__name__)
 
 
-def ExecuteBash(bashCommands):
-    """Execute a linux command"""
-    thisproc = "ExecuteBash"
+def ExecuteCommand(commands):
+    thisproc = "ExecuteCommand"
+    process = ""
 
-    supporting.log(logging.DEBUG, thisproc, "Executing commands: " + bashCommands)
+    supporting.log(logger, logging.DEBUG, thisproc, "Executing commands >" + commands + "<.")
 
     output, error = ("", 0)
-    process = subprocess.Popen(bashCommands, stdout=subprocess.PIPE, shell=True)
-    output, error = process.communicate()
+    my_env = {**os.environ, 'INFA_DEFAULT_DOMAIN_PASSWORD': infa.sourcePassword,
+              'INFA_DEFAULT_DOMAIN_USER': infa.sourceUsername,
+              'INFA_DEFAULT_SECURITY_DOMAIN': infa.sourceSecurityDomain}
+    pipes = subprocess.Popen(commands, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, env=my_env)
+    std_out, std_err = pipes.communicate()
+
+    if pipes.returncode == 0:
+        supporting.log(logger, logging.INFO, thisproc, std_out.decode('utf-8'))
+    else:
+        supporting.log(logger, logging.ERROR, thisproc, std_out.decode('utf-8'))
 
     return (output, error)
 
 
-def ExecuteInfacmd(bashCommands):
-
-    output, error = ExecuteBash(bashCommands)
+def ExecuteInfacmd(commands):
+    output, error = ExecuteCommand(commands)
 
     return (output, error)
 
 
 def BuildCommand(**KeyWordArguments):
     """Build an IDQ command, return it as string"""
-
-    # Create a lookup dictionary with the IDQ arguments recognized bu this function
-    AvailableArguments = {
-        "Domain": "-dn",
-        "User": "-un",
-        "Password": "-pd",
-        "Service": "-sn",
-        "SecurityDomain": "-sdn",
-        "Repository": "-rs",
-        "TargetFolder": "-tf",
-        "ConflictResolution": "-cr",
-        "FilePath": "-fp",
-        "Path": "-p",
-        "SourceProject": "-sp",
-        "TargetProject": "-tp",
-        "Project": "-pn",
-        "SkipCRC": "-sc",
-        "ControlFilePath": "-cp",
-        "OverwriteExportFile": "-ow",
-        "ByObjectPathName": "-bopn",
-        "ByUser": "-bu",
-        "ObjectPathName": "-opn",
-    }
-
-    # Create a lookup dictionary with the IDQ tools (program + command combination) recognized bu this function
-    AvailableTools = {
-        "Import": ("oie", "ImportObjects"),
-        "Export": ("oie", "ExportObjects"),
-        "CreateFolder": ("mrs", "CreateFolder"),
-        "ListCheckOutObjects": ("mrs", "listCheckedOutObjects"),
-        "CheckIn": ("mrs", "checkInObject"),
-    }
 
     # Process the input aruguments to compose the IDQ command
     # This is doen by first creating a list of strings, that are then joined to form the actual
@@ -87,11 +67,11 @@ def BuildCommand(**KeyWordArguments):
         # Command in AvailableTools, assign those to InfaProgram, InfaCommand
         elif key == "Tool":
             Tool = KeyWordArguments["Tool"]
-            (InfaProgram, InfaCommand) = AvailableTools[value]
+            (InfaProgram, InfaCommand) = infaConstants.AvailableTools[value]
         # If the argument is anything else, look it up in AvailableArguments and add the found
         # value to InfaArguments
-        elif key in AvailableArguments:
-            InfaArguments.append(AvailableArguments[key] + " " + '"' + value + '"')
+        elif key in infaConstants.AvailableArguments:
+            InfaArguments.append(infaConstants.AvailableArguments[key] + " " + '"' + value + '"')
 
     # Put all parts of the command in the same list, in correct order, and join them into one
     # string
@@ -113,10 +93,11 @@ def Import(**KeyWordArguments):
 
 
 def Export(**KeyWordArguments):
-    """Export IDQ Components"""
+    thisproc = "Export"
 
     KeyWordArguments["Tool"] = "Export"
     ExportCommand = BuildCommand(**KeyWordArguments)
+    supporting.log(logger, logging.INFO, thisproc, "ExportCommand is >" + ExportCommand + "<.")
     output, error = ExecuteInfacmd(ExportCommand)
 
     return (output, error)
@@ -135,6 +116,7 @@ def CreateFolder(**KeyWordArguments):
 
 
 def ListCheckedOutObjects(**KeyWordArguments):
+    thisproc = "ListCheckedOutObjects"
     """ List Components that are currently checked out """
 
     KeyWordArguments["Tool"] = "ListCheckOutObjects"
@@ -155,9 +137,7 @@ def ListCheckedOutObjects(**KeyWordArguments):
     Objects = [dict(KVPair.split("=") for KVPair in Line if len(KVPair.split("=")) == 2) for Line in
                OutputKeyValuePairLines]
 
-    print("")
-    print(output)
-    print("")
+    supporting.log(logging.DEBUG, thisproc, output)
 
     return (Objects)
 
@@ -173,6 +153,7 @@ def CheckIn(**KeyWordArguments):
 
 
 def CheckInMutiple(**KeyWordArguments):
+    thisproc = "CheckInMultiple"
     """ Check in Multiple IDQ components """
     for key, value in KeyWordArguments.items():
         if key == "MultipleObjectPaths":
@@ -192,9 +173,9 @@ def CheckInMutiple(**KeyWordArguments):
     timeafter = datetime.datetime.now()
     duration = timeafter - timebefore
 
-    print("\nInfacmd took " + str(duration) + " seconds to check-in " + str(len(ObjectPaths)) + " objects\n")
+    supporting.log(logging.DEBUG, thisproc,
+                   "Infacmd took " + str(duration) + " seconds to check-in " + str(len(ObjectPaths)) + " objects")
 
     # output, error = (CheckInAllCommand, 0)
 
     return (output, error)
-
