@@ -5,7 +5,7 @@
 # @Version: 20190410.0 - JBE - Initial
 ##
 
-import supporting.dbConstants as constants
+import databaseArtifact.dbConstants as constants
 import supporting, os, logging
 logger = logging.getLogger(__name__)
 

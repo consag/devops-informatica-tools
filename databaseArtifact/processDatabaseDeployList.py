@@ -5,10 +5,10 @@
 # @Version: 20190324.0 - JBE - Initial
 
 import supporting.errorcodes as err
-import supporting, logging, os
+import supporting, logging
 import supporting.filehandling as filehandling
 import re
-import supporting.dbSettings as settings
+import databaseArtifact.dbSettings as settings
 import supporting.deploylist
 
 logger = logging.getLogger(__name__)

@@ -6,7 +6,6 @@
 
 import supporting, logging, datetime
 
-configDone=0
 
 #supporting.log(logging.DEBUG, __name__, 'Init databaseArtifact')
 

@@ -2,44 +2,45 @@
 # generalSettings
 # @Since: 22-MAR-2019
 # @Author: Jac. Beekers
-# @Version: 20190410.0 - JBE - Initial
+# @Version: 20190412.0 - JBE - Initial
 ##
 
-import informaticaArtifact.developer as developer
-import informaticaArtifact as infa
-import supporting
-import logging, datetime
+import logging, datetime, supporting
+import supporting.errorcodes as err
+import informaticaArtifact.infaArtifactChecks as infachecks
+import informaticaArtifact.developer.processDeveloperDeployList as processDeployList
+import informaticaArtifact.infaSettings as settings
+import supporting.generalSettings as generalsettings
+#import informaticaArtifact
 
-logger = logging.getLogger(__name__)
+now = datetime.datetime.now()
+result = err.OK
 
 def main():
     thisproc = "MAIN"
     mainProc='CreateDeveloperArtifact'
 
-    supporting.configurelogger(mainProc)
+    resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
-    error = 0
 
-    supporting.log(logger, logging.DEBUG, thisproc, 'started')
-    infa.getInfaEnvironment()
+    supporting.log(logger, logging.DEBUG, thisproc, 'Started')
+    supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalsettings.logDir + "<.")
 
-    output, error = developer.Export(
-        InfaPath=infa.sourceInfacmd,
-        Tool="Export",
-        Domain=infa.sourceDomain,
-        Repository=infa.sourceModelRepository,
-        Project="Demo",
-        FilePath="/tmp/Demo_Export.xml",
-        OverwriteExportFile="true"
-    )
-    if output:
-        supporting.log(logger, logging.INFO, thisproc, "output (if any) =>" + output.decode('utf-8') + "<.")
-    #
-    if error:
-        supporting.log(logger, logging.INFO, thisproc, "error (if any) =>" + str(error) + "<.")
+    settings.getinfaenvvars()
+    settings.outinfaenvvars()
 
-    supporting.log(logger, logging.DEBUG, thisproc, 'completed with rc =>' + str(error) + "<.")
-    return (error)
+    # Check requirements for artifact generation
+    result = infachecks.infaartifactchecks()
+    if result.rc != 0:
+        supporting.log(logger, logging.ERROR, thisproc, 'INFA Checks failed with >' + result.message +"<.")
+        return result.rc
+
+    result = processDeployList.processList(settings.infadeploylist)
+
+    supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
+                   + '< and result code >' + result.code + "<.")
+    supporting.writeresult(resultlogger, result)
+    return result.rc
 
 
 main()

@@ -35,6 +35,8 @@ DEFAULT_USERNAME = 'notReally'
 DEFAULT_PASSWORD = 'W3Akrdu+PECXwqC/W21nXQ=='
 DEFAULT_SECURITYDOMAIN = 'Native'
 
+NOT_PROVIDED = "NotProvided"
+
 ##
 # PowerCenter
 varPowerCenterDeployList = 'POWERCENTER_DEPLOOYLIST'

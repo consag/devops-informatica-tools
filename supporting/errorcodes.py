@@ -22,3 +22,7 @@ FILE_NW=err.Errorcode(1,'ENV-0005', 'Cannot write to file','Check the file\'s pa
 NO_DEPLOYLIST=err.Errorcode(10,'DBDEPLOY-0001','No deploylist defined','Set the environment variable','DatabaseArtifact',logging.FATAL)
 SOURCESQLDIR_NOTSET=err.Errorcode(10,'DBDEPLOY-0002','SourceSqlDir is not defined', 'Set the environment variable','DatabaseArtifact', logging.ERROR)
 TARGETSQLDIR_NOTSET=err.Errorcode(10,'DBDEPLOY-0003','TargetSqlDir is not defined', 'Set the environment variable','DatabaseArtifact', logging.ERROR)
+
+# Informatica artifact errors. Return code will be 20
+NOT_IMPLEMENTED=err.Errorcode(20,'INFADEPLOY-0001','Result unknown. Function may not have been implemented completely','Ask your developer to implement the logic completely.','InformaticaArtifact',logging.WARNING)
+INFACMD_FAILED=err.Errorcode(20,'INFADEPLOY-0002','infacmd command failed.','Check the log and/or ask your administrator.','InformaticaArtifact',logging.ERROR)

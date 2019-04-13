@@ -6,13 +6,19 @@ a Informatica Model Repository.
 It also provides some related functions, such as:
 	- Create IDQ folder
 	- Check in IDQ components
+
+    Parts by Laurens Verhoeven
+    Parts by Jac. Beekers
+    @Version: 20190412.0  - JBE - Initial version to work with deploy lists
+    @License: MIT
 """
 
 import subprocess, datetime
 import supporting, logging
-import supporting.infaConstants as infaConstants
+import informaticaArtifact.infaConstants as infaConstants
 import os
-import informaticaArtifact as infa
+import informaticaArtifact.infaSettings as infaSettings
+import supporting.errorcodes as errorcodes
 
 logger = logging.getLogger(__name__)
 
@@ -20,28 +26,30 @@ logger = logging.getLogger(__name__)
 def ExecuteCommand(commands):
     thisproc = "ExecuteCommand"
     process = ""
+    result = errorcodes.OK
 
     supporting.log(logger, logging.DEBUG, thisproc, "Executing commands >" + commands + "<.")
 
     output, error = ("", 0)
-    my_env = {**os.environ, 'INFA_DEFAULT_DOMAIN_PASSWORD': infa.sourcePassword,
-              'INFA_DEFAULT_DOMAIN_USER': infa.sourceUsername,
-              'INFA_DEFAULT_SECURITY_DOMAIN': infa.sourceSecurityDomain}
+    my_env = {**os.environ, 'INFA_DEFAULT_DOMAIN_PASSWORD': infaSettings.sourcePassword,
+              'INFA_DEFAULT_DOMAIN_USER': infaSettings.sourceUsername,
+              'INFA_DEFAULT_SECURITY_DOMAIN': infaSettings.sourceSecurityDomain}
     pipes = subprocess.Popen(commands, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, env=my_env)
     std_out, std_err = pipes.communicate()
 
     if pipes.returncode == 0:
         supporting.log(logger, logging.INFO, thisproc, std_out.decode('utf-8'))
     else:
+        result = errorcodes.INFACMD_FAILED
         supporting.log(logger, logging.ERROR, thisproc, std_out.decode('utf-8'))
 
-    return (output, error)
+    return result
 
 
 def ExecuteInfacmd(commands):
-    output, error = ExecuteCommand(commands)
+    result = ExecuteCommand(commands)
 
-    return (output, error)
+    return result
 
 
 def BuildCommand(**KeyWordArguments):
@@ -92,15 +100,15 @@ def Import(**KeyWordArguments):
     return (output, error)
 
 
-def Export(**KeyWordArguments):
+def export_developer_project(**KeyWordArguments):
     thisproc = "Export"
 
     KeyWordArguments["Tool"] = "Export"
     ExportCommand = BuildCommand(**KeyWordArguments)
     supporting.log(logger, logging.INFO, thisproc, "ExportCommand is >" + ExportCommand + "<.")
-    output, error = ExecuteInfacmd(ExportCommand)
+    result = ExecuteInfacmd(ExportCommand)
 
-    return (output, error)
+    return (result)
 
 
 def CreateFolder(**KeyWordArguments):

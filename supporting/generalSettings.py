@@ -10,8 +10,9 @@ import supporting.generalConstants as constants
 
 logger = logging.getLogger(__name__)
 
-#global logDir
+"""defaults"""
 logDir=constants.DEFAULT_LOGDIR
+resultDir=constants.DEFAULT_RESULTDIR
 
 def getenvvars():
     thisproc="getenvvars"
@@ -20,6 +21,9 @@ def getenvvars():
 
     logDir= os.environ.get(constants.varLogDir, constants.DEFAULT_LOGDIR)
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir set to >' + logDir +"<.")
+
+    logDir= os.environ.get(constants.varResultDir, constants.DEFAULT_RESULTDIR)
+    supporting.log(logger, logging.DEBUG, thisproc, 'resultDir set to >' + resultDir +"<.")
 
     supporting.log(logger, logging.DEBUG, thisproc, 'completed')
 

@@ -17,8 +17,8 @@ def configurelogger(mainProc):
                         , level=logging.DEBUG
                         , format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-    ResultDir = os.environ.get(constants.varResultDir, '.')
-    ResultFileName = ResultDir + "/" + now.strftime("%Y%m%d-%H%M%S.%f") + '.' + '.result'
+    ResultDir = os.environ.get(constants.varResultDir, constants.DEFAULT_RESULTDIR)
+    ResultFileName = ResultDir + "/" + now.strftime("%Y%m%d-%H%M%S.%f") + '-' + mainProc + '.result'
 
     resultlogger = logging.getLogger('result_logger')
     resultlogger.setLevel(logging.INFO)
@@ -31,7 +31,7 @@ def configurelogger(mainProc):
     # add the handlers to logger
     resultlogger.addHandler(fh)
 
-    return
+    return resultlogger
 
 
 def log(logger, level, area, message):
@@ -39,34 +39,20 @@ def log(logger, level, area, message):
     logger.log(level, area + " - " + message)
     return
 
-def writeresult2(resultlogger, result):
-    resultlogger.info('RC=' +str(result.rc) +'\n')
-    resultlogger.info('CODE=' + result.code + '\n')
-    resultlogger.info('MSG=' + result.message + '\n')
-    resultlogger.info('RESOLUTION=' + result.resolution + '\n')
-    resultlogger.info('AREA=' + result.area + '\n')
-    resultlogger.info('ERRLEVEL=' + str(result.level) + '\n')
+def writeresult(resultlogger, result):
+    resultlogger.info('RC=' +str(result.rc) )
+    resultlogger.info('CODE=' + result.code )
+    resultlogger.info('MSG=' + result.message )
+    resultlogger.info('RESOLUTION=' + result.resolution )
+    resultlogger.info('AREA=' + result.area )
+    resultlogger.info('ERRLEVEL=' + str(result.level) )
 
 
-def writeresult(result):
-    ResultDir = os.environ.get(constants.varResultDir, '.')
-    ResultFileName = ResultDir + "/" + now.strftime("%Y%m%d-%H%M%S.%f") + '.' + '.result'
-
-    with open(ResultFileName, 'w') as the_result_file:
-        the_result_file.write('RC=' + str(result.rc) + '\n')
-        the_result_file.write('CODE=' + result.code + '\n')
-        the_result_file.write('MSG=' + result.message + '\n')
-        the_result_file.write('RESOLUTION=' + result.resolution + '\n')
-        the_result_file.write('AREA=' + result.area + '\n')
-        the_result_file.write('ERRLEVEL=' + str(result.level) + '\n')
-    return
-
-
-def exitscript(result):
+def exitscript(resultlogger, result):
     thisProc = "exitscript"
     log(logging.ERROR, thisProc, result.area +
         ' exit requested. Return code >' + str(result.rc) + "< and code >" + result.code + "<.")
-    writeresult(result)
+    writeresult(resultlogger, result)
     raise SystemExit
 
-#configurelogger()
+
