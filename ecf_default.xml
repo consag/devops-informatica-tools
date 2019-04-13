@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<exportParams xmlns="http://www.informatica.com/oie/exportControl/9">
+ <folders>
+   
+   <!-- Consider exporting all objects in the project. Also export from subfolders. -->
+   <folder path ="/" recursive="true">
+
+      <!-- Export specific application -->
+      <objectList type="Application">
+        <object name="Appl_Demo"/>
+      </objectList>
+
+    </folder>
+ </folders>
+</exportParams>
