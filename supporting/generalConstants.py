@@ -11,11 +11,16 @@
 varLogDir ='LOGDIR'
 varResultDir ='RESULTDIR'
 varArtifactDir ='ARTIFACTDIR'
+varConfigDir = 'CONFIGDIR'
 
 ##
 #
 ##
-NOT_SET ='NotSet'
+NOT_SET = 'NotSet'
+YES = 'Yes'
+NO = 'No'
+TRUE = "True"
+FALSE = "False"
 
 ##
 # Environment defaults
@@ -23,3 +28,4 @@ NOT_SET ='NotSet'
 DEFAULT_LOGDIR = '.'
 DEFAULT_RESULTDIR = '.'
 DEFAULT_ARTIFACTDIR = '.'
+DEFAULT_CONFIGDIR = '.'

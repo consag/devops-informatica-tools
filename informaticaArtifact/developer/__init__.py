@@ -15,10 +15,12 @@ It also provides some related functions, such as:
 
 import subprocess, datetime
 import supporting, logging
-import informaticaArtifact.infaConstants as infaConstants
 import os
+import informaticaArtifact.infaConstants as infaConstants
 import informaticaArtifact.infaSettings as infaSettings
 import supporting.errorcodes as errorcodes
+import supporting.generalConstants as generalConstants
+import supporting.generalSettings as generalSettings
 
 logger = logging.getLogger(__name__)
 
@@ -34,6 +36,7 @@ def ExecuteCommand(commands):
               'INFA_DEFAULT_DOMAIN_USER': infaSettings.sourceUsername,
               'INFA_DEFAULT_SECURITY_DOMAIN': infaSettings.sourceSecurityDomain}
     pipes = subprocess.Popen(commands, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, env=my_env)
+    pipes.wait()
     std_out, std_err = pipes.communicate()
 
     if pipes.returncode == 0:
@@ -64,17 +67,21 @@ def BuildCommand(**KeyWordArguments):
     InfaArguments = []
 
     # Process each input argument.
-    # The InfaPath and Tool arguments are processed separetly, because those have to go first
-    # For the other arguments, the order does not matter, so they can be processed togetehr
+    # The Tool arguments are processed separately, because those have to go first
+    # For the other arguments, the order does not matter, so they can be processed together
     for key, value in KeyWordArguments.items():
-        # If the argument is "InfaPath" , assign the value to the variable InfaPath
-        if key == "InfaPath":
-            InfaPath = KeyWordArguments["InfaPath"]
         # If the argument is "Tool" , assign the value to the variable Tool, and lookup the Program and
         # Command in AvailableTools, assign those to InfaProgram, InfaCommand
-        elif key == "Tool":
+        if key == "Tool":
             Tool = KeyWordArguments["Tool"]
             (InfaProgram, InfaCommand) = infaConstants.AvailableTools[value]
+        elif key == "Project":
+            projectName = value
+            InfaArguments.append(infaConstants.AvailableArguments[key] + " " + '"' + value + '"')
+        elif key == "ExportRefData":
+            if value == generalConstants.YES:
+                InfaArguments.append("-oo " +'"' + "rtm:disName=" + infaSettings.sourceDIS +",codePage=UTF-8,refDataFile=" +
+                generalSettings.artifactDir + "/" + projectName + ".zip" +'"')
         # If the argument is anything else, look it up in AvailableArguments and add the found
         # value to InfaArguments
         elif key in infaConstants.AvailableArguments:
@@ -82,7 +89,7 @@ def BuildCommand(**KeyWordArguments):
 
     # Put all parts of the command in the same list, in correct order, and join them into one
     # string
-    IDQCommandParts = [InfaPath, InfaProgram, InfaCommand] + InfaArguments
+    IDQCommandParts = [infaSettings.sourceInfacmd, InfaProgram, InfaCommand] + InfaArguments
     IDQCommand = " ".join(IDQCommandParts)
 
     return (IDQCommand)
@@ -99,11 +106,12 @@ def Import(**KeyWordArguments):
     return (output, error)
 
 
-def export_developer_project(**KeyWordArguments):
-    thisproc = "Export"
+def export_infadeveloper(**KeyWordArguments):
+    thisproc = "export_infadeveloper"
 
     KeyWordArguments["Tool"] = "Export"
     ExportCommand = BuildCommand(**KeyWordArguments)
+
     supporting.log(logger, logging.INFO, thisproc, "ExportCommand is >" + ExportCommand + "<.")
     result = ExecuteInfacmd(ExportCommand)
 

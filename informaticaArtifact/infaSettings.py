@@ -9,22 +9,25 @@ import informaticaArtifact.infaConstants as constants
 import supporting, os, logging
 logger = logging.getLogger(__name__)
 
-infadeploylist = constants.DEFAULT_DEVELOPER_DEPLOYLIST
+#infadeploylist = constants.DEFAULT_DEVELOPER_DEPLOYLIST
 
 ##
 # getInfaEnvironment
 def getinfaenvvars():
     thisproc="getinfaenvvars"
-    global infadeploylist
-    global sourceInfaHome, sourceInfacmdLocation, sourceInfacmdCommand, sourceInfacmd,\
-        sourceDomainInfa, sourceDomain, sourceModelRepository, sourceUsername, sourcePassword, sourceSecurityDomain
-    global targetInfaHome, targetInfacmdLocation, targetInfacmdCommand, targetInfacmd,\
-        targetDomainInfa, targetDomain, targetModelRepository, targetUsername, targetPassword, targetSecurityDomain
+    global infadeploylist, overwriteExportFile
+    global sourceExportRefData, sourceInfaHome, sourceInfacmdLocation, sourceInfacmdCommand, sourceInfacmd,\
+        sourceDomainInfa, sourceDomain, sourceModelRepository, sourceUsername, sourcePassword, sourceSecurityDomain,\
+        sourceDIS, exportControlFile
+    global targetExportRefData, targetInfaHome, targetInfacmdLocation, targetInfacmdCommand, targetInfacmd,\
+        targetDomainInfa, targetDomain, targetModelRepository, targetUsername, targetPassword, targetSecurityDomain,\
+        targetDIS, importControlFile
 
     supporting.log(logger, logging.DEBUG, thisproc, 'started')
-
     infadeploylist = os.environ.get(constants.varDeveloperDeployList, constants.DEFAULT_DEVELOPER_DEPLOYLIST)
+    overwriteExportFile = os.environ.get(constants.varOverwriteExportFile, constants.DEFAULT_OVERWRITE_EXPORT_FILE)
 
+    sourceExportRefData = os.environ.get(constants.varSourceExportRefData, constants.DEFAULT_EXPORT_REFDATA)
     sourceInfaHome = os.environ.get(constants.varSourceInfaHome, constants.DEFAULT_INFA_HOME)
     sourceInfacmdLocation = os.environ.get(constants.varSourceInfacmdLocation, sourceInfaHome +"/server/bin")
     sourceDomain = os.environ.get(constants.varSourceDomain, constants.DEFAULT_DOMAIN)
@@ -38,7 +41,10 @@ def getinfaenvvars():
     else:
         sourceInfacmdCommand ='infacmd.sh'
     sourceInfacmd = sourceInfacmdLocation +'/' + sourceInfacmdCommand
+    sourceDIS = os.environ.get(constants.varSourceDIS, constants.DEFAULT_DATAINTEGRATION_SERVICE)
+    exportControlFile = os.environ.get(constants.varExportControlFile, constants.DEFAULT_EXPORT_CONTROLFILE)
 
+    targetExportRefData = os.environ.get(constants.varTargetImportRefData, constants.DEFAULT_IMPORT_REFDATA)
     targetInfaHome = os.environ.get(constants.varTargetInfaHome, constants.DEFAULT_INFA_HOME)
     targetInfacmdLocation = os.environ.get(constants.varTargetInfacmdLocation, targetInfaHome +"/server/bin")
     targetDomain = os.environ.get(constants.varTargetDomain, constants.DEFAULT_DOMAIN)
@@ -52,6 +58,8 @@ def getinfaenvvars():
     else:
         targetInfacmdCommand ='infacmd.sh'
     targetInfacmd = targetInfacmdLocation +'/' + targetInfacmdCommand
+    targetDIS = os.environ.get(constants.varTargetDIS, constants.DEFAULT_DATAINTEGRATION_SERVICE)
+    importControlFile = os.environ.get(constants.varImportControlFile, constants.DEFAULT_IMPORT_CONTROLFILE)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'completed')
     return

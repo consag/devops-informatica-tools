@@ -12,6 +12,7 @@ import informaticaArtifact
 import supporting.errorcodes as errorcodes
 import supporting.deploylist
 import informaticaArtifact.infaSettings as infaSettings
+import supporting.generalSettings as generalSettings
 
 logger = logging.getLogger(__name__)
 entrynr =0
@@ -34,16 +35,34 @@ def processEntry(deployEntry):
     result = err.OK
     supporting.log(logger, logging.DEBUG, thisproc, "Started to work on deploy entry >" + deployEntry + "<.")
 
-    type, object = deployEntry.split(':', 2)
+    parts = deployEntry.split(':')
+    if not len(parts) == 2 and not len(parts) == 4:
+        supporting.log(logger, logging.DEBUG, thisproc, "Insufficient entries found. Expected 2 or 4, got >" + str(len(parts)) +"<.")
+
+    type = parts[0]
+    object = parts[1]
+    if len(parts) == 4:
+        exportcontrol = generalSettings.configDir + "/" + parts[2]
+        importcontrol = generalSettings.configDir + "/" + parts[3]
+
     supporting.log(logger, logging.DEBUG, thisproc, 'Type is >' + type + '< and object is >' + object + '<')
     if type == 'PROJECT':
-        result = developer.export_developer_project(
-            InfaPath=infaSettings.sourceInfacmd,
+        result = developer.export_infadeveloper(
             Domain=infaSettings.sourceDomain,
             Repository=infaSettings.sourceModelRepository,
             Project=object,
-            FilePath=infaSettings.artifactDir + "/" + object +".xml",
-            OverwriteExportFile="true"
+            FilePath=generalSettings.artifactDir + "/" + object +".xml",
+            OverwriteExportFile=infaSettings.overwriteExportFile,
+            ExportRefData=infaSettings.sourceExportRefData
+        )
+    elif type == 'CONTROLFILE':
+        result = developer.export_infadeveloper(
+            Domain = infaSettings.sourceDomain,
+            Repository = infaSettings.sourceModelRepository,
+            Project=object,
+            FilePath=generalSettings.artifactDir + "/" + object +".xml",
+            OverwriteExportFile = infaSettings.overwriteExportFile,
+            ControlFilePath = exportcontrol
         )
     else:
         result = errorcodes.NOT_IMPLEMENTED
