@@ -30,7 +30,6 @@ def ExecuteCommand(commands):
 
     supporting.log(logger, logging.DEBUG, thisproc, "Executing commands >" + commands + "<.")
 
-    output, error = ("", 0)
     my_env = {**os.environ, 'INFA_DEFAULT_DOMAIN_PASSWORD': infaSettings.sourcePassword,
               'INFA_DEFAULT_DOMAIN_USER': infaSettings.sourceUsername,
               'INFA_DEFAULT_SECURITY_DOMAIN': infaSettings.sourceSecurityDomain}

@@ -10,6 +10,7 @@
 # Generic
 varLogDir ='LOGDIR'
 varResultDir ='RESULTDIR'
+varArtifactDir ='ARTIFACTDIR'
 
 ##
 #
@@ -19,5 +20,6 @@ NOT_SET ='NotSet'
 ##
 # Environment defaults
 # If not set on command line (if supported) and not as environment variable
-DEFAULT_LOGDIR ='.'
-DEFAULT_RESULTDIR ='.'
+DEFAULT_LOGDIR = '.'
+DEFAULT_RESULTDIR = '.'
+DEFAULT_ARTIFACTDIR = '.'

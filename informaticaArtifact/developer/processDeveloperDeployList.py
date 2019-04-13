@@ -42,7 +42,7 @@ def processEntry(deployEntry):
             Domain=infaSettings.sourceDomain,
             Repository=infaSettings.sourceModelRepository,
             Project=object,
-            FilePath="/tmp/" + object +".xml",
+            FilePath=infaSettings.artifactDir + "/" + object +".xml",
             OverwriteExportFile="true"
         )
     else:
