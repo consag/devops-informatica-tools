@@ -12,6 +12,7 @@ varLogDir ='LOGDIR'
 varResultDir ='RESULTDIR'
 varArtifactDir ='ARTIFACTDIR'
 varConfigDir = 'CONFIGDIR'
+varSourceDir = 'SOURCEDIR'
 
 ##
 #
@@ -29,3 +30,4 @@ DEFAULT_LOGDIR = '.'
 DEFAULT_RESULTDIR = '.'
 DEFAULT_ARTIFACTDIR = '.'
 DEFAULT_CONFIGDIR = '.'
+DEFAULT_SOURCEDIR = '.'

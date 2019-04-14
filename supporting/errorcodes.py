@@ -25,6 +25,7 @@ DEPLOYLIST_NF=err.Errorcode(2,'GENDEPLOY-0001','Deploylist not found','Check con
 NO_DEPLOYLIST=err.Errorcode(10,'DBDEPLOY-0001','No dbdeploylist defined','Set the environment variable','DatabaseArtifact',logging.FATAL)
 SOURCESQLDIR_NOTSET=err.Errorcode(10,'DBDEPLOY-0002','SourceSqlDir is not defined', 'Set the environment variable','DatabaseArtifact', logging.ERROR)
 TARGETSQLDIR_NOTSET=err.Errorcode(10,'DBDEPLOY-0003','TargetSqlDir is not defined', 'Set the environment variable','DatabaseArtifact', logging.ERROR)
+SQLFILE_NF=err.Errorcode(10,'DBDEPLOY-0004','SQL file not found', 'Check the deploy file content','DatabaseArtifact', logging.ERROR)
 
 # Informatica artifact errors. Return code will be 20
 NOT_IMPLEMENTED=err.Errorcode(20,'INFADEPLOY-0001','Result unknown. Function may not have been implemented completely','Ask your developer to implement the logic completely.','InformaticaArtifact',logging.WARNING)

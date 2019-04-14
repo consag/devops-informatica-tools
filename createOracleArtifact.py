@@ -13,7 +13,7 @@ import supporting.generalSettings as generalsettings
 
 now = datetime.datetime.now()
 result = err.OK
-
+settings.databaseType = 'Oracle'
 
 def main():
     thisproc = "MAIN"
@@ -26,6 +26,7 @@ def main():
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalsettings.logDir + "<.")
 
     # Check requirements for artifact generation
+    generalsettings.getenvvars()
     settings.getdbenvvars()
     settings.outdbenvvars()
 

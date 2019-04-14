@@ -7,9 +7,10 @@
 import supporting.errorcodes as err
 import supporting, logging
 import supporting.filehandling as filehandling
-import re
+import re, os
 import databaseArtifact.dbSettings as settings
 import supporting.deploylist
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 entrynr =0
@@ -30,31 +31,50 @@ def processList(deployFile):
 def processEntry(deployEntry):
     thisproc = "processEntry"
     result = err.OK
+    supporting.log(logger, logging.DEBUG, thisproc, "Current directory is >" + os.getcwd() +"<.")
     supporting.log(logger, logging.DEBUG, thisproc, "Started to work on deploy entry >" + deployEntry + "<.")
 
     schema, sqlfile = deployEntry.split(':', 2)
     supporting.log(logger, logging.DEBUG, thisproc, 'Schema is >' + schema + '< and sqlfile is >' + sqlfile + '<')
+    sqlfile = schema + "/" + sqlfile
 
-    result = generate_orderedsql(schema, sqlfile)
+    sqlfilePath = Path(sqlfile)
+    if sqlfilePath.is_file():
+        supporting.log(logger, logging.DEBUG, thisproc, 'Found sqlfile >' + sqlfile + "<.")
+        sourcesqldir = ""
+    else:
+        sourcesqldir = settings.sourcesqldir + "/" + settings.databaseType + "/"
+        supporting.log(logger, logging.DEBUG, thisproc, 'sqlfile >' + sqlfile + '< not found. Trying >'
+                       + sourcesqldir + sqlfile + '<...')
+#        sqlfile = sourcesqldir + sqlfile
+        sqlfilePath = Path(sourcesqldir + sqlfile)
+        if sqlfilePath.is_file():
+            supporting.log(logger, logging.DEBUG, thisproc, 'Found sqlfile >' + sourcesqldir + sqlfile + "<.")
+        else:
+            supporting.log(logger, err.SQLFILE_NF.level, thisproc,
+                       "sqlfile checked >" + sourcesqldir + sqlfile + "<. " + err.SQLFILE_NF.message)
+            result = err.SQLFILE_NF
+            return result
+
+    result = generate_orderedsql(sourcesqldir, schema, sqlfile)
 
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")
     return result
 
 
-def generate_orderedsql(schema, input_sqlfile):
+def generate_orderedsql(sourcesqldir, schema, input_sqlfile):
     thisproc = "generate_orderedsql"
     global entrynr
     result = err.OK
     supporting.log(logger, logging.DEBUG, thisproc, "Started to work on sql file >" + input_sqlfile + "< in schema >" +schema +"<.")
 
-    the_source_sqldir  = settings.sourcesqldir + "/" + schema + "/"
     the_source_sqlfile = input_sqlfile
     entrynr = entrynr + 1
-    orderedsqlfilename = settings.targetsqldir + "/" + "%02d" % entrynr + "_ordered.sql"
+    orderedsqlfilename = settings.targetsqldir + "/" + "%02d" % entrynr + "_" + schema + "_ordered.sql"
 
     filehandling.removefile(orderedsqlfilename)
-    result = processlines(the_source_sqldir, the_source_sqlfile, orderedsqlfilename)
+    result = processlines(sourcesqldir, schema, the_source_sqlfile, orderedsqlfilename)
 
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")
@@ -73,7 +93,7 @@ def calltosubsql(line):
         return True
     return False
 
-def processlines(the_source_sqldir, the_source_sqlfile, orderedsqlfilename):
+def processlines(the_source_sqldir, schema, the_source_sqlfile, orderedsqlfilename):
     result = err.OK
     global level
     level +=1
@@ -83,17 +103,16 @@ def processlines(the_source_sqldir, the_source_sqlfile, orderedsqlfilename):
     try:
         with open(the_source_sqldir + the_source_sqlfile) as thesql:
             for line in thesql:
-                if (ignoreline(line)):
+                if ignoreline(line):
                     continue
-                if (calltosubsql(line)):
+                if calltosubsql(line):
                     supporting.log(logger, logging.DEBUG, thisproc, "Found '@@', a call to another script.")
                     write2file(orderedsqlfilename, "-- Start expansion -- " + line)
                     subsql = line[2:-1].split(' ', 1)[0]
                     completepathsql = the_source_sqldir + subsql
                     supporting.log(logger, logging.DEBUG, thisproc, "Sub file name determined as >" + subsql +"<. Complete file path >"
                                    + completepathsql +"<.")
-                    #thesubsqlfile = the_source_sqldir + subsql
-                    processlines(the_source_sqldir, subsql, orderedsqlfilename)
+                    processlines(the_source_sqldir, schema, schema +"/" + subsql, orderedsqlfilename)
                     write2file(orderedsqlfilename, "-- End expansion -- " + line)
                 else:
                     write2file(orderedsqlfilename, line)

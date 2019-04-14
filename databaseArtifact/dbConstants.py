@@ -7,8 +7,8 @@
 # Database artifacts
 varOracleSchemaName='ORACLE_SCHEMANAME'
 varOracleDeployList='ORACLE_DEPLOYLIST'
-varSourceSqlDir='ORACLE_SOURCE_SQLDIR'
-varTargetSqlDir='ORACLE_TARGET_SQLDIR'
+varSourceSqlDir='SOURCE_SQLDIR'
+varTargetSqlDir='TARGET_SQLDIR'
 
 ##
 # Database artifact defaults
