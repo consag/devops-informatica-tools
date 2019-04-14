@@ -27,6 +27,8 @@ def main():
 
     # Check requirements for artifact generation
     settings.getdbenvvars()
+    settings.outdbenvvars()
+
     result = dbchecks.databaseartifactchecks()
     if result.rc != 0:
         supporting.log(logger, logging.ERROR, thisproc, 'Database Artifact Checks failed with >' + result.message +"<.")

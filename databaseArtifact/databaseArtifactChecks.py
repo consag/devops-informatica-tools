@@ -8,6 +8,7 @@ import supporting.errorcodes as err
 import supporting, logging
 import databaseArtifact.dbConstants as env
 import databaseArtifact.dbSettings as settings
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
@@ -15,16 +16,16 @@ logger = logging.getLogger(__name__)
 def databaseartifactchecks():
     thisproc = "databaseartifactchecks"
     supporting.log(logger, logging.DEBUG, thisproc, 'started')
+    result = err.OK
 
     if not settings.deploylist:
-        retCode = err.NO_DEPLOYLIST.code
-        retMsg = err.NO_DEPLOYLIST.message
-        retResolution = err.NO_DEPLOYLIST.resolution + " " + env.varOracleDeployList
-        retArea = err.NO_DEPLOYLIST.area
-        retLevel = err.NO_DEPLOYLIST.level
-        supporting.log(logger, retLevel, thisproc, retArea + " " + retCode + " " + retMsg + ": " + retResolution)
-        supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + retCode + "<.")
-        return err.NO_DEPLOYLIST
+        supporting.log(logger, err.NO_DEPLOYLIST.level, thisproc, err.NO_DEPLOYLIST.message)
+        result = err.NO_DEPLOYLIST
+    else:
+        deploylistFile = Path(settings.deploylist)
+        if not deploylistFile.is_file():
+            supporting.log(logger, err.DEPLOYLIST_NF.level, thisproc, "dbdeploylist is >" + settings.deploylist +"<. " + err.DEPLOYLIST_NF.message)
+            result = err.DEPLOYLIST_NF
 
-    supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + str(err.OK.rc) + "<.")
-    return err.OK
+    supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + str(result.rc) + "<.")
+    return result
