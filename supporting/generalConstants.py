@@ -15,8 +15,11 @@ varConfigDir = 'CONFIGDIR'
 varSourceDir = 'SOURCEDIR'
 
 ##
-#
+# Release
+varReleaseId = 'BUILD_BUILDNUMBER'
+
 ##
+#
 NOT_SET = 'NotSet'
 YES = 'Yes'
 NO = 'No'
@@ -31,3 +34,4 @@ DEFAULT_RESULTDIR = '.'
 DEFAULT_ARTIFACTDIR = '.'
 DEFAULT_CONFIGDIR = '.'
 DEFAULT_SOURCEDIR = '.'
+DEFAULT_RELEASEID = '0.1'

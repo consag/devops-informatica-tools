@@ -9,6 +9,7 @@ import supporting, logging
 import supporting.filehandling as filehandling
 import re, os
 import databaseArtifact.dbSettings as settings
+import supporting.generalSettings as generalSettings
 import supporting.deploylist
 from pathlib import Path
 
@@ -71,7 +72,16 @@ def generate_orderedsql(sourcesqldir, schema, input_sqlfile):
 
     the_source_sqlfile = input_sqlfile
     entrynr = entrynr + 1
-    orderedsqlfilename = settings.targetsqldir + "/" + "%02d" % entrynr + "_" + schema + "_ordered.sql"
+    ##
+    # tricky: let's put the entrynr before the first _ we find (if any)
+    prefixReleaseID = settings.sqlprefix +  generalSettings.releaseID
+    if prefixReleaseID.find('_') >= 0:
+        firstpart = prefixReleaseID[0:prefixReleaseID.find('_')] + ".%02d" % entrynr
+        secondpart = prefixReleaseID[prefixReleaseID.find('_'):]
+        prefixReleaseID = firstpart + secondpart
+
+    orderedsqlfilename = settings.targetsqldir + "/" + prefixReleaseID \
+                         + "_" + schema + ".sql"
 
     filehandling.removefile(orderedsqlfilename)
     result = processlines(sourcesqldir, schema, the_source_sqlfile, orderedsqlfilename)
