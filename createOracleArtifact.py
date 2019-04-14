@@ -29,7 +29,8 @@ def main():
     settings.getdbenvvars()
     result = dbchecks.databaseartifactchecks()
     if result.rc != 0:
-        supporting.exitscript(result)
+        supporting.log(logger, logging.ERROR, thisproc, 'Database Artifact Checks failed with >' + result.message +"<.")
+        return result.rc
 
     result = databaseArtifact.processDatabaseDeployList.processList(settings.deploylist)
 

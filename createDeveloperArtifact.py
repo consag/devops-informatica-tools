@@ -8,7 +8,7 @@
 import logging, datetime, supporting
 import supporting.errorcodes as err
 import informaticaArtifact.infaArtifactChecks as infachecks
-import informaticaArtifact.developer.processDeveloperDeployList as processDeployList
+import informaticaArtifact.developer.processDeveloperDeployList as processDeveloperDeployList
 import informaticaArtifact.infaSettings as settings
 import supporting.generalSettings as generalsettings
 #import informaticaArtifact
@@ -35,7 +35,7 @@ def main():
         supporting.log(logger, logging.ERROR, thisproc, 'INFA Checks failed with >' + result.message +"<.")
         return result.rc
 
-    result = processDeployList.processList(settings.infadeploylist)
+    result = processDeveloperDeployList.processList(settings.infadeploylist)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")

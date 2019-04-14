@@ -2,22 +2,31 @@
 # Supporting modules
 # @Since: 22-MAR-2019
 # @Author: Jac. Beekers
-# @Version: 20190412.0 - JBE - Initial
+# @Version: 20190414.0 - JBE - Initial
 
 import logging, datetime, os
-import supporting.generalConstants as constants
+import supporting.generalConstants as generalConstants
 
 now = datetime.datetime.now()
 
 
 def configurelogger(mainProc):
 
-    logdir = os.environ.get(constants.varLogDir, constants.DEFAULT_LOGDIR)
+    logdir = os.environ.get(generalConstants.varLogDir, generalConstants.DEFAULT_LOGDIR)
     logging.basicConfig(filename= logdir +"/" + now.strftime("%Y%m%d-%H%M%S.%f") + '-' + mainProc + '.log'
                         , level=logging.DEBUG
                         , format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    # nice for Azure DevOps
+    console = logging.StreamHandler()
+    console.setLevel(logging.DEBUG)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    # tell the handler to use this format
+    console.setFormatter(formatter)
+    # add the handler to the root logger
+    logging.getLogger('').addHandler(console)
 
-    ResultDir = os.environ.get(constants.varResultDir, constants.DEFAULT_RESULTDIR)
+
+    ResultDir = os.environ.get(generalConstants.varResultDir, generalConstants.DEFAULT_RESULTDIR)
     ResultFileName = ResultDir + "/" + now.strftime("%Y%m%d-%H%M%S.%f") + '-' + mainProc + '.result'
 
     resultlogger = logging.getLogger('result_logger')
