@@ -46,6 +46,7 @@ def generate_orderedsql(schema, input_sqlfile):
     thisproc = "generate_orderedsql"
     global entrynr
     result = err.OK
+    supporting.log(logger, logging.DEBUG, thisproc, "Started to work on sql file >" + input_sqlfile + "< in schema >" +schema +"<.")
 
     the_source_sqldir  = settings.sourcesqldir + "/" + schema + "/"
     the_source_sqlfile = input_sqlfile
@@ -53,7 +54,10 @@ def generate_orderedsql(schema, input_sqlfile):
     orderedsqlfilename = settings.targetsqldir + "/" + "%02d" % entrynr + "_ordered.sql"
 
     filehandling.removefile(orderedsqlfilename)
-    processlines(the_source_sqldir, the_source_sqlfile, orderedsqlfilename)
+    result = processlines(the_source_sqldir, the_source_sqlfile, orderedsqlfilename)
+
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")
 
     return result
 
