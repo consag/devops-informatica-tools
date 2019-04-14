@@ -33,14 +33,14 @@ def main():
     result = infachecks.infaartifactchecks()
     if result.rc != 0:
         supporting.log(logger, logging.ERROR, thisproc, 'INFA Checks failed with >' + result.message +"<.")
-        return result.rc
+        supporting.exitscript(resultlogger, result)
 
     result = processDeveloperDeployList.processList(settings.infadeploylist)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
-    supporting.writeresult(resultlogger, result)
-    return result.rc
+#    supporting.writeresult(resultlogger, result)
+    supporting.exitscript(resultlogger, result)
 
 
 main()

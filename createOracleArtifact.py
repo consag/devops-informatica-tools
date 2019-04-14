@@ -30,14 +30,14 @@ def main():
     result = dbchecks.databaseartifactchecks()
     if result.rc != 0:
         supporting.log(logger, logging.ERROR, thisproc, 'Database Artifact Checks failed with >' + result.message +"<.")
-        return result.rc
+        supporting.exitscript(resultlogger, result)
 
     result = databaseArtifact.processDatabaseDeployList.processList(settings.deploylist)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
-    supporting.writeresult(resultlogger, result)
-    return result.rc
+#    supporting.writeresult(resultlogger, result)
+    supporting.exitscript(resultlogger, result)
 
 
 main()

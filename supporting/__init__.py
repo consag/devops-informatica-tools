@@ -6,6 +6,7 @@
 
 import logging, datetime, os
 import supporting.generalConstants as generalConstants
+import sys
 
 now = datetime.datetime.now()
 
@@ -58,10 +59,7 @@ def writeresult(resultlogger, result):
 
 
 def exitscript(resultlogger, result):
-    thisProc = "exitscript"
-    log(logging.ERROR, thisProc, result.area +
-        ' exit requested. Return code >' + str(result.rc) + "< and code >" + result.code + "<.")
     writeresult(resultlogger, result)
-    raise SystemExit
+    sys.exit(result.rc)
 
 
