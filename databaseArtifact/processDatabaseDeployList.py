@@ -16,11 +16,16 @@ entrynr =0
 level =0
 
 def processList(deployFile):
-    latestResult = err.OK
-    supporting.deploylist.getWorkitemList(deployFile)
-    for deployEntry in supporting.deploylist.deployItems:
-        latestResult = processEntry(deployEntry)
-    return latestResult
+    latestError = err.OK
+    result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
+    if result.rc == 0:
+        for deployEntry in supporting.deploylist.deployItems:
+            result = processEntry(deployEntry)
+            if result.rc != 0:
+                latestError = result
+    else:
+        latestError = result
+    return latestError
 
 def processEntry(deployEntry):
     thisproc = "processEntry"
