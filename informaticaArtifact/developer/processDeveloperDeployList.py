@@ -27,7 +27,7 @@ def processList(deployFile):
             latestResult = processEntry(deployEntry)
         return latestResult
     else:
-        supporting.log(logger, logging.ERROR, thisproc, "Could not get dbdeploylist")
+        supporting.log(logger, logging.ERROR, thisproc, "Could not get deploylist")
         return errorcodes.FILE_NF
 
 def processEntry(deployEntry):

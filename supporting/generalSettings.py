@@ -45,3 +45,10 @@ def getenvvars():
 
 
 getenvvars()
+
+
+def completePath(foundPath, prefixPath):
+    if foundPath.startswith("/"):
+        return foundPath
+    else:
+        return prefixPath +"/" + foundPath

@@ -2,14 +2,15 @@
 # dbSettings
 # @Since: 22-MAR-2019
 # @Author: Jac. Beekers
-# @Version: 20190412.0 - JBE - Initial
+# @Version: 20190414.0 - JBE - Initial
 ##
 
 import informaticaArtifact.infaConstants as constants
 import supporting, os, logging
-logger = logging.getLogger(__name__)
+import supporting.generalSettings as generalsettings
+from supporting.generalSettings import completePath
 
-#infadeploylist = constants.DEFAULT_DEVELOPER_DEPLOYLIST
+logger = logging.getLogger(__name__)
 
 ##
 # getInfaEnvironment
@@ -24,6 +25,7 @@ def getinfaenvvars():
         targetDIS, importControlFile
 
     supporting.log(logger, logging.DEBUG, thisproc, 'started')
+    infadeploylist = completePath(os.environ.get(constants.varDeveloperDeployList, constants.DEFAULT_DEVELOPER_DEPLOYLIST), generalsettings.sourceDir)
     infadeploylist = os.environ.get(constants.varDeveloperDeployList, constants.DEFAULT_DEVELOPER_DEPLOYLIST)
     overwriteExportFile = os.environ.get(constants.varOverwriteExportFile, constants.DEFAULT_OVERWRITE_EXPORT_FILE)
 

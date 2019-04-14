@@ -8,6 +8,7 @@
 import databaseArtifact.dbConstants as constants
 import supporting, os, logging
 import supporting.generalSettings as generalsettings
+from supporting.generalSettings import completePath
 
 logger = logging.getLogger(__name__)
 
@@ -27,13 +28,6 @@ def getdbenvvars():
     sqlprefix = os.environ.get(constants.varSqlPrefix, constants.DEFAULT_SQL_PREFIX)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'completed')
-
-
-def completePath(foundPath, prefixPath):
-    if foundPath.startswith("/"):
-        return foundPath
-    else:
-        return prefixPath +"/" + foundPath
 
 
 def outdbenvvars():
