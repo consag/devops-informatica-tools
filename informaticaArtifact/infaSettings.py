@@ -26,7 +26,6 @@ def getinfaenvvars():
 
     supporting.log(logger, logging.DEBUG, thisproc, 'started')
     infadeploylist = completePath(os.environ.get(constants.varDeveloperDeployList, constants.DEFAULT_DEVELOPER_DEPLOYLIST), generalsettings.sourceDir)
-    infadeploylist = os.environ.get(constants.varDeveloperDeployList, constants.DEFAULT_DEVELOPER_DEPLOYLIST)
     overwriteExportFile = os.environ.get(constants.varOverwriteExportFile, constants.DEFAULT_OVERWRITE_EXPORT_FILE)
 
     sourceExportRefData = os.environ.get(constants.varSourceExportRefData, constants.DEFAULT_EXPORT_REFDATA)
@@ -44,7 +43,7 @@ def getinfaenvvars():
         sourceInfacmdCommand ='infacmd.sh'
     sourceInfacmd = sourceInfacmdLocation +'/' + sourceInfacmdCommand
     sourceDIS = os.environ.get(constants.varSourceDIS, constants.DEFAULT_DATAINTEGRATION_SERVICE)
-    exportControlFile = os.environ.get(constants.varExportControlFile, constants.DEFAULT_EXPORT_CONTROLFILE)
+    exportControlFile = completePath(os.environ.get(constants.varExportControlFile, constants.DEFAULT_EXPORT_CONTROLFILE), generalsettings.sourceDir)
 
     targetExportRefData = os.environ.get(constants.varTargetImportRefData, constants.DEFAULT_IMPORT_REFDATA)
     targetInfaHome = os.environ.get(constants.varTargetInfaHome, constants.DEFAULT_INFA_HOME)
@@ -61,7 +60,7 @@ def getinfaenvvars():
         targetInfacmdCommand ='infacmd.sh'
     targetInfacmd = targetInfacmdLocation +'/' + targetInfacmdCommand
     targetDIS = os.environ.get(constants.varTargetDIS, constants.DEFAULT_DATAINTEGRATION_SERVICE)
-    importControlFile = os.environ.get(constants.varImportControlFile, constants.DEFAULT_IMPORT_CONTROLFILE)
+    importControlFile = completePath(os.environ.get(constants.varImportControlFile, constants.DEFAULT_IMPORT_CONTROLFILE), generalsettings.sourceDir)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'completed')
     return
