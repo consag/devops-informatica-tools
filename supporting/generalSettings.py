@@ -15,11 +15,11 @@ logDir = constants.DEFAULT_LOGDIR
 resultDir = constants.DEFAULT_RESULTDIR
 artifactDir = constants.DEFAULT_ARTIFACTDIR
 configDir = constants.DEFAULT_CONFIGDIR
-
+sourceDir = constants.DEFAULT_SOURCEDIR
 
 def getenvvars():
     thisproc = "getenvvars"
-    global logDir, resultDir, artifactDir, configDir
+    global logDir, resultDir, artifactDir, configDir, sourceDir, releaseID
 
     supporting.log(logger, logging.DEBUG, thisproc, 'started')
 
@@ -35,7 +35,20 @@ def getenvvars():
     configDir = os.environ.get(constants.varConfigDir, constants.DEFAULT_CONFIGDIR)
     supporting.log(logger, logging.DEBUG, thisproc, 'configDir set to >' + configDir + "<.")
 
+    sourceDir = os.environ.get(constants.varSourceDir, constants.DEFAULT_SOURCEDIR)
+    supporting.log(logger, logging.DEBUG, thisproc, 'sourceDir set to >' + sourceDir + "<.")
+
+    releaseID = os.environ.get(constants.varReleaseId, constants.DEFAULT_RELEASEID)
+    supporting.log(logger, logging.DEBUG, thisproc, 'releaseID set to >' + releaseID + "<.")
+
     supporting.log(logger, logging.DEBUG, thisproc, 'completed')
 
 
 getenvvars()
+
+
+def completePath(foundPath, prefixPath):
+    if foundPath.startswith("/"):
+        return foundPath
+    else:
+        return prefixPath +"/" + foundPath

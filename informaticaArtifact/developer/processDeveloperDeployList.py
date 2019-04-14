@@ -13,6 +13,7 @@ import supporting.errorcodes as errorcodes
 import supporting.deploylist
 import informaticaArtifact.infaSettings as infaSettings
 import supporting.generalSettings as generalSettings
+from supporting.generalSettings import completePath
 
 logger = logging.getLogger(__name__)
 entrynr =0
@@ -42,8 +43,8 @@ def processEntry(deployEntry):
     type = parts[0]
     object = parts[1]
     if len(parts) == 4:
-        exportcontrol = generalSettings.configDir + "/" + parts[2]
-        importcontrol = generalSettings.configDir + "/" + parts[3]
+        exportcontrol = completePath(generalSettings.configDir + "/" + parts[2], generalSettings.sourceDir)
+        importcontrol = completePath(generalSettings.configDir + "/" + parts[3], generalSettings.sourceDir)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Type is >' + type + '< and object is >' + object + '<')
     if type == 'PROJECT':
