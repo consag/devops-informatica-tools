@@ -23,7 +23,7 @@ def infaartifactchecks():
     else:
         deploylistFile = Path(settings.infadeploylist)
         if not deploylistFile.is_file():
-            supporting.log(logger, err.DEPLOYLIST_NF.level, thisproc, "dbdeploylist is >" + settings.deploylist +"<. " + err.DEPLOYLIST_NF.message)
+            supporting.log(logger, err.DEPLOYLIST_NF.level, thisproc, "dbdeploylist is >" + settings.infadeploylist +"<. " + err.DEPLOYLIST_NF.message)
             result = err.DEPLOYLIST_NF
 
     supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + str(result.rc) + "<.")

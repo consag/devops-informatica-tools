@@ -2,7 +2,7 @@
 # Create Oracle Database Artifact
 # @Since: 22-MAR-2019
 # @Author: Jac. Beekers
-# @Version: 20190322.0 - JBE - Initial
+# @Version: 20190414.0 - JBE - Initial
 
 import logging, datetime, supporting
 import supporting.errorcodes as err
@@ -34,7 +34,7 @@ def main():
         supporting.log(logger, logging.ERROR, thisproc, 'Database Artifact Checks failed with >' + result.message +"<.")
         supporting.exitscript(resultlogger, result)
 
-    result = databaseArtifact.processDatabaseDeployList.processList(settings.deploylist)
+    result = databaseArtifact.processDatabaseDeployList.processList(settings.dbdeploylist)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
