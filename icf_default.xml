@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<importParams xmlns="http://www.informatica.com/oie/importControl/9">
+ <folderMaps>
+  <folderMap sourceProject="project1" sourceFolderPath="/f1" targetProject="project2" targetFolderPath="/f1" recursive="true">
+
+    <! -- Import mapping1 with the Rename resolution strategy. -->
+    <objectList type="Mapping" select="all" resolution="replace">
+      <object name="mapping1" resolution="rename" renameTo="mapping1_new"/>
+
+    <! -- Import all remaining mappings with the Replace resolution strategy. -->
+    </objectList>
+
+    <! -- Import all Aggregator transformations with the Replace resolution strategy. -->
+    <objectList type="Aggregator" resolution="replace"/>
+    
+    <! -- Import all Filter transformations with no resolution strategy. -->
+    <objectList type="Filter" resolution="none"/>
+  </folderMap>
+ </folderMaps>
+ 
+ <! -- Map connections in the source repository to connections in the target repository. -->
+ <connectionInfo>
+  <rebindMap>
+   <rebind source="src_Conn1" target="tgt_Conn1"/>
+   <rebind source="src_Conn2" target="tgt_Conn2"/>
+  </rebindMap>
+ </connectionInfo>
+</importParams>
