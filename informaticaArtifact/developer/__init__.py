@@ -25,31 +25,31 @@ import supporting.generalSettings as generalSettings
 logger = logging.getLogger(__name__)
 
 
-def ExecuteCommand(commands):
+def ExecuteCommand(command):
     thisproc = "ExecuteCommand"
     process = ""
     result = errorcodes.OK
 
-    supporting.log(logger, logging.DEBUG, thisproc, "Executing commands >" + commands + "<.")
+    supporting.log(logger, logging.DEBUG, thisproc, "Executing command >" + command + "<.")
 
     my_env = {**os.environ, 'INFA_DEFAULT_DOMAIN_PASSWORD': infaSettings.sourcePassword,
               'INFA_DEFAULT_DOMAIN_USER': infaSettings.sourceUsername,
               'INFA_DEFAULT_SECURITY_DOMAIN': infaSettings.sourceSecurityDomain}
-    pipes = subprocess.Popen(commands, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, env=my_env)
+    pipes = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, env=my_env)
     pipes.wait()
     std_out, std_err = pipes.communicate()
 
     if pipes.returncode == 0:
-        supporting.log(logger, logging.INFO, thisproc, std_out.decode('utf-8'))
+        supporting.log(logger, logging.INFO, thisproc, std_out.decode("utf-8"))
     else:
         result = errorcodes.INFACMD_FAILED
-        supporting.log(logger, logging.ERROR, thisproc, std_out.decode('utf-8'))
+        supporting.log(logger, logging.ERROR, thisproc, std_out.decode("utf-8") + std_err.decode("utf-8"))
 
     return result
 
 
-def ExecuteInfacmd(commands):
-    result = ExecuteCommand(commands)
+def ExecuteInfacmd(command):
+    result = ExecuteCommand(command)
 
     return result
 
