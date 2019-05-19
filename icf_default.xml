@@ -1,24 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!--
+  ~ MIT License
+  ~
+  ~ Copyright (c) 2019 Jac. Beekers
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in all
+  ~ copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  ~ SOFTWARE.
+  ~
+  -->
+
 <importParams xmlns="http://www.informatica.com/oie/importControl/9">
  <folderMaps>
   <folderMap sourceProject="project1" sourceFolderPath="/f1" targetProject="project2" targetFolderPath="/f1" recursive="true">
 
-    <! -- Import mapping1 with the Rename resolution strategy. -->
+    <!-- Import mapping1 with the Rename resolution strategy. -->
     <objectList type="Mapping" select="all" resolution="replace">
       <object name="mapping1" resolution="rename" renameTo="mapping1_new"/>
 
-    <! -- Import all remaining mappings with the Replace resolution strategy. -->
+    <!-- Import all remaining mappings with the Replace resolution strategy. -->
     </objectList>
 
-    <! -- Import all Aggregator transformations with the Replace resolution strategy. -->
+    <!-- Import all Aggregator transformations with the Replace resolution strategy. -->
     <objectList type="Aggregator" resolution="replace"/>
     
-    <! -- Import all Filter transformations with no resolution strategy. -->
+    <!-- Import all Filter transformations with no resolution strategy. -->
     <objectList type="Filter" resolution="none"/>
   </folderMap>
  </folderMaps>
  
- <! -- Map connections in the source repository to connections in the target repository. -->
+ <!-- Map connections in the source repository to connections in the target repository. -->
  <connectionInfo>
   <rebindMap>
    <rebind source="src_Conn1" target="tgt_Conn1"/>

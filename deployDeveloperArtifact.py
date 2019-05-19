@@ -22,47 +22,51 @@
 #
 
 ##
-# Create Oracle Database Artifact
-# @Since: 22-MAR-2019
+# generalSettings
+# @Since: 19-MAY-2019
 # @Author: Jac. Beekers
-# @Version: 20190414.0 - JBE - Initial
+# @Version: 20190519.0 - JBE - Initial
+##
 
 import logging, datetime, supporting
 import supporting.errorcodes as err
-import databaseArtifact.databaseArtifactChecks as dbchecks
-import databaseArtifact.processDatabaseDeployList
-import databaseArtifact.dbSettings as settings
-import supporting.generalSettings as generalsettings
+from supporting.artifactHandling import getInformaticaArtifact
+import informaticaArtifact.infaArtifactChecks as infachecks
+import informaticaArtifact.developer.processDeveloperDeployList as processDeveloperDeployList
+import informaticaArtifact.infaSettings as infaSettings
+from supporting.generalSettings import logDir
 
 now = datetime.datetime.now()
 result = err.OK
-settings.databaseType = 'Oracle'
 
 def main():
     thisproc = "MAIN"
-    mainProc='CreateOracleArtifact'
+    mainProc='deployDeveloperArtifact'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
-    supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalsettings.logDir + "<.")
+    supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + logDir + "<.")
+
+    infaSettings.getinfaenvvars()
+    infaSettings.outinfaenvvars()
 
     # Check requirements for artifact generation
-    generalsettings.getenvvars()
-    settings.getdbenvvars()
-    settings.outdbenvvars()
-
-    result = dbchecks.databaseartifactchecks()
+    result = infachecks.infadeploychecks()
     if result.rc != 0:
-        supporting.log(logger, logging.ERROR, thisproc, 'Database Artifact Checks failed with >' + result.message +"<.")
+        supporting.log(logger, logging.ERROR, thisproc, 'INFA Checks failed with >' + result.message +"<.")
         supporting.exitscript(resultlogger, result)
 
-    result = databaseArtifact.processDatabaseDeployList.processList(settings.dbdeploylist)
+    result = getInformaticaArtifact("dummy")
+    if result.rc != 0:
+        supporting. log(logger, logging.ERROR, thisproc, 'getInformaticaArtifact failed with >' + result.messages +"<.")
+        supporting.exitscript(resultlogger, result)
+
+    result = processDeveloperDeployList.processList(infaSettings.infadeploylist)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
-#    supporting.writeresult(resultlogger, result)
     supporting.exitscript(resultlogger, result)
 
 

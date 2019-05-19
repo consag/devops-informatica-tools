@@ -1,0 +1,9 @@
+# Structure
+# <feature>:<sqlfile>
+# where
+#  <feature> is a logical area within your application
+#  <sqlfle> is a file that contains one or more DDL/DML statements, and may also reference other sql files through the use of @@
+#
+# You can have multiple sql files per feature. These will be processed in the order listed.
+#
+DEMO:initdeploy.sql

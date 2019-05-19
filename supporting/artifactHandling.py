@@ -21,20 +21,33 @@
 #  SOFTWARE.
 #
 
-##
-# General constants for build and deploys
-# @Since: 22-MAR-2019
-# @Author: Jac. Beekers
-# @Version: 20190410.0 - JBE - Initial
+#  MIT License
+#
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy
+#  of this software and associated documentation files (the "Software"), to deal
+#  in the Software without restriction, including without limitation the rights
+#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#  copies of the Software, and to permit persons to whom the Software is
+#  furnished to do so, subject to the following conditions:
+#
+#
+#
 
-##
-# Environment variable values
-##
-varDAGDeployList='DAG_DEPLOYLIST'
+import supporting.errorcodes as err
+import repositorytools
 
-##
-# Airflow
-DEFAULT_DAG_DEPLOYLIST ='dag_deploylist.txt'
+def getInformaticaArtifact():
+    thisporc = "getInformaticaArtifact"
+#something like this:    artifact = repositorytools.Artifact("group","demoArtifact","1.0.0","classifier","zip")
+    return err.NOT_IMPLEMENTED
 
-# Nexus
-varGroupId = "AirflowDAGs"
+
+def getArtifact(artifactName):
+    thisproc = "getArtifact"
+    return err.NOT_IMPLEMENTED
+
+
+def storeArtifact(artifactName):
+    thisproc = "storeArtifact"
+    return err.NOT_IMPLEMENTED

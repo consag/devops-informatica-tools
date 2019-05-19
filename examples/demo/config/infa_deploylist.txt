@@ -1,0 +1,10 @@
+# Structure:
+# For projects:
+#   PROJECT:<projectname>
+# For all others:
+#   CONTROLFILE:<projectname>:<export_control_filename>:<import_control_filename>
+
+
+#PROJECT:Demo
+#PROJECT:Demo_NoRefTables
+CONTROLFILE:KSV_4_Mappings:ecf_appl_ksvsignals.xml:icf_appl_ksvsignals.xml

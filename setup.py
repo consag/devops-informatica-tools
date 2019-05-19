@@ -21,20 +21,16 @@
 #  SOFTWARE.
 #
 
-##
-# General constants for build and deploys
-# @Since: 22-MAR-2019
-# @Author: Jac. Beekers
-# @Version: 20190410.0 - JBE - Initial
+from setuptools import setup
 
-##
-# Environment variable values
-##
-varDAGDeployList='DAG_DEPLOYLIST'
-
-##
-# Airflow
-DEFAULT_DAG_DEPLOYLIST ='dag_deploylist.txt'
-
-# Nexus
-varGroupId = "AirflowDAGs"
+setup(
+    name='build-and-deploy-informatica',
+    version='0.1',
+    packages=['supporting', 'supporting.errorcode', 'databaseDeploy', 'databaseArtifact', 'informaticaArtifact',
+              'informaticaArtifact.developer'],
+    url='https://github.com/consag/build-and-deploy-informatica',
+    license='MIT',
+    author='Jac. Beekers',
+    author_email='beekersjac@gmail.com',
+    description='CI-CD Pipeline scripts for Informatica Platform related projects'
+)
