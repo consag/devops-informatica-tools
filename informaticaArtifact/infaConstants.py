@@ -121,4 +121,7 @@ AvailableTools = {
     "CreateFolder": ("mrs", "CreateFolder"),
     "ListCheckOutObjects": ("mrs", "listCheckedOutObjects"),
     "CheckIn": ("mrs", "checkInObject"),
+    "RunProfile": ("ps", "Execute"),
+    "RunScorecard": ("ps", "Execute"),
+    "RunMapping": ("ms", "runMapping")
 }
