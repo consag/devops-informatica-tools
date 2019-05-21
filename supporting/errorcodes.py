@@ -41,8 +41,9 @@ LOGDIR_NW=err.Errorcode(1,'ENV-0003','Cannot write to LOGDIR','Set the environme
 FILE_NF=err.Errorcode(1,'ENV-0004', 'Cannot find file','Check the file\'s path and permissions','Environment', logging.ERROR)
 FILE_NW=err.Errorcode(1,'ENV-0005', 'Cannot write to file','Check the file\'s path and permissions','Environment', logging.ERROR)
 ##
-# General build-deploy related errors. Return code is 2
+# General build-deploy-run related errors. Return code is 2
 DEPLOYLIST_NF=err.Errorcode(2,'GENDEPLOY-0001','Deploylist not found','Check config directory and file name.','DatabaseArtifact',logging.FATAL)
+COMMAND_FAILED=err.Errorcode(2,'GENRUN-0001', 'Command failed', 'Check command output', 'executeCommand', logging.ERROR)
 
 # Database artifact errors. Return code will be 10
 NO_DEPLOYLIST=err.Errorcode(10,'DBDEPLOY-0001','No dbdeploylist defined','Set the environment variable','DatabaseArtifact',logging.FATAL)
@@ -53,3 +54,13 @@ SQLFILE_NF=err.Errorcode(10,'DBDEPLOY-0004','SQL file not found', 'Check the dep
 # Informatica artifact errors. Return code will be 20
 NOT_IMPLEMENTED=err.Errorcode(20,'INFADEPLOY-0001','Result unknown. Function may not have been implemented completely','Ask your developer to implement the logic completely.','InformaticaArtifact',logging.WARNING)
 INFACMD_FAILED=err.Errorcode(20,'INFADEPLOY-0002','infacmd command failed.','Check the log and/or ask your administrator.','InformaticaArtifact',logging.ERROR)
+
+# Informatica run errors. Return code will be 30
+INFACMD_NOPROFILE=err.Errorcode(30,'INFARUN-0001','No profile name provided.','Provide the complete path of the profile to be executed.','RunProfile',logging.ERROR)
+INFACMD_PROFILE_FAILED=err.Errorcode(30,'INFARUN-0002','infacmd run profile command failed.','Check the log and/or ask your administrator.','RunProfile',logging.ERROR)
+INFACMD_NOSCORECARD=err.Errorcode(30,'INFARUN-0003','No scorecard name provided.','Provide the complete path of the scorecard to be executed.','RunScorecard',logging.ERROR)
+INFACMD_SCORECARD_FAILED=err.Errorcode(30,'INFARUN-0004','infacmd run scorecard command failed.','Check the log and/or ask your administrator.','RunScorecard',logging.ERROR)
+INFACMD_NOMAPPING=err.Errorcode(30,'INFARUN-0005','No mapping provided','Provide the mapping you want to run.','RunMapping',logging.ERROR)
+INFACMD_NOAPPFORMAPPING=err.Errorcode(30,'INFARUN-0006','Application of the mapping was not provided','Provide the application that contains the mapping you want to run.','RunMapping',logging.ERROR)
+INFACMD_MAPPING_FAILED=err.Errorcode(30,'INFARUN-0007','infacmd run mapping command failed.','Check the log and/or ask your administrator.','RunMapping',logging.ERROR)
+

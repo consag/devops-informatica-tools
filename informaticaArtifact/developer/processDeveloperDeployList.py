@@ -31,7 +31,6 @@
 import supporting.errorcodes as err
 import supporting, logging
 import informaticaArtifact.developer as developer
-import informaticaArtifact
 import supporting.errorcodes as errorcodes
 import supporting.deploylist
 import informaticaArtifact.infaSettings as infaSettings
