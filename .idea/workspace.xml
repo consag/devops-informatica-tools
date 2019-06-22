@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79ec9dbe-bed2-4c98-9e86-440cc491d387" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/createDeveloperArtifact.py" beforeDir="false" afterPath="$PROJECT_DIR$/createDeveloperArtifact.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployDeveloperArtifact.py" beforeDir="false" afterPath="$PROJECT_DIR$/deployDeveloperArtifact.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/informaticaArtifact/developer/buildCommand.py" beforeDir="false" afterPath="$PROJECT_DIR$/informaticaArtifact/developer/buildCommand.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/informaticaArtifact/developer/processDeveloperDeployList.py" beforeDir="false" afterPath="$PROJECT_DIR$/informaticaArtifact/developer/processDeveloperDeployList.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/informaticaArtifact/infaArtifactChecks.py" beforeDir="false" afterPath="$PROJECT_DIR$/informaticaArtifact/infaArtifactChecks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/informaticaArtifact/infaConstants.py" beforeDir="false" afterPath="$PROJECT_DIR$/informaticaArtifact/infaConstants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/supporting/artifactHandling.py" beforeDir="false" afterPath="$PROJECT_DIR$/supporting/artifactHandling.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,14 +18,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/buildCommand.py">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/deployDeveloperArtifact.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="81" lean-forward="true" selection-start-line="11" selection-start-column="81" selection-end-line="11" selection-end-column="81" />
+            <state relative-caret-position="156">
+              <caret line="52" column="13" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
               <folding>
-                <element signature="e#1131#1170#0" expanded="true" />
+                <element signature="e#1237#1273#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -27,74 +34,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/informaticaArtifact/infaConstants.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="124" column="35" selection-start-line="124" selection-start-column="35" selection-end-line="124" selection-end-column="35" />
+            <state relative-caret-position="408">
+              <caret line="93" lean-forward="true" selection-start-line="93" selection-end-line="93" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/executeCommand.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/processDeveloperDeployList.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="53" column="42" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="42" />
+            <state relative-caret-position="136">
+              <caret line="74" column="17" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
               <folding>
-                <element signature="e#1127#1153#0" expanded="true" />
+                <element signature="e#1274#1309#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/dataProfiling.py">
+        <entry file="file://$PROJECT_DIR$/supporting/artifactHandling.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="38" column="78" lean-forward="true" selection-start-line="38" selection-start-column="78" selection-end-line="38" selection-end-column="78" />
+            <state relative-caret-position="68">
+              <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
               <folding>
-                <element signature="e#1127#1153#0" expanded="true" />
+                <element signature="n#!!doc" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/executeInfacmd.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="48" selection-start-line="48" selection-end-line="48" />
-              <folding>
-                <element signature="e#1126#1152#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/supporting/errorcodes.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="46" selection-start-line="46" selection-end-line="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/runProfile.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="20">
-              <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
-              <folding>
-                <element signature="e#1605#1641#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/runScorecard.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="65" column="35" selection-start-line="65" selection-start-column="35" selection-end-line="65" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -146,24 +111,18 @@
         <option value="$PROJECT_DIR$/databaseArtifact/dbConstants.py" />
         <option value="$PROJECT_DIR$/supporting/generalSettings.py" />
         <option value="$PROJECT_DIR$/databaseArtifact/processDatabaseDeployList.py" />
-        <option value="$PROJECT_DIR$/createDeveloperArtifact.py" />
-        <option value="$PROJECT_DIR$/informaticaArtifact/infaArtifactChecks.py" />
         <option value="$PROJECT_DIR$/databaseArtifact/dbSettings.py" />
         <option value="$PROJECT_DIR$/informaticaArtifact/infaSettings.py" />
         <option value="$PROJECT_DIR$/supporting/schedulerConstants.py" />
         <option value="$PROJECT_DIR$/supporting/resourceConstants.py" />
         <option value="$PROJECT_DIR$/supporting/generalConstants.py" />
-        <option value="$PROJECT_DIR$/deployDeveloperArtifact.py" />
-        <option value="$PROJECT_DIR$/supporting/artifactHandling.py" />
         <option value="$PROJECT_DIR$/icf_default.xml" />
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/informaticaArtifact/developer/runScorecard.py" />
         <option value="$PROJECT_DIR$/informaticaArtifact/developer/runMapping.py" />
         <option value="$PROJECT_DIR$/informaticaArtifact/developer/runProfile.py" />
-        <option value="$PROJECT_DIR$/informaticaArtifact/developer/processDeveloperDeployList.py" />
         <option value="$PROJECT_DIR$/informaticaArtifact/developer/__init__.py" />
         <option value="$PROJECT_DIR$/runDataProfiling.py" />
-        <option value="$PROJECT_DIR$/informaticaArtifact/infaConstants.py" />
         <option value="$PROJECT_DIR$/runProfileScorecard.py" />
         <option value="$PROJECT_DIR$/informaticaArtifact/developer/executeCommand.py" />
         <option value="$PROJECT_DIR$/supporting/errorcodes.py" />
@@ -172,12 +131,18 @@
         <option value="$PROJECT_DIR$/runScorecard.py" />
         <option value="$PROJECT_DIR$/informaticaArtifact/developer/dataProfiling.py" />
         <option value="$PROJECT_DIR$/informaticaArtifact/developer/buildCommand.py" />
+        <option value="$PROJECT_DIR$/informaticaArtifact/infaArtifactChecks.py" />
+        <option value="$PROJECT_DIR$/supporting/artifactHandling.py" />
+        <option value="$PROJECT_DIR$/informaticaArtifact/infaConstants.py" />
+        <option value="$PROJECT_DIR$/deployDeveloperArtifact.py" />
+        <option value="$PROJECT_DIR$/createDeveloperArtifact.py" />
+        <option value="$PROJECT_DIR$/informaticaArtifact/developer/processDeveloperDeployList.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="673" />
-    <option name="y" value="117" />
+    <option name="x" value="93" />
+    <option name="y" value="51" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -186,6 +151,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -227,7 +193,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -258,7 +223,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.runScorecard">
+  <component name="RunManager" selected="Python.deployDeveloperArtifact">
     <configuration name="createDeveloperArtifact" type="PythonConfigurationType" factoryName="Python">
       <module name="build-and-deploy" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -312,6 +277,37 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/createOracleArtifact.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="deployDeveloperArtifact" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="SOURCE_MRS" value="MRS_Demo01" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="DEVELOPER_DEPLOYLIST" value="demo/config/infa_deploylist.txt" />
+        <env name="ARTIFACTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+        <env name="SOURCEDIR" value="$PROJECT_DIR$/../jacDemo" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/deployDeveloperArtifact.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -381,9 +377,15 @@
     <list>
       <item itemvalue="Python.createOracleArtifact" />
       <item itemvalue="Python.createDeveloperArtifact" />
+      <item itemvalue="Python.deployDeveloperArtifact" />
       <item itemvalue="Python.runProfile" />
       <item itemvalue="Python.runScorecard" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.deployDeveloperArtifact" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -399,7 +401,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="673" y="117" width="1400" height="1000" extended-state="0" />
+    <frame x="93" y="51" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4994233" visible="true" weight="0.2496329" />
@@ -407,7 +409,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3298731" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3298731" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3298731" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -484,16 +486,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/informaticaArtifact/infaArtifactChecks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="25" column="71" selection-start-line="25" selection-start-column="71" selection-end-line="25" selection-end-column="71" />
-          <folding>
-            <element signature="e#116#151#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/databaseArtifact/dbSettings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -520,16 +512,6 @@
           <caret line="21" column="55" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
           <folding>
             <element signature="e#123#159#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/createDeveloperArtifact.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-          <folding>
-            <element signature="e#110#146#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -565,16 +547,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/deployDeveloperArtifact.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="38" column="29" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
-          <folding>
-            <element signature="e#110#146#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/databaseDeploy/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -595,31 +567,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/supporting/artifactHandling.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="52" column="30" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
-          <folding>
-            <element signature="n#!!doc" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/runScorecard.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/runScorecard.py" />
     <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/runMapping.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/processDeveloperDeployList.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="79" selection-start-line="72" selection-end-line="79" />
-          <folding>
-            <element signature="e#1274#1309#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/informaticaArtifact/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -635,40 +585,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/supporting/errorcodes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="46" selection-start-line="46" selection-end-line="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/executeCommand.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="53" column="42" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="42" />
-          <folding>
-            <element signature="e#1127#1153#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/executeInfacmd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-          <folding>
-            <element signature="e#1126#1152#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/runScorecard.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="65" column="35" selection-start-line="65" selection-start-column="35" selection-end-line="65" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1680">
@@ -679,26 +595,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/informaticaArtifact/infaConstants.py">
+    <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/buildCommand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="124" column="35" selection-start-line="124" selection-start-column="35" selection-end-line="124" selection-end-column="35" />
+        <state relative-caret-position="221">
+          <caret line="22" column="39" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/runProfile.py">
+    <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/executeCommand.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+        <state relative-caret-position="629">
+          <caret line="53" column="42" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="42" />
           <folding>
-            <element signature="e#1605#1641#0" expanded="true" />
+            <element signature="e#1127#1153#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/dataProfiling.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
+        <state relative-caret-position="357">
           <caret line="38" column="78" lean-forward="true" selection-start-line="38" selection-start-column="78" selection-end-line="38" selection-end-column="78" />
           <folding>
             <element signature="e#1127#1153#0" expanded="true" />
@@ -706,12 +622,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/buildCommand.py">
+    <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/executeInfacmd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="81" lean-forward="true" selection-start-line="11" selection-start-column="81" selection-end-line="11" selection-end-column="81" />
+        <state relative-caret-position="714">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
           <folding>
-            <element signature="e#1131#1170#0" expanded="true" />
+            <element signature="e#1126#1152#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/supporting/errorcodes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/runProfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/runScorecard.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="65" column="35" selection-start-line="65" selection-start-column="35" selection-end-line="65" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informaticaArtifact/infaArtifactChecks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="58" column="63" selection-start-line="58" selection-start-column="63" selection-end-line="58" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/supporting/artifactHandling.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+          <folding>
+            <element signature="n#!!doc" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informaticaArtifact/infaConstants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="93" lean-forward="true" selection-start-line="93" selection-end-line="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/createDeveloperArtifact.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="36" column="45" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
+          <folding>
+            <element signature="e#1237#1273#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deployDeveloperArtifact.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="52" column="13" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
+          <folding>
+            <element signature="e#1237#1273#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/processDeveloperDeployList.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="74" column="17" selection-start-line="74" selection-start-column="17" selection-end-line="74" selection-end-column="17" />
+          <folding>
+            <element signature="e#1274#1309#0" expanded="true" />
           </folding>
         </state>
       </provider>

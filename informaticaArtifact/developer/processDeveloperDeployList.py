@@ -36,24 +36,26 @@ import supporting.deploylist
 import informaticaArtifact.infaSettings as infaSettings
 import supporting.generalSettings as generalSettings
 from supporting.generalSettings import completePath
+from supporting.artifactHandling import getInformaticaArtifact
+from informaticaArtifact import infaConstants
 
 logger = logging.getLogger(__name__)
 entrynr =0
 
-def processList(deployFile):
+def processList(what, deployFile):
     thisproc = "processList"
     latestResult = err.OK
     supporting.log(logger, logging.DEBUG, thisproc, "deployfile is >" + deployFile +"<.")
     result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
     if result.rc == 0:
         for deployEntry in deployItems:
-            latestResult = processEntry(deployEntry)
+            latestResult = processEntry(what, deployEntry)
         return latestResult
     else:
         supporting.log(logger, logging.ERROR, thisproc, "Could not get deploylist")
         return errorcodes.FILE_NF
 
-def processEntry(deployEntry):
+def processEntry(what, deployEntry):
     thisproc = "processEntry"
     result = err.OK
     supporting.log(logger, logging.DEBUG, thisproc, "Started to work on deploy entry >" + deployEntry + "<.")
@@ -69,6 +71,19 @@ def processEntry(deployEntry):
         importcontrol = completePath(generalSettings.configDir + "/" + parts[3], generalSettings.sourceDir)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Type is >' + type + '< and object is >' + object + '<')
+    if what == infaConstants.CREATEARTIFACT:
+        result = createArtifact(type, object, exportcontrol)
+    elif what == infaConstants.DEPLOYARTIFACT:
+        result = deployArtifact(type, object, importcontrol)
+    else:
+        result = errorcodes.COMMAND_FAILED
+
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")
+    return result
+
+
+def createArtifact(type, object, exportcontrol):
     if type == 'PROJECT':
         result = developer.export_infadeveloper(
             Domain=infaSettings.sourceDomain,
@@ -90,6 +105,34 @@ def processEntry(deployEntry):
     else:
         result = errorcodes.NOT_IMPLEMENTED
 
-    supporting.log(logger, logging.DEBUG, thisproc,
-                   "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")
+    return result
+
+def deployArtifact(type, object, importcontrol):
+    thisproc = 'deployArtifact'
+    supporting.log(logger, logging.DEBUG, thisproc, 'started deploy for object >' + object +'<.')
+
+    result = getInformaticaArtifact(object)
+    if result.rc != 0:
+        supporting. log(logger, logging.ERROR, thisproc, 'getInformaticaArtifact failed with >' + result.message +"<.")
+        return result
+
+    if type == 'PROJECT':
+        result = developer.import_infadeveloper(
+            Domain=infaSettings.targetDomain,
+            Repository=infaSettings.targetModelRepository,
+            Project=object,
+            FilePath=generalSettings.artifactDir + "/" + object +".xml",
+            ExportRefData=infaSettings.targetExportRefData
+        )
+    elif type == 'CONTROLFILE':
+        result = developer.import_infadeveloper(
+            Domain = infaSettings.targetDomain,
+            Repository = infaSettings.targetModelRepository,
+            Project=object,
+            FilePath=generalSettings.artifactDir + "/" + object +".xml",
+            ControlFilePath = importcontrol
+        )
+    else:
+        result = errorcodes.NOT_IMPLEMENTED
+
     return result

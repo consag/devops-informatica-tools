@@ -51,3 +51,13 @@ def infaartifactchecks():
 
     supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + str(result.rc) + "<.")
     return result
+
+def infadeploychecks():
+    thisproc = "infadeploychecks"
+    supporting.log(logger, logging.DEBUG, thisproc, 'started')
+
+    # for now the checks for deploys and artifacts are the same
+    result = infaartifactchecks()
+
+    supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + str(result.rc) + "<.")
+    return result

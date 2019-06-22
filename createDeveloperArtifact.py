@@ -34,7 +34,7 @@ import informaticaArtifact.infaArtifactChecks as infachecks
 import informaticaArtifact.developer.processDeveloperDeployList as processDeveloperDeployList
 import informaticaArtifact.infaSettings as settings
 import supporting.generalSettings as generalsettings
-#import informaticaArtifact
+from informaticaArtifact import infaConstants
 
 now = datetime.datetime.now()
 result = err.OK
@@ -58,7 +58,7 @@ def main():
         supporting.log(logger, logging.ERROR, thisproc, 'INFA Checks failed with >' + result.message +"<.")
         supporting.exitscript(resultlogger, result)
 
-    result = processDeveloperDeployList.processList(settings.infadeploylist)
+    result = processDeveloperDeployList.processList(infaConstants.CREATEARTIFACT, settings.infadeploylist)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")

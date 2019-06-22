@@ -88,6 +88,11 @@ varPowerCenterDeployList = 'POWERCENTER_DEPLOOYLIST'
 DEFAULT_POWERCENTER_DEPLOYLIST = 'powercenter_deploylist.txt'
 
 ##
+#
+CREATEARTIFACT = 'CreateArtifact'
+DEPLOYARTIFACT = 'DeployArtifact'
+
+##
 # Informatica Connections
 varConnectionPassword = 'INFA_DEFAULT_CONNECTION_PASSWORD'
 
