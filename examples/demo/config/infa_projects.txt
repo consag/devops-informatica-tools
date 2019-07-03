@@ -1,0 +1,10 @@
+# Structure:
+# For projects:
+#   PROJECT:<projectname>[:<groupname>]
+# where <groupname> is the Informatica group that should have all privileges to the project
+# Note: Other groups can be added with any kind of variety of privileges using the assign group to project function
+# For folders:
+#   FOLDER:<foldername>
+
+PROJECT:Demo
+FOLDER:ExtractSourceData
