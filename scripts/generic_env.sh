@@ -1,0 +1,2 @@
+thisHost=$(hostname -f)
+
