@@ -1,6 +1,6 @@
 #  MIT License
 #
-#  Copyright (c) 2019 Jac. Beekers
+#  Copyright (c) 2019 ABNAMRO Bank N.V.
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a copy
 #  of this software and associated documentation files (the "Software"), to deal

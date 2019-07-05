@@ -1,0 +1,8 @@
+# Structure:
+#   <databasetype>:<connectionname>:... ...[:<groupname>]
+# where <databasetype> is Oracle (other databasetypes to be supported at a later stage)
+#   and <groupname> is the group that should have all privileges to the connection
+# Note: groups can also be assigned a set of privileges using the assign connection privileges to group function
+
+ORACLE:con_srcDemo:... ...
+ORACLE:con_tgtDemo:
