@@ -6,6 +6,13 @@
 * setuptools for upload and download of Nexus artifacts
 	pip install setuptools
 
+## Checks after installation
+### Check if encryption works:
+- Create a virtualenv
+- Run:  python3 supporting/encryption.py
+  Output: Hello encrypted world!
+
+
 ## License
 MIT
 
