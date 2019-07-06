@@ -89,6 +89,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+devops_informatica/
 
 # Spyder project settings
 .spyderproject
