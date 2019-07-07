@@ -4,13 +4,18 @@
 ##
 
 encrypt() {
-outfile="$1"
+data="$1"
+encryptedFile="$2"
+keyInstance="$3"
+if [ -z "$keyInstance" ] ; then
+   keyInstance=0
+fi
+
 python3 <<EOF
 import os
 from supporting import encryption
 encryption = encryption.Encryption()
-data = "Hello from $0"
-encrypted = encryption.encrypt_with_certificates(data, "$outfile")
+encrypted = encryption.encrypt_with_certificates("$data", "$keyInstance", "$encryptedFile")
 EOF
 
 }

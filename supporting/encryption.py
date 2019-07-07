@@ -29,7 +29,7 @@ from Crypto.Random import get_random_bytes
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import AES, PKCS1_OAEP
 from Crypto import Random
-import tempfile
+import os
 import uuid
 
 def encrypt(key, source, encode=True):
@@ -57,25 +57,28 @@ def decrypt(key, source, decode=True):
 
 
 class Encryption():
-    private_filename = "private.pem"
-    public_filename = "receiver.pem"
+    private_filename = "tmp_private"
+    public_filename = "tmp_public"
     encrypted_session_key = ''
     nonce = ''
     tag = ''
 
-    def encrypt_with_certificates(self, data, outfilename):
+    def encrypt_with_certificates(self, data, key_instance, encrypted_file):
         key = RSA.generate(2048)
         private_key = key.export_key()
-        file_out = open(self.private_filename, "wb")
+        current_private_filename = Encryption.private_filename + str(key_instance) + ".tmp"
+        file_out = open(current_private_filename, "wb")
         file_out.write(private_key)
         file_out.close()
 
         public_key = key.publickey().export_key()
-        file_out = open(self.public_filename, "wb")
+        
+        current_public_filename = Encryption.public_filename + str(key_instance) + ".tmp"
+        file_out = open(current_public_filename, "wb")
         file_out.write(public_key)
         file_out.close()
 
-        recipient_key = RSA.import_key(open(self.public_filename).read())
+        recipient_key = RSA.import_key(open(current_public_filename).read())
         session_key = get_random_bytes(16)
 
         # Encrypt the session key with the public RSA key
@@ -87,16 +90,16 @@ class Encryption():
         self.nonce = cipher_aes.nonce
         encrypted_data, self.tag = cipher_aes.encrypt_and_digest(data.encode('utf-8'))
 
-        file_out = open(outfilename, "wb")
+        file_out = open(encrypted_file, "wb")
         [ file_out.write(x) for x in (self.encrypted_session_key, self.nonce, self.tag, encrypted_data) ]
 
         file_out.close()
         return encrypted_data
 
-    def decrypt_with_certificates(self, encrypted_file):
+    def decrypt_with_certificates(self, key_instance, encrypted_file):
         
-#        print("private_filename is >" + self.private_filename +"<.")
-        private_key = RSA.import_key(open(self.private_filename).read())
+        current_private_filename = Encryption.private_filename + str(key_instance) + ".tmp"
+        private_key = RSA.import_key(open(current_private_filename).read())
         file_in = open(encrypted_file, "rb")
         encrypted_session_key, nonce, tag, encrypted_data = \
            [ file_in.read(x) for x in (private_key.size_in_bytes(), 16, 16, -1) ]
@@ -111,13 +114,21 @@ class Encryption():
         file_in.close()
         return data.decode('utf-8')
 
+    def cleanup(self, key_instance):
+        os.remove(Encryption.private_filename + str(key_instance) + ".tmp")
+        os.remove(Encryption.public_filename + str(key_instance) + ".tmp")
+
 
 def verify():
     encryption = Encryption()
     data = 'Hello encrypted world!'
-    encrypted = encryption.encrypt_with_certificates(data, "tmp.enc.tmp")
-    decrypted = encryption.decrypt_with_certificates("tmp.enc.tmp")
+    encrypted_data_filename = "verify.enc.tmp"
+    key_instance = 1
+    encrypted = encryption.encrypt_with_certificates(data, key_instance, encrypted_data_filename)
+    decrypted = encryption.decrypt_with_certificates(key_instance, encrypted_data_filename)
     print(decrypted)
+    os.remove(encrypted_data_filename)
+    encryption.cleanup(key_instance)
 
 
 #main()

@@ -53,16 +53,24 @@ check
 echo "$(date) - $0 - Running encryption through bash..."
 . ${curDir}/subs/encrypt.sh
 outfile="$$.enc.tmp"
-encrypt "$outfile"
+keyInstance=$$
+encrypt "hello from process >$$< of script $0" "$outfile" $keyInstance
 rc=$?
 check
 
 echo "$(date) - $0 - Running decryption through bash..."
 . ${curDir}/subs/decrypt.sh
-decrypt "$outfile"
+decrypt "$outfile" $keyInstance
 rc=$?
 check
 
+echo "$(date) - $0 - Cleanup decryption through bash..."
+. ${curDir}/subs/cleancrypt.sh
+cleancrypt $keyInstance
+rc=$?
+check
+
+rm $outfile
 
 
 if [ $overallRC -eq 0 ] ; then

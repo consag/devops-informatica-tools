@@ -3,18 +3,17 @@
 # @license: MIT
 ##
 
-decrypt() {
-encryptedFile="$1"
-keyInstance="$2"
+cleancrypt() {
+keyInstance="$1"
 if [ -z "$keyInstance" ] ; then
    keyInstance=0
 fi
 
-  python3 <<EOF
+python3 <<EOF
+import os
 from supporting import encryption
 encryption = encryption.Encryption()
-decrypted = encryption.decrypt_with_certificates($keyInstance, "${encryptedFile}")
-print(decrypted)
+encrypted = encryption.cleanup("$keyInstance")
 EOF
 
 }
