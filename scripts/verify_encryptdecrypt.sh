@@ -72,7 +72,30 @@ check
 
 rm $outfile
 
+##
+# Fernet encryption checks - Using cryptography
+echo "$(date) - $0 - Fernet check - Getting key through bash..."
+. ${curDir}/subs/encrypt.sh
+get_key
+rc=$?
+check
+#echo "$theKey"
+echo "$(date) - $0 - Fernet check - Encrypting Hello message..."
+encrypt "$theKey" "Hello from $0"
+rc=$?
+check
+#echo "$theEncryptedValue"
 
+. ${curDir}/subs/decrypt.sh
+echo "$(date) - $0 - Fernet check - Decrypting Hello message..."
+decrypt "$theKey" "$theEncryptedValue"
+rc=$?
+check
+echo "$theValue"
+
+##
+# End result
+##
 if [ $overallRC -eq 0 ] ; then
    echo "$(date) - $0 - Overall SUCCESS. >$cntTotal< test(s) succeeded."
 else

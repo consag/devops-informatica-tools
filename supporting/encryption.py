@@ -31,17 +31,7 @@ from Crypto.Cipher import AES, PKCS1_OAEP
 from Crypto import Random
 import os
 import uuid
-
-def encrypt(key, source, encode=True):
-    key = SHA256.new(key).digest()  # use SHA-256 over our key to get a proper-sized AES key
-    iv = Random.new().read(AES.block_size)  # generate iv
-    encryptor = AES.new(key, AES.MODE_CBC, iv)
-    padding = AES.block_size - len(source) % AES.block_size  # calculate needed padding
-    source += bytes([padding]) * padding  # Python 2.x: source += chr(padding) * padding
-    data = iv + encryptor.encrypt(source)  # store the iv at the beginning and encrypt
-    return base64.b64encode(data).decode("utf-8") if encode else data
-
-
+from cryptography.fernet import Fernet
 
 def decrypt(key, source, decode=True):
     if decode:
@@ -117,6 +107,16 @@ class Encryption():
     def cleanup(self, key_instance):
         os.remove(Encryption.private_filename + str(key_instance) + ".tmp")
         os.remove(Encryption.public_filename + str(key_instance) + ".tmp")
+
+    def get_key(self) -> bytes:
+        key = Fernet.generate_key()  # store in a secure location
+        return key.decode()
+
+    def encrypt(self, message, key: bytes) -> bytes:
+        return Fernet(key).encrypt(message.encode('utf-8'))
+
+    def decrypt(self, token, key: bytes) -> bytes:
+        return Fernet(key).decrypt(token).decode('utf-8')
 
 
 def verify():

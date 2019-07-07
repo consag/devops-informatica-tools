@@ -19,4 +19,18 @@ EOF
 
 }
 
+##
+#
+decrypt() {
+ theKey="$1"
+ data="$2"
+theValue=$(python3 <<EOF
+from supporting import encryption
+encryption = encryption.Encryption()
+decrypted = encryption.decrypt($data, "$theKey")
+print(decrypted)
+EOF
+)
+
+}
 

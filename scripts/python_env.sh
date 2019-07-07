@@ -15,7 +15,7 @@ baseDir="$(dirname ${curDir})"
 echo "$(date) - $0 - baseDir is >${baseDir}<."
 
 venvDir=${baseDir}/${venvname}
-echo "$(date) - $0 - virtualenv expected to be >$venvDir<."
+echo "$(date) - $0 - virtualenv is >$venvDir<."
 
 source $venvDir/bin/activate
 cd $baseDir
