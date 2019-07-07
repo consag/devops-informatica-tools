@@ -3,7 +3,7 @@
 # @license: MIT
 ##
 
-cleancrypt() {
+cleancrypt_usingtmpcert() {
 keyInstance="$1"
 if [ -z "$keyInstance" ] ; then
    keyInstance=0

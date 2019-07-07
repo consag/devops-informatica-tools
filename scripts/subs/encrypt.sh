@@ -1,9 +1,9 @@
 ##
-# @version: 20190706.0 # Jac. Beekers
+# @version: 20190707.0 # Jac. Beekers
 # @license: MIT
 ##
 
-encrypt() {
+encrypt_usingtmpcert() {
 data="$1"
 encryptedFile="$2"
 keyInstance="$3"

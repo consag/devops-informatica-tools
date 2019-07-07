@@ -3,7 +3,7 @@
 # @license: MIT
 ##
 
-decrypt() {
+decrypt_usingtmpcert() {
 encryptedFile="$1"
 keyInstance="$2"
 if [ -z "$keyInstance" ] ; then

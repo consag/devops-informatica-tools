@@ -54,19 +54,19 @@ echo "$(date) - $0 - Running encryption through bash..."
 . ${curDir}/subs/encrypt.sh
 outfile="$$.enc.tmp"
 keyInstance=$$
-encrypt "hello from process >$$< of script $0" "$outfile" $keyInstance
+encrypt_usingtmpcert "hello from process >$$< of script $0" "$outfile" $keyInstance
 rc=$?
 check
 
 echo "$(date) - $0 - Running decryption through bash..."
 . ${curDir}/subs/decrypt.sh
-decrypt "$outfile" $keyInstance
+decrypt_usingtmpcert "$outfile" $keyInstance
 rc=$?
 check
 
 echo "$(date) - $0 - Cleanup decryption through bash..."
 . ${curDir}/subs/cleancrypt.sh
-cleancrypt $keyInstance
+cleancrypt_usingtmpcert $keyInstance
 rc=$?
 check
 
