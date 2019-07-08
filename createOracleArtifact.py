@@ -29,9 +29,9 @@
 
 import logging, datetime, supporting
 import supporting.errorcodes as err
-import databaseArtifact.databaseArtifactChecks as dbchecks
-import databaseArtifact.processDatabaseDeployList
-import databaseArtifact.dbSettings as settings
+import database.databaseArtifactChecks as dbchecks
+import database.artifact
+import database.dbSettings as settings
 import supporting.generalSettings as generalsettings
 
 now = datetime.datetime.now()
@@ -58,7 +58,7 @@ def main():
         supporting.log(logger, logging.ERROR, thisproc, 'Database Artifact Checks failed with >' + result.message +"<.")
         supporting.exitscript(resultlogger, result)
 
-    result = databaseArtifact.processDatabaseDeployList.processList(settings.dbdeploylist)
+    result = database.artifact.processList(settings.dbdeploylist)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")

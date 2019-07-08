@@ -21,49 +21,49 @@
 #  SOFTWARE.
 #
 
+##
+# generalSettings
+# @Since: 22-MAR-2019
+# @Author: Jac. Beekers
+# @Version: 20190412.0 - JBE - Initial
+##
+
 import logging, datetime, supporting
 import supporting.errorcodes as err
-from informatica import infaSettings
-from supporting import generalSettings
-from informatica import dataProfiling
-import sys
+import informatica.infaArtifactChecks as infachecks
+from informatica import artifact
+import informatica.infaSettings as settings
+import supporting.generalSettings as generalsettings
+from informatica import infaConstants
 
 now = datetime.datetime.now()
 result = err.OK
 
-def main(argv):
+def main():
     thisproc = "MAIN"
-    mainProc='runScorecard'
+    mainProc='CreateDeveloperArtifact'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
 
-    generalSettings.getenvvars()
-
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
-    supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
+    supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalsettings.logDir + "<.")
 
-    if len(argv) == 0:
-        supporting.log(logger, logging.ERROR, thisproc, 'No scorecard path specified.')
-        result = err.INFACMD_NOSCORECARD
+    settings.getinfaenvvars()
+    settings.outinfaenvvars()
+
+    # Check requirements for artifact generation
+    result = infachecks.infaartifactchecks()
+    if result.rc != 0:
+        supporting.log(logger, logging.ERROR, thisproc, 'INFA Checks failed with >' + result.message +"<.")
         supporting.exitscript(resultlogger, result)
 
-    objectPath = argv[0]
-    infaSettings.getinfaenvvars()
-    infaSettings.outinfaenvvars()
-
-    result = dataProfiling.runScorecard(
-          Domain=infaSettings.sourceDomain,
-            MrsServiceName=infaSettings.sourceModelRepository,
-            DsServiceName=infaSettings.sourceDIS,
-            ObjectPathAndName=objectPath,
-            ObjectType="scorecard",
-            Wait="true"
-    )
+    result = artifact.create_artifact(infaConstants.CREATEARTIFACT, settings.infadeploylist)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
+#    supporting.writeresult(resultlogger, result)
     supporting.exitscript(resultlogger, result)
 
 
-main(sys.argv[1:])
+main()

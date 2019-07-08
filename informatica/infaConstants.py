@@ -123,7 +123,10 @@ AvailableArguments = {
 AvailableTools = {
     "Import": ("oie", "ImportObjects"),
     "Export": ("oie", "ExportObjects"),
+    "CreateProject": ("mrs", "CreateProject"),
+    "DeleteProject": ("mrs", "DeleteProject"),
     "CreateFolder": ("mrs", "CreateFolder"),
+    "DeleteFolder": ("mrs", "DeleteFolder"),
     "ListCheckOutObjects": ("mrs", "listCheckedOutObjects"),
     "CheckIn": ("mrs", "checkInObject"),
     "RunProfile": ("ps", "Execute"),

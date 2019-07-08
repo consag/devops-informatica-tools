@@ -21,39 +21,14 @@
 #  SOFTWARE.
 #
 
-from supporting import log
-import logging
-from informaticaArtifact.developer import buildCommand
-from informaticaArtifact.developer import executeInfacmd
-from supporting import errorcodes
+##
+# Database Artifact module
+# @Since: 22-MAR-2019
+# @Author: Jac. Beekers
+# @Version: 20190322.0 - JBE - Initial
 
-logger = logging.getLogger(__name__)
-entrynr =0
-
-def runProfile(**KeyWordArguments):
-    thisproc = "runProfile"
-
-    KeyWordArguments["Tool"] = "RunProfile"
-    RunCommand = buildCommand.build(**KeyWordArguments)
-
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
-
-    if(result.code == errorcodes.INFACMD_FAILED):
-        oldResult = result.message
-        result = errorcodes.INFACMD_PROFILE_FAILED
-        result.message = oldResult
-
-    return (result)
+import supporting, logging, datetime
 
 
-def runScorecard(**KeyWordArguments):
-    thisproc = "runScorecard"
+#supporting.log(logging.DEBUG, __name__, 'Init database')
 
-    KeyWordArguments["Tool"] = "RunScorecard"
-    RunCommand = buildCommand.build(**KeyWordArguments)
-
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
-
-    return (result)

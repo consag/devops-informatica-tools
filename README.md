@@ -23,7 +23,6 @@ MIT
   * infaSettings: deploy list location, Informatica source and target variables like INFA_HOME, location infacmd, connectivity to domain and Model Repository
   * dbSettings: deploy list location, location of sql files, sqlprefix
 
-
 ## Examples
 Check the examples folder for more info on the structure of deploy lists.
 

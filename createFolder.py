@@ -25,7 +25,7 @@ import logging, datetime, supporting
 import supporting.errorcodes as err
 from informatica import infaSettings
 from supporting import generalSettings
-from informatica import dataProfiling
+from informatica import manageFolder
 import sys
 
 now = datetime.datetime.now()
@@ -33,7 +33,7 @@ result = err.OK
 
 def main(argv):
     thisproc = "MAIN"
-    mainProc='runScorecard'
+    mainProc='createFolder'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -43,22 +43,21 @@ def main(argv):
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    if len(argv) == 0:
-        supporting.log(logger, logging.ERROR, thisproc, 'No scorecard path specified.')
-        result = err.INFACMD_NOSCORECARD
+    if len(argv) < 2:
+        supporting.log(logger, logging.ERROR, thisproc, 'Project and Folder expected.')
+        result = err.INFACMD_NOFOLDER
         supporting.exitscript(resultlogger, result)
 
-    objectPath = argv[0]
+    project_name = argv[0]
+    folder_name = argv[1]
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
 
-    result = dataProfiling.runScorecard(
-          Domain=infaSettings.sourceDomain,
-            MrsServiceName=infaSettings.sourceModelRepository,
-            DsServiceName=infaSettings.sourceDIS,
-            ObjectPathAndName=objectPath,
-            ObjectType="scorecard",
-            Wait="true"
+    result = manageFolder.create_folder(
+        Domain=infaSettings.sourceDomain,
+        ServiceName=infaSettings.sourceModelRepository,
+        ProjectName=project_name,
+        Path=folder_name
     )
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)

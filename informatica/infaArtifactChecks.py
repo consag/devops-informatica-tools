@@ -23,32 +23,41 @@
 
 ##
 # Database Artifact Checks
-# @Since: 22-MAR-2019
+# @Since: 12-APR-2019
 # @Author: Jac. Beekers
-# @Version: 20190322.0 - JBE - Initial
+# @Version: 20190414.0 - JBE - Initial
 
 import supporting.errorcodes as err
 import supporting, logging
-import databaseArtifact.dbConstants as env
-import databaseArtifact.dbSettings as settings
+import informatica.infaSettings as settings
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
 
-def databaseartifactchecks():
-    thisproc = "databaseartifactchecks"
+def infaartifactchecks():
+    thisproc = "infaartifactchecks"
     supporting.log(logger, logging.DEBUG, thisproc, 'started')
     result = err.OK
 
-    if not settings.dbdeploylist:
+    if not settings.infadeploylist:
         supporting.log(logger, err.NO_DEPLOYLIST.level, thisproc, err.NO_DEPLOYLIST.message)
         result = err.NO_DEPLOYLIST
     else:
-        deploylistFile = Path(settings.dbdeploylist)
+        deploylistFile = Path(settings.infadeploylist)
         if not deploylistFile.is_file():
-            supporting.log(logger, err.DEPLOYLIST_NF.level, thisproc, "dbdeploylist is >" + settings.dbdeploylist +"<. " + err.DEPLOYLIST_NF.message)
+            supporting.log(logger, err.DEPLOYLIST_NF.level, thisproc, "deploylist is >" + settings.infadeploylist +"<. " + err.DEPLOYLIST_NF.message)
             result = err.DEPLOYLIST_NF
+
+    supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + str(result.rc) + "<.")
+    return result
+
+def infadeploychecks():
+    thisproc = "infadeploychecks"
+    supporting.log(logger, logging.DEBUG, thisproc, 'started')
+
+    # for now the checks for deploys and artifacts are the same
+    result = infaartifactchecks()
 
     supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + str(result.rc) + "<.")
     return result

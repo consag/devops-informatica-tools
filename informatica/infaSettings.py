@@ -28,7 +28,7 @@
 # @Version: 20190414.0 - JBE - Initial
 ##
 
-import informaticaArtifact.infaConstants as constants
+import informatica.infaConstants as constants
 import supporting, os, logging
 import supporting.generalSettings as generalsettings
 from supporting.generalSettings import completePath

@@ -22,8 +22,8 @@
 #
 from supporting import generalConstants
 from supporting import generalSettings
-from informaticaArtifact import infaConstants
-from informaticaArtifact import infaSettings
+from informatica import infaConstants
+from informatica import infaSettings
 import logging
 
 logger = logging.getLogger(__name__)

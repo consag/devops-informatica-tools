@@ -23,9 +23,9 @@
 
 import logging, datetime, supporting
 import supporting.errorcodes as err
-from informaticaArtifact import infaSettings
+from informatica import infaSettings
 from supporting import generalSettings
-from informaticaArtifact.developer import dataProfiling
+from informatica import dataProfiling
 import sys
 
 now = datetime.datetime.now()

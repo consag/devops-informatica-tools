@@ -20,15 +20,28 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 #
+import logging
+from informatica import executeCommand
+import os
+from informatica import infaSettings
+from supporting import errorcodes
 
-##
-# informaticaArtifact - init
-# @Since: 22-MAR-2019
-# @Author: Jac. Beekers
-# @Version: 20190410.0 - JBE - Initial
-##
-import supporting, logging, os
-import informaticaArtifact.infaConstants as constants
 logger = logging.getLogger(__name__)
+entrynr = 0
 
+
+def execute(command):
+
+    infa_env = {**os.environ, 'INFA_DEFAULT_DOMAIN_PASSWORD': infaSettings.sourcePassword,
+              'INFA_DEFAULT_DOMAIN_USER': infaSettings.sourceUsername,
+              'INFA_DEFAULT_SECURITY_DOMAIN': infaSettings.sourceSecurityDomain}
+
+    result = executeCommand.execute(command, infa_env)
+
+    if (result.code == errorcodes.COMMAND_FAILED):
+        oldResult = result.message
+        result = errorcodes.INFACMD_FAILED
+        result.message = oldResult
+
+    return result
 

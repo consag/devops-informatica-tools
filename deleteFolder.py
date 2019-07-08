@@ -21,49 +21,61 @@
 #  SOFTWARE.
 #
 
-##
-# generalSettings
-# @Since: 22-MAR-2019
-# @Author: Jac. Beekers
-# @Version: 20190412.0 - JBE - Initial
-##
+#  MIT License
+#
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy
+#  of this software and associated documentation files (the "Software"), to deal
+#  in the Software without restriction, including without limitation the rights
+#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#  copies of the Software, and to permit persons to whom the Software is
+#  furnished to do so, subject to the following conditions:
+#
+#
+#
 
 import logging, datetime, supporting
 import supporting.errorcodes as err
-import informaticaArtifact.infaArtifactChecks as infachecks
-import informaticaArtifact.developer.processDeveloperDeployList as processDeveloperDeployList
-import informaticaArtifact.infaSettings as settings
-import supporting.generalSettings as generalsettings
-from informaticaArtifact import infaConstants
+from informatica import infaSettings
+from supporting import generalSettings
+from informatica import manageFolder
+import sys
 
 now = datetime.datetime.now()
 result = err.OK
 
-def main():
+def main(argv):
     thisproc = "MAIN"
-    mainProc='CreateDeveloperArtifact'
+    mainProc='deleteFolder'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
 
+    generalSettings.getenvvars()
+
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
-    supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalsettings.logDir + "<.")
+    supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    settings.getinfaenvvars()
-    settings.outinfaenvvars()
-
-    # Check requirements for artifact generation
-    result = infachecks.infaartifactchecks()
-    if result.rc != 0:
-        supporting.log(logger, logging.ERROR, thisproc, 'INFA Checks failed with >' + result.message +"<.")
+    if len(argv) < 2:
+        supporting.log(logger, logging.ERROR, thisproc, 'Project and Folder expected.')
+        result = err.INFACMD_NOFOLDER
         supporting.exitscript(resultlogger, result)
 
-    result = processDeveloperDeployList.processList(infaConstants.CREATEARTIFACT, settings.infadeploylist)
+    project_name = argv[0]
+    folder_name = argv[1]
+    infaSettings.getinfaenvvars()
+    infaSettings.outinfaenvvars()
+
+    result = manageFolder.delete_folder(
+        Domain=infaSettings.sourceDomain,
+        ServiceName=infaSettings.sourceModelRepository,
+        ProjectName=project_name,
+        Path=folder_name
+    )
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
-#    supporting.writeresult(resultlogger, result)
     supporting.exitscript(resultlogger, result)
 
 
-main()
+main(sys.argv[1:])

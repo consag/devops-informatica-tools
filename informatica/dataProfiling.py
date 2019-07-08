@@ -20,29 +20,40 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 #
+
 from supporting import log
 import logging
-from informaticaArtifact.developer import executeCommand
-import os
-from informaticaArtifact import infaSettings
+from informatica import buildCommand
+from informatica import executeInfacmd
 from supporting import errorcodes
 
 logger = logging.getLogger(__name__)
-entrynr = 0
+entrynr =0
 
+def runProfile(**KeyWordArguments):
+    thisproc = "runProfile"
 
-def execute(command):
+    KeyWordArguments["Tool"] = "RunProfile"
+    RunCommand = buildCommand.build(**KeyWordArguments)
 
-    infa_env = {**os.environ, 'INFA_DEFAULT_DOMAIN_PASSWORD': infaSettings.sourcePassword,
-              'INFA_DEFAULT_DOMAIN_USER': infaSettings.sourceUsername,
-              'INFA_DEFAULT_SECURITY_DOMAIN': infaSettings.sourceSecurityDomain}
+    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
+    result = executeInfacmd.execute(RunCommand)
 
-    result = executeCommand.execute(command, infa_env)
-
-    if (result.code == errorcodes.COMMAND_FAILED):
+    if(result.code == errorcodes.INFACMD_FAILED):
         oldResult = result.message
-        result = errorcodes.INFACMD_FAILED
+        result = errorcodes.INFACMD_PROFILE_FAILED
         result.message = oldResult
 
-    return result
+    return (result)
 
+
+def runScorecard(**KeyWordArguments):
+    thisproc = "runScorecard"
+
+    KeyWordArguments["Tool"] = "RunScorecard"
+    RunCommand = buildCommand.build(**KeyWordArguments)
+
+    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
+    result = executeInfacmd.execute(RunCommand)
+
+    return (result)

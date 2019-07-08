@@ -28,7 +28,7 @@
 # @Version: 20190410.0 - JBE - Initial
 ##
 
-import databaseArtifact.dbConstants as constants
+import database.dbConstants as constants
 import supporting, os, logging
 import supporting.generalSettings as generalsettings
 from supporting.generalSettings import completePath

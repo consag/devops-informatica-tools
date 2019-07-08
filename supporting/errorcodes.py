@@ -63,4 +63,5 @@ INFACMD_SCORECARD_FAILED=err.Errorcode(30,'INFARUN-0004','infacmd run scorecard 
 INFACMD_NOMAPPING=err.Errorcode(30,'INFARUN-0005','No mapping provided','Provide the mapping you want to run.','RunMapping',logging.ERROR)
 INFACMD_NOAPPFORMAPPING=err.Errorcode(30,'INFARUN-0006','Application of the mapping was not provided','Provide the application that contains the mapping you want to run.','RunMapping',logging.ERROR)
 INFACMD_MAPPING_FAILED=err.Errorcode(30,'INFARUN-0007','infacmd run mapping command failed.','Check the log and/or ask your administrator.','RunMapping',logging.ERROR)
-
+INFACMD_NOPROJECT=err.Errorcode(30,'INFARUN-0008','No project name provided.','Provide a name for the project to be created.','CreateProject',logging.ERROR)
+INFACMD_NOFOLDER=err.Errorcode(30,'INFARUN-0009','No project and/or folder name provided.','Provide the project and a name for the folder to be created.','CreateProject',logging.ERROR)

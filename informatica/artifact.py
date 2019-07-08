@@ -30,14 +30,14 @@
 
 import supporting.errorcodes as err
 import supporting, logging
-import informaticaArtifact.developer as developer
 import supporting.errorcodes as errorcodes
 import supporting.deploylist
-import informaticaArtifact.infaSettings as infaSettings
+import informatica.infaSettings as infaSettings
 import supporting.generalSettings as generalSettings
 from supporting.generalSettings import completePath
 from supporting.artifactHandling import getInformaticaArtifact
-from informaticaArtifact import infaConstants
+from informatica import infaConstants
+import informatica
 
 logger = logging.getLogger(__name__)
 entrynr =0
@@ -72,9 +72,9 @@ def processEntry(what, deployEntry):
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Type is >' + type + '< and object is >' + object + '<')
     if what == infaConstants.CREATEARTIFACT:
-        result = createArtifact(type, object, exportcontrol)
+        result = create_artifact(type, object, exportcontrol)
     elif what == infaConstants.DEPLOYARTIFACT:
-        result = deployArtifact(type, object, importcontrol)
+        result = deploy_artifact(type, object, importcontrol)
     else:
         result = errorcodes.COMMAND_FAILED
 
@@ -83,9 +83,9 @@ def processEntry(what, deployEntry):
     return result
 
 
-def createArtifact(type, object, exportcontrol):
+def create_artifact(type, object, exportcontrol="default.ecf"):
     if type == 'PROJECT':
-        result = developer.export_infadeveloper(
+        result = informatica.export_infadeveloper(
             Domain=infaSettings.sourceDomain,
             Repository=infaSettings.sourceModelRepository,
             Project=object,
@@ -94,7 +94,7 @@ def createArtifact(type, object, exportcontrol):
             ExportRefData=infaSettings.sourceExportRefData
         )
     elif type == 'CONTROLFILE':
-        result = developer.export_infadeveloper(
+        result = informatica.export_infadeveloper(
             Domain = infaSettings.sourceDomain,
             Repository = infaSettings.sourceModelRepository,
             Project=object,
@@ -107,7 +107,7 @@ def createArtifact(type, object, exportcontrol):
 
     return result
 
-def deployArtifact(type, object, importcontrol):
+def deploy_artifact(type, object, importcontrol):
     thisproc = 'deployArtifact'
     supporting.log(logger, logging.DEBUG, thisproc, 'started deploy for object >' + object +'<.')
 
@@ -117,7 +117,7 @@ def deployArtifact(type, object, importcontrol):
         return result
 
     if type == 'PROJECT':
-        result = developer.import_infadeveloper(
+        result = informatica.import_infadeveloper(
             Domain=infaSettings.targetDomain,
             Repository=infaSettings.targetModelRepository,
             Project=object,
@@ -125,7 +125,7 @@ def deployArtifact(type, object, importcontrol):
             ExportRefData=infaSettings.targetExportRefData
         )
     elif type == 'CONTROLFILE':
-        result = developer.import_infadeveloper(
+        result = informatica.import_infadeveloper(
             Domain = infaSettings.targetDomain,
             Repository = infaSettings.targetModelRepository,
             Project=object,
@@ -136,3 +136,4 @@ def deployArtifact(type, object, importcontrol):
         result = errorcodes.NOT_IMPLEMENTED
 
     return result
+

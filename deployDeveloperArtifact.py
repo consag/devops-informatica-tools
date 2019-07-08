@@ -30,11 +30,10 @@
 
 import logging, datetime, supporting
 import supporting.errorcodes as err
-from informaticaArtifact import infaArtifactChecks
-import informaticaArtifact.developer.processDeveloperDeployList as processDeveloperDeployList
-import informaticaArtifact.infaSettings as infaSettings
+from informatica import infaArtifactChecks
+import informatica.infaSettings as infaSettings
 from supporting.generalSettings import logDir
-from informaticaArtifact import infaConstants
+from informatica import infaConstants
 
 now = datetime.datetime.now()
 result = err.OK
@@ -58,7 +57,7 @@ def main():
         supporting.log(logger, logging.ERROR, thisproc, 'INFA Checks failed with >' + result.message +"<.")
         supporting.exitscript(resultlogger, result)
 
-    result = processDeveloperDeployList.processList(infaConstants.DEPLOYARTIFACT, infaSettings.infadeploylist)
+#    result = informatica.import_infadeveloper(infaConstants.DEPLOYARTIFACT, infaSettings.infadeploylist)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")

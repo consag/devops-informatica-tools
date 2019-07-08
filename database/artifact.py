@@ -31,7 +31,7 @@ import supporting.errorcodes as err
 import supporting, logging
 import supporting.filehandling as filehandling
 import re, os
-import databaseArtifact.dbSettings as settings
+import database.dbSettings as settings
 import supporting.generalSettings as generalSettings
 import supporting.deploylist
 from pathlib import Path

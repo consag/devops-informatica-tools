@@ -39,14 +39,14 @@ It also provides some related functions, such as:
 import datetime
 import supporting, logging
 
-from informaticaArtifact.developer import buildCommand
-from informaticaArtifact.developer import executeInfacmd
+from informatica import buildCommand
+from informatica import executeInfacmd
 
 logger = logging.getLogger(__name__)
 
 
 
-def Import(**KeyWordArguments):
+def import_infadeveloper(**KeyWordArguments):
     """Import IDQ Components"""
 
     KeyWordArguments["Tool"] = "Import"
