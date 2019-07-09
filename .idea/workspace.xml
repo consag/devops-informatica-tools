@@ -2,38 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79ec9dbe-bed2-4c98-9e86-440cc491d387" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/createFolder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/createProject.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deleteFolder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deleteProject.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/build-and-deploy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/build-and-deploy.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/BeekersJPA.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/BeekersJPA.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/createUser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deleteUser.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/informatica/manageSecurity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/createDeveloperArtifact.py" beforeDir="false" afterPath="$PROJECT_DIR$/createInformaticaPlatformArtifact.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/createOracleArtifact.py" beforeDir="false" afterPath="$PROJECT_DIR$/createOracleArtifact.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/databaseArtifact/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/databaseArtifact/databaseArtifactChecks.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/databaseArtifactChecks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/databaseArtifact/dbConstants.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/dbConstants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/databaseArtifact/dbSettings.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/dbSettings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/databaseArtifact/processDatabaseDeployList.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/artifact.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/databaseDeploy/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployDeveloperArtifact.py" beforeDir="false" afterPath="$PROJECT_DIR$/deployDeveloperArtifact.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informaticaArtifact/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/informatica/manageFolder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informaticaArtifact/developer/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/informatica/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informaticaArtifact/developer/buildCommand.py" beforeDir="false" afterPath="$PROJECT_DIR$/informatica/buildCommand.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informaticaArtifact/developer/dataProfiling.py" beforeDir="false" afterPath="$PROJECT_DIR$/informatica/dataProfiling.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informaticaArtifact/developer/executeCommand.py" beforeDir="false" afterPath="$PROJECT_DIR$/informatica/executeCommand.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informaticaArtifact/developer/executeInfacmd.py" beforeDir="false" afterPath="$PROJECT_DIR$/informatica/executeInfacmd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informaticaArtifact/developer/processDeveloperDeployList.py" beforeDir="false" afterPath="$PROJECT_DIR$/informatica/artifact.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informaticaArtifact/developer/runMapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/informatica/runMapping.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informaticaArtifact/infaArtifactChecks.py" beforeDir="false" afterPath="$PROJECT_DIR$/informatica/infaArtifactChecks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informaticaArtifact/infaConstants.py" beforeDir="false" afterPath="$PROJECT_DIR$/informatica/infaConstants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informaticaArtifact/infaSettings.py" beforeDir="false" afterPath="$PROJECT_DIR$/informatica/infaSettings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runProfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/runProfile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runScorecard.py" beforeDir="false" afterPath="$PROJECT_DIR$/runScorecard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/informatica/infaConstants.py" beforeDir="false" afterPath="$PROJECT_DIR$/informatica/infaConstants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/supporting/errorcodes.py" beforeDir="false" afterPath="$PROJECT_DIR$/supporting/errorcodes.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,8 +20,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/informatica/manageFolder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="69" column="38" lean-forward="true" selection-start-line="69" selection-start-column="38" selection-end-line="69" selection-end-column="38" />
+            <state relative-caret-position="1105">
+              <caret line="69" column="38" selection-start-line="69" selection-start-column="38" selection-end-line="69" selection-end-column="38" />
               <folding>
                 <element signature="e#1127#1153#0" expanded="true" />
               </folding>
@@ -59,17 +32,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/informatica/infaConstants.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="128" column="35" selection-start-line="128" selection-start-column="35" selection-end-line="128" selection-end-column="35" />
+            <state relative-caret-position="561">
+              <caret line="126" column="35" selection-start-line="126" selection-start-column="35" selection-end-line="126" selection-end-column="35" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/createProject.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/informatica/manageSecurity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+            <state relative-caret-position="561">
+              <caret line="37" selection-start-line="37" selection-end-line="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/createUser.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
               <folding>
                 <element signature="e#1127#1163#0" expanded="true" />
               </folding>
@@ -78,28 +60,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/deleteProject.py">
+        <entry file="file://$PROJECT_DIR$/deleteUser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="67" column="33" selection-start-line="67" selection-start-column="33" selection-end-line="67" selection-end-column="33" />
+            <state relative-caret-position="88">
+              <caret line="47" column="48" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="48" />
+              <folding>
+                <element signature="e#1127#1163#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/deleteFolder.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="69" column="32" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/supporting/errorcodes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
-              <caret line="66" column="68" selection-start-line="66" selection-start-column="68" selection-end-line="66" selection-end-column="68" />
+            <state relative-caret-position="411">
+              <caret line="67" column="150" lean-forward="true" selection-start-line="67" selection-start-column="150" selection-end-line="67" selection-end-column="150" />
             </state>
           </provider>
         </entry>
@@ -126,9 +102,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/supporting/databaseArtifactChecks.py" />
-        <option value="$PROJECT_DIR$/informaticaArtifact/infaartifactchecks.py" />
-        <option value="$PROJECT_DIR$/databaseArtifact/__init__.py" />
         <option value="$PROJECT_DIR$/informaticaArtifact/__init__.py" />
         <option value="$PROJECT_DIR$/supporting/deploylist.py" />
         <option value="$PROJECT_DIR$/supporting/__init__.py" />
@@ -170,13 +143,16 @@
         <option value="$PROJECT_DIR$/informatica/createArtifact.py" />
         <option value="$PROJECT_DIR$/informatica/createFolder.py" />
         <option value="$PROJECT_DIR$/createProject.py" />
-        <option value="$PROJECT_DIR$/supporting/errorcodes.py" />
         <option value="$PROJECT_DIR$/manageFolder.py" />
         <option value="$PROJECT_DIR$/createFolder.py" />
         <option value="$PROJECT_DIR$/informatica/manageFolder.py" />
         <option value="$PROJECT_DIR$/deleteProject.py" />
         <option value="$PROJECT_DIR$/deleteFolder.py" />
+        <option value="$PROJECT_DIR$/informatica/manageSecurity.py" />
         <option value="$PROJECT_DIR$/informatica/infaConstants.py" />
+        <option value="$PROJECT_DIR$/createUser.py" />
+        <option value="$PROJECT_DIR$/deleteUser.py" />
+        <option value="$PROJECT_DIR$/supporting/errorcodes.py" />
       </list>
     </option>
   </component>
@@ -222,16 +198,17 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\GitRepos\devops-informatica-tools" />
-      <recent name="D:\GitRepos\build-and-deploy-informatica" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\GitRepos\devops-informatica-tools\informatica" />
       <recent name="D:\GitRepos\build-and-deploy-informatica\databaseArtifact" />
       <recent name="D:\GitRepos\build-and-deploy-informatica\informaticaArtifact" />
       <recent name="D:\GitRepos\build-and-deploy-informatica\supporting" />
       <recent name="D:\InstallationFiles\PycharmProjects\build-and-deploy\supporting" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\GitRepos\devops-informatica-tools" />
+      <recent name="D:\GitRepos\devops-informatica-tools\informatica" />
+      <recent name="D:\GitRepos\build-and-deploy-informatica" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -246,7 +223,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.createProject">
+  <component name="RunManager" selected="Python.deleteUser">
     <configuration name="createDeveloperArtifact" type="PythonConfigurationType" factoryName="Python">
       <module name="build-and-deploy" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -364,6 +341,33 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="createUser" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/createUser.py" />
+      <option name="PARAMETERS" value="DummyUser DummyUser &quot;Dummy User&quot;" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="deleteFolder" type="PythonConfigurationType" factoryName="Python">
       <module name="build-and-deploy" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -413,6 +417,33 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/deleteProject.py" />
       <option name="PARAMETERS" value="DummyDemo" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="deleteUser" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/deleteUser.py" />
+      <option name="PARAMETERS" value="DummyUser" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -536,6 +567,8 @@
       <item itemvalue="Python.deployDeveloperArtifact" />
       <item itemvalue="Python.runProfile" />
       <item itemvalue="Python.createProject" />
+      <item itemvalue="Python.createUser" />
+      <item itemvalue="Python.deleteUser" />
       <item itemvalue="Python.deleteProject" />
       <item itemvalue="Python.createFolder" />
       <item itemvalue="Python.deleteFolder" />
@@ -586,8 +619,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/informaticArtifact/Environment.py" />
-    <entry file="file://$PROJECT_DIR$/informaticArtifact/developer/developer.py" />
     <entry file="file://$PROJECT_DIR$/informaticArtifact/ExportComponents.py" />
     <entry file="file://$PROJECT_DIR$/supporting/environmentvars.py" />
     <entry file="file://$PROJECT_DIR$/informaticArtifact/Logging.py" />
@@ -761,9 +792,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/databaseDeploy/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/databaseDeploy/__init__.py" />
     <entry file="file://$PROJECT_DIR$/database/dbConstants.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -788,13 +817,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/informatica/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="32" lean-forward="true" selection-start-line="31" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/informatica/infaArtifactChecks.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="638">
@@ -809,13 +831,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/informatica/deployArtifact.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/deployArtifact.py" />
     <entry file="file://$PROJECT_DIR$/informatica/artifact.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="955">
@@ -863,13 +879,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/supporting/errorcodes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="66" column="68" selection-start-line="66" selection-start-column="68" selection-end-line="66" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/createFolder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="428">
@@ -879,8 +888,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/informatica/manageFolder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="69" column="38" lean-forward="true" selection-start-line="69" selection-start-column="38" selection-end-line="69" selection-end-column="38" />
+        <state relative-caret-position="1105">
+          <caret line="69" column="38" selection-start-line="69" selection-start-column="38" selection-end-line="69" selection-end-column="38" />
           <folding>
             <element signature="e#1127#1153#0" expanded="true" />
           </folding>
@@ -889,32 +898,66 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/deleteProject.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
+        <state relative-caret-position="1054">
           <caret line="67" column="33" selection-start-line="67" selection-start-column="33" selection-end-line="67" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/deleteFolder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
+        <state relative-caret-position="1088">
           <caret line="69" column="32" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/informatica/infaConstants.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="128" column="35" selection-start-line="128" selection-start-column="35" selection-end-line="128" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/createProject.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        <state relative-caret-position="734">
+          <caret line="65" column="6" lean-forward="true" selection-start-line="65" selection-start-column="6" selection-end-line="65" selection-end-column="6" />
           <folding>
             <element signature="e#1127#1163#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/manageSecurity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/infaConstants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="126" column="35" selection-start-line="126" selection-start-column="35" selection-end-line="126" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/createUser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="67" column="25" selection-start-line="67" selection-start-column="25" selection-end-line="67" selection-end-column="25" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deleteUser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="47" column="48" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="48" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/supporting/errorcodes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="67" column="150" lean-forward="true" selection-start-line="67" selection-start-column="150" selection-end-line="67" selection-end-column="150" />
         </state>
       </provider>
     </entry>

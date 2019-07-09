@@ -123,6 +123,11 @@ AvailableArguments = {
 AvailableTools = {
     "Import": ("oie", "ImportObjects"),
     "Export": ("oie", "ExportObjects"),
+    "CreateUser": ("isp", "CreateUser"),
+    "DisableUser": ("isp", "DisableUser"),
+    "DeleteUser": ("isp", "RemoveUser"),
+    "CreateGroup": ("isp", "CreateGroup"),
+    "DeleteGroup": ("isp", "RemoveGroup"),
     "CreateProject": ("mrs", "CreateProject"),
     "DeleteProject": ("mrs", "DeleteProject"),
     "CreateFolder": ("mrs", "CreateFolder"),
