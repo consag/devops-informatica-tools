@@ -67,3 +67,5 @@ INFACMD_NOPROJECT=err.Errorcode(30,'INFARUN-0008','No project name provided.','P
 INFACMD_NOFOLDER=err.Errorcode(30,'INFARUN-0009','No project and/or folder name provided.','Provide the project and a name for the folder to be created.','CreateFolder',logging.ERROR)
 INFACMD_NOUSERNAME=err.Errorcode(30,'INFARUN-0010','No user name, password and/or full name provided.','Provide a name, password, and full name for the user to be created.','CreateUser',logging.ERROR)
 INFACMD_NOUSERNAME_DELETION=err.Errorcode(30,'INFARUN-0011','No user name provided.','Provide the username to be deleted.','DeleteUser',logging.ERROR)
+INFACMD_NOEXPORTFILENAME=err.Errorcode(30,'INFARUN-0012','No export file name provided.','Provide the name for the export file.','ExportUsersAndGroups',logging.ERROR)
+INFACMD_NOIMPORTFILENAME=err.Errorcode(30,'INFARUN-0013','No import file name provided.','Provide the name of the file to be imported.','ImportUsersAndGroups',logging.ERROR)

@@ -128,6 +128,8 @@ AvailableTools = {
     "DeleteUser": ("isp", "RemoveUser"),
     "CreateGroup": ("isp", "CreateGroup"),
     "DeleteGroup": ("isp", "RemoveGroup"),
+    "ExportUsersAndGroups": ("isp", "exportUsersAndGroups"),
+    "ImportUsersAndGroups": ("isp", "importUsersAndGroups"),
     "CreateProject": ("mrs", "CreateProject"),
     "DeleteProject": ("mrs", "DeleteProject"),
     "CreateFolder": ("mrs", "CreateFolder"),

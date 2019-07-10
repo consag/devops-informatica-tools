@@ -87,3 +87,26 @@ def delete_group(**KeyWordArguments):
 
     return (result)
 
+
+def export_users_and_groups(**KeyWordArguments):
+    thisproc = "export_users_and_groups"
+
+    KeyWordArguments["Tool"] = "ExportUsersAndGroups"
+    RunCommand = buildCommand.build(**KeyWordArguments)
+
+    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
+    result = executeInfacmd.execute(RunCommand)
+
+    return (result)
+
+
+def import_users_and_groups(**KeyWordArguments):
+    thisproc = "import_users_and_groups"
+
+    KeyWordArguments["Tool"] = "ImportUsersAndGroups"
+    RunCommand = buildCommand.build(**KeyWordArguments)
+
+    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
+    result = executeInfacmd.execute(RunCommand)
+
+    return (result)
