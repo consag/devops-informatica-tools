@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79ec9dbe-bed2-4c98-9e86-440cc491d387" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/exportUsersAndGroups.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/importUsersAndGroups.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/informatica/manageConnection.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/informatica/infaConstants.py" beforeDir="false" afterPath="$PROJECT_DIR$/informatica/infaConstants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/informatica/manageSecurity.py" beforeDir="false" afterPath="$PROJECT_DIR$/informatica/manageSecurity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/supporting/errorcodes.py" beforeDir="false" afterPath="$PROJECT_DIR$/supporting/errorcodes.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,11 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/informatica/infaConstants.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="131" column="39" selection-start-line="131" selection-start-column="39" selection-end-line="131" selection-end-column="39" />
+            <state relative-caret-position="476">
+              <caret line="128" column="59" lean-forward="true" selection-start-line="128" selection-start-column="59" selection-end-line="128" selection-end-column="59" />
             </state>
           </provider>
         </entry>
@@ -29,13 +27,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/informatica/manageSecurity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="105" column="33" selection-start-line="105" selection-start-column="33" selection-end-line="105" selection-end-column="33" />
+            <state relative-caret-position="51">
+              <caret line="117" column="56" selection-start-line="117" selection-start-column="32" selection-end-line="117" selection-end-column="56" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/importUsersAndGroups.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="510">
@@ -45,9 +43,18 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/informatica/manageConnection.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1105">
+              <caret line="94" column="53" selection-start-line="94" selection-start-column="32" selection-end-line="94" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/supporting/errorcodes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
+            <state relative-caret-position="1190">
               <caret line="71" selection-start-line="71" selection-end-line="71" />
             </state>
           </provider>
@@ -75,7 +82,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/supporting/__init__.py" />
         <option value="$PROJECT_DIR$/databaseArtifact/databaseArtifactChecks.py" />
         <option value="$PROJECT_DIR$/databaseArtifact/dbConstants.py" />
         <option value="$PROJECT_DIR$/supporting/generalSettings.py" />
@@ -121,11 +127,12 @@
         <option value="$PROJECT_DIR$/deleteFolder.py" />
         <option value="$PROJECT_DIR$/createUser.py" />
         <option value="$PROJECT_DIR$/deleteUser.py" />
-        <option value="$PROJECT_DIR$/informatica/infaConstants.py" />
         <option value="$PROJECT_DIR$/supporting/errorcodes.py" />
-        <option value="$PROJECT_DIR$/informatica/manageSecurity.py" />
         <option value="$PROJECT_DIR$/exportUsersAndGroups.py" />
         <option value="$PROJECT_DIR$/imxportUsersAndGroups.py" />
+        <option value="$PROJECT_DIR$/informatica/manageConnection.py" />
+        <option value="$PROJECT_DIR$/informatica/manageSecurity.py" />
+        <option value="$PROJECT_DIR$/informatica/infaConstants.py" />
       </list>
     </option>
   </component>
@@ -140,6 +147,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -166,27 +174,26 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/informatica" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\GitRepos\devops-informatica-tools\informatica" />
+      <recent name="D:\GitRepos\devops-informatica-tools" />
+      <recent name="D:\GitRepos\build-and-deploy-informatica" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\GitRepos\devops-informatica-tools\informatica" />
       <recent name="D:\GitRepos\build-and-deploy-informatica\databaseArtifact" />
       <recent name="D:\GitRepos\build-and-deploy-informatica\informaticaArtifact" />
       <recent name="D:\GitRepos\build-and-deploy-informatica\supporting" />
       <recent name="D:\InstallationFiles\PycharmProjects\build-and-deploy\supporting" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\GitRepos\devops-informatica-tools" />
-      <recent name="D:\GitRepos\devops-informatica-tools\informatica" />
-      <recent name="D:\GitRepos\build-and-deploy-informatica" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -632,7 +639,7 @@
     <frame x="1122" y="196" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4994233" visible="true" weight="0.2496329" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4994233" visible="true" weight="0.2496329" />
       <window_info id="Structure" order="1" sideWeight="0.5005767" side_tool="true" weight="0.2496329" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -653,7 +660,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/informaticArtifact/Logging.py" />
     <entry file="file://$PROJECT_DIR$/informaticaArtifact/Environment.py" />
     <entry file="file://$PROJECT_DIR$/informaticaArtifact/ExportComponents.py" />
     <entry file="file://$PROJECT_DIR$/supporting/environmentChecks.py" />
@@ -965,13 +971,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/supporting/errorcodes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="71" selection-start-line="71" selection-end-line="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/informatica/buildCommand.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -982,13 +981,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/informatica/infaConstants.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="131" column="39" selection-start-line="131" selection-start-column="39" selection-end-line="131" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/exportUsersAndGroups.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
@@ -996,10 +988,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/informatica/manageSecurity.py">
+    <entry file="file://$PROJECT_DIR$/supporting/errorcodes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="105" column="33" selection-start-line="105" selection-start-column="33" selection-end-line="105" selection-end-column="33" />
+        <state relative-caret-position="1190">
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
         </state>
       </provider>
     </entry>
@@ -1007,6 +999,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="58" column="30" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/manageConnection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1105">
+          <caret line="94" column="53" selection-start-line="94" selection-start-column="32" selection-end-line="94" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/manageSecurity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="117" column="56" selection-start-line="117" selection-start-column="32" selection-end-line="117" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/infaConstants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="128" column="59" lean-forward="true" selection-start-line="128" selection-start-column="59" selection-end-line="128" selection-end-column="59" />
         </state>
       </provider>
     </entry>

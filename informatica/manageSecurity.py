@@ -110,3 +110,51 @@ def import_users_and_groups(**KeyWordArguments):
     result = executeInfacmd.execute(RunCommand)
 
     return (result)
+
+
+def add_connection_permissions(**KeyWordArguments):
+    thisproc = "add_connection_permissions"
+
+    KeyWordArguments["Tool"] = "AddConnectionPermissions"
+    RunCommand = buildCommand.build(**KeyWordArguments)
+
+    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
+    result = executeInfacmd.execute(RunCommand)
+
+    return (result)
+
+
+def list_connection_permissions(**KeyWordArguments):
+    thisproc = "list_connecion_permissions"
+
+    KeyWordArguments["Tool"] = "ListConnectionPermissions"
+    RunCommand = buildCommand.build(**KeyWordArguments)
+
+    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
+    result = executeInfacmd.execute(RunCommand)
+
+    return (result)
+
+def remove_connection_permissions(**KeyWordArguments):
+    thisproc = "remove_connection_permissions"
+
+    KeyWordArguments["Tool"] = "RemoveConnectionPermissions"
+    RunCommand = buildCommand.build(**KeyWordArguments)
+
+    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
+    result = executeInfacmd.execute(RunCommand)
+
+    return (result)
+
+
+def set_connection_permissions(**KeyWordArguments):
+    thisproc = "set_connection_permissions"
+
+    KeyWordArguments["Tool"] = "SetConnectionPermissions"
+    RunCommand = buildCommand.build(**KeyWordArguments)
+
+    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
+    result = executeInfacmd.execute(RunCommand)
+
+    return (result)
+

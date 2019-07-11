@@ -117,7 +117,17 @@ AvailableArguments = {
     "ByObjectPathName": "-bopn",
     "ByUser": "-bu",
     "ObjectPathName": "-opn",
-    "OtherOptions": "-OtherOptions"
+    "OtherOptions": "-OtherOptions",
+    "ListConnections": "-listConnections",
+    "ListConnectionOptions": "-listConnectionOptions",
+    "CreateConnection": "-createConnection",
+    "DeleteConnection": "-removeConnection",
+    "UpdateConnection": "-updateConnection",
+    "AddConnectionPermissions": "-addConnectionPermissions",
+    "ListConnectionPermissions": "-listConnectionPermissions",
+    "RemoveConnectionPermissions": "-removeConnectionPermissions",
+    "SetConnectionPermissions": "-setConnectionPermissions"
+
 }
 
 AvailableTools = {
