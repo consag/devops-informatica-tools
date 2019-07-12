@@ -26,7 +26,7 @@
 # @Since: 10-APR-2019
 # @Author: Jac. Beekers
 # @License: MIT
-# @Version: 20190410.0 - Initial
+# @Version: 20190712.0 - Added some more
 import supporting.generalConstants as generalConstants
 
 ## Environment variables
@@ -151,4 +151,14 @@ AvailableTools = {
     "RunMapping": ("ms", "runMapping"),
     "RunWorkflow": ("wfs", "startWorkflow"),
 
+}
+
+##
+# Informatica Optimization Levels
+optimization_level = {
+    "Auto": -1,
+    "None": 0,
+    "Minimal": 1,
+    "Normal": 2,
+    "Full": 3
 }

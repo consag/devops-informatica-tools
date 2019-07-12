@@ -63,6 +63,8 @@ def build(**KeyWordArguments):
         # value to InfaArguments
         elif key in infaConstants.AvailableArguments:
             InfaArguments.append(infaConstants.AvailableArguments[key] + " " + '"' + value + '"')
+        elif key == "AsIsOptions":
+            InfaArguments.append(" " + value + " ")
         elif key != "OnError":
             InfaArguments.append("-" + key + " " + '"' + value + '"')
 

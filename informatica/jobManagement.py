@@ -25,6 +25,7 @@ from supporting import log
 import logging
 from informatica import buildCommand
 from informatica import executeInfacmd
+from informatica import infaConstants
 from supporting import errorcodes
 
 class JobExecution:
@@ -46,3 +47,5 @@ class JobExecution:
 
         return (result)
 
+    def translateOptimizationLevel(self, value):
+        return infaConstants.optimization_level[value]

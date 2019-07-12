@@ -26,6 +26,7 @@ from supporting import errorcodes
 from informatica import infaSettings
 from supporting import generalSettings
 from informatica import jobManagement
+from informatica import infaConstants
 import sys
 
 now = datetime.datetime.now()
@@ -33,7 +34,7 @@ result = errorcodes.OK
 
 def main(argv):
     thisproc = "MAIN"
-    mainProc='runScorecard'
+    mainProc='runMapping'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -43,25 +44,37 @@ def main(argv):
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    if len(argv) == 0:
-        supporting.log(logger, logging.ERROR, thisproc, 'No scorecard path specified.')
-        result = errorcodes.INFACMD_NOSCORECARD
+    if len(argv) < 2:
+        supporting.log(logger, logging.ERROR, thisproc, 'No mapping and/or application specified.')
+        result = errorcodes.INFACMD_NOMAPPING
         supporting.exitscript(resultlogger, result)
 
-    objectPath = argv[0]
+    application_name = argv[0]
+    mapping_name = argv[1]
+    pushdown_type = argv[2] if len(argv) > 2 else "Source"
+    optimization_level = argv[3] if len(argv) > 3 else 3
+    as_is_options = argv[4] if len(argv) > 4 else ""
+
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
 
-    scorecard = jobManagement.JobExecution(Tool="RunScorecard",
-                                           Domain=infaSettings.sourceDomain,
-                                           MrsServiceName=infaSettings.sourceModelRepository,
-                                           DsServiceName=infaSettings.sourceDIS,
-                                           ObjectPathAndName=objectPath,
-                                           ObjectType="scorecard",
-                                           Wait="true",
-                                           OnError=errorcodes.INFACMD_SCORECARD_FAILED
-                                           )
-    result = jobManagement.JobExecution.manage(scorecard)
+    """with AsIsOptions, you can speficy e.g. a parameter set
+        Example:
+        runMapping myApp myMapping Source 3 "-ParameterSet myParameterSet -OperatingSystemProfile myOSProfile"
+        It is important to supply the AsIsOptions as one single string
+    """
+    mapping = jobManagement.JobExecution(Tool="RunMapping",
+                                         Domain=infaSettings.sourceDomain,
+                                         ServiceName=infaSettings.sourceDIS,
+                                         Application=application_name,
+                                         Mapping=mapping_name,
+                                         PushdownType=pushdown_type,
+                                         OptimizationLevel=optimization_level,
+                                         Wait="true",
+                                         OnError=errorcodes.INFACMD_MAPPING_FAILED,
+                                         AsIsOptions=as_is_options
+                                         )
+    result = jobManagement.JobExecution.manage(mapping)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")

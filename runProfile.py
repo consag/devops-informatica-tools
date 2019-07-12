@@ -25,7 +25,7 @@ import logging, datetime, supporting
 from supporting import errorcodes
 from informatica import infaSettings
 from supporting import generalSettings
-from informatica import dataProfiling
+from informatica import jobManagement
 import sys
 
 now = datetime.datetime.now()
@@ -52,16 +52,16 @@ def main(argv):
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
 
-    profile = dataProfiling.JobExecution(Tool="RunProfile",
-        Domain=infaSettings.sourceDomain,
-        MrsServiceName=infaSettings.sourceModelRepository,
-        DsServiceName=infaSettings.sourceDIS,
-        ObjectPathAndName=objectPath,
-        ObjectType="profile",
-        Wait="true",
-        OnError=errorcodes.INFACMD_PROFILE_FAILED
-    )
-    result = dataProfiling.JobExecution.manage(profile)
+    profile = jobManagement.JobExecution(Tool="RunProfile",
+                                         Domain=infaSettings.sourceDomain,
+                                         MrsServiceName=infaSettings.sourceModelRepository,
+                                         DsServiceName=infaSettings.sourceDIS,
+                                         ObjectPathAndName=objectPath,
+                                         ObjectType="profile",
+                                         Wait="true",
+                                         OnError=errorcodes.INFACMD_PROFILE_FAILED
+                                         )
+    result = jobManagement.JobExecution.manage(profile)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
