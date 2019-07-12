@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79ec9dbe-bed2-4c98-9e86-440cc491d387" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/runMapping.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informatica/buildCommand.py" beforeDir="false" afterPath="$PROJECT_DIR$/informatica/buildCommand.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informatica/dataProfiling.py" beforeDir="false" afterPath="$PROJECT_DIR$/informatica/jobManagement.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/informatica/infaConstants.py" beforeDir="false" afterPath="$PROJECT_DIR$/informatica/infaConstants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runProfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/runProfile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runScorecard.py" beforeDir="false" afterPath="$PROJECT_DIR$/runScorecard.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/runWorkflow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/informatica/runMapping.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/supporting/errorcodes.py" beforeDir="false" afterPath="$PROJECT_DIR$/supporting/errorcodes.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,13 +37,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/runMapping.py">
+        <entry file="file://$PROJECT_DIR$/runWorkflow.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="46" column="21" lean-forward="true" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
-              <folding>
-                <element signature="e#1127#1163#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="462">
+              <caret line="67" column="70" lean-forward="true" selection-start-line="67" selection-start-column="70" selection-end-line="67" selection-end-column="70" />
             </state>
           </provider>
         </entry>
@@ -65,8 +60,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/supporting/errorcodes.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1207">
-              <caret line="72" selection-start-line="72" selection-end-line="72" />
+            <state relative-caret-position="309">
+              <caret line="72" column="112" selection-start-line="72" selection-start-column="112" selection-end-line="72" selection-end-column="112" />
             </state>
           </provider>
         </entry>
@@ -93,7 +88,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/supporting/generalConstants.py" />
         <option value="$PROJECT_DIR$/icf_default.xml" />
         <option value="$PROJECT_DIR$/informaticaArtifact/developer/runScorecard.py" />
         <option value="$PROJECT_DIR$/informaticaArtifact/developer/runMapping.py" />
@@ -139,11 +133,12 @@
         <option value="$PROJECT_DIR$/createProject.py" />
         <option value="$PROJECT_DIR$/deleteProject.py" />
         <option value="$PROJECT_DIR$/deleteFolder.py" />
-        <option value="$PROJECT_DIR$/supporting/errorcodes.py" />
         <option value="$PROJECT_DIR$/informatica/buildCommand.py" />
         <option value="$PROJECT_DIR$/informatica/infaConstants.py" />
         <option value="$PROJECT_DIR$/informatica/jobManagement.py" />
         <option value="$PROJECT_DIR$/runMapping.py" />
+        <option value="$PROJECT_DIR$/supporting/errorcodes.py" />
+        <option value="$PROJECT_DIR$/runWorkflow.py" />
       </list>
     </option>
   </component>
@@ -195,11 +190,11 @@
       <recent name="D:\GitRepos\build-and-deploy-informatica" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\GitRepos\devops-informatica-tools" />
       <recent name="D:\GitRepos\devops-informatica-tools\informatica" />
       <recent name="D:\GitRepos\build-and-deploy-informatica\databaseArtifact" />
       <recent name="D:\GitRepos\build-and-deploy-informatica\informaticaArtifact" />
       <recent name="D:\GitRepos\build-and-deploy-informatica\supporting" />
-      <recent name="D:\InstallationFiles\PycharmProjects\build-and-deploy\supporting" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -214,7 +209,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.runMapping">
+  <component name="RunManager" selected="Python.runWorkflow">
     <configuration name="createDeveloperArtifact" type="PythonConfigurationType" factoryName="Python">
       <module name="build-and-deploy" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -689,12 +684,42 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="runWorkflow" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="SOURCE_MRS" value="MRS_Demo01" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+        <env name="SOURCE_DIS" value="DIS_Demo01" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/runWorkflow.py" />
+      <option name="PARAMETERS" value="Appl_Demo wf_Demo true &quot;-ParameterSet ps_Demo&quot;" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.createOracleArtifact" />
       <item itemvalue="Python.createDeveloperArtifact" />
       <item itemvalue="Python.deployDeveloperArtifact" />
       <item itemvalue="Python.runProfile" />
       <item itemvalue="Python.runMapping" />
+      <item itemvalue="Python.runWorkflow" />
       <item itemvalue="Python.createProject" />
       <item itemvalue="Python.createUser" />
       <item itemvalue="Python.createGroup" />
@@ -736,7 +761,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3298731" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3298731" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3298731" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -752,13 +777,6 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/supporting/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -906,9 +924,6 @@
           <caret line="28" selection-start-line="25" selection-end-line="28" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/informatica/runMapping.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/createOracleArtifact.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1086,13 +1101,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/supporting/errorcodes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="72" selection-start-line="72" selection-end-line="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/deleteFolder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -1143,12 +1151,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/informatica/infaConstants.py">
+    <entry file="file://$PROJECT_DIR$/runMapping.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="164" selection-start-line="164" selection-end-line="164" />
+        <state relative-caret-position="54">
+          <caret line="46" column="21" lean-forward="true" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/runMapping.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/informatica/jobManagement.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1160,13 +1174,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/runMapping.py">
+    <entry file="file://$PROJECT_DIR$/informatica/infaConstants.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="46" column="21" lean-forward="true" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
-          <folding>
-            <element signature="e#1127#1163#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="496">
+          <caret line="164" selection-start-line="164" selection-end-line="164" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/supporting/errorcodes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="72" column="112" selection-start-line="72" selection-start-column="112" selection-end-line="72" selection-end-column="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/runWorkflow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="67" column="70" lean-forward="true" selection-start-line="67" selection-start-column="70" selection-end-line="67" selection-end-column="70" />
         </state>
       </provider>
     </entry>

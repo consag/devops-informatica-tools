@@ -69,6 +69,8 @@ INFACMD_CREATE_FOLDER_FAILED=err.Errorcode(30,'INFARUN-0010','Folder could not b
 INFACMD_CREATE_PROJECT_FAILED=err.Errorcode(30,'INFARUN-0011','Project could not be created.','Check the error message.','CreateProject',logging.ERROR)
 INFACMD_DELETE_PROJECT_FAILED=err.Errorcode(30,'INFARUN-0012','Project could not be removed.','Check the error message.','DeleteProject',logging.ERROR)
 INFACMD_DELETE_FOLDER_FAILED=err.Errorcode(30,'INFARUN-0012','Folder could not be removed.','Check the error message.','DeleteFolder',logging.ERROR)
+INFACMD_NOWORKFLOW=err.Errorcode(30,'INFARUN-0013','No application, workflow and/or wait provided','You need to specify the application name, workflow and whether to wait (true) or not (false).','RunWorkflow',logging.ERROR)
+INFACMD_WORKFLOW_FAILED=err.Errorcode(30,'INFARUN-0014','Workflow failed.','Check the error message and logs.','RunWorkflow',logging.ERROR)
 
 ##
 # Manage Security errors
