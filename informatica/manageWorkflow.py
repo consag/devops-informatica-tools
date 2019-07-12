@@ -27,7 +27,7 @@ from informatica import buildCommand
 from informatica import executeInfacmd
 from supporting import errorcodes
 
-class ManageFolder:
+class ManageWorkflow:
 
     def __init__(self, **keyword_arguments):
         self.logger = logging.getLogger(__name__)

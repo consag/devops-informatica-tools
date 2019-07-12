@@ -22,14 +22,14 @@
 #
 
 import logging, datetime, supporting
-import supporting.errorcodes as err
+from supporting import errorcodes
 from informatica import infaSettings
 from supporting import generalSettings
 from informatica import manageSecurity
 import sys
 
 now = datetime.datetime.now()
-result = err.OK
+result = errorcodes.OK
 
 def main(argv):
     thisproc = "MAIN"
@@ -45,7 +45,7 @@ def main(argv):
 
     if len(argv) < 1:
         supporting.log(logger, logging.ERROR, thisproc, 'No export file name provided.')
-        result = err.INFACMD_NOEXPORTFILENAME
+        result = errorcodes.INFACMD_NOEXPORTFILENAME
         supporting.exitscript(resultlogger, result)
 
     # mandatory
@@ -57,12 +57,15 @@ def main(argv):
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
 
-    result = manageSecurity.export_users_and_groups(
+    users_and_groups = manageSecurity.ManageSecurity(Tool="ExportUsersAndGroups",
         Domain=infaSettings.sourceDomain,
         ExportFile=export_file_name,
         Force=force,
-        RetainPassword=retain_password
+        RetainPassword=retain_password,
+        OnError=errorcodes.INFACMD_EXPORT_USRGRP_FAILED
     )
+
+    result = manageSecurity.ManageSecurity.manage(users_and_groups)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")

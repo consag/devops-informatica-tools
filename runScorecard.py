@@ -22,14 +22,14 @@
 #
 
 import logging, datetime, supporting
-import supporting.errorcodes as err
+from supporting import errorcodes
 from informatica import infaSettings
 from supporting import generalSettings
 from informatica import dataProfiling
 import sys
 
 now = datetime.datetime.now()
-result = err.OK
+result = errorcodes.OK
 
 def main(argv):
     thisproc = "MAIN"
@@ -45,21 +45,23 @@ def main(argv):
 
     if len(argv) == 0:
         supporting.log(logger, logging.ERROR, thisproc, 'No scorecard path specified.')
-        result = err.INFACMD_NOSCORECARD
+        result = errorcodes.INFACMD_NOSCORECARD
         supporting.exitscript(resultlogger, result)
 
     objectPath = argv[0]
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
 
-    result = dataProfiling.runScorecard(
-          Domain=infaSettings.sourceDomain,
-            MrsServiceName=infaSettings.sourceModelRepository,
-            DsServiceName=infaSettings.sourceDIS,
-            ObjectPathAndName=objectPath,
-            ObjectType="scorecard",
-            Wait="true"
+    scorecard = dataProfiling.JobExecution(Tool="RunScorecard",
+                                           Domain=infaSettings.sourceDomain,
+                                           MrsServiceName=infaSettings.sourceModelRepository,
+                                           DsServiceName=infaSettings.sourceDIS,
+                                           ObjectPathAndName=objectPath,
+                                           ObjectType="scorecard",
+                                           Wait="true",
+    OnError=errorcodes.INFACMD_SCORECARD_FAILED
     )
+    result = dataProfiling.JobExecution.manage(scorecard)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")

@@ -22,14 +22,14 @@
 #
 
 import logging, datetime, supporting
-import supporting.errorcodes as err
+from supporting import errorcodes
 from informatica import infaSettings
 from supporting import generalSettings
 from informatica import manageFolder
 import sys
 
 now = datetime.datetime.now()
-result = err.OK
+result = errorcodes.OK
 
 def main(argv):
     thisproc = "MAIN"
@@ -45,18 +45,21 @@ def main(argv):
 
     if len(argv) == 0:
         supporting.log(logger, logging.ERROR, thisproc, 'No project name specified.')
-        result = err.INFACMD_NOPROJECT
+        result = errorcodes.INFACMD_NOPROJECT
         supporting.exitscript(resultlogger, result)
 
     project_name = argv[0]
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
 
-    result = manageFolder.create_project(
-          Domain=infaSettings.sourceDomain,
-          ServiceName=infaSettings.sourceModelRepository,
-          ProjectName=project_name
+    project = manageFolder.ManageFolder(Tool="CreateProject",
+        Domain=infaSettings.sourceDomain,
+        ServiceName=infaSettings.sourceModelRepository,
+        ProjectName=project_name,
+        OnError=errorcodes.INFACMD_CREATE_PROJECT_FAILED
     )
+
+    result = manageFolder.ManageFolder.manage(project)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")

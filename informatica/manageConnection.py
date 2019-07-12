@@ -27,76 +27,22 @@ from informatica import buildCommand
 from informatica import executeInfacmd
 from supporting import errorcodes
 
-logger = logging.getLogger(__name__)
-entrynr =0
+class ManageConnection:
 
-def create_connection(**KeyWordArguments):
-    thisproc = "create_connection"
+    def __init__(self, **keyword_arguments):
+        self.logger = logging.getLogger(__name__)
+        self.keyword_arguments = keyword_arguments
 
-    KeyWordArguments["Tool"] = "CreateConnection"
-    RunCommand = buildCommand.build(**KeyWordArguments)
+    def manage(self):
+        RunCommand = buildCommand.build(**self.keyword_arguments)
 
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
+        log(self.logger, logging.INFO, __name__, "RunCommand is >" + RunCommand + "<.")
+        result = executeInfacmd.execute(RunCommand)
 
-    if(result.code == errorcodes.INFACMD_FAILED):
-        oldResult = result.message
-        result = errorcodes.INFACMD_PROFILE_FAILED
-        result.message = oldResult
+        if(result.rc != errorcodes.OK.rc):
+            oldResult = result.message
+            result = self.keyword_arguments["OnError"]
+            result.message = oldResult
 
-    return (result)
-
-
-def delete_connection(**KeyWordArguments):
-    thisproc = "delete_connection"
-
-    KeyWordArguments["Tool"] = "DeleteConnection"
-    RunCommand = buildCommand.build(**KeyWordArguments)
-
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
-
-    if(result.code == errorcodes.INFACMD_FAILED):
-        oldResult = result.message
-        result = errorcodes.INFACMD_PROFILE_FAILED
-        result.message = oldResult
-
-    return (result)
-
-
-def update_connection(**KeyWordArguments):
-    thisproc = "update_connection"
-    """Usage:
-        <-DomainName|-dn> domain_name
-        <-UserName|-un> user_name
-        <-Password|-pd> password
-        [<-SecurityDomain|-sdn> security_domain]
-        [<-ResilienceTimeout|-re> timeout_period_in_seconds]
-        <-ConnectionName|-cn> connection_name
-        [<-ConnectionUserName|-cun> connection_user_name]
-        [<-ConnectionPassword|-cpd> connection_password]
-        <-Options|-o> options, separated by space in the form of name=value.  Use single quote to escape any equal sign or space in the value.
-
-    Updates a connection. To list connection options, run infacmd isp ListConnectionOptions.
-    """
-
-    KeyWordArguments["Tool"] = "UpdateConnection"
-    RunCommand = buildCommand.build(**KeyWordArguments)
-
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
-
-    return (result)
-
-
-def list_connection_options(**KeyWordArguments):
-    thisproc = "list_connection_options"
-
-    KeyWordArguments["Tool"] = "ListConnectionOptions"
-    RunCommand = buildCommand.build(**KeyWordArguments)
-
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
-
-    return (result)
+        return (result)
 

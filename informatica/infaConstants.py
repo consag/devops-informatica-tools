@@ -148,5 +148,7 @@ AvailableTools = {
     "CheckIn": ("mrs", "checkInObject"),
     "RunProfile": ("ps", "Execute"),
     "RunScorecard": ("ps", "Execute"),
-    "RunMapping": ("ms", "runMapping")
+    "RunMapping": ("ms", "runMapping"),
+    "RunWorkflow": ("wfs", "startWorkflow"),
+
 }

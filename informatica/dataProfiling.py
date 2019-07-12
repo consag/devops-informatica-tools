@@ -27,33 +27,22 @@ from informatica import buildCommand
 from informatica import executeInfacmd
 from supporting import errorcodes
 
-logger = logging.getLogger(__name__)
-entrynr =0
+class JobExecution:
 
-def runProfile(**KeyWordArguments):
-    thisproc = "runProfile"
+    def __init__(self, **keyword_arguments):
+        self.logger = logging.getLogger(__name__)
+        self.keyword_arguments = keyword_arguments
 
-    KeyWordArguments["Tool"] = "RunProfile"
-    RunCommand = buildCommand.build(**KeyWordArguments)
+    def manage(self):
+        RunCommand = buildCommand.build(**self.keyword_arguments)
 
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
+        log(self.logger, logging.INFO, __name__, "RunCommand is >" + RunCommand + "<.")
+        result = executeInfacmd.execute(RunCommand)
 
-    if(result.code == errorcodes.INFACMD_FAILED):
-        oldResult = result.message
-        result = errorcodes.INFACMD_PROFILE_FAILED
-        result.message = oldResult
+        if(result.rc != errorcodes.OK.rc):
+            oldResult = result.message
+            result = self.keyword_arguments["OnError"]
+            result.message = oldResult
 
-    return (result)
+        return (result)
 
-
-def runScorecard(**KeyWordArguments):
-    thisproc = "runScorecard"
-
-    KeyWordArguments["Tool"] = "RunScorecard"
-    RunCommand = buildCommand.build(**KeyWordArguments)
-
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
-
-    return (result)

@@ -27,134 +27,22 @@ from informatica import buildCommand
 from informatica import executeInfacmd
 from supporting import errorcodes
 
-logger = logging.getLogger(__name__)
-entrynr =0
+class ManageSecurity:
 
-def create_user(**KeyWordArguments):
-    thisproc = "create_user"
+    def __init__(self, **keyword_arguments):
+        self.logger = logging.getLogger(__name__)
+        self.keyword_arguments = keyword_arguments
 
-    KeyWordArguments["Tool"] = "CreateUser"
-    RunCommand = buildCommand.build(**KeyWordArguments)
+    def manage(self):
+        RunCommand = buildCommand.build(**self.keyword_arguments)
 
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
+        log(self.logger, logging.INFO, __name__, "RunCommand is >" + RunCommand + "<.")
+        result = executeInfacmd.execute(RunCommand)
 
-    if(result.code == errorcodes.INFACMD_FAILED):
-        oldResult = result.message
-        result = errorcodes.INFACMD_PROFILE_FAILED
-        result.message = oldResult
+        if(result.rc != errorcodes.OK.rc):
+            oldResult = result.message
+            result = self.keyword_arguments["OnError"]
+            result.message = oldResult
 
-    return (result)
-
-
-def delete_user(**KeyWordArguments):
-    thisproc = "delete_user"
-
-    KeyWordArguments["Tool"] = "DeleteUser"
-    RunCommand = buildCommand.build(**KeyWordArguments)
-
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
-
-    if(result.code == errorcodes.INFACMD_FAILED):
-        oldResult = result.message
-        result = errorcodes.INFACMD_PROFILE_FAILED
-        result.message = oldResult
-
-    return (result)
-
-
-def create_group(**KeyWordArguments):
-    thisproc = "create_group"
-
-    KeyWordArguments["Tool"] = "CreateGroup"
-    RunCommand = buildCommand.build(**KeyWordArguments)
-
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
-
-    return (result)
-
-
-def delete_group(**KeyWordArguments):
-    thisproc = "delete_group"
-
-    KeyWordArguments["Tool"] = "DeleteGroup"
-    RunCommand = buildCommand.build(**KeyWordArguments)
-
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
-
-    return (result)
-
-
-def export_users_and_groups(**KeyWordArguments):
-    thisproc = "export_users_and_groups"
-
-    KeyWordArguments["Tool"] = "ExportUsersAndGroups"
-    RunCommand = buildCommand.build(**KeyWordArguments)
-
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
-
-    return (result)
-
-
-def import_users_and_groups(**KeyWordArguments):
-    thisproc = "import_users_and_groups"
-
-    KeyWordArguments["Tool"] = "ImportUsersAndGroups"
-    RunCommand = buildCommand.build(**KeyWordArguments)
-
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
-
-    return (result)
-
-
-def add_connection_permissions(**KeyWordArguments):
-    thisproc = "add_connection_permissions"
-
-    KeyWordArguments["Tool"] = "AddConnectionPermissions"
-    RunCommand = buildCommand.build(**KeyWordArguments)
-
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
-
-    return (result)
-
-
-def list_connection_permissions(**KeyWordArguments):
-    thisproc = "list_connecion_permissions"
-
-    KeyWordArguments["Tool"] = "ListConnectionPermissions"
-    RunCommand = buildCommand.build(**KeyWordArguments)
-
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
-
-    return (result)
-
-def remove_connection_permissions(**KeyWordArguments):
-    thisproc = "remove_connection_permissions"
-
-    KeyWordArguments["Tool"] = "RemoveConnectionPermissions"
-    RunCommand = buildCommand.build(**KeyWordArguments)
-
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
-
-    return (result)
-
-
-def set_connection_permissions(**KeyWordArguments):
-    thisproc = "set_connection_permissions"
-
-    KeyWordArguments["Tool"] = "SetConnectionPermissions"
-    RunCommand = buildCommand.build(**KeyWordArguments)
-
-    log(logger, logging.INFO, thisproc, "RunCommand is >" + RunCommand + "<.")
-    result = executeInfacmd.execute(RunCommand)
-
-    return (result)
+        return (result)
 

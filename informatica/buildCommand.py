@@ -63,7 +63,7 @@ def build(**KeyWordArguments):
         # value to InfaArguments
         elif key in infaConstants.AvailableArguments:
             InfaArguments.append(infaConstants.AvailableArguments[key] + " " + '"' + value + '"')
-        else:
+        elif key != "OnError":
             InfaArguments.append("-" + key + " " + '"' + value + '"')
 
     # Put all parts of the command in the same list, in correct order, and join them into one

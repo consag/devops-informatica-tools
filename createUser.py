@@ -22,14 +22,14 @@
 #
 
 import logging, datetime, supporting
-import supporting.errorcodes as err
+from supporting import errorcodes
 from informatica import infaSettings
 from supporting import generalSettings
 from informatica import manageSecurity
 import sys
 
 now = datetime.datetime.now()
-result = err.OK
+result = errorcodes.OK
 
 def main(argv):
     thisproc = "MAIN"
@@ -45,7 +45,7 @@ def main(argv):
 
     if len(argv) < 3:
         supporting.log(logger, logging.ERROR, thisproc, 'No user name, password and/or full name specified.')
-        result = err.INFACMD_NOUSERNAME
+        result = errorcodes.INFACMD_NOUSERNAME
         supporting.exitscript(resultlogger, result)
 
     # mandatory
@@ -60,15 +60,17 @@ def main(argv):
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
 
-    result = manageSecurity.create_user(
+    user = manageSecurity.ManageSecurity(Tool="CreateUser",
         Domain=infaSettings.sourceDomain,
         NewUserName=user_name,
         NewUserPassword=user_password,
         NewUserFullName=user_fullname,
         NewUserDescription=user_description,
         NewUserEmailAddress=user_email,
-        NewUserPhoneNumber=user_phone
+        NewUserPhoneNumber=user_phone,
+        OnError=errorcodes.INFACMD_CREATE_USER_FAILED
     )
+    result = manageSecurity.ManageSecurity.manage(user)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")

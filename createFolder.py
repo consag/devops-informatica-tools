@@ -22,14 +22,14 @@
 #
 
 import logging, datetime, supporting
-import supporting.errorcodes as err
+from supporting import errorcodes
 from informatica import infaSettings
 from supporting import generalSettings
 from informatica import manageFolder
 import sys
 
 now = datetime.datetime.now()
-result = err.OK
+result = errorcodes.OK
 
 def main(argv):
     thisproc = "MAIN"
@@ -45,7 +45,7 @@ def main(argv):
 
     if len(argv) < 2:
         supporting.log(logger, logging.ERROR, thisproc, 'Project and Folder expected.')
-        result = err.INFACMD_NOFOLDER
+        result = errorcodes.INFACMD_NOFOLDER
         supporting.exitscript(resultlogger, result)
 
     project_name = argv[0]
@@ -53,12 +53,14 @@ def main(argv):
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
 
-    result = manageFolder.create_folder(
+    folder = manageFolder.ManageFolder(Tool="CreateFolder",
         Domain=infaSettings.sourceDomain,
         ServiceName=infaSettings.sourceModelRepository,
         ProjectName=project_name,
-        Path=folder_name
+        Path=folder_name,
+        OnError=errorcodes.INFACMD_CREATE_FOLDER_FAILED
     )
+    result = manageFolder.ManageFolder.manage(folder)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")

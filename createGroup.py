@@ -25,7 +25,7 @@ import logging, datetime, supporting
 from supporting import errorcodes
 from informatica import infaSettings
 from supporting import generalSettings
-from informatica import manageFolder
+from informatica import manageSecurity
 import sys
 
 now = datetime.datetime.now()
@@ -33,7 +33,7 @@ result = errorcodes.OK
 
 def main(argv):
     thisproc = "MAIN"
-    mainProc='deleteProject'
+    mainProc='createGroup'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -43,23 +43,26 @@ def main(argv):
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    if len(argv) == 0:
-        supporting.log(logger, logging.ERROR, thisproc, 'No project name specified.')
-        result = errorcodes.INFACMD_NOPROJECT
+    if len(argv) < 1:
+        supporting.log(logger, logging.ERROR, thisproc, 'No group name provided.')
+        result = errorcodes.INFACMD_NOGROUPNAME
         supporting.exitscript(resultlogger, result)
 
-    project_name = argv[0]
+    # mandatory
+    group_name = argv[0]
+    # optional
+    group_description = argv[1] if len(argv) > 1 else ""
+
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
 
-    project = manageFolder.ManageFolder(Tool="DeleteProject",
-                                        Domain=infaSettings.sourceDomain,
-                                        ServiceName=infaSettings.sourceModelRepository,
-                                        ProjectName=project_name,
-                                        OnError=errorcodes.INFACMD_DELETE_PROJECT_FAILED
-                                        )
-
-    result = manageFolder.ManageFolder.manage(project)
+    group = manageSecurity.ManageSecurity(Tool="CreateGroup",
+        Domain=infaSettings.sourceDomain,
+        GroupName=group_name,
+        GroupDescription=group_description,
+        OnError=errorcodes.INFACMD_CREATE_GROUP_FAILED
+    )
+    result = manageSecurity.ManageSecurity.manage(group)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")

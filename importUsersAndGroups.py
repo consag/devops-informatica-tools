@@ -22,14 +22,14 @@
 #
 
 import logging, datetime, supporting
-import supporting.errorcodes as err
+from supporting import errorcodes
 from informatica import infaSettings
 from supporting import generalSettings
 from informatica import manageSecurity
 import sys
 
 now = datetime.datetime.now()
-result = err.OK
+result = errorcodes.OK
 
 def main(argv):
     thisproc = "MAIN"
@@ -45,7 +45,7 @@ def main(argv):
 
     if len(argv) < 1:
         supporting.log(logger, logging.ERROR, thisproc, 'No import file name provided.')
-        result = err.INFACMD_NOEXPORTFILENAME
+        result = errorcodes.INFACMD_NOIMPORTFILENAME
         supporting.exitscript(resultlogger, result)
 
     # mandatory
@@ -56,11 +56,14 @@ def main(argv):
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
 
-    result = manageSecurity.import_users_and_groups(
-        Domain=infaSettings.sourceDomain,
-        ExportFile=import_file_name,
-        ReuseDomainUsersAndGroups=reuse_domain_users_and_groups
-    )
+    users_and_groups = manageSecurity.ManageSecurity(Tool="ImportUsersAndGroups",
+                                                     Domain=infaSettings.sourceDomain,
+                                                     ExportFile=import_file_name,
+                                                     ReuseDomainUsersAndGroups=reuse_domain_users_and_groups,
+                                                     OnError=errorcodes.INFACMD_IMPORT_USRGRP_FAILED
+                                                     )
+
+    result = manageSecurity.ManageSecurity.manage(users_and_groups)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")

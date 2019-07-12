@@ -22,14 +22,14 @@
 #
 
 import logging, datetime, supporting
-import supporting.errorcodes as err
+from supporting import errorcodes
 from informatica import infaSettings
 from supporting import generalSettings
 from informatica import dataProfiling
 import sys
 
 now = datetime.datetime.now()
-result = err.OK
+result = errorcodes.OK
 
 def main(argv):
     thisproc = "MAIN"
@@ -45,21 +45,23 @@ def main(argv):
 
     if len(argv) == 0:
         supporting.log(logger, logging.ERROR, thisproc, 'No profile path specified.')
-        result = err.INFACMD_NOPROFILE
+        result = errorcodes.INFACMD_NOPROFILE
         supporting.exitscript(resultlogger, result)
 
     objectPath = argv[0]
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
 
-    result = dataProfiling.runProfile(
-          Domain=infaSettings.sourceDomain,
-            MrsServiceName=infaSettings.sourceModelRepository,
-            DsServiceName=infaSettings.sourceDIS,
-            ObjectPathAndName=objectPath,
-            ObjectType="profile",
-            Wait="true"
+    profile = dataProfiling.JobExecution(Tool="RunProfile",
+        Domain=infaSettings.sourceDomain,
+        MrsServiceName=infaSettings.sourceModelRepository,
+        DsServiceName=infaSettings.sourceDIS,
+        ObjectPathAndName=objectPath,
+        ObjectType="profile",
+        Wait="true",
+        OnError=errorcodes.INFACMD_PROFILE_FAILED
     )
+    result = dataProfiling.JobExecution.manage(profile)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
