@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# virtual env
+devops_informatica/
+
 # Distribution / packaging
 .Python
 build/
