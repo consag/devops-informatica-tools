@@ -69,6 +69,8 @@ DEFAULT_EXPORT_REFDATA = generalConstants.YES
 DEFAULT_IMPORT_REFDATA = generalConstants.YES
 DEFAULT_EXPORT_CONTROLFILE = 'ecf_default.xml'
 DEFAULT_IMPORT_CONTROLFILE = 'icf_default.xml'
+DEFAULT_CONNECTIONSFILE = 'connection_list.txt'
+
 ##
 # Defaults for client or server infaSettings
 DEFAULT_INFA_HOME = '/appl/informatica/current'
@@ -150,6 +152,7 @@ AvailableTools = {
     "RunScorecard": ("ps", "Execute"),
     "RunMapping": ("ms", "runMapping"),
     "RunWorkflow": ("wfs", "startWorkflow"),
+    "ListConnections": ("isp", "listConnections")
 
 }
 
