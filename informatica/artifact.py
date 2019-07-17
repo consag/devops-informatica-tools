@@ -69,6 +69,9 @@ def processEntry(what, deployEntry):
     if len(parts) == 4:
         exportcontrol = completePath(generalSettings.configDir + "/" + parts[2], generalSettings.sourceDir)
         importcontrol = completePath(generalSettings.configDir + "/" + parts[3], generalSettings.sourceDir)
+    else:
+        exportcontrol = ""
+        importcontrol = ""
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Type is >' + type + '< and object is >' + object + '<')
     if what == infaConstants.CREATEARTIFACT:
