@@ -48,6 +48,7 @@ class ManageConnection:
 
     def parseConnectionListOutput(self, outputFile):
         log(self.logger, logging.INFO, __name__, "Parsing outputfile >" + outputFile + "<.")
+        connection_list = ""
 
         with open(outputFile, 'r') as f:
             entireFile = [line.rstrip() for line in f]
@@ -58,12 +59,15 @@ class ManageConnection:
                 ignoreThis, connectionId = connectionId.split(': ')
                 connectionId = connectionId.rstrip(']')
                 log(self.logger, logging.INFO, __name__, "Connection >" + connectionName + "< with id >"+ connectionId +"<.")
+                connection_entry = connectionType + ":" + connectionId + ":" + connectionName + "\n"
+                connection_list += connection_entry
             else:
                 # it must be a connection type
                 connectionType = line
                 log(self.logger, logging.INFO, __name__, "Processing connection type >" + connectionType + "<.")
 
-
+        with open(outputFile, 'w') as f:
+            f.write(connection_list)
 
         return errorcodes.OK
 
