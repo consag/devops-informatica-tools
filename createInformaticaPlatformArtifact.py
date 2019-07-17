@@ -58,7 +58,7 @@ def main():
         supporting.log(logger, logging.ERROR, thisproc, 'INFA Checks failed with >' + result.message +"<.")
         supporting.exitscript(resultlogger, result)
 
-    result = artifact.create_artifact(infaConstants.CREATEARTIFACT, settings.infadeploylist)
+    result = artifact.processList(infaConstants.CREATEARTIFACT, settings.infadeploylist)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")

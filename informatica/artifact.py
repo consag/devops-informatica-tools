@@ -84,6 +84,10 @@ def processEntry(what, deployEntry):
 
 
 def create_artifact(type, object, exportcontrol="default.ecf"):
+    thisproc = 'create_artifact'
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   "Creating artifact for object >" + object + "< of type >" + type + "<." )
+
     if type == 'PROJECT':
         result = informatica.export_infadeveloper(
             Domain=infaSettings.sourceDomain,
