@@ -70,6 +70,7 @@ DEFAULT_IMPORT_REFDATA = generalConstants.YES
 DEFAULT_EXPORT_CONTROLFILE = 'ecf_default.xml'
 DEFAULT_IMPORT_CONTROLFILE = 'icf_default.xml'
 DEFAULT_CONNECTIONSFILE = 'connection_list.txt'
+DEFAULT_CONNECTIONOPTIONSFILE = 'connectionoptions_list.txt'
 
 ##
 # Defaults for client or server infaSettings

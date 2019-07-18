@@ -34,7 +34,7 @@ result = errorcodes.OK
 
 def main(argv):
     thisproc = "MAIN"
-    mainProc='listConnections'
+    mainProc='listConnectionOptions'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -44,25 +44,27 @@ def main(argv):
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-#    if len(argv) < 1:
-#        supporting.log(logger, logging.ERROR, thisproc, 'No group name provided.')
-#        result = errorcodes.INFACMD_NOGROUPNAME
-#        supporting.exitscript(resultlogger, result)
+    if len(argv) < 1:
+        supporting.log(logger, logging.ERROR, thisproc, 'No connection name provided.')
+        result = errorcodes.INFACMD_NOGROUPNAME
+        supporting.exitscript(resultlogger, result)
 
-#    # mandatory
-#    group_name = argv[0]
+    # mandatory
+    connection_name = argv[0]
     # optional
-    outputFile = argv[0] if len(argv) > 0 else infaConstants.DEFAULT_CONNECTIONSFILE
-    filter = argv[1] if len(argv) > 1 else ""
+    outputFile = argv[1] if len(argv) > 1 else infaConstants.DEFAULT_CONNECTIONOPTIONSFILE
+    filter = argv[2] if len(argv) > 2 else ""
 
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
 
-    connection = manageConnection.ManageConnection(Tool="ListConnections",
+    connection = manageConnection.ManageConnection(Tool="ListConnectionOptions",
         Domain=infaSettings.sourceDomain,
-        OnError=errorcodes.INFACMD_LIST_CONN_FAILED,
+        ConnectionName=connection_name,
+        OnError=errorcodes.INFACMD_LIST_CONN_OPTIONS_FAILED,
         OutputFile=outputFile
     )
+
     result = manageConnection.ManageConnection.manage(connection)
     if result.rc == errorcodes.OK.rc:
         result = connection.parseConnectionListOutput(outputFile)

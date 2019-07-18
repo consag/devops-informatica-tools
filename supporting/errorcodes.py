@@ -54,6 +54,8 @@ SQLFILE_NF=err.Errorcode(10,'DBDEPLOY-0004','SQL file not found', 'Check the dep
 # Informatica artifact errors. Return code will be 20
 NOT_IMPLEMENTED=err.Errorcode(20,'INFADEPLOY-0001','Result unknown. Function may not have been implemented completely','Ask your developer to implement the logic completely.','InformaticaArtifact',logging.WARNING)
 INFACMD_FAILED=err.Errorcode(20,'INFADEPLOY-0002','infacmd command failed.','Check the log and/or ask your administrator.','InformaticaArtifact',logging.ERROR)
+INFACMD_LIST_CONN_FAILED=err.Errorcode(30,'INFADEPLOY-0003','Could not list connections.','Check the error message.','ListConnections',logging.ERROR)
+INFACMD_LIST_CONN_OPTIONS_FAILED=err.Errorcode(30,'INFADEPLOY-0004','Could not list connection options.','Check the error message.','ListConnectionOptions',logging.ERROR)
 
 # Informatica run errors. Return code will be 30
 INFACMD_NOPROFILE=err.Errorcode(30,'INFARUN-0001','No profile name provided.','Provide the complete path of the profile to be executed.','RunProfile',logging.ERROR)
@@ -85,9 +87,9 @@ INFACMD_DELETE_GROUP_FAILED=err.Errorcode(30,'INFASEC-0018','Group deletion fail
 INFACMD_EXPORT_USRGRP_FAILED=err.Errorcode(30,'INFASEC-0019','Users and groups export failed.','Check the error message.','ExportUsersAndGroups',logging.ERROR)
 INFACMD_IMPORT_USRGRP_FAILED=err.Errorcode(30,'INFASEC-0020','Users and groups import failed.','Check the error message.','ImportUsersAndGroups',logging.ERROR)
 INFACMD_ADD_PERM_FAILED=err.Errorcode(30,'INFASEC-0021','Permissions could not be added.','Check the error message.','AddPermissions',logging.ERROR)
-INFACMD_LIST_CONN_FAILED=err.Errorcode(30,'INFASEC-0022','Could not list connections.','Check the error message.','ListConnections',logging.ERROR)
 INFACMD_REMOVE_PERM_FAILED=err.Errorcode(30,'INFASEC-0023','Permissions could not be remvoed.','Check the error message.','RemovePermissions',logging.ERROR)
 INFACMD_SET_CONN_FAILED=err.Errorcode(30,'INFASEC-0024','Permissions could not be set.','Check the error message.','SetPermissions',logging.ERROR)
 INFACMD_NOGROUPNAME=err.Errorcode(30,'INFASEC-0025','No group name provided.','Provide a name for the group to be created.','CreateGroup',logging.ERROR)
 INFACMD_NOGROUPNAME_DELETION=err.Errorcode(30,'INFASEC-0026','No group name provided.','Provide the name of the group to be deleted.','DeleteGroup',logging.ERROR)
+
 

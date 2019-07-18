@@ -32,6 +32,7 @@ class ManageConnection:
     def __init__(self, **keyword_arguments):
         self.logger = logging.getLogger(__name__)
         self.keyword_arguments = keyword_arguments
+        self.connection_list =""
 
     def manage(self):
         RunCommand = buildCommand.build(**self.keyword_arguments)
@@ -48,7 +49,6 @@ class ManageConnection:
 
     def parseConnectionListOutput(self, outputFile):
         log(self.logger, logging.INFO, __name__, "Parsing outputfile >" + outputFile + "<.")
-        connection_list = ""
 
         with open(outputFile, 'r') as f:
             entireFile = [line.rstrip() for line in f]
@@ -60,14 +60,16 @@ class ManageConnection:
                 connectionId = connectionId.rstrip(']')
                 log(self.logger, logging.INFO, __name__, "Connection >" + connectionName + "< with id >"+ connectionId +"<.")
                 connection_entry = connectionType.strip() + ":" + connectionId.strip() + ":" + connectionName.strip() + "\n"
-                connection_list += connection_entry
+                self.connection_list += connection_entry
             else:
                 # it must be a connection type
                 connectionType = line
                 log(self.logger, logging.INFO, __name__, "Processing connection type >" + connectionType + "<.")
 
-        with open(outputFile, 'w') as f:
-            f.write(connection_list)
-
         return errorcodes.OK
 
+    def writeConnectionList(self, outputFile):
+        with open(outputFile, 'w') as f:
+            f.write(self.connection_list)
+
+        return errorcodes.OK
