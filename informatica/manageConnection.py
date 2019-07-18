@@ -59,7 +59,7 @@ class ManageConnection:
                 ignoreThis, connectionId = connectionId.split(': ')
                 connectionId = connectionId.rstrip(']')
                 log(self.logger, logging.INFO, __name__, "Connection >" + connectionName + "< with id >"+ connectionId +"<.")
-                connection_entry = connectionType + ":" + connectionId.strip() + ":" + connectionName + "\n"
+                connection_entry = connectionType.strip() + ":" + connectionId.strip() + ":" + connectionName.strip() + "\n"
                 connection_list += connection_entry
             else:
                 # it must be a connection type
