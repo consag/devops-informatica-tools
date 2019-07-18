@@ -67,7 +67,7 @@ def main(argv):
     if result.rc == errorcodes.OK.rc:
         result = connection.parseConnectionListOutput(outputFile)
         if result.rc == errorcodes.OK.rc:
-            result = connection.writeConnectionList(connection, outputFile)
+            result = connection.writeConnectionList(outputFile)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
