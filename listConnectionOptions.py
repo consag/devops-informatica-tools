@@ -46,13 +46,13 @@ def main(argv):
 
     if len(argv) < 1:
         supporting.log(logger, logging.ERROR, thisproc, 'No connection name provided.')
-        result = errorcodes.INFACMD_NOGROUPNAME
+        result = errorcodes.INFACMD_NOCONNECTIONNAME
         supporting.exitscript(resultlogger, result)
 
     # mandatory
     connection_name = argv[0]
     # optional
-    outputFile = argv[1] if len(argv) > 1 else infaConstants.DEFAULT_CONNECTIONOPTIONSFILE
+    output_file = argv[1] if len(argv) > 1 else infaConstants.DEFAULT_CONNECTIONOPTIONSFILE
     filter = argv[2] if len(argv) > 2 else ""
 
     infaSettings.getinfaenvvars()
@@ -62,14 +62,14 @@ def main(argv):
         Domain=infaSettings.sourceDomain,
         ConnectionName=connection_name,
         OnError=errorcodes.INFACMD_LIST_CONN_OPTIONS_FAILED,
-        OutputFile=outputFile
+        OutputFile=output_file
     )
 
     result = manageConnection.ManageConnection.manage(connection)
-    if result.rc == errorcodes.OK.rc:
-        result = connection.parseConnectionListOutput(outputFile)
-        if result.rc == errorcodes.OK.rc:
-            result = connection.writeConnectionList(connection, outputFile)
+    if result.rc != errorcodes.OK.rc:
+        with open(output_file, 'r') as f:
+            for line in f:
+                result.message += line.rstrip()
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")

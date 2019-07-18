@@ -23,8 +23,10 @@
 
 from supporting import log
 import logging
+import supporting
 from informatica import buildCommand
 from informatica import executeInfacmd
+from informatica import infaSettings
 from supporting import errorcodes
 
 class ManageConnection:
@@ -73,3 +75,28 @@ class ManageConnection:
             f.write(self.connection_list)
 
         return errorcodes.OK
+
+    def readConnectionList(self, inputFile):
+        with open(inputFile, 'r') as f:
+            self.connection_list = [line.rstrip() for line in f]
+        return errorcodes.OK
+
+    def getConnectionOptions(self, connection_name, output_file):
+        this_proc = 'getConnectionOptions'
+        connection = ManageConnection(Tool="ListConnectionOptions",
+                                                       Domain=infaSettings.sourceDomain,
+                                                       ConnectionName=connection_name,
+                                                       OnError=errorcodes.INFACMD_LIST_CONN_OPTIONS_FAILED,
+                                                       OutputFile=output_file
+                                                       )
+        result = ManageConnection.manage(connection)
+        if result.rc != errorcodes.OK.rc:
+            with open(output_file, 'r') as f:
+                for line in f:
+                    result.message += line.rstrip()
+
+        supporting.log(self.logger, logging.DEBUG, this_proc, 'Completed with return code >' + str(result.rc)
+                       + '< and result code >' + result.code + "<.")
+
+        return result
+

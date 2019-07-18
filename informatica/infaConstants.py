@@ -121,15 +121,6 @@ AvailableArguments = {
     "ByUser": "-bu",
     "ObjectPathName": "-opn",
     "OtherOptions": "-OtherOptions",
-    "ListConnections": "-listConnections",
-    "ListConnectionOptions": "-listConnectionOptions",
-    "CreateConnection": "-createConnection",
-    "DeleteConnection": "-removeConnection",
-    "UpdateConnection": "-updateConnection",
-    "AddConnectionPermissions": "-addConnectionPermissions",
-    "ListConnectionPermissions": "-listConnectionPermissions",
-    "RemoveConnectionPermissions": "-removeConnectionPermissions",
-    "SetConnectionPermissions": "-setConnectionPermissions"
 
 }
 
@@ -153,7 +144,15 @@ AvailableTools = {
     "RunScorecard": ("ps", "Execute"),
     "RunMapping": ("ms", "runMapping"),
     "RunWorkflow": ("wfs", "startWorkflow"),
-    "ListConnections": ("isp", "listConnections")
+    "ListConnections": ("isp", "listConnections"),
+    "ListConnectionOptions": ("isp", "listConnectionOptions"),
+    "CreateConnection": ("isp", "createConnection"),
+    "DeleteConnection": ("isp", "removeConnection"),
+    "UpdateConnection": ("isp", "updateConnection"),
+    "AddConnectionPermissions": ("isp", "addConnectionPermissions"),
+    "ListConnectionPermissions": ("isp", "listConnectionPermissions"),
+    "RemoveConnectionPermissions": ("isp", "removeConnectionPermissions"),
+    "SetConnectionPermissions": ("isp", "setConnectionPermissions")
 
 }
 
