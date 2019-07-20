@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<importParams xmlns="http://www.informatica.com/oie/importControl/9">
+
+<! -- Import all connections, roles, and users. -->
+<objectList type="connection" resolution="replace" />
+
+<objectList type="role" resolution="reuse" />
+<objectList type="user" resolution="rename" />
+
+<! -- Import specific groups. -->
+<objectList type="group">
+<object name="g1" resolution="replace" />
+<object name="g2" resolution="merge" />
+</objectList>
+
+</importParams>

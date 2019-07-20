@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<exportParams xmlns="http://www.informatica.com/oie/exportControl/9">
+<!-- Export a specific connection. -->
+<objectList type="connection" >
+<object name="connection1" />
+</objectList>
+
+<!-- Export groups created before the specified date and time. -->
+<objectList type="group" createdBefore="2010-11-12 10:00:00 +0530" />
+
+<!-- Export role1 and role2 if created after the specified date and time. -->
+<objectList type="role" createdAfter="2010-12-25 10:00:00 +0530">
+<object name="role1" />
+<object name="role2" />
+</objectList>
+
+<!-- Export all users. -->
+<objectList type="user" />
+
+</exportParams>
