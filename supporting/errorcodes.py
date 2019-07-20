@@ -57,6 +57,8 @@ INFACMD_FAILED=err.Errorcode(20,'INFACICD-0002','infacmd command failed.','Check
 INFACMD_LIST_CONN_FAILED=err.Errorcode(30,'INFACICD-0003','Could not list connections.','Check the error message.','ListConnections',logging.ERROR)
 INFACMD_LIST_CONN_OPTIONS_FAILED=err.Errorcode(30,'INFACICD-0004','Could not list connection options.','Check the error message.','ListConnectionOptions',logging.ERROR)
 INFACMD_NOCONNECTIONNAME=err.Errorcode(30,'INFACICD-0005','No connection name provided.','Provide a connection name for which you want the options to be listed.','ListConnectionOptions',logging.ERROR)
+INFACMD_EXPORT_CONN_FAILED=err.Errorcode(30,'INFACICD-0006','Export Connections failed.','Check the error message.','ExportConnections',logging.ERROR)
+INFACMD_IMPORT_CONN_FAILED=err.Errorcode(30,'INFACICD-0007','Import Connections failed.','Check the error message.','ImportConnections',logging.ERROR)
 
 # Informatica run errors. Return code will be 30
 INFACMD_NOPROFILE=err.Errorcode(30,'INFARUN-0001','No profile name provided.','Provide the complete path of the profile to be executed.','RunProfile',logging.ERROR)
