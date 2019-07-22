@@ -1,8 +1,9 @@
 # CI-CD Pipeline components for Informatica projects
 
 ## Dependencies
-* Crypto module for password encryption
+* Crypto module for password encryption. Depending on the method you want to use, you need to install one of the following packages:
 	pip install pycryptodome
+	pip install cryptography
 * setuptools for upload and download of Nexus artifacts
 	pip install setuptools
 
