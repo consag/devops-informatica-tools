@@ -66,6 +66,8 @@ varExportControlFileForDomainObjects = 'EXPORT_DOMAINOBJECTS_CONTROLFILE'
 varImportControlFileForDomainObjects = 'IMPORT_DOMAINOBJECTS_CONTROLFILE'
 varExportImportConnectionsFile = 'EXPIMP_CONNECTIONS_FILE'
 varExportImportConnectionOptionsFile = 'EXPIMP_CONNECTIONOPTIONS_FILE'
+vatExportImportUserListFile = 'EXPIMP_USERLIST_FILE'
+varExportImportGroupListFile = 'EXPIMP_GROUPLIST_FILE'
 
 # Nexus
 varGroupId = "InformaticaPlatform"

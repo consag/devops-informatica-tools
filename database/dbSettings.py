@@ -39,6 +39,11 @@ sourcesqldir = constants.DEFAULT_SOURCE_SQLDIR
 targetsqldir = constants.DEFAULT_TARGET_SQLDIR
 databaseType = 'UNKNOWN'
 sqlprefix = constants.DEFAULT_SQL_PREFIX
+if os.name == 'nt':
+    sqlplus_command = 'sqlplus.exe'
+else:
+    sqlplus_command = 'sqlplus'
+
 
 def getdbenvvars():
     thisproc="getdbenvvars"
