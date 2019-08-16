@@ -44,7 +44,6 @@ varSourcePassword = 'SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD'
 varSourceSecurityDomain = 'SOURCE_INFA_DEFAULT_SECURITY_DOMAIN'
 varSourceDomainInfa = 'SOURCE_INFA_DOMAINS_FILE'
 varSourceDIS = 'SOURCE_DIS'
-varExportControlFile = 'EXPORT_CONTROLFLE'
 #
 varTargetImportRefData = 'TARGET_IMPORT_REFDATA'
 varTargetInfaHome = 'TARGET_INFA_HOME'
@@ -56,7 +55,19 @@ varTargetPassword = 'TARGET_INFA_DEFAULT_DOMAIN_PASSWORD'
 varTargetSecurityDomain = 'TARGET_INFA_DEFAULT_SECURITY_DOMAIN'
 varTargetDomainInfa = 'TARGET_INFA_DOMAINS_FILE'
 varTargetDIS = 'TARGET_DIS'
-varImportControlFile = 'IMPORT_CONTROLFLE'
+
+##
+# export - import
+varExportControlFile = 'EXPORT_CONTROLFILE'
+varImportControlFile = 'IMPORT_CONTROLFILE'
+
+# Domains objects
+varExportControlFileForDomainObjects = 'EXPORT_DOMAINOBJECTS_CONTROLFILE'
+varImportControlFileForDomainObjects = 'IMPORT_DOMAINOBJECTS_CONTROLFILE'
+varExportImportConnectionsFile = 'EXPIMP_CONNECTIONS_FILE'
+varExportImportConnectionOptionsFile = 'EXPIMP_CONNECTIONOPTIONS_FILE'
+vatExportImportUserListFile = 'EXPIMP_USERLIST_FILE'
+varExportImportGroupListFile = 'EXPIMP_GROUPLIST_FILE'
 
 # Nexus
 varGroupId = "InformaticaPlatform"
@@ -71,6 +82,8 @@ DEFAULT_EXPORT_CONTROLFILE = 'ecf_default.xml'
 DEFAULT_IMPORT_CONTROLFILE = 'icf_default.xml'
 DEFAULT_CONNECTIONSFILE = 'connection_list.txt'
 DEFAULT_CONNECTIONOPTIONSFILE = 'connectionoptions_list.txt'
+DEFAULT_EXPORT_CONNECTIONSFILE = 'exported_connections.xml'
+DEFAULT_IMPORT_CONNECTIONSFILE = 'exported_connections.xml'
 
 ##
 # Defaults for client or server infaSettings
@@ -121,15 +134,6 @@ AvailableArguments = {
     "ByUser": "-bu",
     "ObjectPathName": "-opn",
     "OtherOptions": "-OtherOptions",
-    "ListConnections": "-listConnections",
-    "ListConnectionOptions": "-listConnectionOptions",
-    "CreateConnection": "-createConnection",
-    "DeleteConnection": "-removeConnection",
-    "UpdateConnection": "-updateConnection",
-    "AddConnectionPermissions": "-addConnectionPermissions",
-    "ListConnectionPermissions": "-listConnectionPermissions",
-    "RemoveConnectionPermissions": "-removeConnectionPermissions",
-    "SetConnectionPermissions": "-setConnectionPermissions"
 
 }
 
@@ -153,7 +157,17 @@ AvailableTools = {
     "RunScorecard": ("ps", "Execute"),
     "RunMapping": ("ms", "runMapping"),
     "RunWorkflow": ("wfs", "startWorkflow"),
-    "ListConnections": ("isp", "listConnections")
+    "ListConnections": ("isp", "listConnections"),
+    "ListConnectionOptions": ("isp", "listConnectionOptions"),
+    "CreateConnection": ("isp", "createConnection"),
+    "DeleteConnection": ("isp", "removeConnection"),
+    "UpdateConnection": ("isp", "updateConnection"),
+    "AddConnectionPermissions": ("isp", "addConnectionPermissions"),
+    "ListConnectionPermissions": ("isp", "listConnectionPermissions"),
+    "RemoveConnectionPermissions": ("isp", "removeConnectionPermissions"),
+    "SetConnectionPermissions": ("isp", "setConnectionPermissions"),
+    "ExportConnections": ("isp", "exportDomainObjects"),
+    "ImportConnections": ("isp", "importDomainObjects")
 
 }
 

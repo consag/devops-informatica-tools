@@ -34,7 +34,7 @@ result = errorcodes.OK
 
 def main(argv):
     thisproc = "MAIN"
-    mainProc='listConnectionOptions'
+    mainProc='importConnections'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -44,32 +44,27 @@ def main(argv):
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    if len(argv) < 1:
-        supporting.log(logger, logging.ERROR, thisproc, 'No connection name provided.')
-        result = errorcodes.INFACMD_NOCONNECTIONNAME
+    if len(argv) < 2:
+        supporting.log(logger, logging.ERROR, thisproc, 'No import file and/or control file provided.')
+        result = errorcodes.INFACMD_NOIMPORTFILENAME
         supporting.exitscript(resultlogger, result)
 
-    # mandatory
-    connection_name = argv[0]
-    # optional
-    output_file = argv[1] if len(argv) > 1 else infaConstants.DEFAULT_CONNECTIONOPTIONSFILE
-    filter = argv[2] if len(argv) > 2 else ""
+#   mandatory
+    input_file = argv[0] if len(argv) > 0 else infaConstants.DEFAULT_IMPORT_CONNECTIONSFILE
+    import_control_file = argv[1] if len(argv) > 1 else ""
+# optional
 
     infaSettings.getinfaenvvars()
-    infaSettings.outinfaenvvars()
+#    infaSettings.outinfaenvvars()
 
-    connection = manageConnection.ManageConnection(Tool="ListConnectionOptions",
-        Domain=infaSettings.sourceDomain,
-        ConnectionName=connection_name,
-        OnError=errorcodes.INFACMD_LIST_CONN_OPTIONS_FAILED,
-        OutputFile=output_file
-    )
+    connection = manageConnection.ManageConnection(Tool="ImportConnections",
+                                                   Domain=infaSettings.sourceDomain,
+                                                   ImportControlfile=import_control_file,
+                                                    ImportFilePath=input_file,
+                                                    OnError=errorcodes.INFACMD_EXPORT_CONN_FAILED
+                                                    )
 
-    result = manageConnection.ManageConnection.manage(connection)
-    if result.rc != errorcodes.OK.rc:
-        with open(output_file, 'r') as f:
-            for line in f:
-                result.message += line.rstrip()
+    result = connection.manage()
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")

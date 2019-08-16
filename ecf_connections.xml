@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<exportParams xmlns="http://www.informatica.com/oie/exportControl/9">
+
+<!-- Export all connections -->
+<objectList type="connection" />
+
+</exportParams>
