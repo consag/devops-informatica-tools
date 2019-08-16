@@ -105,6 +105,9 @@ def generate_orderedsql(sourcesqldir, schema, input_sqlfile):
 
     orderedsqlfilename = settings.targetsqldir + "/" + prefixReleaseID \
                          + "_" + schema + ".sql"
+    supporting.log(logger, logging.INFO, thisproc,
+                   "orderedsqlfilename is >" + orderedsqlfilename + "<. Based on settings.targetsqldir >"
+                   + settings.targetsqldir + "<, prefixReleaseID >" + prefixReleaseID +"< and schema >" + schema +"<.")
 
     filehandling.removefile(orderedsqlfilename)
     result = processlines(sourcesqldir, schema, the_source_sqlfile, orderedsqlfilename)
