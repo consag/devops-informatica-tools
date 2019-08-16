@@ -52,7 +52,7 @@ def main(argv):
 #    # mandatory
 #    group_name = argv[0]
     # optional
-    outputFile = argv[0] if len(argv) > 0 else infaConstants.DEFAULT_CONNECTIONSFILE
+    output_file = argv[0] if len(argv) > 0 else infaConstants.DEFAULT_CONNECTIONSFILE
     filter = argv[1] if len(argv) > 1 else ""
 
     infaSettings.getinfaenvvars()
@@ -61,13 +61,21 @@ def main(argv):
     connection = manageConnection.ManageConnection(Tool="ListConnections",
         Domain=infaSettings.sourceDomain,
         OnError=errorcodes.INFACMD_LIST_CONN_FAILED,
-        OutputFile=outputFile
+        OutputFile=output_file
     )
     result = manageConnection.ManageConnection.manage(connection)
     if result.rc == errorcodes.OK.rc:
-        result = connection.parseConnectionListOutput(outputFile)
+        result = connection.parseConnectionListOutput(output_file)
         if result.rc == errorcodes.OK.rc:
-            result = connection.writeConnectionList(outputFile)
+            result = connection.writeConnectionList(output_file)
+        else:
+            supporting.log(logger, logging.DEBUG, thisproc, 'parseConnectionListOutput completed with return code >' + str(result.rc)
+                           + '< and result code >' + result.code + "<.")
+    else:
+        with open(output_file, 'r') as f:
+            for line in f:
+                result.message += line.rstrip()
+
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")

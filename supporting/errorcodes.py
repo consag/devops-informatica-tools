@@ -54,11 +54,11 @@ SQLFILE_NF=err.Errorcode(10,'DBDEPLOY-0004','SQL file not found', 'Check the dep
 # Informatica artifact errors. Return code will be 20
 NOT_IMPLEMENTED=err.Errorcode(20,'INFACICD-0001','Result unknown. Function may not have been implemented completely','Ask your developer to implement the logic completely.','InformaticaArtifact',logging.WARNING)
 INFACMD_FAILED=err.Errorcode(20,'INFACICD-0002','infacmd command failed.','Check the log and/or ask your administrator.','InformaticaArtifact',logging.ERROR)
-INFACMD_LIST_CONN_FAILED=err.Errorcode(30,'INFACICD-0003','Could not list connections.','Check the error message.','ListConnections',logging.ERROR)
-INFACMD_LIST_CONN_OPTIONS_FAILED=err.Errorcode(30,'INFACICD-0004','Could not list connection options.','Check the error message.','ListConnectionOptions',logging.ERROR)
-INFACMD_NOCONNECTIONNAME=err.Errorcode(30,'INFACICD-0005','No connection name provided.','Provide a connection name for which you want the options to be listed.','ListConnectionOptions',logging.ERROR)
-INFACMD_EXPORT_CONN_FAILED=err.Errorcode(30,'INFACICD-0006','Export Connections failed.','Check the error message.','ExportConnections',logging.ERROR)
-INFACMD_IMPORT_CONN_FAILED=err.Errorcode(30,'INFACICD-0007','Import Connections failed.','Check the error message.','ImportConnections',logging.ERROR)
+INFACMD_LIST_CONN_FAILED=err.Errorcode(20,'INFACICD-0003','infacmd failed to list connections.','Check the error message.','ListConnections',logging.ERROR)
+INFACMD_LIST_CONN_OPTIONS_FAILED=err.Errorcode(20,'INFACICD-0004','infacmd failed to list connection options.','Check the error message.','ListConnectionOptions',logging.ERROR)
+INFACMD_NOCONNECTIONNAME=err.Errorcode(20,'INFACICD-0005','No connection name provided.','Provide a connection name for which you want the options to be listed.','ListConnectionOptions',logging.ERROR)
+INFACMD_EXPORT_CONN_FAILED=err.Errorcode(20,'INFACICD-0006','Export Connections failed.','Check the error message.','ExportConnections',logging.ERROR)
+INFACMD_IMPORT_CONN_FAILED=err.Errorcode(20,'INFACICD-0007','Import Connections failed.','Check the error message.','ImportConnections',logging.ERROR)
 
 # Informatica run errors. Return code will be 30
 INFACMD_NOPROFILE=err.Errorcode(30,'INFARUN-0001','No profile name provided.','Provide the complete path of the profile to be executed.','RunProfile',logging.ERROR)
