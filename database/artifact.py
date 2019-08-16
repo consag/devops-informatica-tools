@@ -92,6 +92,7 @@ def generate_orderedsql(sourcesqldir, schema, input_sqlfile):
     global entrynr
     result = err.OK
     supporting.log(logger, logging.DEBUG, thisproc, "Started to work on sql file >" + input_sqlfile + "< in schema >" +schema +"<.")
+    supporting.log(logger, logging.DEBUG, thisproc, "settings.targetsqldir is >" + settings.targetsqldir + "<.")
 
     the_source_sqlfile = input_sqlfile
     entrynr = entrynr + 1
