@@ -102,6 +102,8 @@ def generate_orderedsql(sourcesqldir, schema, input_sqlfile):
         firstpart = prefixReleaseID[0:prefixReleaseID.find('_')] + ".%02d" % entrynr
         secondpart = prefixReleaseID[prefixReleaseID.find('_'):]
         prefixReleaseID = firstpart + secondpart
+        supporting.log(logger, logging.INFO, thisproc,
+                   "prefixReleaseID is >" + prefixReleaseID + "<. Based on firstpart >" + firstpart + "< and secondpart >" + secondpart +"<.")
 
     orderedsqlfilename = settings.targetsqldir + "/" + prefixReleaseID \
                          + "_" + schema + ".sql"
@@ -110,6 +112,8 @@ def generate_orderedsql(sourcesqldir, schema, input_sqlfile):
                    + settings.targetsqldir + "<, prefixReleaseID >" + prefixReleaseID +"< and schema >" + schema +"<.")
 
     filehandling.removefile(orderedsqlfilename)
+    global level
+    level = 0
     result = processlines(sourcesqldir, schema, the_source_sqlfile, orderedsqlfilename)
 
     supporting.log(logger, logging.DEBUG, thisproc,
