@@ -1,8 +1,9 @@
 # CI-CD Pipeline components for Informatica projects
 
 ## Dependencies
-* Crypto module for password encryption
+* Crypto module for password encryption. Depending on the method you want to use, you need to install one of the following packages:
 	pip install pycryptodome
+	pip install cryptography
 * setuptools for upload and download of Nexus artifacts
 	pip install setuptools
 
@@ -22,7 +23,6 @@ MIT
   * generalSettings: log directory, artifact directory, configuration directory and more
   * infaSettings: deploy list location, Informatica source and target variables like INFA_HOME, location infacmd, connectivity to domain and Model Repository
   * dbSettings: deploy list location, location of sql files, sqlprefix
-
 
 ## Examples
 Check the examples folder for more info on the structure of deploy lists.

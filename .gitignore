@@ -6,6 +6,12 @@ __pycache__/
 # C extensions
 *.so
 
+# virtual env
+devops_informatica/
+
+#temp
+temp/
+
 # Distribution / packaging
 .Python
 build/
@@ -24,6 +30,7 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
+.idea/
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -89,6 +96,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+devops_informatica/
 
 # Spyder project settings
 .spyderproject
@@ -102,6 +110,4 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-.idea
-.idea
-.idea
+/.idea/workspace.xml

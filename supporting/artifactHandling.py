@@ -37,7 +37,7 @@
 import supporting.errorcodes as err
 import repositorytools
 
-def getInformaticaArtifact():
+def getInformaticaArtifact(artifactName):
     thisporc = "getInformaticaArtifact"
 #something like this:    artifact = repositorytools.Artifact("group","demoArtifact","1.0.0","classifier","zip")
     return err.NOT_IMPLEMENTED

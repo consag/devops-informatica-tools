@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<imx:IMX xmlns:imx="http://com.informatica.imx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" serializationSpecVersion="12.0" crcEnabled="1" xmlns:common1="http://com.informatica.workflow.feature.metadata.common/0" versioncommon1="0.1.1" xmlns:common2="http://com.informatica.ds.app.feature.metadata.common/0" versioncommon2="0.0.1" xmlns:connectinfo1="http://com.informatica.metadata.common.connectinfo/2" versionconnectinfo1="2.4.0" xmlns:binding="http://com.informatica.metadata.common.binding/1" versionbinding="1.12.0" xmlns:project="http://com.informatica.metadata.common.project/2" versionproject="2.2.0" xmlns:source1="http://com.informatica.metadata.common.txhandlerconfig.source/2" versionsource1="2.1.0" xmlns:source="http://com.informatica.metadata.common.transformation.source/2" versionsource="2.1.0" xmlns:common3="http://com.informatica.ds.ms.feature.metadata.common/0" versioncommon3="0.2.1" xmlns:target1="http://com.informatica.metadata.common.txhandlerconfig.target/2" versiontarget1="2.4.0" xmlns:common4="http://com.informatica.ds.app.attachment.metadata.common/0" versioncommon4="0.3.0" xmlns:resourceaccess1="http://com.informatica.metadata.common.txhandlerconfig.resourceaccess/2" versionresourceaccess1="2.1.0" xmlns:notification="http://com.informatica.metadata.common.task.notification/1" versionnotification="1.0.0" xmlns:datasourceoperation="http://com.informatica.metadata.flatbyte.generate.datasourceoperation/2" versiondatasourceoperation="2.1.0" xmlns:datarecord1="http://com.informatica.metadata.relational.datarecord/2" versiondatarecord1="2.5.0" xmlns:optimizerconfig="http://com.informatica.metadata.common.optimizerconfig/1" versionoptimizerconfig="1.0.0" xmlns:property="http://com.informatica.metadata.common.property/1" versionproperty="1.2.0" xmlns:mapping="http://com.informatica.metadata.common.mapping/2" versionmapping="2.10.1" xmlns:adapter="http://com.informatica.metadata.common.adapter/2" versionadapter="2.2.0" xmlns:workflow="http://com.informatica.metadata.common.workflow/1" versionworkflow="1.4.1" xmlns:datahandler="http://com.informatica.metadata.common.datahandler/2" versiondatahandler="2.2.0" xmlns:runtime="http://com.informatica.metadata.common.runtime/2" versionruntime="2.12.1" xmlns:codepage="http://com.informatica.metadata.common.codepage/2" versioncodepage="2.1.0" xmlns:dsoconfig1="http://com.informatica.metadata.common.dsoconfig/2" versiondsoconfig1="2.1.0" xmlns:dsoconfig3="http://com.informatica.metadata.relational.dsoconfig/2" versiondsoconfig3="2.2.0" xmlns:core="http://com.informatica.metadata.common.core/2" versioncore="2.1.1" xmlns:dsoconfig2="http://com.informatica.metadata.flatbyte.parse.dsoconfig/2" versiondsoconfig2="2.10.0" xmlns:task="http://com.informatica.metadata.common.task/1" versiontask="1.4.0" xmlns:folder="http://com.informatica.metadata.common.folder/2" versionfolder="2.1.1" xmlns:datasource="http://com.informatica.metadata.flatbyte.datasource/2" versiondatasource="2.2.0" xmlns:basic="http://com.informatica.metadata.common.task.basic/1" versionbasic="1.4.0" xmlns:typelibrary="http://com.informatica.metadata.common.typesystem.typelibrary/2" versiontypelibrary="2.4.0" xmlns:description="http://com.informatica.metadata.common.description/2" versiondescription="2.1.0" xmlns:datarecord="http://com.informatica.metadata.flatbyte.datarecord/2" versiondatarecord="2.3.0" xmlns:connectinfo="http://com.informatica.metadata.relational.connectinfo/0" versionconnectinfo="9.0.8.0" xmlns:common="http://com.informatica.ds.app.spec.metadata.common/0" versioncommon="0.6.1" xmlns:optimizer="http://com.informatica.metadata.common.optimizer/1" versionoptimizer="1.0.1" xmlns:txhandlerconfig="http://com.informatica.metadata.common.txhandlerconfig/2" versiontxhandlerconfig="2.1.1" xmlns:parameter="http://com.informatica.metadata.common.parameter/9" versionparameter="9.9.1" xmlns:scope="http://com.informatica.metadata.common.scope/1" versionscope="1.2.0" xmlns:email="http://com.informatica.metadata.common.task.notification.email/1" versionemail="1.1.1" xmlns:types="http://com.informatica.metadata.common.types/2" versiontypes="2.4.0" xmlns:expression="http://com.informatica.metadata.common.transformation.expression/2" versionexpression="2.2.1" xmlns:datasourceoperation1="http://com.informatica.metadata.common.datasourceoperation/2" versiondatasourceoperation1="2.6.1" xmlns:transformation="http://com.informatica.metadata.common.transformation/3" versiontransformation="3.5.0" xmlns:target="http://com.informatica.metadata.common.transformation.target/2" versiontarget="2.4.0" xmlns:resourceaccess="http://com.informatica.metadata.common.transformation.resourceaccess/2" versionresourceaccess="2.3.0" xmlns:datasource1="http://com.informatica.metadata.common.datasource/2" versiondatasource1="2.2.0" xmlns:dsoconfig="http://com.informatica.metadata.flatbyte.generate.dsoconfig/2" versiondsoconfig="2.7.0" xmlns:datasourceoperation4="http://com.informatica.metadata.relational.datasourceoperation/2" versiondatasourceoperation4="2.10.0" xmlns:datasourceoperation3="http://com.informatica.metadata.flatbyte.parse.datasourceoperation/2" versiondatasourceoperation3="2.0.0" xmlns:pdo="http://com.informatica.metadata.common.optimizerconfig.pdo/1" versionpdo="1.0.0" xmlns:datasourceoperation2="http://com.informatica.metadata.flatbyte.datasourceoperation/2" versiondatasourceoperation2="2.0.0" xmlns:typesystem="http://com.informatica.metadata.common.typesystem/2" versiontypesystem="2.2.0" xmlns:user="http://com.informatica.metadata.common.user/1" versionuser="1.1.2" xsi:schemaLocation="http://com.informatica.imx IMX.xsd http://com.informatica.workflow.feature.metadata.common/0 com.informatica.workflow.feature.metadata.common.xsd http://com.informatica.ds.app.feature.metadata.common/0 com.informatica.ds.app.feature.metadata.common.xsd http://com.informatica.metadata.common.connectinfo/2 com.informatica.metadata.common.connectinfo.xsd http://com.informatica.metadata.common.binding/1 com.informatica.metadata.common.binding.xsd http://com.informatica.metadata.common.project/2 com.informatica.metadata.common.project.xsd http://com.informatica.metadata.common.txhandlerconfig.source/2 com.informatica.metadata.common.txhandlerconfig.source.xsd http://com.informatica.metadata.common.transformation.source/2 com.informatica.metadata.common.transformation.source.xsd http://com.informatica.ds.ms.feature.metadata.common/0 com.informatica.ds.ms.feature.metadata.common.xsd http://com.informatica.metadata.common.txhandlerconfig.target/2 com.informatica.metadata.common.txhandlerconfig.target.xsd http://com.informatica.ds.app.attachment.metadata.common/0 com.informatica.ds.app.attachment.metadata.common.xsd http://com.informatica.metadata.common.txhandlerconfig.resourceaccess/2 com.informatica.metadata.common.txhandlerconfig.resourceaccess.xsd http://com.informatica.metadata.common.task.notification/1 com.informatica.metadata.common.task.notification.xsd http://com.informatica.metadata.flatbyte.generate.datasourceoperation/2 com.informatica.metadata.flatbyte.generate.datasourceoperation.xsd http://com.informatica.metadata.relational.datarecord/2 com.informatica.metadata.relational.datarecord.xsd http://com.informatica.metadata.common.optimizerconfig/1 com.informatica.metadata.common.optimizerconfig.xsd http://com.informatica.metadata.common.property/1 com.informatica.metadata.common.property.xsd http://com.informatica.metadata.common.mapping/2 com.informatica.metadata.common.mapping.xsd http://com.informatica.metadata.common.adapter/2 com.informatica.metadata.common.adapter.xsd http://com.informatica.metadata.common.workflow/1 com.informatica.metadata.common.workflow.xsd http://com.informatica.metadata.common.datahandler/2 com.informatica.metadata.common.datahandler.xsd http://com.informatica.metadata.common.runtime/2 com.informatica.metadata.common.runtime.xsd http://com.informatica.metadata.common.codepage/2 com.informatica.metadata.common.codepage.xsd http://com.informatica.metadata.common.dsoconfig/2 com.informatica.metadata.common.dsoconfig.xsd http://com.informatica.metadata.relational.dsoconfig/2 com.informatica.metadata.relational.dsoconfig.xsd http://com.informatica.metadata.common.core/2 com.informatica.metadata.common.core.xsd http://com.informatica.metadata.flatbyte.parse.dsoconfig/2 com.informatica.metadata.flatbyte.parse.dsoconfig.xsd http://com.informatica.metadata.common.task/1 com.informatica.metadata.common.task.xsd http://com.informatica.metadata.common.folder/2 com.informatica.metadata.common.folder.xsd http://com.informatica.metadata.flatbyte.datasource/2 com.informatica.metadata.flatbyte.datasource.xsd http://com.informatica.metadata.common.task.basic/1 com.informatica.metadata.common.task.basic.xsd http://com.informatica.metadata.common.typesystem.typelibrary/2 com.informatica.metadata.common.typesystem.typelibrary.xsd http://com.informatica.metadata.common.description/2 com.informatica.metadata.common.description.xsd http://com.informatica.metadata.flatbyte.datarecord/2 com.informatica.metadata.flatbyte.datarecord.xsd http://com.informatica.metadata.relational.connectinfo/0 com.informatica.metadata.relational.connectinfo.xsd http://com.informatica.ds.app.spec.metadata.common/0 com.informatica.ds.app.spec.metadata.common.xsd http://com.informatica.metadata.common.optimizer/1 com.informatica.metadata.common.optimizer.xsd http://com.informatica.metadata.common.txhandlerconfig/2 com.informatica.metadata.common.txhandlerconfig.xsd http://com.informatica.metadata.common.parameter/9 com.informatica.metadata.common.parameter.xsd http://com.informatica.metadata.common.scope/1 com.informatica.metadata.common.scope.xsd http://com.informatica.metadata.common.task.notification.email/1 com.informatica.metadata.common.task.notification.email.xsd http://com.informatica.metadata.common.types/2 com.informatica.metadata.common.types.xsd http://com.informatica.metadata.common.transformation.expression/2 com.informatica.metadata.common.transformation.expression.xsd http://com.informatica.metadata.common.datasourceoperation/2 com.informatica.metadata.common.datasourceoperation.xsd http://com.informatica.metadata.common.transformation/3 com.informatica.metadata.common.transformation.xsd http://com.informatica.metadata.common.transformation.target/2 com.informatica.metadata.common.transformation.target.xsd http://com.informatica.metadata.common.transformation.resourceaccess/2 com.informatica.metadata.common.transformation.resourceaccess.xsd http://com.informatica.metadata.common.datasource/2 com.informatica.metadata.common.datasource.xsd http://com.informatica.metadata.flatbyte.generate.dsoconfig/2 com.informatica.metadata.flatbyte.generate.dsoconfig.xsd http://com.informatica.metadata.relational.datasourceoperation/2 com.informatica.metadata.relational.datasourceoperation.xsd http://com.informatica.metadata.flatbyte.parse.datasourceoperation/2 com.informatica.metadata.flatbyte.parse.datasourceoperation.xsd http://com.informatica.metadata.common.optimizerconfig.pdo/1 com.informatica.metadata.common.optimizerconfig.pdo.xsd http://com.informatica.metadata.flatbyte.datasourceoperation/2 com.informatica.metadata.flatbyte.datasourceoperation.xsd http://com.informatica.metadata.common.typesystem/2 com.informatica.metadata.common.typesystem.xsd http://com.informatica.metadata.common.user/1 com.informatica.metadata.common.user.xsd">
+<common:ApplicationSpec imx:id="U:fLdnfnW3EemlMjX0QIOgEA" name="Appl_Demo">
+<attachments>
+<Attachment imx:id="U:yIKkZ6RzEemHtJ528MDLAA" xsi:type="common4:ReferenceParameterSetAttachment" name="ps_Demo" parameterSet="U:DfG3cKRzEemHtJ528MDLAA"/>
+</attachments>
+<features>
+<Feature imx:id="U:fLdnf3W3EemlMjX0QIOgEA" xsi:type="common3:MappingFeature" mappings="U:EyS7gXW3EemlMjX0QIOgEA" name="m_Demo_Extract_Dual">
+<mappingFeatureconfig imx:id="ID_1" xsi:type="common3:MappingFeatureConfig" dateFormat="MM%2FDD%2FYYYY+HH24:MI:SS"/>
+</Feature>
+<Feature imx:id="U:_NuS8qR4EemHtJ528MDLAA" xsi:type="common1:WorkflowFeature" name="wf_Demo" workflow="U:mpPRG6R4EemHtJ528MDLAA">
+<WorkflowFeatureconfig imx:id="ID_2" xsi:type="common1:WorkflowFeatureConfig"/>
+</Feature>
+</features>
+</common:ApplicationSpec>
+<workflow:Workflow imx:id="U:mpPRG6R4EemHtJ528MDLAA" firstInstance="U:mpPRHKR4EemHtJ528MDLAA" name="wf_Demo">
+<characteristics>
+<Characteristic imx:id="ID_3" xsi:type="workflow:RuntimeWorkflowCharacteristic" enableAutoRecovery="true" enableRecovery="true" loglevel="INFO"/>
+</characteristics>
+<parameters>
+<UserDefinedParameter imx:id="U:LgwK7KR5EemHtJ528MDLAA" xsi:type="parameter:UserDefinedParameter" name="param_wf" precision="1000" typeinfo="smd:com.informatica.metadata.seed.platform.Platform.typesystem%2Fstring">
+<defaultValue imx:id="ID_4" xsi:type="parameter:StringParameterValue" valueLiteral="The+default+value"/>
+</UserDefinedParameter>
+</parameters>
+<taskInstances>
+<TaskInstance imx:id="U:mpPRHKR4EemHtJ528MDLAA" xsi:type="workflow:TaskInstance" name="Start_Event" task="U:mpPRH6R4EemHtJ528MDLAA">
+<anonymousTask imx:id="U:mpPRH6R4EemHtJ528MDLAA" xsi:type="basic:StartTask" name="Start_Event"/>
+<outgoingSequenceFlows>
+<SequenceFlow imx:id="U:ypewHKR4EemHtJ528MDLAA" xsi:type="workflow:SequenceFlow" fromInstance="U:mpPRHKR4EemHtJ528MDLAA" name="Start_Event_to_Notification_Task" toInstance="U:ypewGKR4EemHtJ528MDLAA"/>
+</outgoingSequenceFlows>
+</TaskInstance>
+<TaskInstance imx:id="U:mpPRHaR4EemHtJ528MDLAA" xsi:type="workflow:TaskInstance" incomingSequenceFlows="U:ypewGqR4EemHtJ528MDLAA" name="End_Event" task="U:mpPRHqR4EemHtJ528MDLAA">
+<anonymousTask imx:id="U:mpPRHqR4EemHtJ528MDLAA" xsi:type="basic:EndTask" name="End_Event"/>
+</TaskInstance>
+<TaskInstance imx:id="U:ypewGKR4EemHtJ528MDLAA" xsi:type="workflow:TaskInstance" incomingSequenceFlows="U:ypewHKR4EemHtJ528MDLAA" name="Notification_Task" task="U:ypewGaR4EemHtJ528MDLAA">
+<anonymousTask imx:id="U:ypewGaR4EemHtJ528MDLAA" xsi:type="notification:NotificationTask" name="Notification_Task">
+<recipients>
+<WorkflowUser imx:id="ID_5" xsi:type="user:WorkflowUser" displayName="BeekersJPA">
+<username imx:id="U:ypewG6R4EemHtJ528MDLAA" xsi:type="property:StringBoxedReceiverObject" value="Native%5CBeekersJPA"/>
+</WorkflowUser>
+</recipients>
+<transports>
+<NotificationTransportInfo imx:id="ID_6" xsi:type="email:EmailTransportInfo" toUserRecipients="ID_5" subject="hello+from+wf_Demo">
+<content imx:id="ID_7" xsi:type="email:EmailContent" content="This+mail+was+sent+from+the+wf_Demo."/>
+</NotificationTransportInfo>
+</transports>
+</anonymousTask>
+<outgoingSequenceFlows>
+<SequenceFlow imx:id="U:ypewGqR4EemHtJ528MDLAA" xsi:type="workflow:SequenceFlow" fromInstance="U:ypewGKR4EemHtJ528MDLAA" name="Notification_Task_to_End_Event" toInstance="U:mpPRHaR4EemHtJ528MDLAA"/>
+</outgoingSequenceFlows>
+</TaskInstance>
+</taskInstances>
+</workflow:Workflow>
+<datarecord1:Table imx:id="U:AM-9MXW3EemlMjX0QIOgEA" connection="stringIdentity:con_Demo" connectionName="con_Demo" connectionType="com.informatica.metadata.relational.connectinfo.OracleNativeConnectInfo" name="DUAL" physicalName="DUAL" tableType="SYNONYM">
+<columns>
+<Column imx:id="U:AM-9MnW3EemlMjX0QIOgEA" xsi:type="datarecord1:Column" type="smd:com.informatica.adapters.typesystem.relational.OracleTypeSystem.typesystem%2Fvarchar2" name="DUMMY" nullable="true" odbcPrecision="1" odbcType="smd:com.informatica.metadata.seed.odbc.ODBC.typesystem%2Fvarchar" precision="1"/>
+</columns>
+</datarecord1:Table>
+<folder:Folder imx:id="U:w_GdUnW2EemlMjX0QIOgEA" name="FitNesseDemos">
+<contents>
+<IObject imx:idref="U:fLdnfnW3EemlMjX0QIOgEA" xsi:type="common:ApplicationSpec"/>
+<IObject imx:idref="U:mpPRG6R4EemHtJ528MDLAA" xsi:type="workflow:Workflow"/>
+<IObject imx:idref="U:AM-9MXW3EemlMjX0QIOgEA" xsi:type="datarecord1:Table"/>
+<IObject imx:id="U:DfG3cKRzEemHtJ528MDLAA" xsi:type="binding:ParameterSet" name="ps_Demo">
+<content imx:id="U:uiLU9qRzEemHtJ528MDLAA" xsi:type="binding:ScopedParameterContent">
+<projectScopeDescriptors>
+<ProjectScopeDescriptor imx:id="ID_8" xsi:type="scope:ProjectScopeDescriptor" name="Demo">
+<nestedScopeDescriptors>
+<NestedScopeDescriptor imx:id="ID_9" xsi:type="scope:NestedScopeDescriptor" name="FitNesseDemos" aggregatorType="com.informatica.metadata.common.folder.Folder">
+<objectScopeDescriptors>
+<ObjectScopeDescriptor imx:id="ID_10" xsi:type="binding:ObjectScopeParameterDescriptor" name="m_Demo_Extract_Dual" parameterizedObjectType="com.informatica.metadata.common.mapping.Mapping">
+<parameterEntries>
+<ParameterEntry imx:id="ID_11" xsi:type="binding:ParameterEntry" parameterName="p_OutputValue">
+<value imx:id="ID_12" xsi:type="parameter:StringParameterValue" valueLiteral="From+ps_Demo"/>
+</ParameterEntry>
+</parameterEntries>
+</ObjectScopeDescriptor>
+<ObjectScopeDescriptor imx:id="ID_13" xsi:type="binding:ObjectScopeParameterDescriptor" name="wf_Demo" parameterizedObjectType="com.informatica.metadata.common.workflow.Workflow">
+<parameterEntries>
+<ParameterEntry imx:id="ID_14" xsi:type="binding:ParameterEntry" parameterName="param_wf">
+<value imx:id="ID_15" xsi:type="parameter:StringParameterValue" valueLiteral="From+ps_Demo+for+workflow"/>
+</ParameterEntry>
+</parameterEntries>
+</ObjectScopeDescriptor>
+</objectScopeDescriptors>
+</NestedScopeDescriptor>
+</nestedScopeDescriptors>
+</ProjectScopeDescriptor>
+</projectScopeDescriptors>
+</content>
+</IObject>
+<IObject imx:id="U:N0kNYnW3EemlMjX0QIOgEA" xsi:type="datasource:FlatByteDataSource" name="ff_dual">
+<fileDefinitions>
+<FlatByteDefinition imx:id="U:N0kNa3W3EemlMjX0QIOgEA" xsi:type="datarecord:FlatByteDefinition" codePageObject="smd:com.informatica.metadata.seed.platform.CodePages.codepagesystem%2F106" defaultDateFormat="A++19+YYYY-MM-DD+HH24:MI:SS" defaultDecimalSeparator="." name="FileByteDefinition">
+<columns>
+<FlatByteColumn imx:id="U:N0kNbHW3EemlMjX0QIOgEA" xsi:type="datarecord:FlatByteColumn" type="smd:com.informatica.metadata.seed.flatbyte.FlatFileTypeSystem.typesystem%2Fstring" flatByteRecord="U:N0kNa3W3EemlMjX0QIOgEA" name="DUMMY" precision="1000"/>
+</columns>
+<recordStrategy imx:id="ID_16" xsi:type="datarecord:CharacterDelimitedRecordStrategy" flatByteRecord="U:N0kNa3W3EemlMjX0QIOgEA" columnDelimiterCharacters="%2C"/>
+</FlatByteDefinition>
+</fileDefinitions>
+<defaultGenerator imx:id="U:N0kNY3W3EemlMjX0QIOgEA" xsi:type="datasourceoperation:FlatByteGenerateDataSourceOperation" dataSource="U:N0kNYnW3EemlMjX0QIOgEA" recordDefinition="U:N0kNa3W3EemlMjX0QIOgEA">
+<operations>
+<Capability imx:id="ID_17" xsi:type="datasourceoperation1:WriteCapability" defaultAdapter="smd:com.informatica.metadata.seed.flatbyte.FlatFile.flatFileGeneratingDataAdapter" defaultConfig="U:N0kNZnW3EemlMjX0QIOgEA">
+<inGroups>
+<DataAccessGroup imx:id="ID_18" xsi:type="datasourceoperation1:DataAccessGroup" groupType="U:N0kNaXW3EemlMjX0QIOgEA" input="true"/>
+</inGroups>
+</Capability>
+</operations>
+<ownedCapabilityTypes>
+<ComplexType imx:id="U:N0kNaXW3EemlMjX0QIOgEA" xsi:type="typelibrary:ComplexType" name="input">
+<features>
+<StructuralFeature imx:id="U:N0kNanW3EemlMjX0QIOgEA" xsi:type="typelibrary:StructuralFeature" type="smd:com.informatica.metadata.seed.platform.Platform.typesystem%2Fstring" lower="1" name="DUMMY" precision="1000" upper="1"/>
+</features>
+</ComplexType>
+</ownedCapabilityTypes>
+<columnToInterfaceMap>
+<ColumnFeature imx:id="ID_19" xsi:type="datasourceoperation2:ColumnFeature" column="U:N0kNbHW3EemlMjX0QIOgEA" feature="U:N0kNanW3EemlMjX0QIOgEA"/>
+</columnToInterfaceMap>
+</defaultGenerator>
+<defaultParser imx:id="U:N0kNZHW3EemlMjX0QIOgEA" xsi:type="datasourceoperation3:FlatByteParseDataSourceOperation" dataSource="U:N0kNYnW3EemlMjX0QIOgEA" recordDefinition="U:N0kNa3W3EemlMjX0QIOgEA">
+<operations>
+<Capability imx:id="ID_20" xsi:type="datasourceoperation1:ReadCapability" defaultAdapter="smd:com.informatica.metadata.seed.flatbyte.FlatFile.flatFileParsingDataAdapter" defaultConfig="U:N0kNZXW3EemlMjX0QIOgEA">
+<outGroups>
+<DataAccessGroup imx:id="ID_21" xsi:type="datasourceoperation1:DataAccessGroup" groupType="U:N0kNZ3W3EemlMjX0QIOgEA"/>
+</outGroups>
+</Capability>
+</operations>
+<ownedCapabilityTypes>
+<ComplexType imx:id="U:N0kNZ3W3EemlMjX0QIOgEA" xsi:type="typelibrary:ComplexType" name="output">
+<features>
+<StructuralFeature imx:id="U:N0kNaHW3EemlMjX0QIOgEA" xsi:type="typelibrary:StructuralFeature" type="smd:com.informatica.metadata.seed.platform.Platform.typesystem%2Fstring" lower="1" name="DUMMY" precision="1000" upper="1"/>
+</features>
+</ComplexType>
+</ownedCapabilityTypes>
+<columnToInterfaceMap>
+<ColumnFeature imx:id="ID_22" xsi:type="datasourceoperation2:ColumnFeature" column="U:N0kNbHW3EemlMjX0QIOgEA" feature="U:N0kNaHW3EemlMjX0QIOgEA"/>
+</columnToInterfaceMap>
+<parseStrategy imx:id="ID_23" xsi:type="datasourceoperation3:CharacterDelimitedParseStrategy" entity="U:N0kNZHW3EemlMjX0QIOgEA" escapeCharacterRemoved="true" lineBreakCharacter="%5C012"/>
+</defaultParser>
+<defaultReaderConfig imx:id="U:N0kNZXW3EemlMjX0QIOgEA" xsi:type="dsoconfig2:FlatbyteReaderConfig" defaultDynFldPrecision="10" defaultDynFldType="string" lineSequentialBufferLength="1024" schemaType="DataDriven" sourceFileDirectory.="smd:com.informatica.metadata.common.parameter.util.InfaParameterSeed.TargetDir" sourceFileName="ff_dual.txt"/>
+<defaultWriterConfig imx:id="U:N0kNZnW3EemlMjX0QIOgEA" xsi:type="dsoconfig:FlatbyteWriterConfig" mergeDirectory.="smd:com.informatica.metadata.common.parameter.util.InfaParameterSeed.TargetDir" mergeFile="ff_dual1.out" targetFileDirectory.="smd:com.informatica.metadata.common.parameter.util.InfaParameterSeed.TargetDir" targetFileName="ff_dual.txt"/>
+</IObject>
+<IObject imx:id="U:EyS7gXW3EemlMjX0QIOgEA" xsi:type="mapping:Mapping" name="m_Demo_Extract_Dual">
+<characteristics>
+<Characteristic imx:id="ID_24" xsi:type="runtime:RuntimeCharacteristic" maximumRuntimeIntervalPerSource="PT0S" selectedExecutionEnvironmentName="native" stateStore.="smd:com.informatica.metadata.common.parameter.util.InfaParameterSeed.StateStore">
+<environments>
+<ExecutionEnvironment imx:id="ID_25" xsi:type="runtime:NativeExecutionEnvironment">
+<partitioningConfig imx:id="ID_26" xsi:type="runtime:NativePartitioningConfig"/>
+</ExecutionEnvironment>
+</environments>
+<handlers>
+<TxHandlerConfig imx:id="ID_27" xsi:type="source1:SourceTxHandlerConfig" txInstance="U:a6Ss2HW3EemlMjX0QIOgEA" selectedAdapter="smd:com.informatica.metadata.seed.relational.CanonicalRelational.relationalReaderDataAdapter"/>
+<TxHandlerConfig imx:id="ID_28" xsi:type="target1:TargetTxHandlerConfig" txInstance="U:a6Ss2XW3EemlMjX0QIOgEA" selectedAdapter="smd:com.informatica.metadata.seed.flatbyte.FlatFile.flatFileGeneratingDataAdapter" rejectDirectory.="smd:com.informatica.metadata.common.parameter.util.InfaParameterSeed.RejectDir" rejectFile="ff_dual.bad"/>
+</handlers>
+<streamingConfig imx:id="ID_29" xsi:type="runtime:StreamingConfig" batchInterval="PT20S" cacheRefreshInterval="PT1H"/>
+</Characteristic>
+<Characteristic imx:id="ID_30" xsi:type="optimizer:OptimizerCharacteristic">
+<configs>
+<OptimizerConfig imx:id="ID_31" xsi:type="pdo:PushdownConfig"/>
+</configs>
+</Characteristic>
+</characteristics>
+<definedLibraries imx:id="U:EyS7gnW3EemlMjX0QIOgEA" xsi:type="typelibrary:TypeLibrary" name="m_Type_Definition_Library" typeSystem="smd:com.informatica.metadata.seed.platform.Platform.typesystem"/>
+<instances>
+<Instance imx:id="U:a6Ss2HW3EemlMjX0QIOgEA" xsi:type="mapping:Instance" name="Read_DUAL" transformation="U:a6Ss2nW3EemlMjX0QIOgEA">
+<fromOutlineLinks>
+<OutlineLink imx:id="ID_32" xsi:type="mapping:OutlineLink" fromInstance="U:a6Ss2HW3EemlMjX0QIOgEA" toInstance="U:iQik8qRzEemHtJ528MDLAA"/>
+</fromOutlineLinks>
+<ports>
+<TransformationFieldPort imx:id="ID_33" xsi:type="mapping:TransformationFieldPort" instance="U:a6Ss2HW3EemlMjX0QIOgEA" transformationField="U:a6Ss4HW3EemlMjX0QIOgEA">
+<children>
+<NestedPort imx:id="ID_34" xsi:type="mapping:NestedPort" toPorts="ID_35" parent="ID_33" structuralFeature="U:a6Ss5HW3EemlMjX0QIOgEA"/>
+</children>
+</TransformationFieldPort>
+</ports>
+</Instance>
+<Instance imx:id="U:a6Ss2XW3EemlMjX0QIOgEA" xsi:type="mapping:Instance" name="Write_ff_dual" toOutlineLinks="ID_36" transformation="U:a6Ss23W3EemlMjX0QIOgEA">
+<ports>
+<TransformationFieldPort imx:id="ID_37" xsi:type="mapping:TransformationFieldPort" instance="U:a6Ss2XW3EemlMjX0QIOgEA" transformationField="U:a6Ss3XW3EemlMjX0QIOgEA">
+<children>
+<NestedPort imx:id="ID_38" xsi:type="mapping:NestedPort" fromPort="ID_39" parent="ID_37" structuralFeature="U:N0kNanW3EemlMjX0QIOgEA"/>
+</children>
+</TransformationFieldPort>
+</ports>
+</Instance>
+<Instance imx:id="U:iQik8qRzEemHtJ528MDLAA" xsi:type="mapping:Instance" name="EXP_Param" toOutlineLinks="ID_32" transformation="U:iQik9KRzEemHtJ528MDLAA">
+<fromOutlineLinks>
+<OutlineLink imx:id="ID_36" xsi:type="mapping:OutlineLink" fromInstance="U:iQik8qRzEemHtJ528MDLAA" toInstance="U:a6Ss2XW3EemlMjX0QIOgEA"/>
+</fromOutlineLinks>
+<ports>
+<TransformationFieldPort imx:id="ID_35" xsi:type="mapping:TransformationFieldPort" fromPort="ID_34" instance="U:iQik8qRzEemHtJ528MDLAA" transformationField="U:iQik9qRzEemHtJ528MDLAA"/>
+<TransformationFieldPort imx:id="ID_39" xsi:type="mapping:TransformationFieldPort" toPorts="ID_38" instance="U:iQik8qRzEemHtJ528MDLAA" transformationField="U:iQik96RzEemHtJ528MDLAA"/>
+</ports>
+</Instance>
+</instances>
+<parameters>
+<UserDefinedParameter imx:id="U:iQik86RzEemHtJ528MDLAA" xsi:type="parameter:UserDefinedParameter" name="p_OutputValue" precision="1000" typeinfo="smd:com.informatica.metadata.seed.platform.Platform.typesystem%2Fstring">
+<defaultValue imx:id="ID_40" xsi:type="parameter:StringParameterValue" valueLiteral="The+default"/>
+</UserDefinedParameter>
+</parameters>
+<transformations>
+<AbstractTransformation imx:id="U:a6Ss2nW3EemlMjX0QIOgEA" xsi:type="source:SourceTx" active="true" name="Read_DUAL" dso="U:a6Ss3nW3EemlMjX0QIOgEA">
+<anonymousDso imx:id="U:a6Ss3nW3EemlMjX0QIOgEA" xsi:type="datasourceoperation4:ReadRelationalDataSourceOperation" name="DUAL" tableDefinitions="U:AM-9MXW3EemlMjX0QIOgEA" typeSystem="smd:com.informatica.adapters.typesystem.relational.OracleTypeSystem.typesystem">
+<defaultConfigs>
+<DSORuntimeConfig imx:id="U:a6Ss4XW3EemlMjX0QIOgEA" xsi:type="dsoconfig3:RelationalDSORuntimeConfig" connectInfo="stringIdentity:con_Demo" connectionName="con_Demo"/>
+</defaultConfigs>
+<operations>
+<Capability imx:id="ID_41" xsi:type="datasourceoperation1:ReadCapability" defaultAdapter="smd:com.informatica.metadata.seed.relational.CanonicalRelational.relationalReaderDataAdapter" defaultConfig="U:a6Ss4XW3EemlMjX0QIOgEA">
+<outGroups>
+<DataAccessGroup imx:id="ID_42" xsi:type="datasourceoperation1:DataAccessGroup" groupType="U:a6Ss4nW3EemlMjX0QIOgEA"/>
+</outGroups>
+</Capability>
+<Capability imx:id="ID_43" xsi:type="datasourceoperation1:LookupCapability" defaultAdapter="smd:com.informatica.metadata.seed.relational.CanonicalRelational.relationalReaderDataAdapter" defaultConfig="U:a6Ss4XW3EemlMjX0QIOgEA"/>
+</operations>
+<ownedCapabilityTypes>
+<ComplexType imx:id="U:a6Ss4nW3EemlMjX0QIOgEA" xsi:type="typelibrary:ComplexType" name="DUAL">
+<features>
+<StructuralFeature imx:id="U:a6Ss5HW3EemlMjX0QIOgEA" xsi:type="typelibrary:StructuralFeature" type="smd:com.informatica.metadata.seed.platform.Platform.typesystem%2Fstring" lower="1" name="DUMMY" nullable="true" precision="1" upper="1"/>
+</features>
+</ComplexType>
+</ownedCapabilityTypes>
+<typeLibrary imx:id="U:a6Ss43W3EemlMjX0QIOgEA" xsi:type="typelibrary:TypeLibrary"/>
+<relationalFields>
+<RelationalField imx:id="ID_44" xsi:type="datasourceoperation4:RelationalField" column="U:AM-9MnW3EemlMjX0QIOgEA" feature="U:a6Ss5HW3EemlMjX0QIOgEA" name="DUMMY" odbcPrecision="1" odbcType="smd:com.informatica.metadata.seed.odbc.ODBC.typesystem%2Fvarchar" recordInstance="ID_45"/>
+</relationalFields>
+<relationalRecordInstances>
+<RelationalRecordInstance imx:id="ID_45" xsi:type="datasourceoperation4:RelationalRecordInstance" name="DUAL" record="U:AM-9MXW3EemlMjX0QIOgEA"/>
+</relationalRecordInstances>
+</anonymousDso>
+<sourceInterfaces>
+<SourceDataInterface imx:id="U:a6Ss33W3EemlMjX0QIOgEA" xsi:type="source:SourceDataInterface" name="Group" output="true">
+<sourceFields>
+<SourceTxField imx:id="U:a6Ss4HW3EemlMjX0QIOgEA" xsi:type="source:SourceTxField" type="U:a6Ss4nW3EemlMjX0QIOgEA" name="output" output="true"/>
+</sourceFields>
+</SourceDataInterface>
+</sourceInterfaces>
+</AbstractTransformation>
+<AbstractTransformation imx:id="U:a6Ss23W3EemlMjX0QIOgEA" xsi:type="target:TargetTx" active="true" name="Write_ff_dual" dso="U:N0kNY3W3EemlMjX0QIOgEA">
+<targetInterfaces>
+<TargetDataInterface imx:id="U:a6Ss3HW3EemlMjX0QIOgEA" xsi:type="target:TargetDataInterface" input="true" name="Group">
+<targetFields>
+<TargetTxField imx:id="U:a6Ss3XW3EemlMjX0QIOgEA" xsi:type="target:TargetTxField" type="U:N0kNaXW3EemlMjX0QIOgEA" input="true" name="Input"/>
+</targetFields>
+</TargetDataInterface>
+</targetInterfaces>
+</AbstractTransformation>
+<AbstractTransformation imx:id="U:iQik9KRzEemHtJ528MDLAA" xsi:type="expression:ExpressionTx" name="EXP_Param">
+<expressionInterface>
+<ExpressionDataInterface imx:id="U:iQik9aRzEemHtJ528MDLAA" xsi:type="expression:ExpressionDataInterface" input="true" name="Group" output="true">
+<expressionFields>
+<ExpressionField imx:id="U:iQik9qRzEemHtJ528MDLAA" xsi:type="expression:ExpressionField" type="smd:com.informatica.metadata.seed.platform.Platform.typesystem%2Fstring" lower="1" precision="1" upper="1" input="true" name="DUMMY"/>
+<ExpressionField imx:id="U:iQik96RzEemHtJ528MDLAA" xsi:type="expression:ExpressionField" type="smd:com.informatica.metadata.seed.platform.Platform.typesystem%2Fstring" lower="1" precision="1000" upper="1" name="Field" output="true" expression="%24p_OutputValue">
+<defaultValue xsi:type="types:StringValue" valueLiteral="ERROR%28%27transformation+error%27%29"/>
+</ExpressionField>
+</expressionFields>
+</ExpressionDataInterface>
+</expressionInterface>
+</AbstractTransformation>
+</transformations>
+</IObject>
+</contents>
+</folder:Folder>
+<project:Project imx:id="U:lLxD0V0AEemW7O_a5GHCaA" name="Demo">
+<imx:annotations>
+<imx:IGenericAnnotations>
+<com.informatica.tools.objectie key1="projectName" value1="MRS_Demo01"/>
+</imx:IGenericAnnotations>
+</imx:annotations>
+<annotations>
+<Annotation imx:id="ID_47" xsi:type="description:Description"/>
+</annotations>
+<contents>
+<IObject imx:idref="U:w_GdUnW2EemlMjX0QIOgEA" xsi:type="folder:Folder"/>
+</contents>
+</project:Project>
+<connectinfo:OracleNativeConnectInfo imx:id="stringIdentity:con_Demo" connectionType="ORACLE" name="con_Demo">
+<defaultAttributes imx:id="U:WYAmn1WGEem6Eiwz5zlpTw" xsi:type="connectinfo1:ConnectionPoolAttributes"/>
+</connectinfo:OracleNativeConnectInfo>
+<imx:crc value="2468464772"/>
+</imx:IMX>

@@ -1,0 +1,1299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="79ec9dbe-bed2-4c98-9e86-440cc491d387" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/informatica/infaConstants.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1241">
+              <caret line="73" selection-start-line="73" selection-end-line="73" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/listConnections.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="249">
+              <caret line="69" column="52" selection-start-line="69" selection-start-column="52" selection-end-line="69" selection-end-column="52" />
+              <folding>
+                <element signature="e#1127#1163#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/listConnectionOptions.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1037">
+              <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/informatica/buildCommand.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1088">
+              <caret line="68" column="36" selection-start-line="68" selection-start-column="36" selection-end-line="68" selection-end-column="36" />
+              <folding>
+                <element signature="e#1131#1170#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/informatica/manageConnection.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1207">
+              <caret line="75" selection-start-line="75" selection-end-line="75" />
+              <folding>
+                <element signature="e#1127#1153#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/informatica/artifact.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1139">
+              <caret line="76" column="25" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="25" />
+              <folding>
+                <element signature="e#1274#1309#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/supporting/errorcodes.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="986">
+              <caret line="59" selection-start-line="59" selection-end-line="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Setup Script" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>print</find>
+      <find>executeinfa</find>
+      <find>DEFAULT</find>
+      <find>default_xml</find>
+      <find>create_artifact</find>
+      <find>cretae</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/informaticaArtifact/developer/runProfile.py" />
+        <option value="$PROJECT_DIR$/informaticaArtifact/developer/__init__.py" />
+        <option value="$PROJECT_DIR$/runDataProfiling.py" />
+        <option value="$PROJECT_DIR$/runProfileScorecard.py" />
+        <option value="$PROJECT_DIR$/informaticaArtifact/developer/executeCommand.py" />
+        <option value="$PROJECT_DIR$/informaticaArtifact/developer/executeInfacmd.py" />
+        <option value="$PROJECT_DIR$/informaticaArtifact/developer/dataProfiling.py" />
+        <option value="$PROJECT_DIR$/informaticaArtifact/developer/buildCommand.py" />
+        <option value="$PROJECT_DIR$/informaticaArtifact/infaArtifactChecks.py" />
+        <option value="$PROJECT_DIR$/supporting/artifactHandling.py" />
+        <option value="$PROJECT_DIR$/informaticaArtifact/infaConstants.py" />
+        <option value="$PROJECT_DIR$/informaticaArtifact/developer/processDeveloperDeployList.py" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/supporting/encryption.py" />
+        <option value="$PROJECT_DIR$/createOracleArtifact.py" />
+        <option value="$PROJECT_DIR$/createDeveloperArtifact.py" />
+        <option value="$PROJECT_DIR$/informatica/__init__.py" />
+        <option value="$PROJECT_DIR$/deployDeveloperArtifact.py" />
+        <option value="$PROJECT_DIR$/informatica/deployArtifact.py" />
+        <option value="$PROJECT_DIR$/informatica/createArtifact.py" />
+        <option value="$PROJECT_DIR$/informatica/createFolder.py" />
+        <option value="$PROJECT_DIR$/manageFolder.py" />
+        <option value="$PROJECT_DIR$/imxportUsersAndGroups.py" />
+        <option value="$PROJECT_DIR$/deleteUser.py" />
+        <option value="$PROJECT_DIR$/createUser.py" />
+        <option value="$PROJECT_DIR$/createGroup.py" />
+        <option value="$PROJECT_DIR$/deleteGroup.py" />
+        <option value="$PROJECT_DIR$/exportUsersAndGroups.py" />
+        <option value="$PROJECT_DIR$/importUsersAndGroups.py" />
+        <option value="$PROJECT_DIR$/informatica/manageSecurity.py" />
+        <option value="$PROJECT_DIR$/informatica/dataProfiling.py" />
+        <option value="$PROJECT_DIR$/runProfile.py" />
+        <option value="$PROJECT_DIR$/runScorecard.py" />
+        <option value="$PROJECT_DIR$/informatica/manageWorkflow.py" />
+        <option value="$PROJECT_DIR$/informatica/manageFolder.py" />
+        <option value="$PROJECT_DIR$/createFolder.py" />
+        <option value="$PROJECT_DIR$/createProject.py" />
+        <option value="$PROJECT_DIR$/deleteProject.py" />
+        <option value="$PROJECT_DIR$/deleteFolder.py" />
+        <option value="$PROJECT_DIR$/informatica/jobManagement.py" />
+        <option value="$PROJECT_DIR$/runMapping.py" />
+        <option value="$PROJECT_DIR$/runWorkflow.py" />
+        <option value="$PROJECT_DIR$/informatica/buildCommand.py" />
+        <option value="$PROJECT_DIR$/createInformaticaPlatformArtifact.py" />
+        <option value="$PROJECT_DIR$/informatica/artifact.py" />
+        <option value="$PROJECT_DIR$/informatica/manageConnection.py" />
+        <option value="$PROJECT_DIR$/informatica/infaConstants.py" />
+        <option value="$PROJECT_DIR$/supporting/errorcodes.py" />
+        <option value="$PROJECT_DIR$/listConnectionOptions.py" />
+        <option value="$PROJECT_DIR$/listConnections.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="158" />
+    <option name="y" value="80" />
+    <option name="width" value="952" />
+    <option name="height" value="484" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="devops-informatica-tools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devops-informatica-tools" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devops-informatica-tools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devops-informatica-tools" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="devops-informatica-tools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devops-informatica-tools" type="462c0819:PsiDirectoryNode" />
+              <item name="informatica" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\C62760\GitRepos\devops-informatica-tools" />
+      <recent name="D:\GitRepos\devops-informatica-tools" />
+      <recent name="D:\GitRepos\devops-informatica-tools\informatica" />
+      <recent name="D:\GitRepos\build-and-deploy-informatica" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\GitRepos\devops-informatica-tools" />
+      <recent name="D:\GitRepos\devops-informatica-tools\informatica" />
+      <recent name="D:\GitRepos\build-and-deploy-informatica\databaseArtifact" />
+      <recent name="D:\GitRepos\build-and-deploy-informatica\informaticaArtifact" />
+      <recent name="D:\GitRepos\build-and-deploy-informatica\supporting" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.listConnectionOptions">
+    <configuration name="createDeveloperArtifact" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="SOURCE_MRS" value="MRS_Demo01" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="DEVELOPER_DEPLOYLIST" value="demo/config/infa_deploylist.txt" />
+        <env name="ARTIFACTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+        <env name="SOURCEDIR" value="$PROJECT_DIR$/../jacDemo" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="D:\GitRepos\devops-informatica-tools\createInformaticaPlatformArtifact.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="createFolder" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="SOURCE_MRS" value="MRS_Demo01" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/createFolder.py" />
+      <option name="PARAMETERS" value="DemoDummy /aDemoFolder" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="createGroup" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/createGroup.py" />
+      <option name="PARAMETERS" value="DummyGroup &quot;This is a dummy group for test purposes&quot;" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="createOracleArtifact" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="ORACLE_DEPLOYLIST" value="demo/config/oracle_deploylist.txt" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="SOURCE_SQLDIR" value="demo/ddl" />
+        <env name="TARGET_SQLDIR" value="/tmp" />
+        <env name="FEATURE" value="demo" />
+        <env name="SOURCEDIR" value="$PROJECT_DIR$/../jacDemo" />
+        <env name="SQL_PREFIX" value="V" />
+        <env name="BUILD_BUILDNUMBER" value="20190414.18__jacDemo_CreateArtifacts_develop" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/database" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/createOracleArtifact.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="createProject" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="SOURCE_MRS" value="MRS_Demo01" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/createProject.py" />
+      <option name="PARAMETERS" value="DemoDummy" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="createUser" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/createUser.py" />
+      <option name="PARAMETERS" value="DummyUser DummyUser &quot;Dummy User&quot;" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="deleteFolder" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="SOURCE_MRS" value="MRS_Demo01" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/deleteFolder.py" />
+      <option name="PARAMETERS" value="DemoDummy /aDemoFolder" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="deleteGroup" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/deleteGroup.py" />
+      <option name="PARAMETERS" value="DummyGroup" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="deleteProject" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="SOURCE_MRS" value="MRS_Demo01" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/deleteProject.py" />
+      <option name="PARAMETERS" value="DemoDummy" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="deleteUser" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/deleteUser.py" />
+      <option name="PARAMETERS" value="DummyUser" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="deployDeveloperArtifact" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="SOURCE_MRS" value="MRS_Demo01" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="DEVELOPER_DEPLOYLIST" value="demo/config/infa_deploylist.txt" />
+        <env name="ARTIFACTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+        <env name="SOURCEDIR" value="$PROJECT_DIR$/../jacDemo" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/deployDeveloperArtifact.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="encryption" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/supporting" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/supporting/encryption.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="exportUsersAndGroups" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/exportUsersAndGroups.py" />
+      <option name="PARAMETERS" value="exported_users_and_groups.xml" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="importUsersAndGroups" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/importUsersAndGroups.py" />
+      <option name="PARAMETERS" value="exported_users_and_groups.xml" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="listConnectionOptions" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="SOURCE_MRS" value="MRS_Demo01" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+        <env name="SOURCE_DIS" value="DIS_Demo01" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/listConnectionOptions.py" />
+      <option name="PARAMETERS" value="DQ_REFERENCE_DATA" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="listConnections" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="SOURCE_MRS" value="MRS_Demo01" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+        <env name="SOURCE_DIS" value="DIS_Demo01" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/listConnections.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="runMapping" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="SOURCE_MRS" value="MRS_Demo01" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+        <env name="SOURCE_DIS" value="DIS_Demo01" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/runMapping.py" />
+      <option name="PARAMETERS" value="Appl_Demo m_Demo_Extract_Dual Source 3 &quot;-ParameterSet ps_Demo&quot;" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="runProfile" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="SOURCE_MRS" value="MRS_Demo01" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+        <env name="SOURCE_DIS" value="DIS_Demo01" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/runProfile.py" />
+      <option name="PARAMETERS" value="Demo/FitNesseDemos/Profile_Dual" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="runScorecard" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="SOURCE_MRS" value="MRS_Demo01" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+        <env name="SOURCE_DIS" value="DIS_Demo01" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/runScorecard.py" />
+      <option name="PARAMETERS" value="Demo/FitNesseDemos/sc_Dual" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="runWorkflow" type="PythonConfigurationType" factoryName="Python">
+      <module name="build-and-deploy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SOURCE_INFACMD_LOCATION" value="D:\Informatica\10.2.2\clients\DeveloperClient\infacmd" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_USER" value="Deployer" />
+        <env name="SOURCE_INFA_DEFAULT_DOMAIN_PASSWORD" value="FGba3EOqPYkcn99kqpcmng==" />
+        <env name="SOURCE_MRS" value="MRS_Demo01" />
+        <env name="LOGDIR" value="/tmp" />
+        <env name="RESULTDIR" value="/tmp" />
+        <env name="CONFIGDIR" value="demo/config" />
+        <env name="SOURCE_DIS" value="DIS_Demo01" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/runWorkflow.py" />
+      <option name="PARAMETERS" value="Appl_Demo wf_Demo true &quot;-ParameterSet ps_Demo&quot;" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.createDeveloperArtifact" />
+      <item itemvalue="Python.createFolder" />
+      <item itemvalue="Python.createGroup" />
+      <item itemvalue="Python.createOracleArtifact" />
+      <item itemvalue="Python.createProject" />
+      <item itemvalue="Python.createUser" />
+      <item itemvalue="Python.deleteFolder" />
+      <item itemvalue="Python.deleteGroup" />
+      <item itemvalue="Python.deleteProject" />
+      <item itemvalue="Python.deleteUser" />
+      <item itemvalue="Python.deployDeveloperArtifact" />
+      <item itemvalue="Python.encryption" />
+      <item itemvalue="Python.exportUsersAndGroups" />
+      <item itemvalue="Python.importUsersAndGroups" />
+      <item itemvalue="Python.listConnectionOptions" />
+      <item itemvalue="Python.listConnections" />
+      <item itemvalue="Python.runMapping" />
+      <item itemvalue="Python.runProfile" />
+      <item itemvalue="Python.runScorecard" />
+      <item itemvalue="Python.runWorkflow" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.deployDeveloperArtifact" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="79ec9dbe-bed2-4c98-9e86-440cc491d387" name="Default Changelist" comment="" />
+      <created>1553278258046</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1553278258046</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1292" height="670" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4994233" visible="true" weight="0.18181819" />
+      <window_info id="Structure" order="1" sideWeight="0.5005767" side_tool="true" weight="0.2496329" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3298731" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3298731" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.3298731" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3298731" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.3298731" />
+      <window_info anchor="bottom" id="Inspection Results" order="11" weight="0.3298731" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/database/databaseArtifactChecks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="24" column="52" lean-forward="true" selection-start-line="24" selection-start-column="52" selection-end-line="24" selection-end-column="52" />
+          <folding>
+            <element signature="e#116#151#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/dbSettings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="11" selection-start-line="7" selection-end-line="11" />
+          <folding>
+            <element signature="e#105#153#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/supporting/deploylist.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="6" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/supporting/schedulerConstants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/supporting/resourceConstants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/supporting/generalConstants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="21" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ecf_default.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/icf_default.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/runScorecard.py" />
+    <entry file="file://$PROJECT_DIR$/informatica/infaSettings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="62" column="23" lean-forward="true" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/executeCommand.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="53" column="42" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="42" />
+          <folding>
+            <element signature="e#1127#1153#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/executeInfacmd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="e#1126#1152#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="68">
+            <caret line="4" column="28" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="28" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="115" selection-start-line="34" selection-start-column="115" selection-end-line="34" selection-end-column="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/supporting/encryption.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="119" selection-start-line="119" selection-end-line="119" />
+          <folding>
+            <element signature="e#1156#1169#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/databaseDeploy/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/database/dbConstants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/artifact.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" selection-start-line="25" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/createOracleArtifact.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/infaArtifactChecks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="638">
+          <caret line="58" column="63" selection-start-line="58" selection-start-column="63" selection-end-line="58" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="48" column="24" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/deployArtifact.py" />
+    <entry file="file://$PROJECT_DIR$/deployDeveloperArtifact.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="59" column="1" selection-start-line="59" selection-start-column="1" selection-end-line="59" selection-end-column="1" />
+          <folding>
+            <element signature="e#1237#1273#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/supporting/artifactHandling.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+          <folding>
+            <element signature="n#!!doc" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deleteUser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="61" selection-start-line="60" selection-end-line="61" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deleteGroup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="66" column="41" lean-forward="true" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/importUsersAndGroups.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exportUsersAndGroups.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/createUser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="73" selection-start-line="62" selection-end-line="73" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/runScorecard.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="47" column="27" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/manageWorkflow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+          <folding>
+            <element signature="e#1127#1153#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/manageSecurity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="48" selection-start-line="23" selection-end-line="48" />
+          <folding>
+            <element signature="e#1127#1153#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/createProject.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="62" lean-forward="true" selection-start-line="54" selection-end-line="62" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deleteProject.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="52" column="33" lean-forward="true" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/createGroup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="65" selection-start-line="58" selection-end-line="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deleteFolder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="52" column="33" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/runProfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="635">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/runMapping.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="46" column="21" lean-forward="true" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/runMapping.py" />
+    <entry file="file://$PROJECT_DIR$/runWorkflow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/jobManagement.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="37" column="65" selection-start-line="37" selection-start-column="65" selection-end-line="37" selection-end-column="65" />
+          <folding>
+            <element signature="e#1127#1153#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/createFolder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="51" column="25" lean-forward="true" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="25" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/manageFolder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+          <folding>
+            <element signature="e#1127#1153#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/createInformaticaPlatformArtifact.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="71">
+          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
+          <folding>
+            <element signature="e#1237#1273#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/infaConstants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1241">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/listConnectionOptions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/buildCommand.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1088">
+          <caret line="68" column="36" selection-start-line="68" selection-start-column="36" selection-end-line="68" selection-end-column="36" />
+          <folding>
+            <element signature="e#1131#1170#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/manageConnection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="75" selection-start-line="75" selection-end-line="75" />
+          <folding>
+            <element signature="e#1127#1153#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/artifact.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1139">
+          <caret line="76" column="25" selection-start-line="76" selection-start-column="25" selection-end-line="76" selection-end-column="25" />
+          <folding>
+            <element signature="e#1274#1309#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/supporting/errorcodes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="986">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/listConnections.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="69" column="52" selection-start-line="69" selection-start-column="52" selection-end-line="69" selection-end-column="52" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="Copyright.UI">
+        <settings>
+          <last-edited>MIT</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

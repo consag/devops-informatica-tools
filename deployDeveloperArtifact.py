@@ -25,16 +25,15 @@
 # generalSettings
 # @Since: 19-MAY-2019
 # @Author: Jac. Beekers
-# @Version: 20190519.0 - JBE - Initial
+# @Version: 20190623.0 - JBE - Initial
 ##
 
 import logging, datetime, supporting
 import supporting.errorcodes as err
-from supporting.artifactHandling import getInformaticaArtifact
-import informaticaArtifact.infaArtifactChecks as infachecks
-import informaticaArtifact.developer.processDeveloperDeployList as processDeveloperDeployList
-import informaticaArtifact.infaSettings as infaSettings
+from informatica import infaArtifactChecks
+import informatica.infaSettings as infaSettings
 from supporting.generalSettings import logDir
+from informatica import infaConstants
 
 now = datetime.datetime.now()
 result = err.OK
@@ -53,17 +52,12 @@ def main():
     infaSettings.outinfaenvvars()
 
     # Check requirements for artifact generation
-    result = infachecks.infadeploychecks()
+    result = infaArtifactChecks.infadeploychecks()
     if result.rc != 0:
         supporting.log(logger, logging.ERROR, thisproc, 'INFA Checks failed with >' + result.message +"<.")
         supporting.exitscript(resultlogger, result)
 
-    result = getInformaticaArtifact("dummy")
-    if result.rc != 0:
-        supporting. log(logger, logging.ERROR, thisproc, 'getInformaticaArtifact failed with >' + result.messages +"<.")
-        supporting.exitscript(resultlogger, result)
-
-    result = processDeveloperDeployList.processList(infaSettings.infadeploylist)
+#    result = informatica.import_infadeveloper(infaConstants.DEPLOYARTIFACT, infaSettings.infadeploylist)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")

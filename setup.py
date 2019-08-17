@@ -26,11 +26,11 @@ from setuptools import setup
 setup(
     name='build-and-deploy-informatica',
     version='0.1',
-    packages=['supporting', 'supporting.errorcode', 'databaseDeploy', 'databaseArtifact', 'informaticaArtifact',
-              'informaticaArtifact.developer'],
+    packages=['supporting', 'supporting.errorcode', 'databaseDeploy', 'database', 'informatica',
+              'informatica.developer'],
     url='https://github.com/consag/build-and-deploy-informatica',
     license='MIT',
     author='Jac. Beekers',
     author_email='beekersjac@gmail.com',
-    description='CI-CD Pipeline scripts for Informatica Platform related projects'
+    description='CI-CD Pipeline scripts for Informatica Platform related projects', install_requires=['pycryptodome']
 )

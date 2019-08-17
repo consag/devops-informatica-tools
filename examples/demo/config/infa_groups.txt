@@ -1,0 +1,6 @@
+# Structure:
+#   GROUP:<group>[:<userids>]
+# where <userids> is a comma separated list of userids that should be added to the group
+# Note: Users can be added to an existing group using the assign user to group function
+
+GROUP:grp_Demo
