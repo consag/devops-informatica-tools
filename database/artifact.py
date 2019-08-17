@@ -101,7 +101,7 @@ def generate_orderedsql(sourcesqldir, schema, input_sqlfile):
     orderedsqlfilename = settings.targetsqldir + "/" + schema + "/" + prefixReleaseID + generalSettings.releaseID + ".sql"
     supporting.log(logger, logging.INFO, thisproc,
                    "orderedsqlfilename is >" + orderedsqlfilename + "<. Based on settings.targetsqldir >"
-                   + settings.targetsqldir + "<, schema >" + schema +"< and generalSettings.releaseID >" + generalSettings.releasID +"<.")
+                   + settings.targetsqldir + "<, schema >" + schema +"< and generalSettings.releaseID >" + generalSettings.releaseID +"<.")
 
     filehandling.removefile(orderedsqlfilename)
     global level
