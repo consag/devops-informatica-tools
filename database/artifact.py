@@ -95,7 +95,6 @@ def generate_orderedsql(sourcesqldir, schema, input_sqlfile):
     supporting.log(logger, logging.DEBUG, thisproc, "settings.targetsqldir is >" + settings.targetsqldir + "<.")
 
     the_source_sqlfile = input_sqlfile
-<<<<<<< HEAD
     if schema == previous_schema:
         entrynr = entrynr + 1
     else:
@@ -104,12 +103,6 @@ def generate_orderedsql(sourcesqldir, schema, input_sqlfile):
     prefixReleaseID = settings.sqlprefix + "%02d" % entrynr
 
     orderedsqlfilename = settings.targetsqldir + "/" + schema + "/" + prefixReleaseID + "_" + schema + "_" + generalSettings.releaseID + ".sql"
-=======
-    entrynr = entrynr + 1
-    prefixReleaseID = settings.sqlprefix + "%02d" % entrynr
-
-    orderedsqlfilename = settings.targetsqldir + "/" + schema + "/" + prefixReleaseID + generalSettings.releaseID + ".sql"
->>>>>>> ed26fb4f2e437121b113401e6889852121b7d579
     create_directory(settings.targetsqldir + "/" + schema)
     supporting.log(logger, logging.INFO, thisproc,
                    "orderedsqlfilename is >" + orderedsqlfilename + "<. Based on prefixReleaseID >" + prefixReleaseID + ", settings.targetsqldir >"
