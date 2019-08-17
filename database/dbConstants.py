@@ -26,6 +26,7 @@
 # @Since: 22-MAR-2019
 # @Author: Jac. Beekers
 # @Version: 20190410.0 - JBE - Initial
+# @Version: 20190817.0 - JBE - Added user/password functionality
 
 # Database artifacts
 varOracleSchemaName='ORACLE_SCHEMANAME'
@@ -33,6 +34,10 @@ varOracleDeployList='ORACLE_DEPLOYLIST'
 varSourceSqlDir='SOURCE_SQLDIR'
 varTargetSqlDir='TARGET_SQLDIR'
 varSqlPrefix = 'SQL_PREFIX'
+varOracleDatabaseUser = 'ORACLE_DATABASE_USER'
+varDatabaseUserPassword = 'ORACLE_DATABASE_USER_PASSWORD' # encrypted
+varOracleTNSName = 'ORACLE_TNS_NAME'
+
 ##
 # Database artifact defaults
 DEFAULT_SOURCE_SQLDIR ='.'

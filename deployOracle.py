@@ -28,6 +28,7 @@ import database.utilities.Oracle as util
 from os import listdir
 import sys
 from supporting import generalSettings
+import database.dbSettings as dbSettings
 
 logger = logging.getLogger(__name__)
 
@@ -36,20 +37,31 @@ class DeployOracle:
     def __init__(self):
         thisproc="init"
         self.logger = logging.getLogger(__name__)
-        self.sqldir ="/tmp"
+        #self.sqldir ="/tmp"
         self.target_owner =""
         self.db_properties_file =""
+        self.database_tns_name, self.database_schema, self.database_user, self.database_user_password = dbSettings.getdbenvvars()
+        self.sqldir = dbSettings.targetsqldir
+        log(self.logger, logging.DEBUG, thisproc, 'database_tns_name is >' + self.database_tns_name +"<.")
+        log(self.logger, logging.DEBUG, thisproc, 'database_schema is >' + self.database_schema +"<.")
+        log(self.logger, logging.DEBUG, thisproc, 'database_user is >' + self.database_user + "<.")
+        if self.database_user_password is None:
+            log(self.logger, logging.WARN, thisproc, 'database_user_password is empty.')
+        else:
+            log(self.logger, logging.DEBUG, thisproc, 'database_user_password has a value.')
+
 
     def deployArtifact(self):
         thisproc="deployArtifact"
         log(self.logger, logging.INFO, thisproc, "deployArtifact started.")
-        for sqlfile in listdir(self.sqldir):
+        schema_directory = self.sqldir + '/' + self.database_schema
+        for sqlfile in listdir(schema_directory):
             if sqlfile[-4:] != ".sql":
                 log(self.logger, logging.INFO, thisproc, "Ignored non-sql file >" + sqlfile + "<.")
                 continue
             log(self.logger, logging.INFO, thisproc, "Processing sql file >" + sqlfile + "<.")
-            oracle_util = util.OracleUtilities('user','password','connection','REPORT','outputfile')
-            oracle_util.run_sqlplus(sqlfile)
+            oracle_util = util.OracleUtilities(self.database_user,self.database_user_password,self.database_tns_name,'ABORT',self.database_schema +'_sqloutput.log')
+            oracle_util.run_sqlplus(schema_directory +'/' + sqlfile)
 
         log(self.logger, logging.INFO, thisproc, "deployArtifact completed.")
 

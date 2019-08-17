@@ -21,18 +21,7 @@
 #  SOFTWARE.
 #
 
-#  MIT License
-#
-#
-#  Permission is hereby granted, free of charge, to any person obtaining a copy
-#  of this software and associated documentation files (the "Software"), to deal
-#  in the Software without restriction, including without limitation the rights
-#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-#  copies of the Software, and to permit persons to whom the Software is
-#  furnished to do so, subject to the following conditions:
-#
-#
-#
+
 from subprocess import Popen, PIPE
 import logging
 logger = logging.getLogger(__name__)
@@ -44,7 +33,8 @@ logger = logging.getLogger(__name__)
 class OracleUtilities:
 
     def __init__(self, db_user, db_password, db_connection, on_sql_error, output_file):
-        self.connect_string=db_user + "/" + db_password + "@" + db_connection
+        self.database_connection = db_connection
+        self.connect_string='connect ' + db_user + "/" + db_password + "@" + self.database_connection
         if on_sql_error == "ABORT":
            self.error_clause_sql="WHENEVER SQLERROR EXIT SQL.SQLCODE"
            self.error_clause_os="WHENEVER OSERROR EXIT 9"
@@ -62,9 +52,11 @@ class OracleUtilities:
         thisproc = "run_sqlplus"
 
         try:
+            log(logger, logging.INFO, thisproc, "Running script >" + sqlfile + "< on database >" + self.database_connection +"<.")
             p = Popen([dbSettings.sqlplus_command, "-s", "/NOLOG"], universal_newlines=True, stdin=PIPE, stdout=PIPE,
                                 stderr=PIPE)
             stdoutput = p.communicate(input=self.error_clause_sql
+                                            +"\n" + self.connect_string
                                             +"\n" + "@" + sqlfile
                                             +"\n" + "exit")[0]
             log(logger, logging.INFO, thisproc, "SQLPlus output: " + stdoutput)
