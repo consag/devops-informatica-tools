@@ -39,6 +39,7 @@ from pathlib import Path
 logger = logging.getLogger(__name__)
 entrynr =0
 level =0
+previous_schema = 'AUQW&^D*AD&FS'
 
 def processList(deployFile):
     latestError = err.OK
