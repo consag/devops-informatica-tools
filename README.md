@@ -1,4 +1,4 @@
-# CI-CD Pipeline components for Informatica projects
+# CI-CD Pipeline, Provisioning and Mainenance components for Informatica projects
 
 ## Dependencies
 * Crypto module for password encryption. Depending on the method you want to use, you need to install one of the following packages:
@@ -6,6 +6,13 @@
 	pip install cryptography
 * setuptools for upload and download of Nexus artifacts
 	pip install setuptools
+
+## Checks after installation
+#### Check if encryption works:
+- Create a virtualenv
+- Run:  python3 supporting/encryption.py
+  Output: Hello encrypted world!
+
 
 ## License
 MIT
