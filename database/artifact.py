@@ -96,21 +96,12 @@ def generate_orderedsql(sourcesqldir, schema, input_sqlfile):
 
     the_source_sqlfile = input_sqlfile
     entrynr = entrynr + 1
-    ##
-    # tricky: let's put the entrynr before the first _ we find (if any)
-    prefixReleaseID = settings.sqlprefix +  generalSettings.releaseID
-    if prefixReleaseID.find('_') >= 0:
-        firstpart = prefixReleaseID[0:prefixReleaseID.find('_')] + ".%02d" % entrynr
-        secondpart = prefixReleaseID[prefixReleaseID.find('_'):]
-        prefixReleaseID = firstpart + secondpart
-        supporting.log(logger, logging.INFO, thisproc,
-                   "prefixReleaseID is >" + prefixReleaseID + "<. Based on firstpart >" + firstpart + "< and secondpart >" + secondpart +"<.")
+    prefixReleaseID = settings.sqlprefix + ".%02d" % entrynr
 
-    orderedsqlfilename = settings.targetsqldir + "/" + prefixReleaseID \
-                         + "_" + schema + ".sql"
+    orderedsqlfilename = settings.targetsqldir + "/" + schema + "/" + prefixReleaseID + generalSettings.releaseID + ".sql"
     supporting.log(logger, logging.INFO, thisproc,
                    "orderedsqlfilename is >" + orderedsqlfilename + "<. Based on settings.targetsqldir >"
-                   + settings.targetsqldir + "<, prefixReleaseID >" + prefixReleaseID +"< and schema >" + schema +"<.")
+                   + settings.targetsqldir + "<, schema >" + schema +"< and generalSettings.releaseID >" + generalSettings.releasID +"<.")
 
     filehandling.removefile(orderedsqlfilename)
     global level
