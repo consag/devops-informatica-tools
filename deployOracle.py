@@ -67,7 +67,10 @@ class DeployOracle:
     def deployArtifact(self):
         thisproc="deployArtifact"
         log(self.logger, logging.INFO, thisproc, "deployArtifact started.")
+        log(self.logger, logging.DEBUG, thisproc, "sqldir is >" + self.sqldir + "<")
+        log(self.logger, logging.DEBUG, thisproc, "database_schema is >" + self.database_schema +"<.")
         schema_directory = self.sqldir + '/' + self.database_schema
+        log(self.logger, logging.DEBUG, thisproc, "schema_directory is >" + schema_directory +"<.")
         for sqlfile in listdir(schema_directory):
             if sqlfile[-4:] != ".sql":
                 log(self.logger, logging.INFO, thisproc, "Ignored non-sql file >" + sqlfile + "<.")
