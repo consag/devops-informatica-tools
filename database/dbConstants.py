@@ -29,14 +29,14 @@
 # @Version: 20190817.0 - JBE - Added user/password functionality
 
 # Database artifacts
-varOracleSchemaName='ORACLE_SCHEMANAME'
+varOracleSchemaName='ORACLE_SCHEMA'
 varOracleDeployList='ORACLE_DEPLOYLIST'
 varSourceSqlDir='SOURCE_SQLDIR'
 varTargetSqlDir='TARGET_SQLDIR'
 varSqlPrefix = 'SQL_PREFIX'
-varOracleDatabaseUser = 'ORACLE_DATABASE_USER'
-varDatabaseUserPassword = 'ORACLE_DATABASE_USER_PASSWORD' # encrypted
-varOracleTNSName = 'ORACLE_TNS_NAME'
+varOracleDatabaseUser = 'ORACLE_USER'
+varDatabaseUserPassword = 'ORACLE_PASSWORD' # encrypted
+varOracleTNSName = 'ORACLE_TNS'
 
 ##
 # Database artifact defaults
@@ -46,3 +46,5 @@ DEFAULT_ORACLE_DEPLOYLIST ='oracle_deploylist.txt'
 DEFAULT_SQL_DEPLOYLIST ='sqlserver_deploylist.txt'
 DEFAULT_DB2_DEPLOYLIST ='db2_deploylist.txt'
 DEFAULT_SQL_PREFIX = ''
+
+NOT_SET ='NOT_SET'

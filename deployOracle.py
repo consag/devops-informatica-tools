@@ -21,6 +21,19 @@
 #  SOFTWARE.
 #
 
+#  MIT License
+#
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy
+#  of this software and associated documentation files (the "Software"), to deal
+#  in the Software without restriction, including without limitation the rights
+#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#  copies of the Software, and to permit persons to whom the Software is
+#  furnished to do so, subject to the following conditions:
+#
+#
+#
+
 from supporting import log
 import supporting
 import logging
@@ -29,23 +42,23 @@ from os import listdir
 import sys
 from supporting import generalSettings
 import database.dbSettings as dbSettings
+import database.dbConstants as dbConstants
 
 logger = logging.getLogger(__name__)
 
 class DeployOracle:
 
-    def __init__(self):
+    def __init__(self, schema):
         thisproc="init"
         self.logger = logging.getLogger(__name__)
         #self.sqldir ="/tmp"
-        self.target_owner =""
-        self.db_properties_file =""
-        self.database_tns_name, self.database_schema, self.database_user, self.database_user_password = dbSettings.getdbenvvars()
+        self.database_schema = schema
+        self.database_tns_name, self.database_schema, self.database_user, self.database_user_password = dbSettings.getdbenvvars(schema)
         self.sqldir = dbSettings.targetsqldir
         log(self.logger, logging.DEBUG, thisproc, 'database_tns_name is >' + self.database_tns_name +"<.")
         log(self.logger, logging.DEBUG, thisproc, 'database_schema is >' + self.database_schema +"<.")
         log(self.logger, logging.DEBUG, thisproc, 'database_user is >' + self.database_user + "<.")
-        if self.database_user_password is None:
+        if self.database_user_password is None or self.database_user_password == dbConstants.NOT_SET:
             log(self.logger, logging.WARN, thisproc, 'database_user_password is empty.')
         else:
             log(self.logger, logging.DEBUG, thisproc, 'database_user_password has a value.')
@@ -77,7 +90,13 @@ def main(argv):
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    depl = DeployOracle()
-    depl.deployArtifact()
+    if len(argv) == 0:
+        supporting.log(logger, logging.ERROR, thisproc, "No schema specified. Supply one.")
+        exit(1)
+    else:
+        schema = argv[0]
+        supporting.log(logger, logging.INFO, thisproc, "Schema to deployed is >" +schema +"<.")
+        depl = DeployOracle(schema)
+        depl.deployArtifact()
 
 main(sys.argv[1:])

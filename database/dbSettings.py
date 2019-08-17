@@ -46,7 +46,7 @@ else:
     sqlplus_command = 'sqlplus'
 
 
-def getdbenvvars():
+def getdbenvvars(schema):
     thisproc="getdbenvvars"
     global dbdeploylist, sourcesqldir, targetsqldir, sqlprefix, database_user, database_schema, database_user_password, database_tns_name
     supporting.log(logger, logging.DEBUG, thisproc, 'started')
@@ -56,10 +56,10 @@ def getdbenvvars():
     # prefix for ordered sql files
     sqlprefix = os.environ.get(constants.varSqlPrefix, constants.DEFAULT_SQL_PREFIX)
     # Database user etc.
-    database_user = os.environ.get(constants.varOracleDatabaseUser)
-    database_user_password = os.environ.get(constants.varDatabaseUserPassword)
-    database_schema = os.environ.get(constants.varOracleSchemaName)
-    database_tns_name = os.environ.get(constants.varOracleTNSName)
+    database_user = os.environ.get(constants.varOracleDatabaseUser + "_" + schema, constants.NOT_SET)
+    database_user_password = os.environ.get(constants.varDatabaseUserPassword + "_" + schema, constants.NOT_SET)
+    database_schema = os.environ.get(constants.varOracleSchemaName + "_" + schema, constants.NOT_SET)
+    database_tns_name = os.environ.get(constants.varOracleTNSName + "_" + schema, constants.NOT_SET)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'completed')
     return database_tns_name, database_schema, database_user, database_user_password
@@ -74,7 +74,7 @@ def outdbenvvars():
     supporting.log(logger. logging.DEBUG, thisproc, 'database_schema is >' + database_schema +"<.")
     supporting.log(logger, logging.DEBUG, thisproc, 'database user is >' + database_user +"<.")
     if database_user_password is None:
-        supporting.log(logger, logging.WARNING, thisproc, 'dataase_user_password is empty')
+        supporting.log(logger, logging.WARNING, thisproc, 'database_user_password is empty')
     else:
         supporting.log(logger, logging.DEBUG, thisproc, 'database_user_password has been determined.')
 
