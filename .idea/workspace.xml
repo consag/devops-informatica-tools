@@ -13,20 +13,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/database/artifact.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="71">
-              <caret line="43" column="24" lean-forward="true" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
+            <state relative-caret-position="646">
+              <caret line="107" column="100" selection-start-line="107" selection-start-column="100" selection-end-line="107" selection-end-column="100" />
+              <folding>
+                <element signature="e#1261#1296#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/supporting/generalSettings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="46" column="57" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/createOracleArtifact.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="52" column="27" lean-forward="true" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="27" />
+            <state relative-caret-position="596">
+              <caret line="52" column="27" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -34,7 +46,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/dbSettings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-327">
+            <state relative-caret-position="595">
               <caret line="38" column="6" selection-start-line="38" selection-end-line="38" selection-end-column="6" />
               <folding>
                 <element signature="e#1232#1272#0" expanded="true" />
@@ -131,18 +143,17 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="158" />
     <option name="y" value="80" />
-    <option name="width" value="952" />
-    <option name="height" value="484" />
+    <option name="width" value="2039" />
+    <option name="height" value="1198" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -155,17 +166,23 @@
               <item name="devops-informatica-tools" type="462c0819:PsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="devops-informatica-tools" type="b2602c69:ProjectViewProjectNode" />
+              <item name="devops-informatica-tools" type="462c0819:PsiDirectoryNode" />
+              <item name="supporting" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -799,10 +816,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1292" height="670" extended-state="6" />
+    <frame x="158" y="80" width="2039" height="1198" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4994233" visible="true" weight="0.18181819" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4994233" visible="true" weight="0.2173913" />
       <window_info id="Structure" order="1" sideWeight="0.5005767" side_tool="true" weight="0.2496329" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -1190,13 +1207,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/supporting/generalSettings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="46" column="57" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/dbConstants.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-58">
@@ -1204,16 +1214,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/artifact.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="43" column="24" lean-forward="true" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/dbSettings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-327">
+        <state relative-caret-position="595">
           <caret line="38" column="6" selection-start-line="38" selection-end-line="38" selection-end-column="6" />
           <folding>
             <element signature="e#1232#1272#0" expanded="true" />
@@ -1221,10 +1224,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/supporting/generalSettings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="46" column="57" selection-start-line="46" selection-start-column="57" selection-end-line="46" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/createOracleArtifact.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="52" column="27" lean-forward="true" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="27" />
+        <state relative-caret-position="596">
+          <caret line="52" column="27" selection-start-line="52" selection-start-column="27" selection-end-line="52" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/artifact.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="107" column="100" selection-start-line="107" selection-start-column="100" selection-end-line="107" selection-end-column="100" />
+          <folding>
+            <element signature="e#1261#1296#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
