@@ -9,6 +9,9 @@ __pycache__/
 # virtual env
 devops_informatica/
 
+#temp
+temp/
+
 # Distribution / packaging
 .Python
 build/
