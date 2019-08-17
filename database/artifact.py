@@ -89,18 +89,23 @@ def processEntry(deployEntry):
 
 def generate_orderedsql(sourcesqldir, schema, input_sqlfile):
     thisproc = "generate_orderedsql"
-    global entrynr
+    global entrynr, previous_schema
     result = err.OK
     supporting.log(logger, logging.DEBUG, thisproc, "Started to work on sql file >" + input_sqlfile + "< in schema >" +schema +"<.")
     supporting.log(logger, logging.DEBUG, thisproc, "settings.targetsqldir is >" + settings.targetsqldir + "<.")
 
     the_source_sqlfile = input_sqlfile
-    entrynr = entrynr + 1
-    prefixReleaseID = settings.sqlprefix + ".%02d" % entrynr
+    if schema == previous_schema:
+        entrynr = entrynr + 1
+    else:
+        entrynr = 1
 
-    orderedsqlfilename = settings.targetsqldir + "/" + schema + "/" + prefixReleaseID + generalSettings.releaseID + ".sql"
+    prefixReleaseID = settings.sqlprefix + "%02d" % entrynr
+
+    orderedsqlfilename = settings.targetsqldir + "/" + schema + "/" + prefixReleaseID + "_" + schema + "_" + generalSettings.releaseID + ".sql"
+    create_directory(settings.targetsqldir + "/" + schema)
     supporting.log(logger, logging.INFO, thisproc,
-                   "orderedsqlfilename is >" + orderedsqlfilename + "<. Based on settings.targetsqldir >"
+                   "orderedsqlfilename is >" + orderedsqlfilename + "<. Based on prefixReleaseID >" + prefixReleaseID + ", settings.targetsqldir >"
                    + settings.targetsqldir + "<, schema >" + schema +"< and generalSettings.releaseID >" + generalSettings.releaseID +"<.")
 
     filehandling.removefile(orderedsqlfilename)
@@ -111,7 +116,12 @@ def generate_orderedsql(sourcesqldir, schema, input_sqlfile):
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")
 
+    previous_schema = schema
     return result
+
+def create_directory(directory):
+    os.makedirs(directory, exist_ok=True)  # succeeds even if directory exists.
+
 
 def ignoreline(line):
     if(re.match("^--", line) or re.match("^\n$",line)):
@@ -124,6 +134,7 @@ def calltosubsql(line):
     if(re.match("^@@", line)):
         return True
     return False
+
 
 def processlines(the_source_sqldir, schema, the_source_sqlfile, orderedsqlfilename):
     result = err.OK
