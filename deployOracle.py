@@ -21,28 +21,17 @@
 #  SOFTWARE.
 #
 
-#  MIT License
-#
-#
-#  Permission is hereby granted, free of charge, to any person obtaining a copy
-#  of this software and associated documentation files (the "Software"), to deal
-#  in the Software without restriction, including without limitation the rights
-#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-#  copies of the Software, and to permit persons to whom the Software is
-#  furnished to do so, subject to the following conditions:
-#
-#
-#
-
 from supporting import log
 import supporting
 import logging
 import database.utilities.Oracle as util
-from os import listdir
+#from os import listdir
 import sys
 from supporting import generalSettings
 import database.dbSettings as dbSettings
 import database.dbConstants as dbConstants
+import glob
+import supporting.errorcodes as err
 
 logger = logging.getLogger(__name__)
 
@@ -69,13 +58,14 @@ class DeployOracle:
 
     def deployArtifact(self):
         thisproc="deployArtifact"
-        overall_result = 0
+        overall_result = err.OK
         log(self.logger, logging.INFO, thisproc, "deployArtifact started.")
         log(self.logger, logging.DEBUG, thisproc, "sqldir is >" + self.sqldir + "<")
         log(self.logger, logging.DEBUG, thisproc, "database_schema is >" + self.database_schema +"<.")
         schema_directory = self.sqldir + '/' + self.database_schema
         log(self.logger, logging.DEBUG, thisproc, "schema_directory is >" + schema_directory +"<.")
-        for sqlfile in listdir(schema_directory).sort():
+        sql_files = [f for f in glob.glob(schema_directory + "*.sql")]
+        for sqlfile in sql_files:
             if sqlfile[-4:] != ".sql":
                 log(self.logger, logging.INFO, thisproc, "Ignored non-sql file >" + sqlfile + "<.")
                 continue
