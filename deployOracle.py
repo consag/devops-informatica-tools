@@ -40,7 +40,6 @@ class DeployOracle:
     def __init__(self, schema):
         thisproc="init"
         self.logger = logging.getLogger(__name__)
-        #self.sqldir ="/tmp"
         self.database_schema = schema
         dbSettings.getdbenvvars()
         self.database_tns_name, self.database_schema, self.database_user, self.database_user_password = dbSettings.getschemaenvvars(schema)
@@ -64,15 +63,20 @@ class DeployOracle:
         log(self.logger, logging.DEBUG, thisproc, "database_schema is >" + self.database_schema +"<.")
         schema_directory = self.sqldir + '/' + self.database_schema
         log(self.logger, logging.DEBUG, thisproc, "schema_directory is >" + schema_directory +"<.")
-        sql_files = [f for f in glob.glob(schema_directory + "*.sql")]
+        sql_files = [f for f in glob.glob(schema_directory + "**/*.sql")]
+        log(self.logger, logging.DEBUG, thisproc, "sql_files found >" + str(len(sql_files)) +"<.")
         for sqlfile in sql_files:
             if sqlfile[-4:] != ".sql":
                 log(self.logger, logging.INFO, thisproc, "Ignored non-sql file >" + sqlfile + "<.")
                 continue
             log(self.logger, logging.INFO, thisproc, "Processing sql file >" + sqlfile + "<.")
-            oracle_util = util.OracleUtilities(self.database_user,self.database_user_password,self.database_tns_name,'ABORT',self.database_schema +'_sqloutput.log')
-            sqlplus_result = oracle_util.run_sqlplus(schema_directory +'/' + sqlfile)
-            if sqlplus_result != 0:
+            oracle_util = util.OracleUtilities(self.database_user
+                                               ,self.database_user_password
+                                               ,self.database_tns_name
+                                               ,'REPORT'
+                                               ,self.database_schema +'_sqloutput.log')
+            sqlplus_result = oracle_util.run_sqlplus(sqlfile)
+            if sqlplus_result.rc != 0:
                 log(self.logger, logging.WARNING, thisproc, "sqlplus returned >" + sqlplus_result.code + "<.")
                 overall_result = sqlplus_result
 

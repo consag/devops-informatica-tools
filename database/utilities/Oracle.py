@@ -42,8 +42,11 @@ class OracleUtilities:
         if self.on_sql_error == "ABORT":
            self.error_clause_sql="WHENEVER SQLERROR EXIT SQL.SQLCODE"
            self.error_clause_os="WHENEVER OSERROR EXIT 9"
+           self.spool_clause_on = ""
+           self.spool_clause_off = ""
         elif self.on_sql_error == "REPORT":
             self.error_clause_sql=""
+            self.error_clause_os=""
             self.spool_clause_on="spool " + self.output_file
             self.spool_clause_off="spool off"
         else:
