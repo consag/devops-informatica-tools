@@ -69,6 +69,7 @@ class DeployOracle:
 
     def deployArtifact(self):
         thisproc="deployArtifact"
+        overall_result = 0
         log(self.logger, logging.INFO, thisproc, "deployArtifact started.")
         log(self.logger, logging.DEBUG, thisproc, "sqldir is >" + self.sqldir + "<")
         log(self.logger, logging.DEBUG, thisproc, "database_schema is >" + self.database_schema +"<.")
@@ -80,9 +81,14 @@ class DeployOracle:
                 continue
             log(self.logger, logging.INFO, thisproc, "Processing sql file >" + sqlfile + "<.")
             oracle_util = util.OracleUtilities(self.database_user,self.database_user_password,self.database_tns_name,'ABORT',self.database_schema +'_sqloutput.log')
-            oracle_util.run_sqlplus(schema_directory +'/' + sqlfile)
+            sqlplus_result = oracle_util.run_sqlplus(schema_directory +'/' + sqlfile)
+            if sqlplus_result != 0:
+                log(self.logger, logging.WARNING, thisproc, "sqlplus returned >" + sqlplus_result + "<.")
+                overall_result = sqlplus_result
 
-        log(self.logger, logging.INFO, thisproc, "deployArtifact completed.")
+        log(self.logger, logging.INFO, thisproc, "deployArtifact completed with >" + overall_result +"<.")
+        return overall_result
+
 
 def main(argv):
     thisproc = "MAIN"
@@ -103,6 +109,7 @@ def main(argv):
         schema = argv[0]
         supporting.log(logger, logging.INFO, thisproc, "Schema to deployed is >" +schema +"<.")
         depl = DeployOracle(schema)
-        depl.deployArtifact()
+        result = depl.deployArtifact()
+        supporting.exitscript(resultlogger, result)
 
 main(sys.argv[1:])
