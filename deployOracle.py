@@ -75,7 +75,7 @@ class DeployOracle:
         log(self.logger, logging.DEBUG, thisproc, "database_schema is >" + self.database_schema +"<.")
         schema_directory = self.sqldir + '/' + self.database_schema
         log(self.logger, logging.DEBUG, thisproc, "schema_directory is >" + schema_directory +"<.")
-        for sqlfile in listdir(schema_directory):
+        for sqlfile in listdir(schema_directory).sort():
             if sqlfile[-4:] != ".sql":
                 log(self.logger, logging.INFO, thisproc, "Ignored non-sql file >" + sqlfile + "<.")
                 continue
