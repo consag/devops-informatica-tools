@@ -8,6 +8,7 @@ __pycache__/
 
 # virtual env
 devops_informatica/
+devops-informatica-venv/
 
 #temp
 temp/
@@ -96,7 +97,6 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-devops_informatica/
 
 # Spyder project settings
 .spyderproject
