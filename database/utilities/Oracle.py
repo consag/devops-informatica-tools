@@ -24,6 +24,8 @@
 
 from subprocess import Popen, PIPE
 import logging
+import supporting.errorcodes as err
+
 logger = logging.getLogger(__name__)
 from database import dbSettings
 from supporting import log
@@ -50,6 +52,7 @@ class OracleUtilities:
 
     def run_sqlplus(self, sqlfile):
         thisproc = "run_sqlplus"
+        result = err.OK
 
         try:
             log(logger, logging.INFO, thisproc, "Running script >" + sqlfile + "< on database >" + self.database_connection +"<.")
@@ -60,6 +63,13 @@ class OracleUtilities:
                                             +"\n" + "@" + sqlfile
                                             +"\n" + "exit")[0]
             log(logger, logging.INFO, thisproc, "SQLPlus output: " + stdoutput)
+            if p.returncode == 0:
+                return err.OK
+            else:
+                err.SQLPLUS_ERROR.message = stdoutput
+                return err.SQLPLUS_ERROR
+
         except FileNotFoundError as e:
             log(logger, logging.ERROR, thisproc, e.strerror +": " + dbSettings.sqlplus_command)
+            return err.SQLFILE_NF
 

@@ -51,6 +51,11 @@ SOURCESQLDIR_NOTSET=err.Errorcode(10,'DBDEPLOY-0002','SourceSqlDir is not define
 TARGETSQLDIR_NOTSET=err.Errorcode(10,'DBDEPLOY-0003','TargetSqlDir is not defined', 'Set the environment variable','DatabaseArtifact', logging.ERROR)
 SQLFILE_NF=err.Errorcode(10,'DBDEPLOY-0004','SQL file not found', 'Check the deploy file content','DatabaseArtifact', logging.ERROR)
 
+##
+# Database deploy errors
+SQLPLUS_ERROR=err.Errorcode(10,'DBDEPLOY-0005','sqlplus return an error.','Check the log output','DatabaseDeploy',logging.ERROR)
+
+
 # Informatica artifact errors. Return code will be 20
 NOT_IMPLEMENTED=err.Errorcode(20,'INFACICD-0001','Result unknown. Function may not have been implemented completely','Ask your developer to implement the logic completely.','InformaticaArtifact',logging.WARNING)
 INFACMD_FAILED=err.Errorcode(20,'INFACICD-0002','infacmd command failed.','Check the log and/or ask your administrator.','InformaticaArtifact',logging.ERROR)
@@ -94,5 +99,4 @@ INFACMD_REMOVE_PERM_FAILED=err.Errorcode(30,'INFASEC-0023','Permissions could no
 INFACMD_SET_CONN_FAILED=err.Errorcode(30,'INFASEC-0024','Permissions could not be set.','Check the error message.','SetPermissions',logging.ERROR)
 INFACMD_NOGROUPNAME=err.Errorcode(30,'INFASEC-0025','No group name provided.','Provide a name for the group to be created.','CreateGroup',logging.ERROR)
 INFACMD_NOGROUPNAME_DELETION=err.Errorcode(30,'INFASEC-0026','No group name provided.','Provide the name of the group to be deleted.','DeleteGroup',logging.ERROR)
-
 
