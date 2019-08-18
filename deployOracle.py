@@ -53,15 +53,18 @@ class DeployOracle:
         self.logger = logging.getLogger(__name__)
         #self.sqldir ="/tmp"
         self.database_schema = schema
-        self.database_tns_name, self.database_schema, self.database_user, self.database_user_password = dbSettings.getdbenvvars(schema)
+        dbSettings.getdbenvvars()
+        self.database_tns_name, self.database_schema, self.database_user, self.database_user_password = dbSettings.getschemaenvvars(schema)
         self.sqldir = dbSettings.targetsqldir
-        log(self.logger, logging.DEBUG, thisproc, 'database_tns_name is >' + self.database_tns_name +"<.")
-        log(self.logger, logging.DEBUG, thisproc, 'database_schema is >' + self.database_schema +"<.")
-        log(self.logger, logging.DEBUG, thisproc, 'database_user is >' + self.database_user + "<.")
-        if self.database_user_password is None or self.database_user_password == dbConstants.NOT_SET:
-            log(self.logger, logging.WARN, thisproc, 'database_user_password is empty.')
-        else:
-            log(self.logger, logging.DEBUG, thisproc, 'database_user_password has a value.')
+        dbSettings.outdbenvvars()
+        dbSettings.outschemaenvvars()
+#        log(self.logger, logging.DEBUG, thisproc, 'database_tns_name is >' + self.database_tns_name +"<.")
+#        log(self.logger, logging.DEBUG, thisproc, 'database_schema is >' + self.database_schema +"<.")
+#        log(self.logger, logging.DEBUG, thisproc, 'database_user is >' + self.database_user + "<.")
+#        if self.database_user_password is None or self.database_user_password == dbConstants.NOT_SET:
+#            log(self.logger, logging.WARN, thisproc, 'database_user_password is empty.')
+#        else:
+#            log(self.logger, logging.DEBUG, thisproc, 'database_user_password has a value.')
 
 
     def deployArtifact(self):

@@ -45,16 +45,20 @@ if os.name == 'nt':
 else:
     sqlplus_command = 'sqlplus'
 
-
-def getdbenvvars(schema):
+def getdbenvvars():
     thisproc="getdbenvvars"
-    global dbdeploylist, sourcesqldir, targetsqldir, sqlprefix, database_user, database_schema, database_user_password, database_tns_name
+    global dbdeploylist, sourcesqldir, targetsqldir, sqlprefix
     supporting.log(logger, logging.DEBUG, thisproc, 'started')
     dbdeploylist = completePath(os.environ.get(constants.varOracleDeployList, constants.DEFAULT_ORACLE_DEPLOYLIST), generalsettings.sourceDir)
     sourcesqldir = completePath(os.environ.get(constants.varSourceSqlDir, constants.DEFAULT_SOURCE_SQLDIR), generalsettings.sourceDir)
     targetsqldir = completePath(os.environ.get(constants.varTargetSqlDir, constants.DEFAULT_TARGET_SQLDIR), generalsettings.sourceDir)
     # prefix for ordered sql files
     sqlprefix = os.environ.get(constants.varSqlPrefix, constants.DEFAULT_SQL_PREFIX)
+
+
+def getschemaenvvars(schema):
+    thisproc="getschemaenvvars"
+    global database_user, database_schema, database_user_password, database_tns_name
     # Database user etc.
     database_user = os.environ.get(constants.varOracleDatabaseUser + "_" + schema, constants.NOT_SET)
     database_user_password = os.environ.get(constants.varDatabaseUserPassword + "_" + schema, constants.NOT_SET)
@@ -67,15 +71,18 @@ def getdbenvvars(schema):
 
 def outdbenvvars():
     thisproc = "outdbenvvars"
-    supporting.log(logger, logging.DEBUG, thisproc, 'started')
     supporting.log(logger, logging.INFO,  thisproc, 'dbdeploylist is >' + dbdeploylist + "<.")
     supporting.log(logger, logging.INFO,  thisproc, 'sourcesqldir is >' + sourcesqldir +"<.")
     supporting.log(logger, logging.INFO,  thisproc, 'targetsqldir is >' + targetsqldir +"<.")
-    supporting.log(logger. logging.DEBUG, thisproc, 'database_schema is >' + database_schema +"<.")
+
+
+def outschemaenvvars():
+    thisproc = "outdbenvvars"
+    supporting.log(logger, logging.DEBUG, thisproc, 'database_tns_name is >' + database_tns_name +"<.")
+    supporting.log(logger, logging.DEBUG, thisproc, 'database_schema is >' + database_schema +"<.")
     supporting.log(logger, logging.DEBUG, thisproc, 'database user is >' + database_user +"<.")
     if database_user_password is None:
         supporting.log(logger, logging.WARNING, thisproc, 'database_user_password is empty')
     else:
         supporting.log(logger, logging.DEBUG, thisproc, 'database_user_password has been determined.')
 
-    supporting.log(logger, logging.DEBUG, thisproc, 'completed')
