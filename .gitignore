@@ -9,6 +9,7 @@ __pycache__/
 # virtual env
 devops_informatica/
 devops-informatica-venv/
+devops-informatica-venv-linux/
 
 #temp
 temp/
