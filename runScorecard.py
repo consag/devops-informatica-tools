@@ -51,6 +51,7 @@ def main(argv):
     objectPath = argv[0]
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
+    supporting.logentireenv()
 
     scorecard = jobManagement.JobExecution(Tool="RunScorecard",
                                            Domain=infaSettings.sourceDomain,

@@ -56,6 +56,7 @@ def main(argv):
 
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
+    supporting.logentireenv()
 
     """with AsIsOptions, you can speficy e.g. a parameter set
         Example:

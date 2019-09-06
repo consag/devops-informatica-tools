@@ -29,7 +29,10 @@
 
 import logging, datetime, os
 import supporting.generalConstants as generalConstants
+import supporting
 import sys
+
+logger = logging.getLogger(__name__)
 
 now = datetime.datetime.now()
 
@@ -85,4 +88,9 @@ def exitscript(resultlogger, result):
     writeresult(resultlogger, result)
     sys.exit(result.rc)
 
+
+def logentireenv():
+    thisproc = "logentireenv"
+    for param in os.environ.keys():
+        supporting.log(logger, logging.DEBUG, thisproc,"%30s %s" % (param, os.environ[param]))
 
