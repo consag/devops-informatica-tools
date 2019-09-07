@@ -52,7 +52,7 @@ def main(argv):
     application_name = argv[0]
     mapping_name = argv[1]
     pushdown_type = argv[2] if len(argv) > 2 else "Source"
-    optimization_level = argv[3] if len(argv) > 3 else 3
+    optimization_level = argv[3] if len(argv) > 3 else "3"
     as_is_options = argv[4] if len(argv) > 4 else ""
 
     infaSettings.getinfaenvvars()

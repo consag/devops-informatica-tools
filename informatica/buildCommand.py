@@ -24,6 +24,7 @@ from supporting import generalConstants
 from supporting import generalSettings
 from informatica import infaConstants
 from informatica import infaSettings
+from supporting import log
 import logging
 
 logger = logging.getLogger(__name__)
@@ -31,6 +32,7 @@ entrynr = 0
 
 
 def build(**KeyWordArguments):
+    procName="build"
     """Build an IDQ command, return it as string"""
 
     # Process the input aruguments to compose the IDQ command
@@ -46,6 +48,9 @@ def build(**KeyWordArguments):
     # The Tool arguments are processed separately, because those have to go first
     # For the other arguments, the order does not matter, so they can be processed together
     for key, value in KeyWordArguments.items():
+        log(logger, logging.DEBUG,procName,"key =>" + key +"<.")
+        if isinstance(value, str):
+            log(logger, logging.DEBUG,procName,"value =>" + value +"<.") 
         # If the argument is "Tool" , assign the value to the variable Tool, and lookup the Program and
         # Command in AvailableTools, assign those to InfaProgram, InfaCommand
         if key == "Tool":
