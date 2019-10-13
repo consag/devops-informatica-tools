@@ -37,6 +37,7 @@ logger = logging.getLogger(__name__)
 
 
 class DeployOracle:
+    """Deploys a previously built Oracle package"""
 
     def __init__(self, schema):
         thisproc = "init"

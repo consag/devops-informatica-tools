@@ -35,6 +35,9 @@ result = errorcodes.OK
 
 
 def parse_the_arguments(argv):
+    """Parses the provided arguments and exits on an error.
+    Use the option -h on the command line to get an overview of the required and optional arguments.
+     """
     parser = argparse.ArgumentParser()
     parser.add_argument("-a", "--application", required=True, action="store", dest="application_name",
                         help="Application that contains the object to run.")
@@ -61,6 +64,7 @@ def parse_the_arguments(argv):
 
 
 def main(argv):
+    """Runs a Mapping."""
     thisproc = "MAIN"
     mainProc = 'runMapping'
 
