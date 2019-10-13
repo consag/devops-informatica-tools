@@ -38,9 +38,10 @@ now = datetime.datetime.now()
 result = err.OK
 settings.databaseType = 'Oracle'
 
+
 def main():
     thisproc = "MAIN"
-    mainProc='CreateOracleArtifact'
+    mainProc = 'CreateOracleArtifact'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -55,15 +56,17 @@ def main():
 
     result = dbchecks.databaseartifactchecks()
     if result.rc != 0:
-        supporting.log(logger, logging.ERROR, thisproc, 'Database Artifact Checks failed with >' + result.message +"<.")
+        supporting.log(logger, logging.ERROR, thisproc,
+                       'Database Artifact Checks failed with >' + result.message + "<.")
         supporting.exitscript(resultlogger, result)
 
     result = database.artifact.processList(settings.dbdeploylist)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
-#    supporting.writeresult(resultlogger, result)
+    #    supporting.writeresult(resultlogger, result)
     supporting.exitscript(resultlogger, result)
 
 
-main()
+if __name__ == '__main__':
+    main()

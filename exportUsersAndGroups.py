@@ -31,9 +31,10 @@ import sys
 now = datetime.datetime.now()
 result = errorcodes.OK
 
+
 def main(argv):
     thisproc = "MAIN"
-    mainProc='exportUsersAndGroups'
+    mainProc = 'exportUsersAndGroups'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -58,12 +59,12 @@ def main(argv):
     infaSettings.outinfaenvvars()
 
     users_and_groups = manageSecurity.ManageSecurity(Tool="ExportUsersAndGroups",
-        Domain=infaSettings.sourceDomain,
-        ExportFile=export_file_name,
-        Force=force,
-        RetainPassword=retain_password,
-        OnError=errorcodes.INFACMD_EXPORT_USRGRP_FAILED
-    )
+                                                     Domain=infaSettings.sourceDomain,
+                                                     ExportFile=export_file_name,
+                                                     Force=force,
+                                                     RetainPassword=retain_password,
+                                                     OnError=errorcodes.INFACMD_EXPORT_USRGRP_FAILED
+                                                     )
 
     result = manageSecurity.ManageSecurity.manage(users_and_groups)
 
@@ -72,4 +73,5 @@ def main(argv):
     supporting.exitscript(resultlogger, result)
 
 
-main(sys.argv[1:])
+if __name__ == '__main__':
+    main(sys.argv[1:])

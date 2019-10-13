@@ -32,9 +32,10 @@ import sys
 now = datetime.datetime.now()
 result = errorcodes.OK
 
+
 def main(argv):
     thisproc = "MAIN"
-    mainProc='exportConnections'
+    mainProc = 'exportConnections'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -44,13 +45,13 @@ def main(argv):
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-#    if len(argv) < 1:
-#        supporting.log(logger, logging.ERROR, thisproc, 'No group name provided.')
-#        result = errorcodes.INFACMD_NOGROUPNAME
-#        supporting.exitscript(resultlogger, result)
+    #    if len(argv) < 1:
+    #        supporting.log(logger, logging.ERROR, thisproc, 'No group name provided.')
+    #        result = errorcodes.INFACMD_NOGROUPNAME
+    #        supporting.exitscript(resultlogger, result)
 
-#    # mandatory
-#    group_name = argv[0]
+    #    # mandatory
+    #    group_name = argv[0]
     # optional
     output_file = argv[0] if len(argv) > 0 else infaConstants.DEFAULT_EXPORT_CONNECTIONSFILE
     export_control_file = argv[1] if len(argv) > 1 else ""
@@ -60,21 +61,21 @@ def main(argv):
 
     if export_control_file != "":
         connection = manageConnection.ManageConnection(Tool="ExportConnections",
-            Domain=infaSettings.sourceDomain,
-            ExportControlfile=export_control_file,
-            ExportFile=output_file,
-            RetainPassword='true',
-            Force='true',
-            OnError=errorcodes.INFACMD_EXPORT_CONN_FAILED
-        )
+                                                       Domain=infaSettings.sourceDomain,
+                                                       ExportControlfile=export_control_file,
+                                                       ExportFile=output_file,
+                                                       RetainPassword='true',
+                                                       Force='true',
+                                                       OnError=errorcodes.INFACMD_EXPORT_CONN_FAILED
+                                                       )
     else:
         connection = manageConnection.ManageConnection(Tool="ExportConnections",
-            Domain=infaSettings.sourceDomain,
-            ExportFile=output_file,
-            RetainPassword='true',
-            Force='true',
-            OnError=errorcodes.INFACMD_EXPORT_CONN_FAILED
-        )
+                                                       Domain=infaSettings.sourceDomain,
+                                                       ExportFile=output_file,
+                                                       RetainPassword='true',
+                                                       Force='true',
+                                                       OnError=errorcodes.INFACMD_EXPORT_CONN_FAILED
+                                                       )
 
     result = connection.manage()
 
@@ -83,4 +84,5 @@ def main(argv):
     supporting.exitscript(resultlogger, result)
 
 
-main(sys.argv[1:])
+if __name__ == '__main__':
+    main(sys.argv[1:])

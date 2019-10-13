@@ -32,6 +32,7 @@ import argparse
 now = datetime.datetime.now()
 result = errorcodes.OK
 
+
 def parse_the_arguments(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--profile", required=True, action="store", dest="object_path",
@@ -43,7 +44,7 @@ def parse_the_arguments(argv):
 
 def main(argv):
     thisproc = "MAIN"
-    mainProc='runScorecard'
+    mainProc = 'runScorecard'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -76,4 +77,5 @@ def main(argv):
     supporting.exitscript(resultlogger, result)
 
 
-main(sys.argv[1:])
+if __name__ == '__main__':
+    main(sys.argv[1:])

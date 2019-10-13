@@ -33,33 +33,36 @@ import argparse
 now = datetime.datetime.now()
 result = errorcodes.OK
 
+
 def parse_the_arguments(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument("-a", "--application", required=True, action="store", dest="application_name",
                         help="Application that contains the object to run.")
     parser.add_argument("-m", "--mapping", help="Mapping to run.", required=True, action="store", dest="mapping_name")
     parser.add_argument("-p", "--pushdown", help="Database push-down type", action="store", dest="pushdown_type"
-                        ,choices=["Source", "Target", "Full"], default="Source")
+                        , choices=["Source", "Target", "Full"], default="Source")
     parser.add_argument("-o", "--optimizationlevel", action="store", dest="optimization_level"
-                        , default="3", help="Optimization level to apply", choices =[0, 1, 2, 3, 4, 5])
+                        , default="3", help="Optimization level to apply", choices=[0, 1, 2, 3, 4, 5])
     parser.add_argument("-l", "--loglevel", type=int, action="store", dest="loglevel", choices=[0, 1, 2, 3, 4, 5]
-                        ,help="log level from 0=fatal to 5=verbose")
-    parser.add_argument("-x","-extra", action="store", dest="as_is_options", help="any options to add. Make sure to use double-quotes!")
+                        , help="log level from 0=fatal to 5=verbose")
+    parser.add_argument("-x", "-extra", action="store", dest="as_is_options",
+                        help="any options to add. Make sure to use double-quotes!")
     args = parser.parse_args()
-#    if args.pushdown_type is None:
-#        args.pushdown_type ="Source"
+    #    if args.pushdown_type is None:
+    #        args.pushdown_type ="Source"
 
-#    if args.optimization_level is None:
-#        args.optimization_level = "3"
+    #    if args.optimization_level is None:
+    #        args.optimization_level = "3"
 
     if args.as_is_options is None:
-        args.as_is_options =""
+        args.as_is_options = ""
 
     return args
 
+
 def main(argv):
     thisproc = "MAIN"
-    mainProc='runMapping'
+    mainProc = 'runMapping'
 
     args = parse_the_arguments(argv)
 
@@ -105,4 +108,5 @@ def main(argv):
     supporting.exitscript(resultlogger, result)
 
 
-main(sys.argv[1:])
+if __name__ == '__main__':
+    main(sys.argv[1:])

@@ -31,9 +31,10 @@ import sys
 now = datetime.datetime.now()
 result = errorcodes.OK
 
+
 def main(argv):
     thisproc = "MAIN"
-    mainProc='createGroup'
+    mainProc = 'createGroup'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -57,11 +58,11 @@ def main(argv):
     infaSettings.outinfaenvvars()
 
     group = manageSecurity.ManageSecurity(Tool="CreateGroup",
-        Domain=infaSettings.sourceDomain,
-        GroupName=group_name,
-        GroupDescription=group_description,
-        OnError=errorcodes.INFACMD_CREATE_GROUP_FAILED
-    )
+                                          Domain=infaSettings.sourceDomain,
+                                          GroupName=group_name,
+                                          GroupDescription=group_description,
+                                          OnError=errorcodes.INFACMD_CREATE_GROUP_FAILED
+                                          )
     result = manageSecurity.ManageSecurity.manage(group)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
@@ -69,4 +70,5 @@ def main(argv):
     supporting.exitscript(resultlogger, result)
 
 
-main(sys.argv[1:])
+if __name__ == '__main__':
+    main(sys.argv[1:])

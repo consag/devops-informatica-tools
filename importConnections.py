@@ -32,9 +32,10 @@ import sys
 now = datetime.datetime.now()
 result = errorcodes.OK
 
+
 def main(argv):
     thisproc = "MAIN"
-    mainProc='importConnections'
+    mainProc = 'importConnections'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -49,20 +50,20 @@ def main(argv):
         result = errorcodes.INFACMD_NOIMPORTFILENAME
         supporting.exitscript(resultlogger, result)
 
-#   mandatory
+    #   mandatory
     input_file = argv[0] if len(argv) > 0 else infaConstants.DEFAULT_IMPORT_CONNECTIONSFILE
     import_control_file = argv[1] if len(argv) > 1 else ""
-# optional
+    # optional
 
     infaSettings.getinfaenvvars()
-#    infaSettings.outinfaenvvars()
+    #    infaSettings.outinfaenvvars()
 
     connection = manageConnection.ManageConnection(Tool="ImportConnections",
                                                    Domain=infaSettings.sourceDomain,
                                                    ImportControlfile=import_control_file,
-                                                    ImportFilePath=input_file,
-                                                    OnError=errorcodes.INFACMD_EXPORT_CONN_FAILED
-                                                    )
+                                                   ImportFilePath=input_file,
+                                                   OnError=errorcodes.INFACMD_EXPORT_CONN_FAILED
+                                                   )
 
     result = connection.manage()
 
@@ -71,4 +72,5 @@ def main(argv):
     supporting.exitscript(resultlogger, result)
 
 
-main(sys.argv[1:])
+if __name__ == '__main__':
+    main(sys.argv[1:])

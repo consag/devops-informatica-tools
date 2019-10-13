@@ -31,9 +31,10 @@ import sys
 now = datetime.datetime.now()
 result = errorcodes.OK
 
+
 def main(argv):
     thisproc = "MAIN"
-    mainProc='createUser'
+    mainProc = 'createUser'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -61,15 +62,15 @@ def main(argv):
     infaSettings.outinfaenvvars()
 
     user = manageSecurity.ManageSecurity(Tool="CreateUser",
-        Domain=infaSettings.sourceDomain,
-        NewUserName=user_name,
-        NewUserPassword=user_password,
-        NewUserFullName=user_fullname,
-        NewUserDescription=user_description,
-        NewUserEmailAddress=user_email,
-        NewUserPhoneNumber=user_phone,
-        OnError=errorcodes.INFACMD_CREATE_USER_FAILED
-    )
+                                         Domain=infaSettings.sourceDomain,
+                                         NewUserName=user_name,
+                                         NewUserPassword=user_password,
+                                         NewUserFullName=user_fullname,
+                                         NewUserDescription=user_description,
+                                         NewUserEmailAddress=user_email,
+                                         NewUserPhoneNumber=user_phone,
+                                         OnError=errorcodes.INFACMD_CREATE_USER_FAILED
+                                         )
     result = manageSecurity.ManageSecurity.manage(user)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
@@ -77,4 +78,5 @@ def main(argv):
     supporting.exitscript(resultlogger, result)
 
 
-main(sys.argv[1:])
+if __name__ == '__main__':
+    main(sys.argv[1:])

@@ -28,13 +28,13 @@ from supporting import generalSettings
 from informatica import manageSecurity
 import sys
 
-
 now = datetime.datetime.now()
 result = errorcodes.OK
 
+
 def main(argv):
     thisproc = "MAIN"
-    mainProc='deleteUser'
+    mainProc = 'deleteUser'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -56,10 +56,10 @@ def main(argv):
     infaSettings.outinfaenvvars()
 
     user = manageSecurity.ManageSecurity(Tool="DeleteUser",
-        Domain=infaSettings.sourceDomain,
-        ExistingUserName=user_name,
-        OnError=errorcodes.INFACMD_DELETE_USER_FAILED
-    )
+                                         Domain=infaSettings.sourceDomain,
+                                         ExistingUserName=user_name,
+                                         OnError=errorcodes.INFACMD_DELETE_USER_FAILED
+                                         )
     result = manageSecurity.ManageSecurity.manage(user)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
@@ -67,4 +67,5 @@ def main(argv):
     supporting.exitscript(resultlogger, result)
 
 
-main(sys.argv[1:])
+if __name__ == '__main__':
+    main(sys.argv[1:])

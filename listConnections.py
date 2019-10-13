@@ -32,9 +32,10 @@ import sys
 now = datetime.datetime.now()
 result = errorcodes.OK
 
+
 def main(argv):
     thisproc = "MAIN"
-    mainProc='listConnections'
+    mainProc = 'listConnections'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -44,13 +45,13 @@ def main(argv):
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-#    if len(argv) < 1:
-#        supporting.log(logger, logging.ERROR, thisproc, 'No group name provided.')
-#        result = errorcodes.INFACMD_NOGROUPNAME
-#        supporting.exitscript(resultlogger, result)
+    #    if len(argv) < 1:
+    #        supporting.log(logger, logging.ERROR, thisproc, 'No group name provided.')
+    #        result = errorcodes.INFACMD_NOGROUPNAME
+    #        supporting.exitscript(resultlogger, result)
 
-#    # mandatory
-#    group_name = argv[0]
+    #    # mandatory
+    #    group_name = argv[0]
     # optional
     output_file = argv[0] if len(argv) > 0 else infaConstants.DEFAULT_CONNECTIONSFILE
     filter = argv[1] if len(argv) > 1 else ""
@@ -59,27 +60,28 @@ def main(argv):
     infaSettings.outinfaenvvars()
 
     connection = manageConnection.ManageConnection(Tool="ListConnections",
-        Domain=infaSettings.sourceDomain,
-        OnError=errorcodes.INFACMD_LIST_CONN_FAILED,
-        OutputFile=output_file
-    )
+                                                   Domain=infaSettings.sourceDomain,
+                                                   OnError=errorcodes.INFACMD_LIST_CONN_FAILED,
+                                                   OutputFile=output_file
+                                                   )
     result = manageConnection.ManageConnection.manage(connection)
     if result.rc == errorcodes.OK.rc:
         result = connection.parseConnectionListOutput(output_file)
         if result.rc == errorcodes.OK.rc:
             result = connection.writeConnectionList(output_file)
         else:
-            supporting.log(logger, logging.DEBUG, thisproc, 'parseConnectionListOutput completed with return code >' + str(result.rc)
+            supporting.log(logger, logging.DEBUG, thisproc,
+                           'parseConnectionListOutput completed with return code >' + str(result.rc)
                            + '< and result code >' + result.code + "<.")
     else:
         with open(output_file, 'r') as f:
             for line in f:
                 result.message += line.rstrip()
 
-
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
     supporting.exitscript(resultlogger, result)
 
 
-main(sys.argv[1:])
+if __name__ == '__main__':
+    main(sys.argv[1:])

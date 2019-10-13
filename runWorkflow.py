@@ -33,27 +33,30 @@ import argparse
 now = datetime.datetime.now()
 result = errorcodes.OK
 
+
 def parse_the_arguments(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument("-a", "--application", required=True, action="store", dest="application_name",
                         help="Application that contains the object to run.")
-    parser.add_argument("-w", "--workflow", help="Workflow to run.", required=True, action="store", dest="workflow_name")
+    parser.add_argument("-w", "--workflow", help="Workflow to run.", required=True, action="store",
+                        dest="workflow_name")
     parser.add_argument("-c", "--completion", help="Wait for workflow completion", action="store", dest="wait"
-                        ,choices=["True", "False"], default="False")
+                        , choices=["True", "False"], default="False")
     parser.add_argument("-l", "--loglevel", type=int, action="store", dest="loglevel", choices=[0, 1, 2, 3, 4, 5]
-                        ,help="log level from 0=fatal to 5=verbose")
-    parser.add_argument("-x","-extra", action="store", dest="as_is_options", help="any options to add. Make sure to use double-quotes!")
+                        , help="log level from 0=fatal to 5=verbose")
+    parser.add_argument("-x", "-extra", action="store", dest="as_is_options",
+                        help="any options to add. Make sure to use double-quotes!")
     args = parser.parse_args()
 
     if args.as_is_options is None:
-        args.as_is_options =""
+        args.as_is_options = ""
 
     return args
 
 
 def main(argv):
     thisproc = "MAIN"
-    mainProc='runWorkflow'
+    mainProc = 'runWorkflow'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -80,14 +83,14 @@ def main(argv):
         It is important to supply the AsIsOptions as one single string
     """
     workflow = jobManagement.JobExecution(Tool="RunWorkflow",  # this will translate to StartWorkflow for the infacmd
-                                         Domain=infaSettings.sourceDomain,
-                                         ServiceName=infaSettings.sourceDIS,
-                                         Application=application_name,
-                                         Workflow=workflow_name,
-                                         Wait=wait,
-                                         OnError=errorcodes.INFACMD_WORKFLOW_FAILED,
-                                         AsIsOptions=as_is_options
-                                         )
+                                          Domain=infaSettings.sourceDomain,
+                                          ServiceName=infaSettings.sourceDIS,
+                                          Application=application_name,
+                                          Workflow=workflow_name,
+                                          Wait=wait,
+                                          OnError=errorcodes.INFACMD_WORKFLOW_FAILED,
+                                          AsIsOptions=as_is_options
+                                          )
     result = jobManagement.JobExecution.manage(workflow)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
@@ -95,4 +98,5 @@ def main(argv):
     supporting.exitscript(resultlogger, result)
 
 
-main(sys.argv[1:])
+if __name__ == '__main__':
+    main(sys.argv[1:])

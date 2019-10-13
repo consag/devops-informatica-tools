@@ -25,7 +25,7 @@ from supporting import log
 import supporting
 import logging
 import database.utilities.Oracle as util
-#from os import listdir
+# from os import listdir
 import sys
 from supporting import generalSettings
 import database.dbSettings as dbSettings
@@ -35,58 +35,60 @@ import supporting.errorcodes as err
 
 logger = logging.getLogger(__name__)
 
+
 class DeployOracle:
 
     def __init__(self, schema):
-        thisproc="init"
+        thisproc = "init"
         self.logger = logging.getLogger(__name__)
         self.database_schema = schema
         dbSettings.getdbenvvars()
-        self.database_tns_name, self.database_schema, self.database_user, self.database_user_password = dbSettings.getschemaenvvars(schema)
+        self.database_tns_name, self.database_schema, self.database_user, self.database_user_password = dbSettings.getschemaenvvars(
+            schema)
         self.sqldir = dbSettings.targetsqldir
         dbSettings.outdbenvvars()
         dbSettings.outschemaenvvars()
-#        log(self.logger, logging.DEBUG, thisproc, 'database_tns_name is >' + self.database_tns_name +"<.")
-#        log(self.logger, logging.DEBUG, thisproc, 'database_schema is >' + self.database_schema +"<.")
-#        log(self.logger, logging.DEBUG, thisproc, 'database_user is >' + self.database_user + "<.")
-#        if self.database_user_password is None or self.database_user_password == dbConstants.NOT_SET:
-#            log(self.logger, logging.WARN, thisproc, 'database_user_password is empty.')
-#        else:
-#            log(self.logger, logging.DEBUG, thisproc, 'database_user_password has a value.')
 
+    #        log(self.logger, logging.DEBUG, thisproc, 'database_tns_name is >' + self.database_tns_name +"<.")
+    #        log(self.logger, logging.DEBUG, thisproc, 'database_schema is >' + self.database_schema +"<.")
+    #        log(self.logger, logging.DEBUG, thisproc, 'database_user is >' + self.database_user + "<.")
+    #        if self.database_user_password is None or self.database_user_password == dbConstants.NOT_SET:
+    #            log(self.logger, logging.WARN, thisproc, 'database_user_password is empty.')
+    #        else:
+    #            log(self.logger, logging.DEBUG, thisproc, 'database_user_password has a value.')
 
     def deployArtifact(self):
-        thisproc="deployArtifact"
+        thisproc = "deployArtifact"
         overall_result = err.OK
         log(self.logger, logging.INFO, thisproc, "deployArtifact started.")
         log(self.logger, logging.DEBUG, thisproc, "sqldir is >" + self.sqldir + "<")
-        log(self.logger, logging.DEBUG, thisproc, "database_schema is >" + self.database_schema +"<.")
+        log(self.logger, logging.DEBUG, thisproc, "database_schema is >" + self.database_schema + "<.")
         schema_directory = self.sqldir + '/' + self.database_schema
-        log(self.logger, logging.DEBUG, thisproc, "schema_directory is >" + schema_directory +"<.")
+        log(self.logger, logging.DEBUG, thisproc, "schema_directory is >" + schema_directory + "<.")
         sql_files = [f for f in glob.glob(schema_directory + "**/*.sql")]
-        log(self.logger, logging.DEBUG, thisproc, "sql_files found >" + str(len(sql_files)) +"<.")
+        log(self.logger, logging.DEBUG, thisproc, "sql_files found >" + str(len(sql_files)) + "<.")
         for sqlfile in sql_files:
             if sqlfile[-4:] != ".sql":
                 log(self.logger, logging.INFO, thisproc, "Ignored non-sql file >" + sqlfile + "<.")
                 continue
             log(self.logger, logging.INFO, thisproc, "Processing sql file >" + sqlfile + "<.")
             oracle_util = util.OracleUtilities(self.database_user
-                                               ,self.database_user_password
-                                               ,self.database_tns_name
-                                               ,'REPORT'
-                                               ,self.database_schema +'_sqloutput.log')
+                                               , self.database_user_password
+                                               , self.database_tns_name
+                                               , 'REPORT'
+                                               , self.database_schema + '_sqloutput.log')
             sqlplus_result = oracle_util.run_sqlplus(sqlfile)
             if sqlplus_result.rc != 0:
                 log(self.logger, logging.WARNING, thisproc, "sqlplus returned >" + sqlplus_result.code + "<.")
                 overall_result = sqlplus_result
 
-        log(self.logger, logging.INFO, thisproc, "deployArtifact completed with >" + overall_result.code +"<.")
+        log(self.logger, logging.INFO, thisproc, "deployArtifact completed with >" + overall_result.code + "<.")
         return overall_result
 
 
 def main(argv):
     thisproc = "MAIN"
-    mainProc='deployOracle'
+    mainProc = 'deployOracle'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -101,9 +103,11 @@ def main(argv):
         exit(1)
     else:
         schema = argv[0]
-        supporting.log(logger, logging.INFO, thisproc, "Schema to deployed is >" +schema +"<.")
+        supporting.log(logger, logging.INFO, thisproc, "Schema to deployed is >" + schema + "<.")
         depl = DeployOracle(schema)
         result = depl.deployArtifact()
         supporting.exitscript(resultlogger, result)
 
-main(sys.argv[1:])
+
+if __name__ == '__main__':
+    main(sys.argv[1:])
