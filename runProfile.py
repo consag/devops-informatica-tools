@@ -27,9 +27,18 @@ from informatica import infaSettings
 from supporting import generalSettings
 from informatica import jobManagement
 import sys
+import argparse
 
 now = datetime.datetime.now()
 result = errorcodes.OK
+
+def parse_the_arguments(argv):
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-p", "--profile", required=True, action="store", dest="object_path",
+                        help="Profile, including path, to run.")
+    args = parser.parse_args()
+
+    return args
 
 def main(argv):
     thisproc = "MAIN"
@@ -43,12 +52,8 @@ def main(argv):
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    if len(argv) == 0:
-        supporting.log(logger, logging.ERROR, thisproc, 'No profile path specified.')
-        result = errorcodes.INFACMD_NOPROFILE
-        supporting.exitscript(resultlogger, result)
-
-    objectPath = argv[0]
+    args = parse_the_arguments(argv)
+    objectPath = args.object_path
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
     supporting.logentireenv()

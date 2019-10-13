@@ -28,9 +28,28 @@ from supporting import generalSettings
 from informatica import jobManagement
 from informatica import infaConstants
 import sys
+import argparse
 
 now = datetime.datetime.now()
 result = errorcodes.OK
+
+def parse_the_arguments(argv):
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-a", "--application", required=True, action="store", dest="application_name",
+                        help="Application that contains the object to run.")
+    parser.add_argument("-w", "--workflow", help="Workflow to run.", required=True, action="store", dest="workflow_name")
+    parser.add_argument("-c", "--completion", help="Wait for workflow completion", action="store", dest="wait"
+                        ,choices=["True", "False"], default="False")
+    parser.add_argument("-l", "--loglevel", type=int, action="store", dest="loglevel", choices=[0, 1, 2, 3, 4, 5]
+                        ,help="log level from 0=fatal to 5=verbose")
+    parser.add_argument("-x","-extra", action="store", dest="as_is_options", help="any options to add. Make sure to use double-quotes!")
+    args = parser.parse_args()
+
+    if args.as_is_options is None:
+        args.as_is_options =""
+
+    return args
+
 
 def main(argv):
     thisproc = "MAIN"
@@ -44,15 +63,12 @@ def main(argv):
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    if len(argv) < 3:
-        supporting.log(logger, logging.ERROR, thisproc, 'You need to provide: applicationnanem workflowname true/false (for waiting or not).')
-        result = errorcodes.INFACMD_NOWORKFLOW
-        supporting.exitscript(resultlogger, result)
+    args = parse_the_arguments(argv)
 
-    application_name = argv[0]
-    workflow_name = argv[1]
-    wait = argv[2]
-    as_is_options = argv[3] if len(argv) > 3 else ""
+    application_name = args.application_name
+    workflow_name = args.workflow_name
+    wait = args.wait
+    as_is_options = args.as_is_options
 
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
