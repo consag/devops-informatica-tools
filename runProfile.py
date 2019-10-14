@@ -47,19 +47,22 @@ def parse_the_arguments(argv):
 
 
 def main(argv):
-    """Runs a Profile."""
+    """Runs a Profile.
+    usage: runProfile.py [-h] -p OBJECT_PATH
+    """
     thisproc = "MAIN"
     mainProc = 'runProfile'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
 
+    args = parse_the_arguments(argv)
+
     generalSettings.getenvvars()
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    args = parse_the_arguments(argv)
     objectPath = args.object_path
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()

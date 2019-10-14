@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# devops result files
+*.result
+
 # C extensions
 *.so
 

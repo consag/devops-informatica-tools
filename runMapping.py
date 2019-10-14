@@ -64,7 +64,11 @@ def parse_the_arguments(argv):
 
 
 def main(argv):
-    """Runs a Mapping."""
+    """Runs a Mapping.
+    usage: runMapping.py [-h] -a APPLICATION_NAME -m MAPPING_NAME
+                     [-p {Source,Target,Full}] [-o {0,1,2,3,4,5}]
+                     [-l {0,1,2,3,4,5}] [-x AS_IS_OPTIONS]
+    """
     thisproc = "MAIN"
     mainProc = 'runMapping'
 

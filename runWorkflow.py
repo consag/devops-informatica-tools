@@ -59,19 +59,26 @@ def parse_the_arguments(argv):
 
 
 def main(argv):
-    """Runs a Workflow."""
+    """Runs a Workflow.
+    usage: runWorkflow.py [-h] -a APPLICATION_NAME -w WORKFLOW_NAME
+                      [-c {True,False}] [-l {0,1,2,3,4,5}] [-x AS_IS_OPTIONS]
+    with AsIsOptions, you can speficy e.g. a parameter set
+        Example:
+        runMapping myApp myMapping Source 3 "-ParameterSet myParameterSet -OperatingSystemProfile myOSProfile"
+        It is important to supply the AsIsOptions as one single string
+    """
     thisproc = "MAIN"
     mainProc = 'runWorkflow'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
 
+    args = parse_the_arguments(argv)
+
     generalSettings.getenvvars()
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
-
-    args = parse_the_arguments(argv)
 
     application_name = args.application_name
     workflow_name = args.workflow_name
@@ -82,11 +89,6 @@ def main(argv):
     infaSettings.outinfaenvvars()
     supporting.logentireenv()
 
-    """with AsIsOptions, you can speficy e.g. a parameter set
-        Example:
-        runMapping myApp myMapping Source 3 "-ParameterSet myParameterSet -OperatingSystemProfile myOSProfile"
-        It is important to supply the AsIsOptions as one single string
-    """
     workflow = jobManagement.JobExecution(Tool="RunWorkflow",  # this will translate to StartWorkflow for the infacmd
                                           Domain=infaSettings.sourceDomain,
                                           ServiceName=infaSettings.sourceDIS,
