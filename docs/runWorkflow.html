@@ -55,7 +55,13 @@
 <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
     
 <tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><dl><dt><a name="-main"><strong>main</strong></a>(argv)</dt><dd><tt>Runs&nbsp;a&nbsp;Workflow.</tt></dd></dl>
+<td width="100%"><dl><dt><a name="-main"><strong>main</strong></a>(argv)</dt><dd><tt>Runs&nbsp;a&nbsp;Workflow.<br>
+usage:&nbsp;runWorkflow.py&nbsp;[-h]&nbsp;-a&nbsp;APPLICATION_NAME&nbsp;-w&nbsp;WORKFLOW_NAME<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[-c&nbsp;{True,False}]&nbsp;[-l&nbsp;{0,1,2,3,4,5}]&nbsp;[-x&nbsp;AS_IS_OPTIONS]<br>
+with&nbsp;AsIsOptions,&nbsp;you&nbsp;can&nbsp;speficy&nbsp;e.g.&nbsp;a&nbsp;parameter&nbsp;set<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Example:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;runMapping&nbsp;myApp&nbsp;myMapping&nbsp;Source&nbsp;3&nbsp;"-ParameterSet&nbsp;myParameterSet&nbsp;-OperatingSystemProfile&nbsp;myOSProfile"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;It&nbsp;is&nbsp;important&nbsp;to&nbsp;supply&nbsp;the&nbsp;AsIsOptions&nbsp;as&nbsp;one&nbsp;single&nbsp;string</tt></dd></dl>
  <dl><dt><a name="-parse_the_arguments"><strong>parse_the_arguments</strong></a>(argv)</dt><dd><tt>Parses&nbsp;the&nbsp;provided&nbsp;arguments&nbsp;and&nbsp;exits&nbsp;on&nbsp;an&nbsp;error.<br>
 Use&nbsp;the&nbsp;option&nbsp;-h&nbsp;on&nbsp;the&nbsp;command&nbsp;line&nbsp;to&nbsp;get&nbsp;an&nbsp;overview&nbsp;of&nbsp;the&nbsp;required&nbsp;and&nbsp;optional&nbsp;arguments.</tt></dd></dl>
 </td></tr></table><p>
@@ -65,6 +71,6 @@ Use&nbsp;the&nbsp;option&nbsp;-h&nbsp;on&nbsp;the&nbsp;command&nbsp;line&nbsp;to
 <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
     
 <tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><strong>now</strong> = datetime.datetime(2019, 10, 13, 23, 58, 54, 756097)<br>
+<td width="100%"><strong>now</strong> = datetime.datetime(2019, 10, 14, 11, 27, 6, 179394)<br>
 <strong>result</strong> = &lt;supporting.errorcode.Errorcode object&gt;</td></tr></table>
 </body></html>

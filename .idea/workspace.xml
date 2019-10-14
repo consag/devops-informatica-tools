@@ -4,13 +4,7 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79ec9dbe-bed2-4c98-9e86-440cc491d387" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/deployOracle.py" beforeDir="false" afterPath="$PROJECT_DIR$/deployOracle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runMapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/runMapping.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runProfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/runProfile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runScorecard.py" beforeDir="false" afterPath="$PROJECT_DIR$/runScorecard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runWorkflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/runWorkflow.py" afterDir="false" />
-    </list>
+    <list default="true" id="79ec9dbe-bed2-4c98-9e86-440cc491d387" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,8 +52,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/runScorecard.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
+            <state relative-caret-position="570">
+              <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
               <folding>
                 <element signature="e#1127#1163#0" expanded="true" />
               </folding>
@@ -1287,8 +1281,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/runScorecard.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
+        <state relative-caret-position="570">
+          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
           <folding>
             <element signature="e#1127#1163#0" expanded="true" />
           </folding>
