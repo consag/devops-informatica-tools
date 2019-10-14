@@ -32,7 +32,12 @@ import argparse
 now = datetime.datetime.now()
 result = errorcodes.OK
 
+
 def parse_the_arguments(argv):
+    """Parses the provided arguments and exits on an error.
+    Use the option -h on the command line to get an overview of the required and optional arguments.
+     """
+
     parser = argparse.ArgumentParser()
     parser.add_argument("-p", "--profile", required=True, action="store", dest="object_path",
                         help="Profile, including path, to run.")
@@ -40,19 +45,24 @@ def parse_the_arguments(argv):
 
     return args
 
+
 def main(argv):
+    """Runs a Profile.
+    usage: runProfile.py [-h] -p OBJECT_PATH
+    """
     thisproc = "MAIN"
-    mainProc='runProfile'
+    mainProc = 'runProfile'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
+
+    args = parse_the_arguments(argv)
 
     generalSettings.getenvvars()
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    args = parse_the_arguments(argv)
     objectPath = args.object_path
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
@@ -74,4 +84,5 @@ def main(argv):
     supporting.exitscript(resultlogger, result)
 
 
-main(sys.argv[1:])
+if __name__ == '__main__':
+    main(sys.argv[1:])

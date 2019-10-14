@@ -38,9 +38,10 @@ from informatica import infaConstants
 now = datetime.datetime.now()
 result = err.OK
 
+
 def main():
     thisproc = "MAIN"
-    mainProc='deployDeveloperArtifact'
+    mainProc = 'deployDeveloperArtifact'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -54,14 +55,15 @@ def main():
     # Check requirements for artifact generation
     result = infaArtifactChecks.infadeploychecks()
     if result.rc != 0:
-        supporting.log(logger, logging.ERROR, thisproc, 'INFA Checks failed with >' + result.message +"<.")
+        supporting.log(logger, logging.ERROR, thisproc, 'INFA Checks failed with >' + result.message + "<.")
         supporting.exitscript(resultlogger, result)
 
-#    result = informatica.import_infadeveloper(infaConstants.DEPLOYARTIFACT, infaSettings.infadeploylist)
+    #    result = informatica.import_infadeveloper(infaConstants.DEPLOYARTIFACT, infaSettings.infadeploylist)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
     supporting.exitscript(resultlogger, result)
 
 
-main()
+if __name__ == '__main__':
+    main()

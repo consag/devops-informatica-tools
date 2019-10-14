@@ -66,5 +66,5 @@ def main(argv):
                    + '< and result code >' + result.code + "<.")
     supporting.exitscript(resultlogger, result)
 
-
-main(sys.argv[1:])
+if __name__ == '__main__':
+    main(sys.argv[1:])

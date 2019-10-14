@@ -31,9 +31,10 @@ import sys
 now = datetime.datetime.now()
 result = errorcodes.OK
 
+
 def main(argv):
     thisproc = "MAIN"
-    mainProc='deleteFolder'
+    mainProc = 'deleteFolder'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -54,12 +55,12 @@ def main(argv):
     infaSettings.outinfaenvvars()
 
     folder = manageFolder.ManageFolder(Tool="DeleteFolder",
-        Domain=infaSettings.sourceDomain,
-        ServiceName=infaSettings.sourceModelRepository,
-        ProjectName=project_name,
-        Path=folder_name,
-        OnError=errorcodes.INFACMD_DELETE_FOLDER_FAILED
-    )
+                                       Domain=infaSettings.sourceDomain,
+                                       ServiceName=infaSettings.sourceModelRepository,
+                                       ProjectName=project_name,
+                                       Path=folder_name,
+                                       OnError=errorcodes.INFACMD_DELETE_FOLDER_FAILED
+                                       )
     result = manageFolder.ManageFolder.manage(folder)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
@@ -67,4 +68,5 @@ def main(argv):
     supporting.exitscript(resultlogger, result)
 
 
-main(sys.argv[1:])
+if __name__ == '__main__':
+    main(sys.argv[1:])

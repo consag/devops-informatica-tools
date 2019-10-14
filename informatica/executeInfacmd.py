@@ -31,17 +31,15 @@ entrynr = 0
 
 
 def execute(command):
-
     infa_env = {**os.environ, 'INFA_DEFAULT_DOMAIN_PASSWORD': infaSettings.sourcePassword,
-              'INFA_DEFAULT_DOMAIN_USER': infaSettings.sourceUsername,
-              'INFA_DEFAULT_SECURITY_DOMAIN': infaSettings.sourceSecurityDomain}
+                'INFA_DEFAULT_DOMAIN_USER': infaSettings.sourceUsername,
+                'INFA_DEFAULT_SECURITY_DOMAIN': infaSettings.sourceSecurityDomain}
 
     result = executeCommand.execute(command, infa_env)
 
-    if (result.code == errorcodes.COMMAND_FAILED):
-        oldResult = result.message
+    if result.code == errorcodes.COMMAND_FAILED:
+        old_result = result.message
         result = errorcodes.INFACMD_FAILED
-        result.message = oldResult
+        result.message = old_result
 
     return result
-

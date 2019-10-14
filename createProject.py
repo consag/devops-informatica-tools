@@ -31,9 +31,10 @@ import sys
 now = datetime.datetime.now()
 result = errorcodes.OK
 
+
 def main(argv):
     thisproc = "MAIN"
-    mainProc='createProject'
+    mainProc = 'createProject'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -53,11 +54,11 @@ def main(argv):
     infaSettings.outinfaenvvars()
 
     project = manageFolder.ManageFolder(Tool="CreateProject",
-        Domain=infaSettings.sourceDomain,
-        ServiceName=infaSettings.sourceModelRepository,
-        ProjectName=project_name,
-        OnError=errorcodes.INFACMD_CREATE_PROJECT_FAILED
-    )
+                                        Domain=infaSettings.sourceDomain,
+                                        ServiceName=infaSettings.sourceModelRepository,
+                                        ProjectName=project_name,
+                                        OnError=errorcodes.INFACMD_CREATE_PROJECT_FAILED
+                                        )
 
     result = manageFolder.ManageFolder.manage(project)
 
@@ -66,4 +67,5 @@ def main(argv):
     supporting.exitscript(resultlogger, result)
 
 
-main(sys.argv[1:])
+if __name__ == '__main__':
+    main(sys.argv[1:])

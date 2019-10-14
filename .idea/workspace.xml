@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="79ec9dbe-bed2-4c98-9e86-440cc491d387" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/runProfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/runProfile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runScorecard.py" beforeDir="false" afterPath="$PROJECT_DIR$/runScorecard.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/runWorkflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/runWorkflow.py" afterDir="false" />
-    </list>
+    <list default="true" id="79ec9dbe-bed2-4c98-9e86-440cc491d387" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +16,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/runMapping.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="58" selection-start-line="35" selection-end-line="58" />
+            <state relative-caret-position="353">
+              <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
+              <folding>
+                <element signature="e#1127#1163#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/runWorkflow.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="555">
+              <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
+              <folding>
+                <element signature="e#1127#1163#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/runProfile.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="540">
+              <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
               <folding>
                 <element signature="e#1127#1163#0" expanded="true" />
               </folding>
@@ -27,10 +50,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/runWorkflow.py">
+        <entry file="file://$PROJECT_DIR$/runScorecard.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="71" column="4" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
+            <state relative-caret-position="570">
+              <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
               <folding>
                 <element signature="e#1127#1163#0" expanded="true" />
               </folding>
@@ -76,9 +99,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/informaticaArtifact/developer/dataProfiling.py" />
-        <option value="$PROJECT_DIR$/informaticaArtifact/developer/buildCommand.py" />
-        <option value="$PROJECT_DIR$/informaticaArtifact/infaArtifactChecks.py" />
         <option value="$PROJECT_DIR$/supporting/artifactHandling.py" />
         <option value="$PROJECT_DIR$/informaticaArtifact/infaConstants.py" />
         <option value="$PROJECT_DIR$/informaticaArtifact/developer/processDeveloperDeployList.py" />
@@ -87,60 +107,64 @@
         <option value="$PROJECT_DIR$/supporting/encryption.py" />
         <option value="$PROJECT_DIR$/createDeveloperArtifact.py" />
         <option value="$PROJECT_DIR$/informatica/__init__.py" />
-        <option value="$PROJECT_DIR$/deployDeveloperArtifact.py" />
         <option value="$PROJECT_DIR$/informatica/deployArtifact.py" />
         <option value="$PROJECT_DIR$/informatica/createArtifact.py" />
         <option value="$PROJECT_DIR$/informatica/createFolder.py" />
         <option value="$PROJECT_DIR$/manageFolder.py" />
         <option value="$PROJECT_DIR$/imxportUsersAndGroups.py" />
-        <option value="$PROJECT_DIR$/deleteUser.py" />
-        <option value="$PROJECT_DIR$/createUser.py" />
-        <option value="$PROJECT_DIR$/createGroup.py" />
-        <option value="$PROJECT_DIR$/deleteGroup.py" />
-        <option value="$PROJECT_DIR$/exportUsersAndGroups.py" />
-        <option value="$PROJECT_DIR$/importUsersAndGroups.py" />
         <option value="$PROJECT_DIR$/informatica/manageSecurity.py" />
         <option value="$PROJECT_DIR$/informatica/dataProfiling.py" />
         <option value="$PROJECT_DIR$/informatica/manageWorkflow.py" />
         <option value="$PROJECT_DIR$/informatica/manageFolder.py" />
-        <option value="$PROJECT_DIR$/createFolder.py" />
-        <option value="$PROJECT_DIR$/createProject.py" />
-        <option value="$PROJECT_DIR$/deleteProject.py" />
-        <option value="$PROJECT_DIR$/deleteFolder.py" />
         <option value="$PROJECT_DIR$/informatica/jobManagement.py" />
         <option value="$PROJECT_DIR$/informatica/buildCommand.py" />
-        <option value="$PROJECT_DIR$/createInformaticaPlatformArtifact.py" />
         <option value="$PROJECT_DIR$/informatica/artifact.py" />
         <option value="$PROJECT_DIR$/informatica/manageConnection.py" />
         <option value="$PROJECT_DIR$/informatica/infaConstants.py" />
-        <option value="$PROJECT_DIR$/listConnectionOptions.py" />
-        <option value="$PROJECT_DIR$/listConnections.py" />
         <option value="$PROJECT_DIR$/database/artifact.py" />
         <option value="$PROJECT_DIR$/database/deployOracle.py" />
         <option value="$PROJECT_DIR$/database/dbConstants.py" />
-        <option value="$PROJECT_DIR$/createOracleArtifact.py" />
         <option value="$PROJECT_DIR$/database/dbSettings.py" />
         <option value="$PROJECT_DIR$/supporting/errorcodes.py" />
-        <option value="$PROJECT_DIR$/deployOracle.py" />
         <option value="$PROJECT_DIR$/database/utilities/Oracle.py" />
-        <option value="$PROJECT_DIR$/runMapping.py" />
+        <option value="$PROJECT_DIR$/createFolder.py" />
+        <option value="$PROJECT_DIR$/informatica/executeInfacmd.py" />
+        <option value="$PROJECT_DIR$/createGroup.py" />
+        <option value="$PROJECT_DIR$/createInformaticaPlatformArtifact.py" />
+        <option value="$PROJECT_DIR$/createUser.py" />
+        <option value="$PROJECT_DIR$/createProject.py" />
+        <option value="$PROJECT_DIR$/createOracleArtifact.py" />
+        <option value="$PROJECT_DIR$/deleteFolder.py" />
+        <option value="$PROJECT_DIR$/deleteGroup.py" />
+        <option value="$PROJECT_DIR$/deleteProject.py" />
+        <option value="$PROJECT_DIR$/deleteUser.py" />
+        <option value="$PROJECT_DIR$/deployDeveloperArtifact.py" />
+        <option value="$PROJECT_DIR$/exportConnections.py" />
+        <option value="$PROJECT_DIR$/exportUsersAndGroups.py" />
+        <option value="$PROJECT_DIR$/importConnections.py" />
+        <option value="$PROJECT_DIR$/importUsersAndGroups.py" />
+        <option value="$PROJECT_DIR$/listConnectionOptions.py" />
+        <option value="$PROJECT_DIR$/listConnections.py" />
+        <option value="$PROJECT_DIR$/deployOracle.py" />
         <option value="$PROJECT_DIR$/runProfile.py" />
-        <option value="$PROJECT_DIR$/runScorecard.py" />
         <option value="$PROJECT_DIR$/runWorkflow.py" />
+        <option value="$PROJECT_DIR$/runMapping.py" />
+        <option value="$PROJECT_DIR$/runScorecard.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="10" />
-    <option name="y" value="8" />
-    <option name="width" value="1274" />
-    <option name="height" value="708" />
+    <option name="y" value="23" />
+    <option name="width" value="1306" />
+    <option name="height" value="1183" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -148,27 +172,10 @@
               <item name="devops-informatica-tools" type="b2602c69:ProjectViewProjectNode" />
               <item name="devops-informatica-tools" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="devops-informatica-tools" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devops-informatica-tools" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devops-informatica-tools" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devops-informatica-tools" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="utilities" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="devops-informatica-tools" type="b2602c69:ProjectViewProjectNode" />
-              <item name="devops-informatica-tools" type="462c0819:PsiDirectoryNode" />
-              <item name="supporting" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -843,10 +850,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="8" width="1274" height="708" extended-state="0" />
+    <frame x="10" y="23" width="1306" height="1183" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4994233" visible="true" weight="0.3511327" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4994233" visible="true" weight="0.34163424" />
       <window_info id="Structure" order="1" sideWeight="0.5005767" side_tool="true" weight="0.2496329" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -860,47 +867,20 @@
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3298731" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50079745" side_tool="true" weight="0.32960895" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32869565" />
-      <window_info anchor="bottom" id="Inspection Results" order="11" weight="0.3298731" />
+      <window_info anchor="bottom" id="Inspection Results" order="11" visible="true" weight="0.3290559" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ecf_default.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/icf_default.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/informaticaArtifact/developer/runScorecard.py" />
-    <entry file="file://$PROJECT_DIR$/informatica/infaSettings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="62" column="23" lean-forward="true" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/informatica/executeCommand.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="629">
           <caret line="53" column="42" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="42" />
           <folding>
             <element signature="e#1127#1153#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/informatica/executeInfacmd.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-          <folding>
-            <element signature="e#1126#1152#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -912,13 +892,6 @@
             <caret line="4" column="28" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="28" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="34" column="115" selection-start-line="34" selection-start-column="115" selection-end-line="34" selection-end-column="115" />
         </state>
       </provider>
     </entry>
@@ -948,69 +921,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/informatica/deployArtifact.py" />
-    <entry file="file://$PROJECT_DIR$/deployDeveloperArtifact.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="59" column="1" selection-start-line="59" selection-start-column="1" selection-end-line="59" selection-end-column="1" />
-          <folding>
-            <element signature="e#1237#1273#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/supporting/artifactHandling.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="37" selection-start-line="37" selection-end-line="37" />
           <folding>
             <element signature="n#!!doc" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deleteUser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="61" selection-start-line="60" selection-end-line="61" />
-          <folding>
-            <element signature="e#1127#1163#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deleteGroup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="66" column="41" lean-forward="true" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/importUsersAndGroups.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
-          <folding>
-            <element signature="e#1127#1163#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/exportUsersAndGroups.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
-          <folding>
-            <element signature="e#1127#1163#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/createUser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="73" selection-start-line="62" selection-end-line="73" />
-          <folding>
-            <element signature="e#1127#1163#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1035,43 +951,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/createProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="62" lean-forward="true" selection-start-line="54" selection-end-line="62" />
-          <folding>
-            <element signature="e#1127#1163#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deleteProject.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="52" column="33" lean-forward="true" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
-          <folding>
-            <element signature="e#1127#1163#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/createGroup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="65" selection-start-line="58" selection-end-line="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deleteFolder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="52" column="33" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
-          <folding>
-            <element signature="e#1127#1163#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/informatica/runMapping.py" />
     <entry file="file://$PROJECT_DIR$/informatica/jobManagement.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1083,32 +962,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/createFolder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="51" column="25" lean-forward="true" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="25" />
-          <folding>
-            <element signature="e#1127#1163#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/informatica/manageFolder.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
           <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
           <folding>
             <element signature="e#1127#1153#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/createInformaticaPlatformArtifact.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
-          <folding>
-            <element signature="e#1237#1273#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1137,23 +996,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
           <caret line="102" lean-forward="true" selection-start-line="102" selection-end-line="102" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/listConnectionOptions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="72" selection-start-line="69" selection-end-line="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/listConnections.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="72" column="72" selection-start-line="72" selection-start-column="72" selection-end-line="72" selection-end-column="72" />
-          <folding>
-            <element signature="e#1127#1163#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1197,29 +1039,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/createOracleArtifact.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/artifact.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="167" selection-start-line="166" selection-end-line="167" />
           <folding>
             <element signature="e#1261#1296#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deployOracle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="75" column="55" selection-start-line="75" selection-start-column="55" selection-end-line="75" selection-end-column="55" />
-          <folding>
-            <element signature="e#1127#1153#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1241,30 +1066,193 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/runScorecard.py">
+    <entry file="file://$PROJECT_DIR$/informatica/infaSettings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="57" column="4" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="4" />
+        <state relative-caret-position="211">
+          <caret line="62" column="23" selection-start-line="62" selection-start-column="23" selection-end-line="62" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/informatica/executeInfacmd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/createFolder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="577">
+          <caret line="69" column="22" lean-forward="true" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
           <folding>
             <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/createGroup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="61" column="63" selection-start-line="61" selection-start-column="63" selection-end-line="61" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/createUser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="81" column="4" selection-start-line="81" selection-start-column="4" selection-end-line="81" selection-end-column="4" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/createProject.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="70" column="4" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/createOracleArtifact.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="71" column="4" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/createInformaticaPlatformArtifact.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="70" column="4" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
+          <folding>
+            <element signature="e#1237#1273#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deleteGroup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="72" column="4" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deleteFolder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="652">
+          <caret line="71" column="4" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deleteProject.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="70" column="4" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deleteUser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="70" column="4" selection-start-line="70" selection-start-column="4" selection-end-line="70" selection-end-column="4" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deployDeveloperArtifact.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="68" selection-start-line="67" selection-end-line="68" />
+          <folding>
+            <element signature="e#1237#1273#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exportConnections.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="592">
+          <caret line="87" column="4" selection-start-line="87" selection-start-column="4" selection-end-line="87" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/exportUsersAndGroups.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="76" column="4" selection-start-line="76" selection-start-column="4" selection-end-line="76" selection-end-column="4" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/importConnections.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="592">
+          <caret line="75" column="4" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/importUsersAndGroups.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="74" column="4" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/listConnectionOptions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="80" column="4" selection-start-line="80" selection-start-column="4" selection-end-line="80" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/listConnections.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="592">
+          <caret line="86" column="4" selection-start-line="86" selection-start-column="4" selection-end-line="86" selection-end-column="4" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="115" selection-start-line="34" selection-start-column="115" selection-end-line="34" selection-end-column="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deployOracle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-293">
+          <caret line="55" column="47" selection-start-line="55" selection-start-column="47" selection-end-line="55" selection-end-column="47" />
+          <folding>
+            <element signature="e#1127#1153#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/runProfile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="42" lean-forward="true" selection-start-line="34" selection-end-line="42" />
-          <folding>
-            <element signature="e#1127#1163#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/runMapping.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="58" selection-start-line="35" selection-end-line="58" />
+        <state relative-caret-position="540">
+          <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
           <folding>
             <element signature="e#1127#1163#0" expanded="true" />
           </folding>
@@ -1273,8 +1261,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/runWorkflow.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="71" column="4" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
+        <state relative-caret-position="555">
+          <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/runMapping.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="37" column="12" selection-start-line="37" selection-start-column="12" selection-end-line="37" selection-end-column="12" />
+          <folding>
+            <element signature="e#1127#1163#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/runScorecard.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
           <folding>
             <element signature="e#1127#1163#0" expanded="true" />
           </folding>
