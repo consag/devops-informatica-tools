@@ -1,7 +1,7 @@
-Help on module runMapping:
+Help on module exportConnections:
 
 NAME
-    runMapping
+    exportConnections
 
 DESCRIPTION
     #  MIT License
@@ -29,20 +29,20 @@ DESCRIPTION
 
 FUNCTIONS
     main(argv)
-        Runs a Mapping.
-        usage: runMapping.py [-h] -a APPLICATION_NAME -m MAPPING_NAME
-                         [-p {Source,Target,Full}] [-o {0,1,2,3,4,5}]
-                         [-l {0,1,2,3,4,5}] [-x AS_IS_OPTIONS]
+        Exports the connection definitions from the Informatica Domain.
+        Usage: exportConnections.py [-h] [-o OUTPUT_FILE] [-e EXPORT_CONTROL_FILE]
+        If no output file is provided, the default is set as per infaConstants.DEFAULT_EXPORT_CONNECTIONSFILE
+        For information about the export control file, check the Informatica documentation.
     
     parse_the_arguments(argv)
         Parses the provided arguments and exits on an error.
         Use the option -h on the command line to get an overview of the required and optional arguments.
 
 DATA
-    now = datetime.datetime(2019, 10, 15, 23, 38, 22, 736678)
+    now = datetime.datetime(2019, 10, 15, 23, 38, 21, 919837)
     result = <supporting.errorcode.Errorcode object>
 
 FILE
-    /Users/jacbeekers/gitrepos/devops-informatica-tools/runMapping.py
+    /Users/jacbeekers/gitrepos/devops-informatica-tools/exportConnections.py
 
 
