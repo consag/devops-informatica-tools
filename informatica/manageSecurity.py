@@ -26,23 +26,30 @@ import logging
 from informatica import buildCommand
 from informatica import executeInfacmd
 from supporting import errorcodes
+from supporting.mask_password import mask_password
+
 
 class ManageSecurity:
+    """Implements wrapper around security related commands, like create a user, a group and more."""
 
     def __init__(self, **keyword_arguments):
         self.logger = logging.getLogger(__name__)
         self.keyword_arguments = keyword_arguments
 
     def manage(self):
-        RunCommand = buildCommand.build(**self.keyword_arguments)
+        """Runs Informatica command line to create, delete, update security related objects,
+        like users and groups.
+        """
+        run_command = buildCommand.build(**self.keyword_arguments)
 
-        log(self.logger, logging.INFO, __name__, "RunCommand is >" + RunCommand + "<.")
-        result = executeInfacmd.execute(RunCommand)
+        masked_run_command = mask_password(run_command)
 
-        if(result.rc != errorcodes.OK.rc):
+        log(self.logger, logging.DEBUG, __name__, "RunCommand is >" + masked_run_command + "<.")
+        result = executeInfacmd.execute(run_command)
+
+        if (result.rc != errorcodes.OK.rc):
             oldResult = result.message
             result = self.keyword_arguments["OnError"]
             result.message = oldResult
 
         return (result)
-

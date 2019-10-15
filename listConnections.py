@@ -27,34 +27,46 @@ from informatica import infaSettings
 from informatica import infaConstants
 from supporting import generalSettings
 from informatica import manageConnection
-import sys
+import sys, argparse
 
 now = datetime.datetime.now()
 result = errorcodes.OK
 
 
+def parse_the_arguments(argv):
+    """Parses the provided arguments and exits on an error.
+    Use the option -h on the command line to get an overview of the required and optional arguments.
+     """
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-o", "--outputfile", required=False, action="store", dest="output_file",
+                        help="File the connections should be written to. Default value is >" + infaConstants.DEFAULT_CONNECTIONSFILE + "<.")
+    args = parser.parse_args()
+
+    if args.output_file is None:
+        args.output_file = infaConstants.DEFAULT_CONNECTIONSFILE
+
+    return args
+
+
 def main(argv):
+    """List the connections as available in the Informatica domain.
+    Usage: listConnections.py [-h] [-o OUTPUT_FILE]
+    If no output file is provided, the default will be taken from infaConstants.DEFAULT_CONNECTIONSFILE
+    """
     thisproc = "MAIN"
     mainProc = 'listConnections'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
 
+    args = parse_the_arguments(argv)
+
     generalSettings.getenvvars()
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    #    if len(argv) < 1:
-    #        supporting.log(logger, logging.ERROR, thisproc, 'No group name provided.')
-    #        result = errorcodes.INFACMD_NOGROUPNAME
-    #        supporting.exitscript(resultlogger, result)
-
-    #    # mandatory
-    #    group_name = argv[0]
-    # optional
-    output_file = argv[0] if len(argv) > 0 else infaConstants.DEFAULT_CONNECTIONSFILE
-    filter = argv[1] if len(argv) > 1 else ""
+    output_file = args.output_file
 
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()

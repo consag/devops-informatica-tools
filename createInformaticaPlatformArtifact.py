@@ -35,17 +35,33 @@ from informatica import artifact
 import informatica.infaSettings as settings
 import supporting.generalSettings as generalsettings
 from informatica import infaConstants
+import sys, argparse
 
 now = datetime.datetime.now()
 result = err.OK
 
 
-def main():
+def parse_the_arguments(argv):
+    """Parses the provided arguments and exits on an error.
+    Use the option -h on the command line to get an overview of the required and optional arguments.
+     """
+
+    parser = argparse.ArgumentParser()
+    args = parser.parse_args()
+
+    return args
+
+
+def main(argv):
+    """Generate an Informatica Platform artifact based on environment variables
+    """
     thisproc = "MAIN"
-    mainProc = 'CreateDeveloperArtifact'
+    mainProc = 'CreateInformaticaPlatformArtifact'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
+
+    args = parse_the_arguments(argv)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalsettings.logDir + "<.")
@@ -68,4 +84,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv)

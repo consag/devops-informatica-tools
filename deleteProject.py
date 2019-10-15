@@ -26,30 +26,43 @@ from supporting import errorcodes
 from informatica import infaSettings
 from supporting import generalSettings
 from informatica import manageFolder
-import sys
+import sys, argparse
 
 now = datetime.datetime.now()
 result = errorcodes.OK
 
 
+def parse_the_arguments(argv):
+    """Parses the provided arguments and exits on an error.
+    Use the option -h on the command line to get an overview of the required and optional arguments.
+     """
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-p", "--project", required=True, action="store", dest="project_name",
+                        help="Project to be removed.")
+    args = parser.parse_args()
+
+    return args
+
+
 def main(argv):
+    """Removes a project from the Informatica Model Repository
+    Usage: deleteProject.py [-h] -p PROJECT_NAME
+    """
     thisproc = "MAIN"
     mainProc = 'deleteProject'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
 
+    args = parse_the_arguments(argv)
+
     generalSettings.getenvvars()
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    if len(argv) == 0:
-        supporting.log(logger, logging.ERROR, thisproc, 'No project name specified.')
-        result = errorcodes.INFACMD_NOPROJECT
-        supporting.exitscript(resultlogger, result)
+    project_name = args.project_name
 
-    project_name = argv[0]
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
 

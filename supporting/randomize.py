@@ -21,16 +21,11 @@
 #  SOFTWARE.
 #
 
-from setuptools import setup
+import random
+import string
 
-setup(
-    name='devops-informatica-tools',
-    version='0.9',
-    packages=['database', 'informatica'],
-    url='https://github.com/consag/devops-informatica-tools',
-    license='MIT',
-    author='Jac. Beekers',
-    author_email='beekersjac@gmail.com',
-    description='DevOps and CI-CD Pipeline scripts for Informatica Platform related projects'
-    ,install_requires=['pycryptodome']
-)
+def randomStringDigits(stringLength=6):
+    """Generate a random string of letters and digits """
+    lettersAndDigits = string.ascii_letters + string.digits
+    return ''.join(random.choice(lettersAndDigits) for i in range(stringLength))
+

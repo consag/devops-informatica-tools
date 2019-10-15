@@ -25,7 +25,6 @@
 # Create Oracle Database Artifact
 # @Since: 22-MAR-2019
 # @Author: Jac. Beekers
-# @Version: 20190414.0 - JBE - Initial
 
 import logging, datetime, supporting
 import supporting.errorcodes as err
@@ -33,18 +32,35 @@ import database.databaseArtifactChecks as dbchecks
 import database.artifact
 import database.dbSettings as settings
 import supporting.generalSettings as generalsettings
+import sys, argparse
 
 now = datetime.datetime.now()
 result = err.OK
 settings.databaseType = 'Oracle'
 
 
-def main():
+def parse_the_arguments(argv):
+    """Parses the provided arguments and exits on an error.
+    Use the option -h on the command line to get an overview of the required and optional arguments.
+     """
+    parser = argparse.ArgumentParser()
+    args = parser.parse_args()
+
+    return args
+
+
+def main(argv):
+    """Creates an Oracle artifact, consisting on collected sql files
+    It uses a deploy list that contains schema and init.sql. Check the OracleArtifact docs and examples for more info.
+    Module uses environment variables that steer the artifact creation.
+    """
     thisproc = "MAIN"
     mainProc = 'CreateOracleArtifact'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
+
+    args = parse_the_arguments(argv)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalsettings.logDir + "<.")
@@ -69,4 +85,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv)

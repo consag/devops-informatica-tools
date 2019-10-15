@@ -33,18 +33,34 @@ import supporting.errorcodes as err
 from informatica import infaArtifactChecks
 import informatica.infaSettings as infaSettings
 from supporting.generalSettings import logDir
-from informatica import infaConstants
+import sys, argparse
 
 now = datetime.datetime.now()
 result = err.OK
 
 
-def main():
+def parse_the_arguments(argv):
+    """Parses the provided arguments and exits on an error.
+    Use the option -h on the command line to get an overview of the required and optional arguments.
+     """
+    parser = argparse.ArgumentParser()
+    args = parser.parse_args()
+
+    return args
+
+
+def main(argv):
+    """Deploys an Informatica Platform artifact
+    Usage: deployInformaticaPlatformArtifact.py [-h]
+    The module uses environment variables to steer the import on the target environment
+    """
     thisproc = "MAIN"
-    mainProc = 'deployDeveloperArtifact'
+    mainProc = 'deployInformaticaPlatformArtifact'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
+
+    args = parse_the_arguments(argv)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + logDir + "<.")
@@ -66,4 +82,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv)

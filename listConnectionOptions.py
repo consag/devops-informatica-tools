@@ -27,34 +27,49 @@ from informatica import infaSettings
 from informatica import infaConstants
 from supporting import generalSettings
 from informatica import manageConnection
-import sys
+import sys, argparse
 
 now = datetime.datetime.now()
 result = errorcodes.OK
 
 
+def parse_the_arguments(argv):
+    """Parses the provided arguments and exits on an error.
+    Use the option -h on the command line to get an overview of the required and optional arguments.
+     """
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-c", "--connection", required=True, action="store", dest="connection_name",
+                        help="An existing connection name.")
+    parser.add_argument("-o", "--outputfile", required=False, action="store", dest="output_file",
+                        help="File the connection options should be written to. Default value is >" + infaConstants.DEFAULT_CONNECTIONOPTIONSFILE + "<.")
+    args = parser.parse_args()
+
+    if args.output_file is None:
+        args.output_file = infaConstants.DEFAULT_CONNECTIONOPTIONSFILE
+
+    return args
+
+
 def main(argv):
+    """List connection options for the provided connection definition.
+    Usage: listConnectionOptions.py [-h] -c CONNECTION_NAME [-o OUTPUT_FILE]
+    If no output file is provided, the default infaConstants.DEFAULT_CONNECTIONOPTIONSFILE will be used.
+    """
     thisproc = "MAIN"
     mainProc = 'listConnectionOptions'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
 
+    args = parse_the_arguments(argv)
+
     generalSettings.getenvvars()
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    if len(argv) < 1:
-        supporting.log(logger, logging.ERROR, thisproc, 'No connection name provided.')
-        result = errorcodes.INFACMD_NOCONNECTIONNAME
-        supporting.exitscript(resultlogger, result)
-
-    # mandatory
-    connection_name = argv[0]
-    # optional
-    output_file = argv[1] if len(argv) > 1 else infaConstants.DEFAULT_CONNECTIONOPTIONSFILE
-    filter = argv[2] if len(argv) > 2 else ""
+    connection_name = args.connection_name
+    output_file = args.output_file
 
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()

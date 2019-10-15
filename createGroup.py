@@ -26,10 +26,28 @@ from supporting import errorcodes
 from informatica import infaSettings
 from supporting import generalSettings
 from informatica import manageSecurity
-import sys
+import sys, argparse
 
 now = datetime.datetime.now()
 result = errorcodes.OK
+
+
+def parse_the_arguments(argv):
+    """Parses the provided arguments and exits on an error.
+    Use the option -h on the command line to get an overview of the required and optional arguments.
+     """
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-g", "--group", required=True, action="store", dest="group_name",
+                        help="Name of the user group that needs to be created.")
+    parser.add_argument("-d", "--description", required=False, action="store", dest="group_description",
+                        help="The group description.")
+    args = parser.parse_args()
+
+    if args.group_description is None:
+        args.group_description = "Created by createGroup.py on " + now.strftime('%Y-%m-%d %H:%M:%S.%f')
+
+    return args
 
 
 def main(argv):
@@ -39,20 +57,18 @@ def main(argv):
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
 
+    args = parse_the_arguments(argv)
+
     generalSettings.getenvvars()
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    if len(argv) < 1:
-        supporting.log(logger, logging.ERROR, thisproc, 'No group name provided.')
-        result = errorcodes.INFACMD_NOGROUPNAME
-        supporting.exitscript(resultlogger, result)
+    group_name = args.group_name
+    group_description = args.group_description
 
-    # mandatory
-    group_name = argv[0]
-    # optional
-    group_description = argv[1] if len(argv) > 1 else ""
+    supporting.log(logger, logging.DEBUG, thisproc, 'Group name is >' + group_name + '<.')
+    supporting.log(logger, logging.DEBUG, thisproc, 'Group description is >' + group_description + '<.')
 
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()

@@ -26,34 +26,60 @@ from supporting import errorcodes
 from informatica import infaSettings
 from supporting import generalSettings
 from informatica import manageSecurity
-import sys
+import sys, argparse
 
 now = datetime.datetime.now()
 result = errorcodes.OK
 
 
+def parse_the_arguments(argv):
+    """Parses the provided arguments and exits on an error.
+    Use the option -h on the command line to get an overview of the required and optional arguments.
+     """
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-o", "--outputfile", required=True, action="store", dest="output_file",
+                        help="File to export the users and groups to. Tip: Include the path.")
+    parser.add_argument("-f", "--force", required=False, action="store", dest="force",
+                        choices=["false", "true"],
+                        help="If the target file exists it will be overwritten (true) or not (false). Default is >false<.")
+    parser.add_argument("-r", "--retainpassword", required=False, action="store", dest="retain_password",
+                        choices=["false", "true"],
+                        help="Determines if the user passwords should be exported (true) or not (false). Default is >true<.")
+    args = parser.parse_args()
+
+    if args.force is None:
+        args.force = "false"
+
+    if args.retain_password is None:
+        args.retain_password = "true"
+
+    return args
+
+
 def main(argv):
+    """Exports users and groups.
+    usage: exportUsersAndGroups.py [-h] -o OUTPUT_FILE [-f {false,true}]
+                               [-r {false,true}]
+    where:
+    -f or --force: Overwrite output file if it exists
+    -r or --retainpassword: If set to "false" user passwords are not exported. If "true" they will be.
+    """
     thisproc = "MAIN"
     mainProc = 'exportUsersAndGroups'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
 
+    args = parse_the_arguments(argv)
+
     generalSettings.getenvvars()
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    if len(argv) < 1:
-        supporting.log(logger, logging.ERROR, thisproc, 'No export file name provided.')
-        result = errorcodes.INFACMD_NOEXPORTFILENAME
-        supporting.exitscript(resultlogger, result)
-
-    # mandatory
-    export_file_name = argv[0]
-    # optional
-    force = argv[1] if len(argv) > 1 else "false"
-    retain_password = argv[2] if len(argv) > 2 else "true"
+    export_file_name = args.output_file
+    force = args.force
+    retain_password = args.retain_password
 
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
