@@ -39,8 +39,8 @@ def parse_the_arguments(argv):
      """
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-p", "--profile", required=True, action="store", dest="object_path",
-                        help="Profile, including path, to run.")
+    parser.add_argument("-s", "--scorecard", required=True, action="store", dest="object_path",
+                        help="Scorecard, including path, to run.")
     args = parser.parse_args()
 
     return args
@@ -48,7 +48,7 @@ def parse_the_arguments(argv):
 
 def main(argv):
     """Runs a Scorecard.
-    usage: runScorecard.py [-h] -p OBJECT_PATH
+    usage: runScorecard.py [-h] -s OBJECT_PATH_TO_SCORECARD
     """
     thisproc = "MAIN"
     mainProc = 'runScorecard'
