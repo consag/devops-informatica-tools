@@ -26,38 +26,49 @@ from supporting import errorcodes
 from informatica import infaSettings
 from supporting import generalSettings
 from informatica import manageSecurity
-import sys
+import sys, argparse
 
 now = datetime.datetime.now()
 result = errorcodes.OK
 
 
+def parse_the_arguments(argv):
+    """Parses the provided arguments and exits on an error.
+    Use the option -h on the command line to get an overview of the required and optional arguments.
+     """
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-u", "--username", required=True, action="store", dest="username",
+                        help="User to be created.")
+    args = parser.parse_args()
+
+    return args
+
+
 def main(argv):
+    """Remove a user from the Informatica Domain
+    Usage: deleteUser.py [-h] -u USERNAME
+    """
     thisproc = "MAIN"
     mainProc = 'deleteUser'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
 
+    args = parse_the_arguments(argv)
+
     generalSettings.getenvvars()
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    if len(argv) < 1:
-        supporting.log(logger, logging.ERROR, thisproc, 'No user name specified.')
-        result = errorcodes.INFACMD_NOUSERNAME_DELETION
-        supporting.exitscript(resultlogger, result)
-
-    # mandatory
-    user_name = argv[0]
+    username = args.username
 
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
 
     user = manageSecurity.ManageSecurity(Tool="DeleteUser",
                                          Domain=infaSettings.sourceDomain,
-                                         ExistingUserName=user_name,
+                                         ExistingUserName=username,
                                          OnError=errorcodes.INFACMD_DELETE_USER_FAILED
                                          )
     result = manageSecurity.ManageSecurity.manage(user)

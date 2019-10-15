@@ -35,7 +35,7 @@
 #
 
 import supporting.errorcodes as err
-import repositorytools
+#import repositorytools
 
 def getInformaticaArtifact(artifactName):
     thisporc = "getInformaticaArtifact"

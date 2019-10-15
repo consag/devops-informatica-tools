@@ -26,45 +26,62 @@ from supporting import errorcodes
 from informatica import infaSettings
 from supporting import generalSettings
 from informatica import manageFolder
-import sys
+import sys, argparse
 
 now = datetime.datetime.now()
 result = errorcodes.OK
 
+
+def parse_the_arguments(argv):
+    """Parses the provided arguments and exits on an error.
+    Use the option -h on the command line to get an overview of the required and optional arguments.
+     """
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-p", "--project", required=True, action="store", dest="project_name",
+                        help="Project name in which the folder needs to be created.")
+    parser.add_argument("-f", "--folder", required=True, action="store", dest="folder_name",
+                        help="Name for the folder to be created.")
+    args = parser.parse_args()
+
+    return args
+
+
 def main(argv):
+    """Create a folder in an existing project
+    Usage: createFolder.py [-h] -p PROJECT_NAME -f FOLDER_NAME
+    """
     thisproc = "MAIN"
-    mainProc='createFolder'
+    mainProc = 'createFolder'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
+
+    args = parse_the_arguments(argv)
 
     generalSettings.getenvvars()
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    if len(argv) < 2:
-        supporting.log(logger, logging.ERROR, thisproc, 'Project and Folder expected.')
-        result = errorcodes.INFACMD_NOFOLDER
-        supporting.exitscript(resultlogger, result)
-
-    project_name = argv[0]
-    folder_name = argv[1]
+    project_name = args.project_name
+    folder_name = args.folder_name
     infaSettings.getinfaenvvars()
     infaSettings.outinfaenvvars()
 
     folder = manageFolder.ManageFolder(Tool="CreateFolder",
-        Domain=infaSettings.sourceDomain,
-        ServiceName=infaSettings.sourceModelRepository,
-        ProjectName=project_name,
-        Path=folder_name,
-        OnError=errorcodes.INFACMD_CREATE_FOLDER_FAILED
-    )
+                                       Domain=infaSettings.sourceDomain,
+                                       ServiceName=infaSettings.sourceModelRepository,
+                                       ProjectName=project_name,
+                                       Path=folder_name,
+                                       OnError=errorcodes.INFACMD_CREATE_FOLDER_FAILED
+                                       )
     result = manageFolder.ManageFolder.manage(folder)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
     supporting.exitscript(resultlogger, result)
+
 
 if __name__ == '__main__':
     main(sys.argv[1:])

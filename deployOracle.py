@@ -26,7 +26,7 @@ import supporting
 import logging
 import database.utilities.Oracle as util
 # from os import listdir
-import sys
+import sys, argparse
 from supporting import generalSettings
 import database.dbSettings as dbSettings
 import database.dbConstants as dbConstants
@@ -86,28 +86,42 @@ class DeployOracle:
         log(self.logger, logging.INFO, thisproc, "deployArtifact completed with >" + overall_result.code + "<.")
         return overall_result
 
+def parse_the_arguments(argv):
+    """Parses the provided arguments and exits on an error.
+    Use the option -h on the command line to get an overview of the required and optional arguments.
+     """
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-s", "--schema", required=True, action="store", dest="schema_name",
+                        help="Deploy mentioned schema.")
+    args = parser.parse_args()
+
+    return args
+
 
 def main(argv):
+    """Deploy the Oracle artifact to the target environment.
+    Usage: deployOracle.py [-h] -s SCHEMA_NAME
+    The module uses environment variables to steer the deployment, like target Oracle database, connections and such.
+    For more information check the deployOracle docs.
+    """
     thisproc = "MAIN"
     mainProc = 'deployOracle'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
 
+    args = parse_the_arguments(argv)
+
     generalSettings.getenvvars()
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    if len(argv) == 0:
-        supporting.log(logger, logging.ERROR, thisproc, "No schema specified. Supply one.")
-        exit(1)
-    else:
-        schema = argv[0]
-        supporting.log(logger, logging.INFO, thisproc, "Schema to deployed is >" + schema + "<.")
-        depl = DeployOracle(schema)
-        result = depl.deployArtifact()
-        supporting.exitscript(resultlogger, result)
+    schema = args.schema_name
+    supporting.log(logger, logging.INFO, thisproc, "Schema to deployed is >" + schema + "<.")
+    depl = DeployOracle(schema)
+    result = depl.deployArtifact()
+    supporting.exitscript(resultlogger, result)
 
 
 if __name__ == '__main__':

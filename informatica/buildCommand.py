@@ -1,6 +1,6 @@
 #  MIT License
 #
-#  Copyright (c) 2019 ABNAMRO Bank N.V.
+#  Copyright (c) 2019 ABN AMRO Bank N.V.
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a copy
 #  of this software and associated documentation files (the "Software"), to deal
@@ -32,15 +32,15 @@ entrynr = 0
 
 
 def build(**KeyWordArguments):
-    procName="build"
-    """Build an IDQ command, return it as string"""
+    """Build an IDQ command, return it as string
+    Process the input aruguments to compose the IDQ command
+    This is done by first creating a list of strings, that are then joined to form the actual
+    command
+    The syntax used is as follows:
+    $InfaPath + $InfaProgram + $InfaCommand + $InfaArguments
+    """
 
-    # Process the input aruguments to compose the IDQ command
-    # This is doen by first creating a list of strings, that are then joined to form the actual
-    # command
-    # The syntax used is as follows:
-    # $InfaPath + $InfaProgram + $InfaCommand + $InfaArguments
-
+    procName = "build"
     # Create the list that will hold the parts of the command, in order
     InfaArguments = []
 
@@ -48,9 +48,12 @@ def build(**KeyWordArguments):
     # The Tool arguments are processed separately, because those have to go first
     # For the other arguments, the order does not matter, so they can be processed together
     for key, value in KeyWordArguments.items():
-        log(logger, logging.DEBUG,procName,"key =>" + key +"<.")
+        log(logger, logging.DEBUG, procName, "key =>" + key + "<.")
         if isinstance(value, str):
-            log(logger, logging.DEBUG,procName,"value =>" + value +"<.") 
+            if key.lower().__contains__("password"):
+                log(logger, logging.DEBUG, procName, "value =>" + "***" + "<.")
+            else:
+                log(logger, logging.DEBUG, procName, "value =>" + value + "<.")
         # If the argument is "Tool" , assign the value to the variable Tool, and lookup the Program and
         # Command in AvailableTools, assign those to InfaProgram, InfaCommand
         if key == "Tool":

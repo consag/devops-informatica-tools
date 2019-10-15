@@ -31,6 +31,9 @@ entrynr = 0
 
 
 def execute(command):
+    """Execute an Informatica command line
+    Sets INFA_DEFAULT_DOMAIN_PASSWORD, INFA_DEFAULTS_DOMAIN_USER and INFA_DEFAULT_SECURITY_DOMAIN based on provided Informatica settings.
+    """
     infa_env = {**os.environ, 'INFA_DEFAULT_DOMAIN_PASSWORD': infaSettings.sourcePassword,
                 'INFA_DEFAULT_DOMAIN_USER': infaSettings.sourceUsername,
                 'INFA_DEFAULT_SECURITY_DOMAIN': infaSettings.sourceSecurityDomain}

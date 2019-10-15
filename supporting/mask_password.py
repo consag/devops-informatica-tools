@@ -21,16 +21,26 @@
 #  SOFTWARE.
 #
 
-from setuptools import setup
+def add_part(part, separator=' '):
+    global masked_string
+    masked_string = masked_string + separator + part
 
-setup(
-    name='devops-informatica-tools',
-    version='0.9',
-    packages=['database', 'informatica'],
-    url='https://github.com/consag/devops-informatica-tools',
-    license='MIT',
-    author='Jac. Beekers',
-    author_email='beekersjac@gmail.com',
-    description='DevOps and CI-CD Pipeline scripts for Informatica Platform related projects'
-    ,install_requires=['pycryptodome']
-)
+
+def mask_password(input_string, separator=' '):
+    next_is_password = False
+    global masked_string
+
+    masked_string = ""
+    splitted_string = input_string.split(separator)
+
+    for s in splitted_string:
+        if next_is_password:
+            add_part('***')
+            next_is_password = False
+        else:
+            s = s.lower()
+            if s.__contains__("password"):
+                next_is_password = True
+            add_part(s)
+
+    return masked_string
