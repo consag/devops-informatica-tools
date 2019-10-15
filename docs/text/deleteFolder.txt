@@ -1,7 +1,7 @@
-Help on module runMapping:
+Help on module deleteFolder:
 
 NAME
-    runMapping
+    deleteFolder
 
 DESCRIPTION
     #  MIT License
@@ -29,20 +29,18 @@ DESCRIPTION
 
 FUNCTIONS
     main(argv)
-        Runs a Mapping.
-        usage: runMapping.py [-h] -a APPLICATION_NAME -m MAPPING_NAME
-                         [-p {Source,Target,Full}] [-o {0,1,2,3,4,5}]
-                         [-l {0,1,2,3,4,5}] [-x AS_IS_OPTIONS]
+        Removes a folder from a project
+        Usage: deleteFolder.py [-h] -p PROJECT_NAME -f FOLDER_NAME
     
     parse_the_arguments(argv)
         Parses the provided arguments and exits on an error.
         Use the option -h on the command line to get an overview of the required and optional arguments.
 
 DATA
-    now = datetime.datetime(2019, 10, 15, 23, 38, 22, 736678)
+    now = datetime.datetime(2019, 10, 15, 23, 38, 21, 96750)
     result = <supporting.errorcode.Errorcode object>
 
 FILE
-    /Users/jacbeekers/gitrepos/devops-informatica-tools/runMapping.py
+    /Users/jacbeekers/gitrepos/devops-informatica-tools/deleteFolder.py
 
 

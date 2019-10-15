@@ -30,14 +30,14 @@ DESCRIPTION
 FUNCTIONS
     main(argv)
         Runs a Scorecard.
-        usage: runScorecard.py [-h] -p OBJECT_PATH
+        usage: runScorecard.py [-h] -s OBJECT_PATH_TO_SCORECARD
     
     parse_the_arguments(argv)
         Parses the provided arguments and exits on an error.
         Use the option -h on the command line to get an overview of the required and optional arguments.
 
 DATA
-    now = datetime.datetime(2019, 10, 14, 11, 30, 9, 393374)
+    now = datetime.datetime(2019, 10, 15, 23, 38, 23, 9324)
     result = <supporting.errorcode.Errorcode object>
 
 FILE
