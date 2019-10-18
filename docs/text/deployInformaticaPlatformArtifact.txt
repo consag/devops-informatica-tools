@@ -39,10 +39,17 @@ FUNCTIONS
 
 DATA
     logDir = '.'
-    now = datetime.datetime(2019, 10, 15, 23, 38, 21, 643885)
+    now = datetime.datetime(2019, 10, 18, 3, 12, 57, 545628)
     result = <supporting.errorcode.Errorcode object>
 
 FILE
     /Users/jacbeekers/gitrepos/devops-informatica-tools/deployInformaticaPlatformArtifact.py
 
 
+IMPORTS
+    import logging, datetime, supporting
+    import supporting.errorcodes as err
+    from informatica import infaArtifactChecks
+    import informatica.infaSettings as infaSettings
+    from supporting.generalSettings import logDir
+    import sys, argparse

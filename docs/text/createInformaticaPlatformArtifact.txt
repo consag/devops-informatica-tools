@@ -36,10 +36,19 @@ FUNCTIONS
         Use the option -h on the command line to get an overview of the required and optional arguments.
 
 DATA
-    now = datetime.datetime(2019, 10, 15, 23, 38, 20, 540310)
+    now = datetime.datetime(2019, 10, 18, 3, 12, 56, 390605)
     result = <supporting.errorcode.Errorcode object>
 
 FILE
     /Users/jacbeekers/gitrepos/devops-informatica-tools/createInformaticaPlatformArtifact.py
 
 
+IMPORTS
+    import logging, datetime, supporting
+    import supporting.errorcodes as err
+    import informatica.infaArtifactChecks as infachecks
+    from informatica import artifact
+    import informatica.infaSettings as settings
+    import supporting.generalSettings as generalsettings
+    from informatica import infaConstants
+    import sys, argparse

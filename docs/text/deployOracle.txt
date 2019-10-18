@@ -68,3 +68,14 @@ FILE
     /Users/jacbeekers/gitrepos/devops-informatica-tools/deployOracle.py
 
 
+IMPORTS
+    from supporting import log
+    import supporting
+    import logging
+    import database.utilities.Oracle as util
+    import sys, argparse
+    from supporting import generalSettings
+    import database.dbSettings as dbSettings
+    import database.dbConstants as dbConstants
+    import glob
+    import supporting.errorcodes as err
