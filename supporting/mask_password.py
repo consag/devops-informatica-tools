@@ -34,12 +34,13 @@ def mask_password(input_string, separator=' '):
     splitted_string = input_string.split(separator)
 
     for s in splitted_string:
+        l = ""
         if next_is_password:
             add_part('***')
             next_is_password = False
         else:
-            s = s.lower()
-            if s.__contains__("password"):
+            l = s.lower()
+            if l.__contains__("password"):
                 next_is_password = True
             add_part(s)
 
