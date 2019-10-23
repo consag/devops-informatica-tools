@@ -21,10 +21,9 @@
 #  SOFTWARE.
 #
 import logging
-from informatica import executeCommand
 import os
 from informatica import infaSettings
-from supporting import errorcodes
+from supporting import errorcodes, executeCommand
 
 logger = logging.getLogger(__name__)
 entrynr = 0
