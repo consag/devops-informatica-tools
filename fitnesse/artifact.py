@@ -33,8 +33,8 @@ import os
 import fitnesse.fitnesseSettings as settings
 import supporting.deploylist
 from pathlib import Path
-
 from supporting.generatezip import generate_zip
+from supporting.generatezip import addto_zip
 
 logger = logging.getLogger(__name__)
 entrynr = 0
@@ -85,9 +85,11 @@ def processEntry(deployEntry):
     if suppress_zip == 'Y':
         supporting.log(logger, logging.DEBUG, thisproc, "zip files will be ignored.")
         result = generate_zip(directory, directory + ".zip", 'zip')
+        result = addto_zip(directory + '.wiki', directory + ".zip", 'zip')
     else:
         supporting.log(logger, logging.DEBUG, thisproc, "zip files will be included.")
         result = generate_zip(directory, directory + ".zip")
+        result = addto_zip(directory + '.wiki', directory + ".zip")
 
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")

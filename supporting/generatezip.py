@@ -52,3 +52,28 @@ def generate_zip(directory, zipFileName, suppress_extension='7Al!#%ˆˆ'):
                        "Done walking through directory >" + directory + "< ...")
 
     return err.OK
+
+
+def addto_zip(directory, zipFileName, suppress_extension='7Al!#%ˆˆ'):
+    thisproc ="addto_zip"
+
+    # create a ZipFile object
+    with ZipFile(zipFileName, 'a') as zipObj:
+        # Iterate over all the files in directory
+        supporting.log(logger, logging.DEBUG, thisproc,
+                       "Walking through directory >" + directory + "< ...")
+
+        for folderName, subfolders, filenames in os.walk(directory):
+            for filename in filenames:
+                if filename.endswith('.' + suppress_extension):
+                    supporting.log(logger, logging.DEBUG, thisproc, "Ignoring >" + filename + "< as it has the extension >" + suppress_extension +"<.")
+                else:
+                    supporting.log(logger, logging.DEBUG, thisproc, "Adding >" + filename + "< to zip.")
+                    filePath = os.path.join(folderName, filename)
+                    # Add file to zip
+                    zipObj.write(filePath)
+
+        supporting.log(logger, logging.DEBUG, thisproc,
+                       "Done walking through directory >" + directory + "< ...")
+
+    return err.OK
