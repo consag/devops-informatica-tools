@@ -82,14 +82,15 @@ def processEntry(deployEntry):
             result = err.DIRECTORY_NF
             return result
 
+    zipfilename = directory.replace('/','_') + ".zip"
     if suppress_zip == 'Y':
         supporting.log(logger, logging.DEBUG, thisproc, "zip files will be ignored.")
-        result = generate_zip(directory, directory + ".zip", 'zip')
-        result = addto_zip(directory + '.wiki', directory + ".zip", 'zip')
+        result = generate_zip(directory, zipfilename, 'zip')
+        result = addto_zip(directory + '.wiki', zipfilename, 'zip')
     else:
         supporting.log(logger, logging.DEBUG, thisproc, "zip files will be included.")
-        result = generate_zip(directory, directory + ".zip")
-        result = addto_zip(directory + '.wiki', directory + ".zip")
+        result = generate_zip(directory, zipfilename)
+        result = addto_zip(directory + '.wiki', zipfilename)
 
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")
