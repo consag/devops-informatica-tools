@@ -38,10 +38,18 @@ FUNCTIONS
         Use the option -h on the command line to get an overview of the required and optional arguments.
 
 DATA
-    now = datetime.datetime(2019, 10, 15, 23, 38, 20, 679148)
+    now = datetime.datetime(2019, 10, 18, 3, 12, 56, 538134)
     result = <supporting.errorcode.Errorcode object>
 
 FILE
     /Users/jacbeekers/gitrepos/devops-informatica-tools/createOracleArtifact.py
 
 
+IMPORTS
+    import logging, datetime, supporting
+    import supporting.errorcodes as err
+    import database.databaseArtifactChecks as dbchecks
+    import database.artifact
+    import database.dbSettings as settings
+    import supporting.generalSettings as generalsettings
+    import sys, argparse

@@ -39,10 +39,18 @@ FUNCTIONS
         Use the option -h on the command line to get an overview of the required and optional arguments.
 
 DATA
-    now = datetime.datetime(2019, 10, 15, 23, 38, 21, 919837)
+    now = datetime.datetime(2019, 10, 18, 3, 12, 57, 836453)
     result = <supporting.errorcode.Errorcode object>
 
 FILE
     /Users/jacbeekers/gitrepos/devops-informatica-tools/exportConnections.py
 
 
+IMPORTS
+    import logging, datetime, supporting
+    from supporting import errorcodes
+    from informatica import infaSettings
+    from informatica import infaConstants
+    from supporting import generalSettings
+    from informatica import manageConnection
+    import sys, argparse

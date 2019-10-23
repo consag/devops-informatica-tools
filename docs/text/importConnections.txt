@@ -31,10 +31,18 @@ FUNCTIONS
     main(argv)
 
 DATA
-    now = datetime.datetime(2019, 10, 15, 23, 38, 22, 190258)
+    now = datetime.datetime(2019, 10, 18, 3, 12, 58, 122391)
     result = <supporting.errorcode.Errorcode object>
 
 FILE
     /Users/jacbeekers/gitrepos/devops-informatica-tools/importConnections.py
 
 
+IMPORTS
+    import logging, datetime, supporting
+    from supporting import errorcodes
+    from informatica import infaSettings
+    from informatica import infaConstants
+    from supporting import generalSettings
+    from informatica import manageConnection
+    import sys

@@ -1,7 +1,0 @@
-problem in setup - SystemExit: usage: pydoc3 [global_opts] cmd1 [cmd1_opts] [cmd2 [cmd2_opts] ...]
-   or: pydoc3 --help [cmd1 cmd2 ...]
-   or: pydoc3 --help-commands
-   or: pydoc3 cmd --help
-
-error: invalid command 'setup'
-
