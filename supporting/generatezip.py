@@ -61,7 +61,7 @@ def addto_zip(directory, zipFileName, suppress_extension='7Al!#%ˆˆ'):
     with ZipFile(zipFileName, 'a') as zipObj:
         # Iterate over all the files in directory
         supporting.log(logger, logging.DEBUG, thisproc,
-                       "Walking through directory >" + directory + "< ...")
+                       "Adding >" + directory + "< ...")
 
         for folderName, subfolders, filenames in os.walk(directory):
             for filename in filenames:
@@ -74,6 +74,6 @@ def addto_zip(directory, zipFileName, suppress_extension='7Al!#%ˆˆ'):
                     zipObj.write(filePath)
 
         supporting.log(logger, logging.DEBUG, thisproc,
-                       "Done walking through directory >" + directory + "< ...")
+                       "Done adding >" + directory + "< ...")
 
     return err.OK

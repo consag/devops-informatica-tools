@@ -64,6 +64,8 @@ def processEntry(deployEntry):
     directory, suppress_zip = deployEntry.split(':', 2)
     supporting.log(logger, logging.DEBUG, thisproc,
                    'Directory is >' + directory + '< and suppress_zip is >' + suppress_zip + '<')
+    zipfilename = directory.replace('/','_') + ".zip"
+    supporting.log(logger, logging.DEBUG, thisproc, 'zipfilename is >' + zipfilename + "<.")
 
     directoryPath = Path(directory)
     if directoryPath.is_dir():
@@ -73,16 +75,16 @@ def processEntry(deployEntry):
         sourcefitnessedir = settings.sourcefitnessedir + "/"
         supporting.log(logger, logging.DEBUG, thisproc, 'directory >' + directory + '< not found. Trying >'
                        + sourcefitnessedir + directory + '<...')
-        directoryPath = Path(sourcefitnessedir + directory)
+        directory = sourcefitnessedir + directory
+        directoryPath = Path(directory)
         if directoryPath.is_dir():
-            supporting.log(logger, logging.DEBUG, thisproc, 'Found directory >' + sourcefitnessedir + directory + "<.")
+            supporting.log(logger, logging.DEBUG, thisproc, 'Found directory >' + directory + "<.")
         else:
             supporting.log(logger, err.SQLFILE_NF.level, thisproc,
-                           "directory checked >" + sourcefitnessedir + directory + "<. " + err.DIRECTORY_NF.message)
+                           "directory checked >" + directory + "<. " + err.DIRECTORY_NF.message)
             result = err.DIRECTORY_NF
             return result
 
-    zipfilename = directory.replace('/','_') + ".zip"
     if suppress_zip == 'Y':
         supporting.log(logger, logging.DEBUG, thisproc, "zip files will be ignored.")
         result = generate_zip(directory, zipfilename, 'zip')
