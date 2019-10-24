@@ -87,12 +87,12 @@ def processEntry(deployEntry):
 
     if suppress_zip == 'Y':
         supporting.log(logger, logging.DEBUG, thisproc, "zip files will be ignored.")
-        result = generate_zip(directory, zipfilename, 'zip')
-        result = addto_zip(directory + '.wiki', zipfilename, 'zip')
+        result = generate_zip(sourcefitnessedir, directory, zipfilename, 'zip')
+        result = addto_zip(sourcefitnessedir, directory + '.wiki', zipfilename, 'zip')
     else:
         supporting.log(logger, logging.DEBUG, thisproc, "zip files will be included.")
-        result = generate_zip(directory, zipfilename)
-        result = addto_zip(directory + '.wiki', zipfilename)
+        result = generate_zip(sourcefitnessedir, directory, zipfilename)
+        result = addto_zip(sourcefitnessedir, directory + '.wiki', zipfilename)
 
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")

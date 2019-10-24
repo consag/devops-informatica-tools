@@ -29,51 +29,56 @@ import supporting
 logger = logging.getLogger(__name__)
 
 
-def generate_zip(directory, zipFileName, suppress_extension='7Al!#%ˆˆ'):
-    thisproc ="generate_zip"
+def generate_zip(basedirectory, directory, zipFileName, suppress_extension='7Al!#%ˆˆ'):
+    thisproc = "generate_zip"
 
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   "Creating new zip >" + zipFileName + "<...")
     # create a ZipFile object
     with ZipFile(zipFileName, 'w') as zipObj:
-        # Iterate over all the files in directory
-        supporting.log(logger, logging.DEBUG, thisproc,
-                       "Walking through directory >" + directory + "< ...")
-
-        for folderName, subfolders, filenames in os.walk(directory):
-            for filename in filenames:
-                if filename.endswith('.' + suppress_extension):
-                    supporting.log(logger, logging.DEBUG, thisproc, "Ignoring >" + filename + "< as it has the extension >" + suppress_extension +"<.")
-                else:
-                    supporting.log(logger, logging.DEBUG, thisproc, "Adding >" + filename + "< to zip.")
-                    filePath = os.path.join(folderName, filename)
-                    # Add file to zip
-                    zipObj.write(filePath)
-
-        supporting.log(logger, logging.DEBUG, thisproc,
-                       "Done walking through directory >" + directory + "< ...")
+        additemto_zip(zipObj, basedirectory, directory, zipFileName, suppress_extension)
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   "Done.")
 
     return err.OK
 
 
-def addto_zip(directory, zipFileName, suppress_extension='7Al!#%ˆˆ'):
-    thisproc ="addto_zip"
+def addto_zip(basedirectory, directory, zipFileName, suppress_extension='7Al!#%ˆˆ'):
+    thisproc = "addto_zip"
+
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   "Adding to zip >" + zipFileName + "<...")
 
     # create a ZipFile object
     with ZipFile(zipFileName, 'a') as zipObj:
-        # Iterate over all the files in directory
-        supporting.log(logger, logging.DEBUG, thisproc,
-                       "Adding >" + directory + "< ...")
+        additemto_zip(zipObj, basedirectory, directory, zipFileName, suppress_extension)
 
-        for folderName, subfolders, filenames in os.walk(directory):
-            for filename in filenames:
-                if filename.endswith('.' + suppress_extension):
-                    supporting.log(logger, logging.DEBUG, thisproc, "Ignoring >" + filename + "< as it has the extension >" + suppress_extension +"<.")
-                else:
-                    supporting.log(logger, logging.DEBUG, thisproc, "Adding >" + filename + "< to zip.")
-                    filePath = os.path.join(folderName, filename)
-                    # Add file to zip
-                    zipObj.write(filePath)
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   "Done.")
 
-        supporting.log(logger, logging.DEBUG, thisproc,
-                       "Done adding >" + directory + "< ...")
+    return err.OK
+
+
+def additemto_zip(zipObj, basedirectory, directory, zipFileName, suppress_extension='7Al!#%ˆˆ'):
+    thisproc = "additemto_zip"
+
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   "Adding >" + directory + "< ...")
+
+    for folderName, subfolders, filenames in os.walk(directory):
+        for filename in filenames:
+            if filename.endswith('.' + suppress_extension):
+                supporting.log(logger, logging.DEBUG, thisproc,
+                               "Ignoring >" + filename + "< as it has the extension >" + suppress_extension + "<.")
+            else:
+                filePath = os.path.join(folderName, filename)
+                # Add file to zip
+                archive_name = filePath[len(basedirectory):]
+                supporting.log(logger, logging.DEBUG, thisproc,
+                               "Adding >" + filePath + "< to zip as >" + archive_name + "<.")
+                zipObj.write(filePath, archive_name)
+
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   "Done adding >" + directory + "< ...")
 
     return err.OK
