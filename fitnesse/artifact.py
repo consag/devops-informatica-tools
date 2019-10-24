@@ -64,7 +64,7 @@ def processEntry(deployEntry):
     directory, suppress_zip = deployEntry.split(':', 2)
     supporting.log(logger, logging.DEBUG, thisproc,
                    'Directory is >' + directory + '< and suppress_zip is >' + suppress_zip + '<')
-    zipfilename = directory.replace('/','_') + ".zip"
+    zipfilename = settings.targetfitnessedir + "/" + directory.replace('/','_') + ".zip"
     supporting.log(logger, logging.DEBUG, thisproc, 'zipfilename is >' + zipfilename + "<.")
 
     directoryPath = Path(directory)
