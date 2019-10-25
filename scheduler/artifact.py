@@ -113,7 +113,8 @@ def determinebaseTargetDirectory(type):
 def determineSourceDirectory(directory, type):
     thisproc = "determineSourceDirectory"
 
-    type_path = directory + "/" + type
+    #type_path = directory + "/" + type
+    type_path = directory 
     directoryPath = Path(type_path)
     if directoryPath.is_dir():
         supporting.log(logger, logging.DEBUG, thisproc, 'Found directory >' + type_path + "<.")
@@ -133,3 +134,5 @@ def determineSourceDirectory(directory, type):
             return constants.NOT_SET, result
 
     return type_path, err.OK
+
+
