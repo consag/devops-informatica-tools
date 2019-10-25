@@ -72,7 +72,8 @@ def processEntry(deployEntry):
         return result
 
     zipfilename = determinebaseTargetDirectory(type) + "/" + directory.replace('/', '_') + ".zip"
-    supporting.log(logger, logging.DEBUG, thisproc, 'zipfilename is >' + zipfilename + "<.")
+    os.makedirs(determinebaseTargetDirectory(type), exist_ok=True)
+    supporting.log(logger, logging.DEBUG, thisproc, 'zipfilename set to >' + zipfilename + "<.")
 
     source_dir, result = determineSourceDirectory(directory)
     if result.rc != 0:
