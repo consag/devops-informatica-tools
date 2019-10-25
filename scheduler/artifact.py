@@ -124,4 +124,5 @@ def determineSourceDirectory(directory):
             result = err.DIRECTORY_NF
             return constants.NOT_SET, result
 
-    return directory
+    return directory, err.OK
+
