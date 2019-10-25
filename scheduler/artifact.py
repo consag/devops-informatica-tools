@@ -79,7 +79,7 @@ def processEntry(deployEntry):
     if result.rc != 0:
         return result
 
-    result = generate_zip(source_dir, directory + "/" + filter, zipfilename)
+    result = generate_zip(determinebaseSourceDirectory(), source_dir,  zipfilename, filter)
 
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")
@@ -105,25 +105,26 @@ def determinebaseTargetDirectory(type):
     return constants.NOT_SET
 
 
-def determineSourceDirectory(directory):
+def determineSourceDirectory(directory, type):
     thisproc = "determineSourceDirectory"
 
-    directoryPath = Path(directory)
+    type_path = directory + "/" + type
+    directoryPath = Path(type_path)
     if directoryPath.is_dir():
-        supporting.log(logger, logging.DEBUG, thisproc, 'Found directory >' + directory + "<.")
+        supporting.log(logger, logging.DEBUG, thisproc, 'Found directory >' + type_path + "<.")
+        directory = type_path
     else:
         sourceDir = determinebaseSourceDirectory(type) + "/"
-        supporting.log(logger, logging.DEBUG, thisproc, 'directory >' + directory + '< not found. Trying >'
-                       + sourceDir + directory + '<...')
-        directory = sourceDir + directory
-        directoryPath = Path(directory)
+        supporting.log(logger, logging.DEBUG, thisproc, 'directory >' + type_path + '< not found. Trying >'
+                       + sourceDir + type_path + '<...')
+        type_path = sourceDir + type_path
+        directoryPath = Path(type_path)
         if directoryPath.is_dir():
-            supporting.log(logger, logging.DEBUG, thisproc, 'Found directory >' + directory + "<.")
+            supporting.log(logger, logging.DEBUG, thisproc, 'Found directory >' + type_path + "<.")
         else:
             supporting.log(logger, err.SQLFILE_NF.level, thisproc,
-                           "directory checked >" + directory + "<. " + err.DIRECTORY_NF.message)
+                           "directory checked >" + type_path + "<. " + err.DIRECTORY_NF.message)
             result = err.DIRECTORY_NF
             return constants.NOT_SET, result
 
-    return directory, err.OK
-
+    return type_path, err.OK
