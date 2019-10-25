@@ -21,19 +21,6 @@
 #  SOFTWARE.
 #
 
-#  MIT License
-#
-#
-#  Permission is hereby granted, free of charge, to any person obtaining a copy
-#  of this software and associated documentation files (the "Software"), to deal
-#  in the Software without restriction, including without limitation the rights
-#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-#  copies of the Software, and to permit persons to whom the Software is
-#  furnished to do so, subject to the following conditions:
-#
-#
-#
-
 ##
 # scheduler Artifact Checks
 # @Since: 25-OCT-2019
@@ -43,6 +30,7 @@
 import supporting.errorcodes as err
 import supporting, logging
 import scheduler.schedulerSettings as settings
+import scheduler.schedulerConstants as constants
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
@@ -59,8 +47,18 @@ def schedulerartifactchecks():
     else:
         deploylistFile = Path(settings.schedulerdeploylist)
         if not deploylistFile.is_file():
-            supporting.log(logger, err.DEPLOYLIST_NF.level, thisproc, "schedulerdeploylist is >" + settings.schedulerdeploylist +"<. " + err.DEPLOYLIST_NF.message)
+            supporting.log(logger, err.DEPLOYLIST_NF.level, thisproc,
+                           "schedulerdeploylist is >" + settings.schedulerdeploylist + "<. " + err.DEPLOYLIST_NF.message)
             result = err.DEPLOYLIST_NF
 
     supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + str(result.rc) + "<.")
     return result
+
+
+def checkSchedulerEntryType(type):
+    if type == constants.PLUGINS or type == constants.JOBTYPE:
+        return err.OK
+    if type == constants.DAGS or type == constants.JOBASCODE:
+        return err.OK
+
+    return err.INVALID_SCHEDULER_ENTRY_TYPE

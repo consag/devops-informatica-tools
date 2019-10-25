@@ -27,15 +27,27 @@
 # @Author: Jac. Beekers
 # @Version: 20191025.0 - JBE - Initial
 
-# Database artifacts
+# Scheduler artifacts
 varSchedulerDeployList='SCHEDULER_DEPLOYLIST'
 varSourceSchedulerDir='SOURCE_SCHEDULERDIR'
+varSourceSchedulerTypeDir='SOURCE_SCHEDULER_TYPEDIR'
 varTargetSchedulerDir='TARGET_SCHEDULERDIR'
+varTargetSchedulerTypeDir='TARGET_SCHEDULER_TYPEDIR'
 
 ##
-# FitNesse artifact defaults
+# Scheduler artifact defaults
 DEFAULT_SOURCE_SCHEDULERDIR ='.'
+DEFAULT_SOURCE_SCHEDULER_TYPEDIR ='.'
 DEFAULT_TARGET_SCHEDULERDIR ='.'
+DEFAULT_TARGET_SCHEDULER_TYPEDIR ='.'
 DEFAULT_SCHEDULER_DEPLOYLIST ='scheduler_deploylist.txt'
 
 NOT_SET ='NOT_SET'
+##
+# Airflow
+PLUGINS = 'plugins'
+DAGS = 'dags'
+##
+# Control-M
+JOBTYPE = 'jobtype'
+JOBASCODE = 'jobascode'

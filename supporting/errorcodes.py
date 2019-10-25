@@ -104,3 +104,7 @@ INFACMD_SET_CONN_FAILED=err.Errorcode(30,'INFASEC-0024','Permissions could not b
 INFACMD_NOGROUPNAME=err.Errorcode(30,'INFASEC-0025','No group name provided.','Provide a name for the group to be created.','CreateGroup',logging.ERROR)
 INFACMD_NOGROUPNAME_DELETION=err.Errorcode(30,'INFASEC-0026','No group name provided.','Provide the name of the group to be deleted.','DeleteGroup',logging.ERROR)
 
+##
+# Scheduler artifact errors
+INVALID_SCHEDULER_ENTRY_TYPE=err.Errorcode(40,'SCHDEPLOY-0001','Invalid scheduler entry type.','Provid a valid scheduler entry type, eg. dags, jobascode, plugin. Check schedulerConstants.py for more.','SchedulerArtifact',logging.ERROR)
+

@@ -30,9 +30,12 @@
 import supporting.errorcodes as err
 import supporting, logging
 import os
+import scheduler.schedulerConstants as constants
 import scheduler.schedulerSettings as settings
 import supporting.deploylist
 from pathlib import Path
+
+from scheduler.schedulerArtifactChecks import checkSchedulerEntryType
 from supporting.generatezip import generate_zip
 from supporting.generatezip import addto_zip
 
@@ -60,21 +63,58 @@ def processEntry(deployEntry):
     supporting.log(logger, logging.DEBUG, thisproc, "Current directory is >" + os.getcwd() + "<.")
     supporting.log(logger, logging.DEBUG, thisproc, "Started to work on deploy entry >" + deployEntry + "<.")
 
-    directory, suppress_zip = deployEntry.split(':', 2)
+    type, directory, filter = deployEntry.split(':', 3)
     supporting.log(logger, logging.DEBUG, thisproc,
-                   'Directory is >' + directory + '< and suppress_zip is >' + suppress_zip + '<')
-    zipfilename = settings.targetschedulerdir + "/" + directory.replace('/','_') + ".zip"
+                   'Type is >' + type + '<, directory is >' + directory + '< and filter is >' + filter + '<')
+
+    result = checkSchedulerEntryType(type)
+    if result.rc != 0:
+        return result
+
+    zipfilename = determinebaseTargetDirectory(type) + "/" + directory.replace('/', '_') + ".zip"
     supporting.log(logger, logging.DEBUG, thisproc, 'zipfilename is >' + zipfilename + "<.")
+
+    source_dir, result = determineSourceDirectory(directory)
+    if result.rc != 0:
+        return result
+
+    result = generate_zip(source_dir, directory + "/" + filter, zipfilename)
+
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")
+
+    return result
+
+
+def determinebaseSourceDirectory(type):
+    if type == constants.DAGS or type == constants.JOBASCODE:
+        return settings.sourceschedulerdir
+    if type == constants.PLUGINS or type == constants.JOBTYPE:
+        return settings.sourceschedulertypedir
+
+    return constants.NOT_SET
+
+
+def determinebaseTargetDirectory(type):
+    if type == constants.DAGS or type == constants.JOBASCODE:
+        return settings.targetschedulerdir
+    if type == constants.PLUGINS or type == constants.JOBTYPE:
+        return settings.targetschedulertypedir
+
+    return constants.NOT_SET
+
+
+def determineSourceDirectory(directory):
+    thisproc = "determineSourceDirectory"
 
     directoryPath = Path(directory)
     if directoryPath.is_dir():
         supporting.log(logger, logging.DEBUG, thisproc, 'Found directory >' + directory + "<.")
-        sourceschedulerdir = ""
     else:
-        sourceschedulerdir = settings.sourceschedulerdir + "/"
+        sourceDir = determinebaseSourceDirectory(type) + "/"
         supporting.log(logger, logging.DEBUG, thisproc, 'directory >' + directory + '< not found. Trying >'
-                       + sourceschedulerdir + directory + '<...')
-        directory = sourceschedulerdir + directory
+                       + sourceDir + directory + '<...')
+        directory = sourceDir + directory
         directoryPath = Path(directory)
         if directoryPath.is_dir():
             supporting.log(logger, logging.DEBUG, thisproc, 'Found directory >' + directory + "<.")
@@ -82,17 +122,6 @@ def processEntry(deployEntry):
             supporting.log(logger, err.SQLFILE_NF.level, thisproc,
                            "directory checked >" + directory + "<. " + err.DIRECTORY_NF.message)
             result = err.DIRECTORY_NF
-            return result
+            return constants.NOT_SET, result
 
-    if suppress_zip == 'Y':
-        supporting.log(logger, logging.DEBUG, thisproc, "zip files will be ignored.")
-        result = generate_zip(sourceschedulerdir, directory, zipfilename, 'zip')
-        result = addto_zip(sourceschedulerdir, directory + '.wiki', zipfilename, 'zip')
-    else:
-        supporting.log(logger, logging.DEBUG, thisproc, "zip files will be included.")
-        result = generate_zip(sourceschedulerdir, directory, zipfilename)
-        result = addto_zip(sourceschedulerdir, directory + '.wiki', zipfilename)
-
-    supporting.log(logger, logging.DEBUG, thisproc,
-                   "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")
-    return result
+    return directory
