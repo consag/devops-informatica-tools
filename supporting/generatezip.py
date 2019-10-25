@@ -81,7 +81,7 @@ def additemto_zip(zipObj, basedirectory, item, filter='*', suppress_extension='7
                     zipObj.write(filePath, archive_name)
                 else:
                     supporting.log(logger, logging.DEBUG, thisproc,
-                                   ">" + filePath + "< was not added to zip as it does not match pattern >" + filter + "<.")
+                                   ">" + filename + "< was not added to zip as it does not match pattern >" + filter + "<.")
 
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Done adding >" + item + "< ...")
