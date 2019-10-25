@@ -1,0 +1,15 @@
+##
+# Structure:
+# <type>:<folder>:<filter>
+# where <type> is a reference to a location on the file system. Typically job types or plugins are stored in a different location from schedule files.
+#   and <folder> is the folder that contains the scheduler file(s). Subfolders will be included.
+#   and <filter> is a file filter that limits the files to be added. Can be any valid file name or valid OS file filter.
+# Notes:
+# 1. only specify relative paths. The CI module will be provided with locations through environment variables.
+## Airflow:
+plugins:Informatica:MyFirstOperator.py
+dags:DQSignalManagementFoundation:*.py
+## Control-M:
+#jobtypes:DQSignalManagementFoundation:*.ctmai
+#jobascode:DQSignalManagementFoundation:*.json
+

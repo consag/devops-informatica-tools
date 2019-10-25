@@ -45,11 +45,15 @@ level = 0
 
 
 def processList(deployFile):
+    thisproc = "processList"
     latestError = err.OK
     result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
     if result.rc == 0:
         for deployEntry in supporting.deploylist.deployItems:
+            supporting.log(logger, logging.DEBUG, thisproc, "Found deploy entry >" + deployEntry + "<.")
             result = processEntry(deployEntry)
+            supporting.log(logger, logging.DEBUG, thisproc, "deployEntry returned >" + result.code + "<.")
+            supporting.log(logger, logging.DEBUG, thisproc, "Overall result is >" + latestError.code + "<.")
             if result.rc != 0:
                 latestError = result
     else:
@@ -75,11 +79,12 @@ def processEntry(deployEntry):
     os.makedirs(determinebaseTargetDirectory(type), exist_ok=True)
     supporting.log(logger, logging.DEBUG, thisproc, 'zipfilename set to >' + zipfilename + "<.")
 
-    source_dir, result = determineSourceDirectory(directory)
+    source_dir, result = determineSourceDirectory(directory, type)
     if result.rc != 0:
+        supporting.log(logger, logging.DEBUG, thisproc, 'source directory could not be determined. directory is >' + directory + "< and type was set to >" + type +"<.")
         return result
 
-    result = generate_zip(determinebaseSourceDirectory(), source_dir,  zipfilename, filter)
+    result = generate_zip(determinebaseSourceDirectory(type), source_dir,  zipfilename, filter)
 
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")

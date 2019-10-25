@@ -37,7 +37,7 @@ def generate_zip(basedirectory, directory, zipFileName, filter='*', suppress_ext
                    "Creating new zip >" + zipFileName + "<...")
     # create a ZipFile object
     with ZipFile(zipFileName, 'w') as zipObj:
-        additemto_zip(zipObj, basedirectory, directory, zipFileName, filter, suppress_extension)
+        additemto_zip(zipObj, basedirectory, directory, filter, suppress_extension)
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Done.")
 
