@@ -30,11 +30,12 @@
 import supporting.errorcodes as err
 import supporting, logging
 import os
-from cicd import scheduler as constants, scheduler as settings
+from cicd.scheduler import schedulerConstants as constants
+from cicd.scheduler import schedulerSettings as settings
 import supporting.deploylist
 from pathlib import Path
 
-from cicd.scheduler import checkSchedulerEntryType
+from cicd.scheduler.schedulerArtifactChecks import checkSchedulerEntryType
 from supporting.generatezip import generate_zip
 
 logger = logging.getLogger(__name__)
@@ -79,10 +80,11 @@ def processEntry(deployEntry):
 
     source_dir, result = determineSourceDirectory(directory, type)
     if result.rc != 0:
-        supporting.log(logger, logging.DEBUG, thisproc, 'source directory could not be determined. directory is >' + directory + "< and type was set to >" + type +"<.")
+        supporting.log(logger, logging.DEBUG, thisproc,
+                       'source directory could not be determined. directory is >' + directory + "< and type was set to >" + type + "<.")
         return result
 
-    result = generate_zip(determinebaseSourceDirectory(type), source_dir,  zipfilename, filter)
+    result = generate_zip(determinebaseSourceDirectory(type), source_dir, zipfilename, filter)
 
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")
@@ -111,8 +113,8 @@ def determinebaseTargetDirectory(type):
 def determineSourceDirectory(directory, type):
     thisproc = "determineSourceDirectory"
 
-    #type_path = directory + "/" + type
-    type_path = directory 
+    # type_path = directory + "/" + type
+    type_path = directory
     directoryPath = Path(type_path)
     if directoryPath.is_dir():
         supporting.log(logger, logging.DEBUG, thisproc, 'Found directory >' + type_path + "<.")
@@ -132,5 +134,3 @@ def determineSourceDirectory(directory, type):
             return constants.NOT_SET, result
 
     return type_path, err.OK
-
-

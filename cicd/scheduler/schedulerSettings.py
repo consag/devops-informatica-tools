@@ -28,7 +28,7 @@
 # @Version: 20191025.0 - JBE - Initial
 ##
 
-from cicd import scheduler as constants
+from cicd.scheduler import schedulerConstants as constants
 import supporting, os, logging
 import supporting.generalSettings as generalsettings
 from supporting.generalSettings import completePath

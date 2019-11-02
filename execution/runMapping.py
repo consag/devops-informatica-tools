@@ -86,7 +86,7 @@ class ExecuteInformaticaMapping:
         thisproc = "MAIN"
         mainProc = 'runMapping'
 
-        args = self.parse_the_arguments()
+        args = ExecuteInformaticaMapping.parse_the_arguments(self)
 
         resultlogger = supporting.configurelogger(mainProc)
         logger = logging.getLogger(mainProc)
