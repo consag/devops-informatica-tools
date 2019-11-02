@@ -42,11 +42,13 @@ targetschedulertypedir = constants.DEFAULT_TARGET_SCHEDULER_TYPEDIR
 
 def getschedulerenvvars():
     thisproc="getschedulerenvvars"
-    global schedulerdeploylist, sourceschedulerdir, targetschedulerdir
+    global schedulerdeploylist, sourceschedulerdir, targetschedulerdir, sourceschedulertypedir, targetschedulertypedir
     supporting.log(logger, logging.DEBUG, thisproc, 'started')
     schedulerdeploylist = completePath(os.environ.get(constants.varSchedulerDeployList, constants.DEFAULT_SCHEDULER_DEPLOYLIST), generalsettings.sourceDir)
+
     sourceschedulerdir = completePath(os.environ.get(constants.varSourceSchedulerDir, constants.DEFAULT_SOURCE_SCHEDULERDIR), generalsettings.sourceDir)
-    sourceschedulerypedir = completePath(os.environ.get(constants.varSourceSchedulerTypeDir, constants.DEFAULT_SOURCE_SCHEDULER_TYPEDIR), generalsettings.sourceDir)
+    sourceschedulertypedir = completePath(os.environ.get(constants.varSourceSchedulerTypeDir, constants.DEFAULT_SOURCE_SCHEDULER_TYPEDIR), generalsettings.sourceDir)
+
     targetschedulerdir = completePath(os.environ.get(constants.varTargetSchedulerDir, constants.DEFAULT_TARGET_SCHEDULERDIR), generalsettings.sourceDir)
     targetschedulertypedir = completePath(os.environ.get(constants.varTargetSchedulerTypeDir, constants.DEFAULT_TARGET_SCHEDULER_TYPEDIR), generalsettings.sourceDir)
 

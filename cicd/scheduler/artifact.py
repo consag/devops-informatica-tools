@@ -43,11 +43,15 @@ level = 0
 
 
 def processList(deployFile):
+    thisproc = "processList"
     latestError = err.OK
     result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
     if result.rc == 0:
         for deployEntry in supporting.deploylist.deployItems:
+            supporting.log(logger, logging.DEBUG, thisproc, "Found deploy entry >" + deployEntry + "<.")
             result = processEntry(deployEntry)
+            supporting.log(logger, logging.DEBUG, thisproc, "deployEntry returned >" + result.code + "<.")
+            supporting.log(logger, logging.DEBUG, thisproc, "Overall result is >" + latestError.code + "<.")
             if result.rc != 0:
                 latestError = result
     else:
@@ -73,11 +77,12 @@ def processEntry(deployEntry):
     os.makedirs(determinebaseTargetDirectory(type), exist_ok=True)
     supporting.log(logger, logging.DEBUG, thisproc, 'zipfilename set to >' + zipfilename + "<.")
 
-    source_dir, result = determineSourceDirectory(directory)
+    source_dir, result = determineSourceDirectory(directory, type)
     if result.rc != 0:
+        supporting.log(logger, logging.DEBUG, thisproc, 'source directory could not be determined. directory is >' + directory + "< and type was set to >" + type +"<.")
         return result
 
-    result = generate_zip(source_dir, directory + "/" + filter, zipfilename)
+    result = generate_zip(determinebaseSourceDirectory(type), source_dir,  zipfilename, filter)
 
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")
@@ -103,25 +108,29 @@ def determinebaseTargetDirectory(type):
     return constants.NOT_SET
 
 
-def determineSourceDirectory(directory):
+def determineSourceDirectory(directory, type):
     thisproc = "determineSourceDirectory"
 
-    directoryPath = Path(directory)
+    #type_path = directory + "/" + type
+    type_path = directory 
+    directoryPath = Path(type_path)
     if directoryPath.is_dir():
-        supporting.log(logger, logging.DEBUG, thisproc, 'Found directory >' + directory + "<.")
+        supporting.log(logger, logging.DEBUG, thisproc, 'Found directory >' + type_path + "<.")
+        directory = type_path
     else:
         sourceDir = determinebaseSourceDirectory(type) + "/"
-        supporting.log(logger, logging.DEBUG, thisproc, 'directory >' + directory + '< not found. Trying >'
-                       + sourceDir + directory + '<...')
-        directory = sourceDir + directory
-        directoryPath = Path(directory)
+        supporting.log(logger, logging.DEBUG, thisproc, 'directory >' + type_path + '< not found. Trying >'
+                       + sourceDir + type_path + '<...')
+        type_path = sourceDir + type_path
+        directoryPath = Path(type_path)
         if directoryPath.is_dir():
-            supporting.log(logger, logging.DEBUG, thisproc, 'Found directory >' + directory + "<.")
+            supporting.log(logger, logging.DEBUG, thisproc, 'Found directory >' + type_path + "<.")
         else:
             supporting.log(logger, err.SQLFILE_NF.level, thisproc,
-                           "directory checked >" + directory + "<. " + err.DIRECTORY_NF.message)
+                           "directory checked >" + type_path + "<. " + err.DIRECTORY_NF.message)
             result = err.DIRECTORY_NF
             return constants.NOT_SET, result
 
-    return directory, err.OK
+    return type_path, err.OK
+
 
