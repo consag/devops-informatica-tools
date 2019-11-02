@@ -21,16 +21,33 @@
 #  SOFTWARE.
 #
 
-from setuptools import setup
+##
+# FitNesse Artifact Checks
+# @Since: 23-OCT-2019
+# @Author: Jac. Beekers
+# @Version: 20191023.0 - JBE - Initial
 
-setup(
-    name='devops-informatica-tools',
-    version='0.9.2',
-    packages=['cicd', 'cicd.database', 'cicd.database.utilities', 'cicd.fitnesse', 'cicd.scheduler', 'cicd.informatica',
-              'execution', 'supporting', 'supporting.errorcode'],
-    url='https://github.com/consag/devops-informatica-tools',
-    license='MIT',
-    author='Jac. Beekers',
-    author_email='beekersjac@gmail.com',
-    description='DevOps and CI-CD Pipeline scripts for Informatica Platform related projects'
-)
+import supporting.errorcodes as err
+import supporting, logging
+from cicd import fitnesse as settings
+from pathlib import Path
+
+logger = logging.getLogger(__name__)
+
+
+def fitnesseartifactchecks():
+    thisproc = "fitnesseartifactchecks"
+    supporting.log(logger, logging.DEBUG, thisproc, 'started')
+    result = err.OK
+
+    if not settings.fitnessedeploylist:
+        supporting.log(logger, err.NO_DEPLOYLIST.level, thisproc, err.NO_DEPLOYLIST.message)
+        result = err.NO_DEPLOYLIST
+    else:
+        deploylistFile = Path(settings.fitnessedeploylist)
+        if not deploylistFile.is_file():
+            supporting.log(logger, err.DEPLOYLIST_NF.level, thisproc, "fitnessedeploylist is >" + settings.fitnessedeploylist +"<. " + err.DEPLOYLIST_NF.message)
+            result = err.DEPLOYLIST_NF
+
+    supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + str(result.rc) + "<.")
+    return result

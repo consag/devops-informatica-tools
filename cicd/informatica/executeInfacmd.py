@@ -20,17 +20,28 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 #
+import logging
+import os
+from cicd.informatica import infaSettings
+from supporting import errorcodes, executeCommand
 
-from setuptools import setup
+logger = logging.getLogger(__name__)
+entrynr = 0
 
-setup(
-    name='devops-informatica-tools',
-    version='0.9.2',
-    packages=['cicd', 'cicd.database', 'cicd.database.utilities', 'cicd.fitnesse', 'cicd.scheduler', 'cicd.informatica',
-              'execution', 'supporting', 'supporting.errorcode'],
-    url='https://github.com/consag/devops-informatica-tools',
-    license='MIT',
-    author='Jac. Beekers',
-    author_email='beekersjac@gmail.com',
-    description='DevOps and CI-CD Pipeline scripts for Informatica Platform related projects'
-)
+
+def execute(command):
+    """Execute an Informatica command line
+    Sets INFA_DEFAULT_DOMAIN_PASSWORD, INFA_DEFAULTS_DOMAIN_USER and INFA_DEFAULT_SECURITY_DOMAIN based on provided Informatica settings.
+    """
+    infa_env = {**os.environ, 'INFA_DEFAULT_DOMAIN_PASSWORD': infaSettings.sourcePassword,
+                'INFA_DEFAULT_DOMAIN_USER': infaSettings.sourceUsername,
+                'INFA_DEFAULT_SECURITY_DOMAIN': infaSettings.sourceSecurityDomain}
+
+    result = executeCommand.execute(command, infa_env)
+
+    if result.code == errorcodes.COMMAND_FAILED:
+        old_result = result.message
+        result = errorcodes.INFACMD_FAILED
+        result.message = old_result
+
+    return result

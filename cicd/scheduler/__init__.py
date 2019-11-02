@@ -21,16 +21,3 @@
 #  SOFTWARE.
 #
 
-from setuptools import setup
-
-setup(
-    name='devops-informatica-tools',
-    version='0.9.2',
-    packages=['cicd', 'cicd.database', 'cicd.database.utilities', 'cicd.fitnesse', 'cicd.scheduler', 'cicd.informatica',
-              'execution', 'supporting', 'supporting.errorcode'],
-    url='https://github.com/consag/devops-informatica-tools',
-    license='MIT',
-    author='Jac. Beekers',
-    author_email='beekersjac@gmail.com',
-    description='DevOps and CI-CD Pipeline scripts for Informatica Platform related projects'
-)

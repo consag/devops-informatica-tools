@@ -21,16 +21,35 @@
 #  SOFTWARE.
 #
 
-from setuptools import setup
+from supporting import log
+import logging
+from cicd.informatica import buildCommand
+from cicd.informatica import executeInfacmd
+from supporting import errorcodes
+from supporting.mask_password import mask_password
 
-setup(
-    name='devops-informatica-tools',
-    version='0.9.2',
-    packages=['cicd', 'cicd.database', 'cicd.database.utilities', 'cicd.fitnesse', 'cicd.scheduler', 'cicd.informatica',
-              'execution', 'supporting', 'supporting.errorcode'],
-    url='https://github.com/consag/devops-informatica-tools',
-    license='MIT',
-    author='Jac. Beekers',
-    author_email='beekersjac@gmail.com',
-    description='DevOps and CI-CD Pipeline scripts for Informatica Platform related projects'
-)
+
+class ManageSecurity:
+    """Implements wrapper around security related commands, like create a user, a group and more."""
+
+    def __init__(self, **keyword_arguments):
+        self.logger = logging.getLogger(__name__)
+        self.keyword_arguments = keyword_arguments
+
+    def manage(self):
+        """Runs Informatica command line to create, delete, update security related objects,
+        like users and groups.
+        """
+        run_command = buildCommand.build(**self.keyword_arguments)
+
+        masked_run_command = mask_password(run_command)
+
+        log(self.logger, logging.DEBUG, __name__, "RunCommand is >" + masked_run_command + "<.")
+        result = executeInfacmd.execute(run_command)
+
+        if (result.rc != errorcodes.OK.rc):
+            oldResult = result.message
+            result = self.keyword_arguments["OnError"]
+            result.message = oldResult
+
+        return (result)
