@@ -1,4 +1,4 @@
-# CI-CD Pipeline, Provisioning and Mainenance components for Informatica projects
+# CI-CD Pipeline, Provisioning and Maintenance components for Informatica projects
 
 ## Dependencies
 * Crypto module for password encryption. Depending on the method you want to use, you need to install one of the following packages:
