@@ -9,7 +9,7 @@ with open("README.md", "r") as fh:
 
 _version_re = re.compile(r'__version__\s+=\s+(.*)')
 
-with open('plugins/__init__.py', 'rb') as f:
+with open('version/__init__.py', 'rb') as f:
     for line in f:
         line=line.strip()
         if line:
@@ -19,12 +19,16 @@ with open('plugins/__init__.py', 'rb') as f:
             if not m:
                result_search = _version_re.search(line)
                version = result_search.group(1)
-#               print("version is >" + version + "<.")
+               print("version is >" + version + "<.")
+               main_version, sub_version, fix_version = version.split(".")
+               fix_number = int(fix_version) + 1
+               new_version = main_version +"." + sub_version + "." + str(fix_number)
+               print("version will be >" + new_version + "<.")
  
 
 setuptools.setup(
-    name='devops-informatica-tools'
-    version=version,
+    name='devops-informatica-tools',
+    version=new_version,
     author='Jac. Beekers',
     author_email='jactools@consag.nl',
     description='DevOps and CI-CD Pipeline scripts for Informatica Platform related projects',
