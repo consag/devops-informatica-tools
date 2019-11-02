@@ -7,9 +7,12 @@ import ast
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+version_file = 'version/__init__.py'
+tmp_version_file = 'temp/_tmp_version.tmp'
+
 _version_re = re.compile(r'__version__\s+=\s+(.*)')
 
-with open('version/__init__.py', 'rb') as f:
+with open(version_file, 'rb') as f:
     for line in f:
         line=line.strip()
         if line:
@@ -19,11 +22,14 @@ with open('version/__init__.py', 'rb') as f:
             if not m:
                result_search = _version_re.search(line)
                version = result_search.group(1)
-               print("version is >" + version + "<.")
+#               print("version is >" + version + "<.")
                main_version, sub_version, fix_version = version.split(".")
                fix_number = int(fix_version) + 1
                new_version = main_version +"." + sub_version + "." + str(fix_number)
-               print("version will be >" + new_version + "<.")
+#               print("version will be >" + new_version + "<.")
+               with open(tmp_version_file, 'wb') as t:
+                    out_line ='__version__ = ' + new_version + '\n'
+                    t.write(out_line.encode('utf-8'))
  
 
 setuptools.setup(
@@ -43,3 +49,4 @@ setuptools.setup(
     ],
     python_requires='>=3.6'
 )
+
