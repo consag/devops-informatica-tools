@@ -29,11 +29,11 @@ if [ $rc -eq 0 ] ; then
    echo "Updating version number for git..."
    if [ -f temp/_tmp_version.tmp ] ; then
       cp -p temp/_tmp_version.tmp version/__init__.py
+      git add version/__init__.py
+      git commit -m "$(cat version/__init__.py) is now on test.pypi"
+#      git push
    else
       echo "new version file not found. version number not changed in git."
-      git add version/__init__.py
-      git commit -m "$(cat version/__init__.py) uploaded to pypi."
-      git push
    fi
 else
    echo "Version not changed as upload was not successful."

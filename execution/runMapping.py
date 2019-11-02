@@ -50,14 +50,17 @@ class ExecuteInformaticaMapping:
         Runs an Informatica Mapping
     """
 
-    def __init__(self, argv):
-        self.argv = argv
+    def __init__(self, argv, log_on_console = True):
+        self.arguments = argv
+        self.mainProc = 'runMapping'
+        self.resultlogger = supporting.configurelogger(self.mainProc, log_on_console)
+        self.logger = supporting.logger
 
-    def parse_the_arguments(self):
+    def parse_the_arguments(self, arguments):
         """Parses the provided arguments and exits on an error.
         Use the option -h on the command line to get an overview of the required and optional arguments.
          """
-        parser = argparse.ArgumentParser()
+        parser = argparse.ArgumentParser(prog='runMapping')
         parser.add_argument("-a", "--application", required=True, action="store", dest="application_name",
                             help="Application that contains the object to run.")
         parser.add_argument("-m", "--mapping", help="Mapping to run.", required=True, action="store",
@@ -70,31 +73,27 @@ class ExecuteInformaticaMapping:
                             , help="log level from 0=fatal to 5=verbose")
         parser.add_argument("-x", "-extra", action="store", dest="as_is_options",
                             help="any options to add. Make sure to use double-quotes!")
-        args = parser.parse_args()
+        args = parser.parse_args(arguments)
 
         if args.as_is_options is None:
             args.as_is_options = ""
 
         return args
 
-    def runit(self):
+    def runit(self, arguments):
         """Runs a Mapping.
         usage: runMapping.py [-h] -a APPLICATION_NAME -m MAPPING_NAME
                      [-p {Source,Target,Full}] [-o {0,1,2,3,4,5}]
                      [-l {0,1,2,3,4,5}] [-x AS_IS_OPTIONS]
         """
         thisproc = "MAIN"
-        mainProc = 'runMapping'
 
-        args = ExecuteInformaticaMapping.parse_the_arguments(self)
-
-        resultlogger = supporting.configurelogger(mainProc)
-        logger = logging.getLogger(mainProc)
+        args = self.parse_the_arguments(arguments)
 
         generalSettings.getenvvars()
 
-        supporting.log(logger, logging.DEBUG, thisproc, 'Started')
-        supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
+        supporting.log(self.logger, logging.DEBUG, thisproc, 'Started')
+        supporting.log(self.logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
         application_name = args.application_name
         mapping_name = args.mapping_name
@@ -105,7 +104,7 @@ class ExecuteInformaticaMapping:
 
         infaSettings.getinfaenvvars()
         infaSettings.outinfaenvvars()
-        supporting.logentireenv()
+#        supporting.logentireenv()
 
         """with AsIsOptions, you can speficy e.g. a parameter set
             Example:
@@ -125,11 +124,12 @@ class ExecuteInformaticaMapping:
                                              )
         result = jobManagement.JobExecution.manage(mapping)
 
-        supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
+        supporting.log(self.logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                        + '< and result code >' + result.code + "<.")
-        supporting.exitscript(resultlogger, result)
+        return result
 
 
 if __name__ == '__main__':
-    infa = ExecuteInformaticaMapping(sys.argv[1:])
-    infa.runit()
+    infa = ExecuteInformaticaMapping(sys.argv[1:], log_on_console=True)
+    result = infa.runit(infa.arguments)
+    supporting.exitscript(infa.resultlogger, result)

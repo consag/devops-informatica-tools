@@ -37,20 +37,22 @@ logger = logging.getLogger(__name__)
 now = datetime.datetime.now()
 
 
-def configurelogger(mainProc):
+def configurelogger(mainProc, console=True):
 
     logdir = os.environ.get(generalConstants.varLogDir, generalConstants.DEFAULT_LOGDIR)
     logging.basicConfig(filename= logdir +"/" + now.strftime("%Y%m%d-%H%M%S.%f") + '-' + mainProc + '.log'
                         , level=logging.DEBUG
                         , format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    # nice for Azure DevOps
-    console = logging.StreamHandler()
-    console.setLevel(logging.DEBUG)
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    # tell the handler to use this format
-    console.setFormatter(formatter)
-    # add the handler to the root logger
-    logging.getLogger('').addHandler(console)
+
+    # nice for Azure DevOps, but not for Airflow
+    if console:
+        console = logging.StreamHandler()
+        console.setLevel(logging.DEBUG)
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        # tell the handler to use this format
+        console.setFormatter(formatter)
+        # add the handler to the root logger
+        logging.getLogger('').addHandler(console)
 
 
     ResultDir = os.environ.get(generalConstants.varResultDir, generalConstants.DEFAULT_RESULTDIR)
