@@ -31,57 +31,63 @@ import argparse
 now = datetime.datetime.now()
 result = errorcodes.OK
 
-
-def parse_the_arguments(argv):
-    """Parses the provided arguments and exits on an error.
-    Use the option -h on the command line to get an overview of the required and optional arguments.
-     """
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-p", "--profile", required=True, action="store", dest="object_path",
-                        help="Profile, including path, to run.")
-    args = parser.parse_args()
-
-    return args
-
-
-def main(argv):
-    """Runs a Profile.
-    usage: runProfile.py [-h] -p OBJECT_PATH
+class ExecuteInformaticaProfile:
     """
-    thisproc = "MAIN"
-    mainProc = 'runProfile'
+        Runs an Informatica Profile
+    """
+    def __init__(self, argv, log_on_console = True):
+        self.arguments = argv
+        self.mainProc = 'runProfile'
+        self.resultlogger = supporting.configurelogger(self.mainProc, log_on_console)
+        self.logger = supporting.logger
 
-    resultlogger = supporting.configurelogger(mainProc)
-    logger = logging.getLogger(mainProc)
+    def parse_the_arguments(self, arguments):
+        """Parses the provided arguments and exits on an error.
+        Use the option -h on the command line to get an overview of the required and optional arguments.
+        """
 
-    args = parse_the_arguments(argv)
+        parser = argparse.ArgumentParser(prog='runProfile')
+        parser.add_argument("-p", "--profile", required=True, action="store", dest="object_path",
+                            help="Profile, including path, to run.")
+        args = parser.parse_args(arguments)
 
-    generalSettings.getenvvars()
+        return args
 
-    supporting.log(logger, logging.DEBUG, thisproc, 'Started')
-    supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    objectPath = args.object_path
-    infaSettings.getinfaenvvars()
-    infaSettings.outinfaenvvars()
-    supporting.logentireenv()
+    def runit(self, arguments):
+        """Runs a Profile.
+        usage: runProfile.py [-h] -p OBJECT_PATH
+        """
+        thisproc = "runit"
+        args = self.parse_the_arguments(arguments)
 
-    profile = jobManagement.JobExecution(Tool="RunProfile",
+        generalSettings.getenvvars()
+
+        supporting.log(self.logger, logging.DEBUG, thisproc, 'Started')
+        supporting.log(self.logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
+
+        object_path = args.object_path
+
+        infaSettings.getinfaenvvars()
+        infaSettings.outinfaenvvars()
+
+        profile = jobManagement.JobExecution(Tool="RunProfile",
                                          Domain=infaSettings.sourceDomain,
                                          MrsServiceName=infaSettings.sourceModelRepository,
                                          DsServiceName=infaSettings.sourceDIS,
-                                         ObjectPathAndName=objectPath,
+                                         ObjectPathAndName=object_path,
                                          ObjectType="profile",
                                          Wait="true",
                                          OnError=errorcodes.INFACMD_PROFILE_FAILED
                                          )
-    result = jobManagement.JobExecution.manage(profile)
+        result = jobManagement.JobExecution.manage(profile)
 
-    supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
+        supporting.log(self.logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
-    supporting.exitscript(resultlogger, result)
-
+        return result
 
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    infa = ExecuteInformaticaProfile(sys.argv[1:], log_on_console=True)
+    result = infa.runit(infa.arguments)
+    supporting.exitscript(infa.resultlogger, result)
+

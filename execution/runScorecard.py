@@ -31,58 +31,61 @@ import argparse
 now = datetime.datetime.now()
 result = errorcodes.OK
 
-
-def parse_the_arguments(argv):
-    """Parses the provided arguments and exits on an error.
-    Use the option -h on the command line to get an overview of the required and optional arguments.
-     """
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-s", "--scorecard", required=True, action="store", dest="object_path",
-                        help="Scorecard, including path, to run.")
-    args = parser.parse_args()
-
-    return args
-
-
-def main(argv):
-    """Runs a Scorecard.
-    usage: runScorecard.py [-h] -s OBJECT_PATH_TO_SCORECARD
+class ExecuteInformaticaScorecard:
     """
-    thisproc = "MAIN"
-    mainProc = 'runScorecard'
+        Runs an Informatica Scorecard
+    """
+    def __init__(self, argv, log_on_console = True):
+        self.arguments = argv
+        self.mainProc = 'runProfile'
+        self.resultlogger = supporting.configurelogger(self.mainProc, log_on_console)
+        self.logger = supporting.logger
 
-    resultlogger = supporting.configurelogger(mainProc)
-    logger = logging.getLogger(mainProc)
+    def parse_the_arguments(self, arguments):
+        """Parses the provided arguments and exits on an error.
+        Use the option -h on the command line to get an overview of the required and optional arguments.
+        """
+        parser = argparse.ArgumentParser(prog='runScorecard')
+        parser.add_argument("-s", "--scorecard", required=True, action="store", dest="object_path",
+                            help="Scorecard, including path, to run.")
+        args = parser.parse_args(arguments)
 
-    args = parse_the_arguments(argv)
+        return args
 
-    generalSettings.getenvvars()
+    def runit(self, arguments):
+        """Runs a Scorecard.
+        usage: runScorecard.py [-h] -p OBJECT_PATH
+        """
+        thisproc = "runit"
+        args = self.parse_the_arguments(arguments)
 
-    supporting.log(logger, logging.DEBUG, thisproc, 'Started')
-    supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
+        generalSettings.getenvvars()
 
-    objectPath = args.object_path
+        supporting.log(self.logger, logging.DEBUG, thisproc, 'Started')
+        supporting.log(self.logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-    infaSettings.getinfaenvvars()
-    infaSettings.outinfaenvvars()
-    supporting.logentireenv()
+        object_path = args.object_path
 
-    scorecard = jobManagement.JobExecution(Tool="RunScorecard",
-                                           Domain=infaSettings.sourceDomain,
-                                           MrsServiceName=infaSettings.sourceModelRepository,
-                                           DsServiceName=infaSettings.sourceDIS,
-                                           ObjectPathAndName=objectPath,
-                                           ObjectType="scorecard",
-                                           Wait="true",
-                                           OnError=errorcodes.INFACMD_SCORECARD_FAILED
-                                           )
-    result = jobManagement.JobExecution.manage(scorecard)
+        infaSettings.getinfaenvvars()
+        infaSettings.outinfaenvvars()
 
-    supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
+        scorecard = jobManagement.JobExecution(Tool="RunScorecard",
+                                               Domain=infaSettings.sourceDomain,
+                                               MrsServiceName=infaSettings.sourceModelRepository,
+                                               DsServiceName=infaSettings.sourceDIS,
+                                               ObjectPathAndName=object_path,
+                                               ObjectType="scorecard",
+                                               Wait="true",
+                                               OnError=errorcodes.INFACMD_SCORECARD_FAILED
+                                               )
+        result = jobManagement.JobExecution.manage(scorecard)
+
+        supporting.log(self.logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
-    supporting.exitscript(resultlogger, result)
+        return result
 
 
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    infa = ExecuteInformaticaScorecard(sys.argv[1:], log_on_console=True)
+    result = infa.runit(infa.arguments)
+    supporting.exitscript(infa.resultlogger, result)

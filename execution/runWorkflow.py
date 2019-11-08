@@ -31,77 +31,84 @@ import argparse
 now = datetime.datetime.now()
 result = errorcodes.OK
 
-
-def parse_the_arguments(argv):
-    """Parses the provided arguments and exits on an error.
-    Use the option -h on the command line to get an overview of the required and optional arguments.
-     """
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-a", "--application", required=True, action="store", dest="application_name",
-                        help="Application that contains the object to run.")
-    parser.add_argument("-w", "--workflow", help="Workflow to run.", required=True, action="store",
-                        dest="workflow_name")
-    parser.add_argument("-c", "--completion", help="Wait for workflow completion", action="store", dest="wait"
-                        , choices=["True", "False"], default="False")
-    parser.add_argument("-l", "--loglevel", type=int, action="store", dest="loglevel", choices=[0, 1, 2, 3, 4, 5]
-                        , help="log level from 0=fatal to 5=verbose")
-    parser.add_argument("-x", "-extra", action="store", dest="as_is_options",
-                        help="any options to add. Make sure to use double-quotes!")
-    args = parser.parse_args()
-
-    if args.as_is_options is None:
-        args.as_is_options = ""
-
-    return args
-
-
-def main(argv):
-    """Runs a Workflow.
-    usage: runWorkflow.py [-h] -a APPLICATION_NAME -w WORKFLOW_NAME
-                      [-c {True,False}] [-l {0,1,2,3,4,5}] [-x AS_IS_OPTIONS]
-    with AsIsOptions, you can speficy e.g. a parameter set
-        Example:
-        runMapping myApp myMapping Source 3 "-ParameterSet myParameterSet -OperatingSystemProfile myOSProfile"
-        It is important to supply the AsIsOptions as one single string
+class ExecuteInformaticaWorkflow:
     """
-    thisproc = "MAIN"
-    mainProc = 'runWorkflow'
+        Runs an Informatica Workflow
+    """
 
-    resultlogger = supporting.configurelogger(mainProc)
-    logger = logging.getLogger(mainProc)
+    def __init__(self, argv, log_on_console = True):
+        self.arguments = argv
+        self.mainProc = 'runWorkflow'
+        self.resultlogger = supporting.configurelogger(self.mainProc, log_on_console)
+        self.logger = supporting.logger
 
-    args = parse_the_arguments(argv)
+    def parse_the_arguments(self, arguments):
+        """Parses the provided arguments and exits on an error.
+        Use the option -h on the command line to get an overview of the required and optional arguments.
+        """
+        parser = argparse.ArgumentParser(prog='runWorkflow')
 
-    generalSettings.getenvvars()
+        parser.add_argument("-a", "--application", required=True, action="store", dest="application_name",
+                            help="Application that contains the object to run.")
+        parser.add_argument("-w", "--workflow", help="Workflow to run.", required=True, action="store",
+                            dest="workflow_name")
+        parser.add_argument("-c", "--completion", help="Wait for workflow completion", action="store", dest="wait"
+                            , choices=["True", "False"], default="False")
+        parser.add_argument("-l", "--loglevel", type=int, action="store", dest="loglevel", choices=[0, 1, 2, 3, 4, 5]
+                            , help="log level from 0=fatal to 5=verbose")
+        parser.add_argument("-x", "-extra", action="store", dest="as_is_options",
+                            help="any options to add. Make sure to use double-quotes!")
+        args = parser.parse_args(arguments)
 
-    supporting.log(logger, logging.DEBUG, thisproc, 'Started')
-    supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
+        if args.as_is_options is None:
+            args.as_is_options = ""
 
-    application_name = args.application_name
-    workflow_name = args.workflow_name
-    wait = args.wait
-    as_is_options = args.as_is_options
+        return args
 
-    infaSettings.getinfaenvvars()
-    infaSettings.outinfaenvvars()
-    supporting.logentireenv()
+    def runit(self, arguments):
+        """Runs a Workflow.
+        usage: runWorkflow.py [-h] -a APPLICATION_NAME -w WORKFLOW_NAME
+                          [-c {True,False}] [-l {0,1,2,3,4,5}] [-x AS_IS_OPTIONS]
+        with AsIsOptions, you can speficy e.g. a parameter set
+            Example:
+            runMapping myApp myMapping Source 3 "-ParameterSet myParameterSet -OperatingSystemProfile myOSProfile"
+            It is important to supply the AsIsOptions as one single string
+        """
+        thisproc = "runit"
 
-    workflow = jobManagement.JobExecution(Tool="RunWorkflow",  # this will translate to StartWorkflow for the infacmd
-                                          Domain=infaSettings.sourceDomain,
-                                          ServiceName=infaSettings.sourceDIS,
-                                          Application=application_name,
-                                          Workflow=workflow_name,
-                                          Wait=wait,
-                                          OnError=errorcodes.INFACMD_WORKFLOW_FAILED,
-                                          AsIsOptions=as_is_options
-                                          )
-    result = jobManagement.JobExecution.manage(workflow)
+        args = self.parse_the_arguments(arguments)
 
-    supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
-                   + '< and result code >' + result.code + "<.")
-    supporting.exitscript(resultlogger, result)
+        generalSettings.getenvvars()
+
+        supporting.log(self.logger, logging.DEBUG, thisproc, 'Started')
+        supporting.log(self.logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
+
+        application_name = args.application_name
+        workflow_name = args.workflow_name
+        wait = args.wait
+        as_is_options = args.as_is_options
+
+        infaSettings.getinfaenvvars()
+        infaSettings.outinfaenvvars()
+#        supporting.logentireenv()
+
+        workflow = jobManagement.JobExecution(Tool="RunWorkflow",  # this will translate to StartWorkflow for the infacmd
+                                           Domain=infaSettings.sourceDomain,
+                                              ServiceName=infaSettings.sourceDIS,
+                                              Application=application_name,
+                                              Workflow=workflow_name,
+                                              Wait=wait,
+                                              OnError=errorcodes.INFACMD_WORKFLOW_FAILED,
+                                              AsIsOptions=as_is_options
+                                              )
+        result = jobManagement.JobExecution.manage(workflow)
+
+        supporting.log(self.logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
+                       + '< and result code >' + result.code + "<.")
+        return result
 
 
 if __name__ == '__main__':
-    main(sys.argv[1:])
+    infa = ExecuteInformaticaWorkflow(sys.argv[1:], log_on_console=True)
+    result = infa.runit(infa.arguments)
+    supporting.exitscript(infa.resultlogger, result)
