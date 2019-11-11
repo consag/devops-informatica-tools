@@ -32,11 +32,12 @@ import supporting.errorcodes as err
 import supporting, logging
 import supporting.errorcodes as errorcodes
 import supporting.deploylist
-from cicd import informatica as infaSettings, informatica
 import supporting.generalSettings as generalSettings
 from supporting.generalSettings import completePath
 from supporting.artifactHandling import getInformaticaArtifact
-from cicd.informatica import infaConstants
+import cicd.informatica.infaConstants as infaConstants
+import cicd.informatica.infaSettings as infaSettings
+from cicd import informatica
 
 logger = logging.getLogger(__name__)
 entrynr =0
