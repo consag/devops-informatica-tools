@@ -67,17 +67,26 @@ def processEntry(what, deployEntry):
     type = parts[0]
     object = parts[1]
     if len(parts) == 4:
-        exportcontrol = completePath(generalSettings.configDir + "/" + parts[2], generalSettings.sourceDir)
-        importcontrol = completePath(generalSettings.configDir + "/" + parts[3], generalSettings.sourceDir)
+        exportcontrol_file = parts[2]
+        basename_ecf = exportcontrol_file.split('.')[0]
+        exportcontrol = completePath(generalSettings.configDir + "/" + exportcontrol_file, generalSettings.sourceDir)
+        supporting.log(logger, logging.DEBUG, thisproc, 'exportcontrolfile is >' + exportcontrol_file
+                       + "< and its complete path is >" + exportcontrol + "<. basename is >" + basename_ecf + "<.")
+
+        importcontrol_file = parts[3]
+        basename_icf = importcontrol_file.split('.')[0]
+        importcontrol = completePath(generalSettings.configDir + "/" + importcontrol_file, generalSettings.sourceDir)
+        supporting.log(logger, logging.DEBUG, thisproc, 'importcontrolfile is >' + importcontrol_file + "<."
+                        + "< and its complete path is >" + importcontrol + "<. basename is >" + basename_icf + "<.")
     else:
         exportcontrol = ""
         importcontrol = ""
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Type is >' + type + '< and object is >' + object + '<')
     if what == infaConstants.CREATEARTIFACT:
-        result = create_artifact(type, object, exportcontrol)
+        result = create_artifact(type, object, exportcontrol, basename_ecf)
     elif what == infaConstants.DEPLOYARTIFACT:
-        result = deploy_artifact(type, object, importcontrol)
+        result = deploy_artifact(type, object, importcontrol, basename_icf)
     else:
         result = errorcodes.COMMAND_FAILED
 
@@ -86,7 +95,7 @@ def processEntry(what, deployEntry):
     return result
 
 
-def create_artifact(type, object, exportcontrol="default.ecf"):
+def create_artifact(type, object, export_control="default.ecf", export_filename = "export"):
     thisproc = 'create_artifact'
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Creating artifact for object >" + object + "< of type >" + type + "<." )
@@ -96,7 +105,7 @@ def create_artifact(type, object, exportcontrol="default.ecf"):
             Domain=infaSettings.sourceDomain,
             Repository=infaSettings.sourceModelRepository,
             Project=object,
-            FilePath=generalSettings.artifactDir + "/" + object +".xml",
+            FilePath=generalSettings.artifactDir + "/" + object + "." + export_filename +".xml",
             OverwriteExportFile=infaSettings.overwriteExportFile,
             ExportRefData=infaSettings.sourceExportRefData
         )
@@ -105,16 +114,16 @@ def create_artifact(type, object, exportcontrol="default.ecf"):
             Domain = infaSettings.sourceDomain,
             Repository = infaSettings.sourceModelRepository,
             Project=object,
-            FilePath=generalSettings.artifactDir + "/" + object +".xml",
+            FilePath=generalSettings.artifactDir + "/" + object + "." + export_filename +".xml",
             OverwriteExportFile = infaSettings.overwriteExportFile,
-            ControlFilePath = exportcontrol
+            ControlFilePath = export_control
         )
     else:
         result = errorcodes.NOT_IMPLEMENTED
 
     return result
 
-def deploy_artifact(type, object, importcontrol):
+def deploy_artifact(type, object, import_control, import_filename = "export"):
     thisproc = 'deployArtifact'
     supporting.log(logger, logging.DEBUG, thisproc, 'started deploy for object >' + object +'<.')
 
@@ -128,7 +137,7 @@ def deploy_artifact(type, object, importcontrol):
             Domain=infaSettings.targetDomain,
             Repository=infaSettings.targetModelRepository,
             Project=object,
-            FilePath=generalSettings.artifactDir + "/" + object +".xml",
+            FilePath=generalSettings.artifactDir + "/" + object + "." + import_filename + ".xml",
             ExportRefData=infaSettings.targetExportRefData
         )
     elif type == 'CONTROLFILE':
@@ -136,8 +145,8 @@ def deploy_artifact(type, object, importcontrol):
             Domain = infaSettings.targetDomain,
             Repository = infaSettings.targetModelRepository,
             Project=object,
-            FilePath=generalSettings.artifactDir + "/" + object +".xml",
-            ControlFilePath = importcontrol
+            FilePath=generalSettings.artifactDir + "/" + object + "." + import_filename + ".xml",
+            ControlFilePath = import_control
         )
     else:
         result = errorcodes.NOT_IMPLEMENTED
