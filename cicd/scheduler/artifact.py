@@ -34,13 +34,21 @@ from cicd.scheduler import schedulerConstants as constants
 from cicd.scheduler import schedulerSettings as settings
 import supporting.deploylist
 from pathlib import Path
-
 from cicd.scheduler.schedulerArtifactChecks import checkSchedulerEntryType
 from supporting.generatezip import generate_zip
+from pygit2 import clone_repository
 
 logger = logging.getLogger(__name__)
 entrynr = 0
 level = 0
+
+
+def processGitBranch(git_repository, git_branch, path):
+    thisproc = "processGitBranch"
+    repo = clone_repository(git_repository, "schedulergit", bare=False, checkout_branch=git_branch)
+    # TODO: Collect the schedules
+    latestError = err.OK
+    return latestError
 
 
 def processList(deployFile):

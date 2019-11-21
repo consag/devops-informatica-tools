@@ -28,19 +28,33 @@
 # @Version: 20191025.0 - JBE - Initial
 
 # Scheduler artifacts
+varSchedulerSource='SCHEDULER_SOURCE'
+# Source is deploylist
 varSchedulerDeployList='SCHEDULER_DEPLOYLIST'
 varSourceSchedulerDir='SOURCE_SCHEDULERDIR'
 varSourceSchedulerTypeDir='SOURCE_SCHEDULER_TYPEDIR'
 varTargetSchedulerDir='TARGET_SCHEDULERDIR'
 varTargetSchedulerTypeDir='TARGET_SCHEDULER_TYPEDIR'
+# Source is Git
+varSchedulerGitRepo='SCHEDULER_GIT_REPOSITORY'
+varSchedulerGitBranch='SCHEDULER_GIT_BRANCH'
+varSchedulerPath='SCHEDULER_PATH'
 
 ##
 # Scheduler artifact defaults
+DEFAULT_SOURCE='git'
+SOURCE_GIT='git'
+SOURCE_DEPLOYLIST='filesystem'
+# Source is deploylist
 DEFAULT_SOURCE_SCHEDULERDIR ='.'
 DEFAULT_SOURCE_SCHEDULER_TYPEDIR ='.'
 DEFAULT_TARGET_SCHEDULERDIR ='.'
 DEFAULT_TARGET_SCHEDULER_TYPEDIR ='.'
 DEFAULT_SCHEDULER_DEPLOYLIST ='scheduler_deploylist.txt'
+# Source is Git
+DEFAULT_GIT_REPOSITORY='.'
+DEFAULT_GIT_BRANCH='master'
+DEFAULT_SCHEDULER_PATH='.'
 
 NOT_SET ='NOT_SET'
 ##

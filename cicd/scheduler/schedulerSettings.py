@@ -35,6 +35,7 @@ from supporting.generalSettings import completePath
 
 logger = logging.getLogger(__name__)
 
+source = constants.DEFAULT_SOURCE
 sourceschedulerdir = constants.DEFAULT_SOURCE_SCHEDULERDIR
 sourceschedulertypedir = constants.DEFAULT_SOURCE_SCHEDULER_TYPEDIR
 targetschedulerdir = constants.DEFAULT_TARGET_SCHEDULERDIR
@@ -42,19 +43,44 @@ targetschedulertypedir = constants.DEFAULT_TARGET_SCHEDULER_TYPEDIR
 
 def getschedulerenvvars():
     thisproc="getschedulerenvvars"
-    global schedulerdeploylist, sourceschedulerdir, targetschedulerdir, sourceschedulertypedir, targetschedulertypedir
+    global source, schedulerdeploylist, sourceschedulerdir, targetschedulerdir, sourceschedulertypedir, targetschedulertypedir
+    global git_repository, git_branch
     supporting.log(logger, logging.DEBUG, thisproc, 'started')
-    schedulerdeploylist = completePath(os.environ.get(constants.varSchedulerDeployList, constants.DEFAULT_SCHEDULER_DEPLOYLIST), generalsettings.sourceDir)
 
+    source = os.environ.get(constants.varSchedulerSource, constants.DEFAULT_SOURCE, generalsettings.sourceDir)
+
+    # source is filesystem
+    schedulerdeploylist = completePath(os.environ.get(constants.varSchedulerDeployList, constants.DEFAULT_SCHEDULER_DEPLOYLIST), generalsettings.sourceDir)
     sourceschedulerdir = completePath(os.environ.get(constants.varSourceSchedulerDir, constants.DEFAULT_SOURCE_SCHEDULERDIR), generalsettings.sourceDir)
     sourceschedulertypedir = completePath(os.environ.get(constants.varSourceSchedulerTypeDir, constants.DEFAULT_SOURCE_SCHEDULER_TYPEDIR), generalsettings.sourceDir)
-
     targetschedulerdir = completePath(os.environ.get(constants.varTargetSchedulerDir, constants.DEFAULT_TARGET_SCHEDULERDIR), generalsettings.sourceDir)
     targetschedulertypedir = completePath(os.environ.get(constants.varTargetSchedulerTypeDir, constants.DEFAULT_TARGET_SCHEDULER_TYPEDIR), generalsettings.sourceDir)
 
 
+def get_git_repository():
+    # source is git
+    git_repository = os.environ.get(constants.varSchedulerGitRepo, constants.DEFAULT_GIT_REPOSITORY, generalsettings.sourceDir)
+    return git_repository
+
+
+def get_git_branch():
+    git_branch = os.environ.get(constants.varSchedulerGitBranch, constants.DEFAULT_GIT_BRANCH, generalsettings.sourceDir)
+    return git_branch
+
+def get_scheduler_path():
+    scheduler_path = os.environ.get(constants.varSchedulerPath, constants.DEFAULT_SCHEDULER_PATH, generalsettings.sourceDir)
+    return scheduler_path
+
+
 def outschedulerenvvars():
     thisproc = "outschedulerenvvars"
+    supporting.log(logger, logging.INFO,  thisproc, 'source is >' + source + "<.")
+
+    supporting.log(logger, logging.INFO,  thisproc, 'The following settings are only relevant if source = git.')
+    supporting.log(logger, logging.INFO,  thisproc, 'Git repository is >' + git_repository + "<.")
+    supporting.log(logger, logging.INFO,  thisproc, 'Git branch is >' + git_branch + "<.")
+
+    supporting.log(logger, logging.INFO,  thisproc, 'The following settings are only relevant if source = filesystem.')
     supporting.log(logger, logging.INFO,  thisproc, 'schedulerdeploylist is >' + schedulerdeploylist + "<.")
     supporting.log(logger, logging.INFO,  thisproc, 'sourceschedulerdir is >' + sourceschedulerdir +"<.")
     supporting.log(logger, logging.INFO,  thisproc, 'sourceschedulertypedir is >' + sourceschedulertypedir +"<.")

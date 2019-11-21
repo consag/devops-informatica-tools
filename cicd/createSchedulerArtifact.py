@@ -28,58 +28,81 @@
 
 import logging, datetime, supporting
 import supporting.errorcodes as err
-from cicd import scheduler as schedulerchecks, scheduler as settings
-import supporting.generalSettings as generalsettings
+from cicd.scheduler import schedulerArtifactChecks as schedulerChecks, schedulerSettings as settings
+from cicd.scheduler import artifact, schedulerConstants
+import supporting.generalSettings as generalSettings
 import sys, argparse
 
 now = datetime.datetime.now()
 result = err.OK
 
 
-def parse_the_arguments(argv):
-    """Parses the provided arguments and exits on an error.
-    Use the option -h on the command line to get an overview of the required and optional arguments.
-     """
-    parser = argparse.ArgumentParser()
-    args = parser.parse_args()
-
-    return args
-
-
-def main(argv):
-    """Creates a Scheduler artifact, consisting of a list of schedule files, eg python code for Airflow or job-as-code JSON for bmc Control-M
-    It uses a deploy list that contains subdirectories.
-    Module uses environment variables that steer the artifact creation.
+class CreateSchedulerArtifact:
     """
-    thisproc = "MAIN"
-    mainProc = 'CreateSchedulerArtifact'
+        Creates an artifact with Schedules from Git or from fileystem
+    """
 
-    resultlogger = supporting.configurelogger(mainProc)
-    logger = logging.getLogger(mainProc)
+    def __init__(self, argv, log_on_console=True):
+        self.arguments = argv
+        self.mainProc = 'createSchedulerArtifact'
+        self.resultlogger = supporting.configurelogger(self.mainProc, log_on_console)
+        self.logger = supporting.logger
+        self.git_repository = settings.get_git_repository()
+        self.git_branch = settings.get_git_branch()
+        self.scheduler_path = settings.get_scheduler_path()
 
-    args = parse_the_arguments(argv)
+    def parse_the_arguments(self, arguments):
+        """Parses the provided arguments and exits on an error.
+        Use the option -h on the command line to get an overview of the required and optional arguments.
+        """
+        parser = argparse.ArgumentParser(prog='createSchedulerArtifact')
+        parser.add_argument("-s", "--source", required=True, action="store", dest="source",
+                            choices=["git", "filesystem"], default="git",
+                            help="Can be <git> or <filesystem>. Check documentation for further information.")
+        args = parser.parse_args(arguments)
 
-    supporting.log(logger, logging.DEBUG, thisproc, 'Started')
-    supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalsettings.logDir + "<.")
+        return args
 
-    # Check requirements for artifact generation
-    generalsettings.getenvvars()
-    settings.getschedulerenvvars()
-    settings.outschedulerenvvars()
+    def runit(self, arguments):
+        """Creates a scheduler artifact.
+        usage: createSchedulerArtifact.py [-h] -s [git|filesystem]
+        """
+        thisproc = "runit"
 
-    result = schedulerchecks.schedulerartifactchecks()
-    if result.rc != 0:
-        supporting.log(logger, logging.ERROR, thisproc,
-                       'Scheduler Artifact Checks failed with >' + result.message + "<.")
-        supporting.exitscript(resultlogger, result)
+        args = self.parse_the_arguments(arguments)
 
-    result = cicd.scheduler.artifact.processList(settings.schedulerdeploylist)
+        generalSettings.getenvvars()
 
-    supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
-                   + '< and result code >' + result.code + "<.")
-    #    supporting.writeresult(resultlogger, result)
-    supporting.exitscript(resultlogger, result)
+        supporting.log(self.logger, logging.DEBUG, thisproc, 'Started')
+        supporting.log(self.logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
+
+        source = args.source
+
+        # Check requirements for artifact generation
+        generalSettings.getenvvars()
+        settings.getschedulerenvvars()
+        settings.outschedulerenvvars()
+
+        result = schedulerChecks.schedulerartifactchecks()
+        if result.rc != 0:
+            supporting.log(self.logger, logging.ERROR, thisproc,
+                           'Scheduler Artifact Checks failed with >' + result.message + "<.")
+            supporting.exitscript(self.resultlogger, result)
+
+        if source == schedulerConstants.SOURCE_DEPLOYLIST:
+            result = artifact.processList(settings.schedulerdeploylist)
+        else:
+            result = artifact.processGitBranch(self.git_repository()
+                                               , self.git_branch()
+                                               , self.scheduler_path())
+
+        supporting.log(self.logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
+                       + '< and result code >' + result.code + "<.")
+        #    supporting.writeresult(resultlogger, result)
+        supporting.exitscript(self.resultlogger, result)
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+    artifact = CreateSchedulerArtifact(sys.argv[1:], log_on_console=True)
+    result = artifact.runit(artifact.arguments)
+    supporting.exitscript(artifact.resultlogger, result)
