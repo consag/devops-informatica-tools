@@ -30,7 +30,7 @@ import logging, datetime, supporting
 import supporting.errorcodes as err
 import cicd.fitnesse.fitnesseArtifactChecks as fitnessechecks
 import cicd.fitnesse.artifact
-from cicd.fitnesse import fitnesseSettings as settings
+import cicd.fitnesse.fitnesseSettings as settings
 import supporting.generalSettings as generalsettings
 import sys, argparse
 
