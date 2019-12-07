@@ -30,7 +30,7 @@
 import supporting.errorcodes as err
 import supporting, logging
 import os
-from cicd import fitnesse as settings
+import cicd.fitnesse.fitnesseSettings as settings
 import supporting.deploylist
 from pathlib import Path
 from supporting.generatezip import generate_zip
