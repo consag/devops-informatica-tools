@@ -29,7 +29,7 @@
 
 import supporting.errorcodes as err
 import supporting, logging
-from cicd import fitnesse as settings
+from cicd.fitnesse import fitnesseSettings as settings
 from pathlib import Path
 
 logger = logging.getLogger(__name__)
