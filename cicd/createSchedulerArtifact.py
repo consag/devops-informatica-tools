@@ -28,8 +28,10 @@
 
 import logging, datetime, supporting
 import supporting.errorcodes as err
-from cicd.scheduler import schedulerArtifactChecks as schedulerChecks, schedulerSettings as settings
-from cicd.scheduler import artifact, schedulerConstants
+from cicd.scheduler import schedulerArtifactChecks as schedulerChecks
+from cicd.scheduler import schedulerSettings as settings
+from cicd.scheduler import artifact as artifact
+#from cicd.scheduler import schedulerConstants as constants
 import supporting.generalSettings as generalSettings
 import sys, argparse
 
@@ -85,7 +87,7 @@ class CreateSchedulerArtifact:
         supporting.log(self.logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                        + '< and result code >' + result.code + "<.")
         #    supporting.writeresult(resultlogger, result)
-        supporting.exitscript(self.resultlogger, result)
+        return result
 
 
 if __name__ == '__main__':
