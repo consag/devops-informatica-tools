@@ -69,8 +69,6 @@ class CreateSchedulerArtifact:
         supporting.log(self.logger, logging.DEBUG, thisproc, 'Started')
         supporting.log(self.logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-        source = args.source
-
         # Check requirements for artifact generation
         generalSettings.getenvvars()
         settings.getschedulerenvvars()
