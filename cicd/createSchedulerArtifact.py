@@ -47,8 +47,6 @@ class CreateSchedulerArtifact:
         self.mainProc = 'createSchedulerArtifact'
         self.resultlogger = supporting.configurelogger(self.mainProc, log_on_console)
         self.logger = supporting.logger
-        self.git_repository = settings.get_git_repository()
-        self.git_branch = settings.get_git_branch()
         self.scheduler_path = settings.get_scheduler_path()
 
     def parse_the_arguments(self, arguments):
@@ -56,16 +54,12 @@ class CreateSchedulerArtifact:
         Use the option -h on the command line to get an overview of the required and optional arguments.
         """
         parser = argparse.ArgumentParser(prog='createSchedulerArtifact')
-        parser.add_argument("-s", "--source", required=True, action="store", dest="source",
-                            choices=["git", "filesystem"], default="git",
-                            help="Can be <git> or <filesystem>. Check documentation for further information.")
         args = parser.parse_args(arguments)
 
         return args
 
     def runit(self, arguments):
         """Creates a scheduler artifact.
-        usage: createSchedulerArtifact.py [-h] -s [git|filesystem]
         """
         thisproc = "runit"
 
@@ -89,12 +83,7 @@ class CreateSchedulerArtifact:
                            'Scheduler Artifact Checks failed with >' + result.message + "<.")
             supporting.exitscript(self.resultlogger, result)
 
-        if source == schedulerConstants.SOURCE_DEPLOYLIST:
-            result = artifact.processList(settings.schedulerdeploylist)
-        else:
-            result = artifact.processGitBranch(self.git_repository()
-                                               , self.git_branch()
-                                               , self.scheduler_path())
+        result = artifact.processList(settings.schedulerdeploylist)
 
         supporting.log(self.logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                        + '< and result code >' + result.code + "<.")
