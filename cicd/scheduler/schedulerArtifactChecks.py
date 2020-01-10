@@ -29,8 +29,9 @@
 
 import supporting.errorcodes as err
 import supporting, logging
-from cicd import scheduler as settings, scheduler as constants
 from pathlib import Path
+from cicd.scheduler import schedulerConstants as constants
+from cicd.scheduler import schedulerSettings as settings
 
 logger = logging.getLogger(__name__)
 

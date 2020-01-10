@@ -39,7 +39,7 @@ sourceschedulerdir = constants.DEFAULT_SOURCE_SCHEDULERDIR
 sourceschedulertypedir = constants.DEFAULT_SOURCE_SCHEDULER_TYPEDIR
 targetschedulerdir = constants.DEFAULT_TARGET_SCHEDULERDIR
 targetschedulertypedir = constants.DEFAULT_TARGET_SCHEDULER_TYPEDIR
-
+schedulerdeploylist = constants.DEFAULT_SCHEDULER_DEPLOYLIST
 
 def getschedulerenvvars():
     thisproc = "getschedulerenvvars"
