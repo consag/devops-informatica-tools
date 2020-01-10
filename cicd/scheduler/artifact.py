@@ -77,7 +77,7 @@ def processEntry(deployEntry):
         supporting.log(logger, logging.DEBUG, thisproc, 'Found file >' + file + "<.")
         sourcedir = ""
     else:
-        sourcedir = settings.sourcedir + "/"
+        sourcedir = settings.sourceschedulerdir + "/"
         supporting.log(logger, logging.DEBUG, thisproc, 'schedule file >' + file + '< not found. Trying >'
                        + sourcedir + file + '<...')
         filePath = Path(sourcedir + file)
