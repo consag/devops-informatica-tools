@@ -120,6 +120,7 @@ def generate_orderedsql(sourcesqldir, schema, input_sqlfile):
     previous_schema = schema
     return result
 
+#TODO: Move to supporting package
 def create_directory(directory):
     os.makedirs(directory, exist_ok=True)  # succeeds even if directory exists.
 
@@ -168,6 +169,7 @@ def processlines(the_source_sqldir, schema, the_source_sqlfile, orderedsqlfilena
 
     return result
 
+#TODO: Move to supporting package
 def write2file(filename, line):
     thisproc="write_sql"
     result = err.OK

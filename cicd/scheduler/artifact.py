@@ -36,31 +36,20 @@ import supporting.deploylist
 from pathlib import Path
 from cicd.scheduler.schedulerArtifactChecks import checkSchedulerEntryType
 from supporting.generatezip import generate_zip
-from pygit2 import clone_repository
+from supporting.generatezip import addto_zip
+
 
 logger = logging.getLogger(__name__)
 entrynr = 0
 level = 0
 
 
-def processGitBranch(git_repository, git_branch, path):
-    thisproc = "processGitBranch"
-    repo = clone_repository(git_repository, "schedulergit", bare=False, checkout_branch=git_branch)
-    # TODO: Collect the schedules
-    latestError = err.OK
-    return latestError
-
-
 def processList(deployFile):
-    thisproc = "processList"
     latestError = err.OK
     result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
     if result.rc == 0:
         for deployEntry in supporting.deploylist.deployItems:
-            supporting.log(logger, logging.DEBUG, thisproc, "Found deploy entry >" + deployEntry + "<.")
             result = processEntry(deployEntry)
-            supporting.log(logger, logging.DEBUG, thisproc, "deployEntry returned >" + result.code + "<.")
-            supporting.log(logger, logging.DEBUG, thisproc, "Overall result is >" + latestError.code + "<.")
             if result.rc != 0:
                 latestError = result
     else:
@@ -74,31 +63,47 @@ def processEntry(deployEntry):
     supporting.log(logger, logging.DEBUG, thisproc, "Current directory is >" + os.getcwd() + "<.")
     supporting.log(logger, logging.DEBUG, thisproc, "Started to work on deploy entry >" + deployEntry + "<.")
 
-    type, directory, filter = deployEntry.split(':', 3)
+    type, directory, file = deployEntry.split(':', 3)
     supporting.log(logger, logging.DEBUG, thisproc,
-                   'Type is >' + type + '<, directory is >' + directory + '< and filter is >' + filter + '<')
+                   'Type is >' + type + '<, directory is >' + directory + '< and file is >' + file + '<')
 
     result = checkSchedulerEntryType(type)
     if result.rc != 0:
+        supporting.log(logger, logging.DEBUG, thisproc, "checkSchedulerEntryType returned >" + result.message +"<. Entry ignored.")
         return result
 
-    zipfilename = determinebaseTargetDirectory(type) + "/" + directory.replace('/', '_') + ".zip"
-    os.makedirs(determinebaseTargetDirectory(type), exist_ok=True)
-    supporting.log(logger, logging.DEBUG, thisproc, 'zipfilename set to >' + zipfilename + "<.")
+    filePath = Path(file)
+    if filePath.is_file():
+        supporting.log(logger, logging.DEBUG, thisproc, 'Found file >' + file + "<.")
+        sourcedir = ""
+    else:
+        sourcedir = settings.sourcedir + "/"
+        supporting.log(logger, logging.DEBUG, thisproc, 'schedule file >' + file + '< not found. Trying >'
+                       + sourcedir + file + '<...')
+        filePath = Path(sourcedir + file)
+        if filePath.is_file():
+            supporting.log(logger, logging.DEBUG, thisproc, 'Found schedule file >' + sourcedir + file + "<.")
+        else:
+            supporting.log(logger, err.SCHEDULERFILE_NF.level, thisproc,
+                           "schedule file checked >" + sourcedir + file + "<. " + err.SCHEDULERFILE_NF.message)
+            result = err.SCHEDULERFILE_NF
+            return result
 
-    source_dir, result = determineSourceDirectory(directory, type)
-    if result.rc != 0:
-        supporting.log(logger, logging.DEBUG, thisproc,
-                       'source directory could not be determined. directory is >' + directory + "< and type was set to >" + type + "<.")
-        return result
+        zipfilename = settings.targetschedulertypedir + "/" + directory.replace('/', '_') + ".zip"
+        supporting.log(logger, logging.DEBUG, thisproc, 'zipfilename is >' + zipfilename + "<.")
+#        result = generate_zip(sourcedir, directory, zipfilename, file, 'zip')
+        result = addto_zip(sourcedir, directory, zipfilename, file, 'zip')
 
-    result = generate_zip(determinebaseSourceDirectory(type), source_dir, zipfilename, filter)
+
 
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")
 
     return result
 
+#TODO: Move to supporting package
+def create_directory(directory):
+    os.makedirs(directory, exist_ok=True)  # succeeds even if directory exists.
 
 def determinebaseSourceDirectory(type):
     if type == constants.DAGS or type == constants.JOBASCODE:

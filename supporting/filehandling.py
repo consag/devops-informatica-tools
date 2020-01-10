@@ -27,8 +27,12 @@
 # @Author: Jac. Beekers
 # @Version: 20190323.0 - JBE - Initial
 
-import contextlib, os
+import contextlib, os, shutil
 
 def removefile(filename):
     with contextlib.suppress(FileNotFoundError):
         os.remove(filename)
+
+def copy_file(source, target):
+    with contextlib.suppress(FileExistsError):
+        shutil.copy2(source, target)

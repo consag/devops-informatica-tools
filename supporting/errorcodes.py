@@ -106,5 +106,5 @@ INFACMD_NOGROUPNAME_DELETION=err.Errorcode(30,'INFASEC-0026','No group name prov
 
 ##
 # Scheduler artifact errors
-INVALID_SCHEDULER_ENTRY_TYPE=err.Errorcode(40,'SCHDEPLOY-0001','Invalid scheduler entry type.','Provid a valid scheduler entry type, eg. dags, jobascode, plugin. Check schedulerConstants.py for more.','SchedulerArtifact',logging.ERROR)
-
+INVALID_SCHEDULER_ENTRY_TYPE=err.Errorcode(40,'SCHDEPLOY-0001','Invalid scheduler entry type.','Provide a valid scheduler entry type, eg. dags, jobascode, plugin. Check schedulerConstants.py for more.','SchedulerArtifact',logging.ERROR)
+SCHEDULERFILE_NF=err.Errorcode(41, 'SCHDEPLOY-0002', 'Scheduler file not found.', 'Provide a valid scheduler file. Check the scheduler deploy list.', 'SchedulerArtifact', logging.ERROR)
