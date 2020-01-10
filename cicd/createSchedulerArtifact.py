@@ -91,6 +91,6 @@ class CreateSchedulerArtifact:
 
 
 if __name__ == '__main__':
-    artifact = CreateSchedulerArtifact(sys.argv[1:], log_on_console=True)
-    result = artifact.runit(artifact.arguments)
-    supporting.exitscript(artifact.resultlogger, result)
+    create_artifact = CreateSchedulerArtifact(sys.argv[1:], log_on_console=True)
+    result = create_artifact.runit(create_artifact.arguments)
+    supporting.exitscript(create_artifact.resultlogger, result)
