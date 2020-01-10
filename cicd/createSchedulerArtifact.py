@@ -39,7 +39,7 @@ result = err.OK
 
 class CreateSchedulerArtifact:
     """
-        Creates an artifact with Schedules from Git or from fileystem
+        Creates an artifact with Schedules from file system
     """
 
     def __init__(self, argv, log_on_console=True):
@@ -47,7 +47,6 @@ class CreateSchedulerArtifact:
         self.mainProc = 'createSchedulerArtifact'
         self.resultlogger = supporting.configurelogger(self.mainProc, log_on_console)
         self.logger = supporting.logger
-        self.scheduler_path = settings.get_scheduler_path()
 
     def parse_the_arguments(self, arguments):
         """Parses the provided arguments and exits on an error.

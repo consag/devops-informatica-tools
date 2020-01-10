@@ -63,12 +63,6 @@ def getschedulerenvvars():
         generalsettings.sourceDir)
 
 
-def get_scheduler_path():
-    scheduler_path = os.environ.get(constants.varSchedulerPath, constants.DEFAULT_SCHEDULER_PATH,
-                                    generalsettings.sourceDir)
-    return scheduler_path
-
-
 def outschedulerenvvars():
     thisproc = "outschedulerenvvars"
     supporting.log(logger, logging.INFO, thisproc, 'schedulerdeploylist is >' + schedulerdeploylist + "<.")
