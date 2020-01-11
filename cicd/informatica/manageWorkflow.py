@@ -21,24 +21,28 @@
 #  SOFTWARE.
 #
 
-##
-# File handling
-# @Since: 23-MAR-2019
-# @Author: Jac. Beekers
-# @Version: 20190323.0 - JBE - Initial
+from supporting import log
+import logging
+from cicd.informatica import buildCommand
+from cicd.informatica import executeInfacmd
+from supporting import errorcodes
 
-import contextlib, os, shutil
+class ManageWorkflow:
 
+    def __init__(self, **keyword_arguments):
+        self.logger = logging.getLogger(__name__)
+        self.keyword_arguments = keyword_arguments
 
-def removefile(filename):
-    with contextlib.suppress(FileNotFoundError):
-        os.remove(filename)
+    def manage(self):
+        RunCommand = buildCommand.build(**self.keyword_arguments)
 
+        log(self.logger, logging.INFO, __name__, "RunCommand is >" + RunCommand + "<.")
+        result = executeInfacmd.execute(RunCommand)
 
-def copy_file(source, target):
-    with contextlib.suppress(FileExistsError):
-        shutil.copy2(source, target)
+        if(result.rc != errorcodes.OK.rc):
+            oldResult = result.message
+            result = self.keyword_arguments["OnError"]
+            result.message = oldResult
 
+        return (result)
 
-def create_directory(directory):
-    os.makedirs(directory, exist_ok=True)  # succeeds even if directory exists.

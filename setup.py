@@ -1,36 +1,53 @@
-#  MIT License
-#
-#  Copyright (c) 2019 Jac. Beekers
-#
-#  Permission is hereby granted, free of charge, to any person obtaining a copy
-#  of this software and associated documentation files (the "Software"), to deal
-#  in the Software without restriction, including without limitation the rights
-#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-#  copies of the Software, and to permit persons to whom the Software is
-#  furnished to do so, subject to the following conditions:
-#
-#  The above copyright notice and this permission notice shall be included in all
-#  copies or substantial portions of the Software.
-#
-#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-#  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-#  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-#  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-#  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-#  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-#  SOFTWARE.
-#
+import setuptools
+import re
+import ast
 
-from setuptools import setup
+# https://packaging.python.org/tutorials/packaging-projects/
 
-setup(
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
+version_file = 'version/__init__.py'
+tmp_version_file = 'temp/_tmp_version.tmp'
+
+_version_re = re.compile(r'__version__\s+=\s+(.*)')
+
+with open(version_file, 'rb') as f:
+    for line in f:
+        line=line.strip()
+        if line:
+            line=line.decode('utf-8')
+            reg_comment = re.compile(r'^#.*')
+            m = reg_comment.search(line)
+            if not m:
+               result_search = _version_re.search(line)
+               version = result_search.group(1)
+               version = version.strip('\"')
+#               print("version is >" + version + "<.")
+               main_version, sub_version, fix_version = version.split(".")
+               fix_number = int(fix_version) + 1
+               new_version = main_version +"." + sub_version + "." + str(fix_number)
+#               print("version will be >" + new_version + "<.")
+               with open(tmp_version_file, 'wb') as t:
+                    out_line ='__version__ = "' + new_version + '"\n'
+                    t.write(out_line.encode('utf-8'))
+ 
+
+setuptools.setup(
     name='devops-informatica-tools',
-    version='0.9',
-    packages=['database', 'informatica'],
-    url='https://github.com/consag/devops-informatica-tools',
-    license='MIT',
+    version=new_version,
     author='Jac. Beekers',
-    author_email='beekersjac@gmail.com',
-    description='DevOps and CI-CD Pipeline scripts for Informatica Platform related projects'
-    ,install_requires=['pycryptodome']
+    author_email='jactools@consag.nl',
+    description='DevOps and CI-CD Pipeline scripts for Informatica Platform related projects',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url='https://github.com/consag/devops-informatica-tools',
+    packages=setuptools.find_packages(),
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent"
+    ],
+    python_requires='>=3.6'
 )
+

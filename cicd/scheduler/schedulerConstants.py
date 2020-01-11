@@ -22,23 +22,37 @@
 #
 
 ##
-# File handling
-# @Since: 23-MAR-2019
+# Constants for Scheduler artifacts and deploys
+# @Since: 25-OCT-2019
 # @Author: Jac. Beekers
-# @Version: 20190323.0 - JBE - Initial
+# @Version: 20191025.0 - JBE - Initial
 
-import contextlib, os, shutil
+# Scheduler artifacts
+varSchedulerDeployList='SCHEDULER_DEPLOYLIST'
+varSourceSchedulerDir='SOURCE_SCHEDULERDIR'
+varSourceSchedulerTypeDir='SOURCE_SCHEDULER_TYPEDIR'
+varTargetSchedulerDir='TARGET_SCHEDULERDIR'
+varTargetSchedulerTypeDir='TARGET_SCHEDULER_TYPEDIR'
+# Source is Git
+varSchedulerGitRepo='SCHEDULER_GIT_REPOSITORY'
+varSchedulerGitBranch='SCHEDULER_GIT_BRANCH'
+varSchedulerPath='SCHEDULER_PATH'
 
+##
+# Scheduler artifact defaults
+# Source is deploylist
+DEFAULT_SOURCE_SCHEDULERDIR ='.'
+DEFAULT_SOURCE_SCHEDULER_TYPEDIR ='.'
+DEFAULT_TARGET_SCHEDULERDIR ='.'
+DEFAULT_TARGET_SCHEDULER_TYPEDIR ='.'
+DEFAULT_SCHEDULER_DEPLOYLIST ='scheduler_deploylist.txt'
 
-def removefile(filename):
-    with contextlib.suppress(FileNotFoundError):
-        os.remove(filename)
-
-
-def copy_file(source, target):
-    with contextlib.suppress(FileExistsError):
-        shutil.copy2(source, target)
-
-
-def create_directory(directory):
-    os.makedirs(directory, exist_ok=True)  # succeeds even if directory exists.
+NOT_SET ='NOT_SET'
+##
+# Airflow
+PLUGINS = 'plugins'
+DAGS = 'dags'
+##
+# Control-M
+JOBTYPE = 'jobtype'
+JOBASCODE = 'jobascode'

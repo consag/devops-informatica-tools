@@ -52,6 +52,10 @@ TARGETSQLDIR_NOTSET=err.Errorcode(10,'DBDEPLOY-0003','TargetSqlDir is not define
 SQLFILE_NF=err.Errorcode(10,'DBDEPLOY-0004','SQL file not found', 'Check the deploy file content','DatabaseArtifact', logging.ERROR)
 
 ##
+# Directory based errors
+DIRECTORY_NF=err.Errorcode(10,'DIRDEPLOY-0001','Directory not found', 'Check the deploy file content','DirectoryArtifact', logging.ERROR)
+
+##
 # Database deploy errors
 SQLPLUS_ERROR=err.Errorcode(10,'DBDEPLOY-0005','sqlplus return an error.','Check the log output','DatabaseDeploy',logging.ERROR)
 
@@ -100,3 +104,7 @@ INFACMD_SET_CONN_FAILED=err.Errorcode(30,'INFASEC-0024','Permissions could not b
 INFACMD_NOGROUPNAME=err.Errorcode(30,'INFASEC-0025','No group name provided.','Provide a name for the group to be created.','CreateGroup',logging.ERROR)
 INFACMD_NOGROUPNAME_DELETION=err.Errorcode(30,'INFASEC-0026','No group name provided.','Provide the name of the group to be deleted.','DeleteGroup',logging.ERROR)
 
+##
+# Scheduler artifact errors
+INVALID_SCHEDULER_ENTRY_TYPE=err.Errorcode(40,'SCHDEPLOY-0001','Invalid scheduler entry type.','Provide a valid scheduler entry type, eg. dags, jobascode, plugin. Check schedulerConstants.py for more.','SchedulerArtifact',logging.ERROR)
+SCHEDULERFILE_NF=err.Errorcode(41, 'SCHDEPLOY-0002', 'Scheduler file not found.', 'Provide a valid scheduler file. Check the scheduler deploy list.', 'SchedulerArtifact', logging.ERROR)

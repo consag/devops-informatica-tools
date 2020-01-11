@@ -20,25 +20,28 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 #
+import logging
+import os
+from cicd.informatica import infaSettings
+from supporting import errorcodes, executeCommand
 
-##
-# File handling
-# @Since: 23-MAR-2019
-# @Author: Jac. Beekers
-# @Version: 20190323.0 - JBE - Initial
-
-import contextlib, os, shutil
-
-
-def removefile(filename):
-    with contextlib.suppress(FileNotFoundError):
-        os.remove(filename)
+logger = logging.getLogger(__name__)
+entrynr = 0
 
 
-def copy_file(source, target):
-    with contextlib.suppress(FileExistsError):
-        shutil.copy2(source, target)
+def execute(command):
+    """Execute an Informatica command line
+    Sets INFA_DEFAULT_DOMAIN_PASSWORD, INFA_DEFAULTS_DOMAIN_USER and INFA_DEFAULT_SECURITY_DOMAIN based on provided Informatica settings.
+    """
+    infa_env = {**os.environ, 'INFA_DEFAULT_DOMAIN_PASSWORD': infaSettings.sourcePassword,
+                'INFA_DEFAULT_DOMAIN_USER': infaSettings.sourceUsername,
+                'INFA_DEFAULT_SECURITY_DOMAIN': infaSettings.sourceSecurityDomain}
 
+    result = executeCommand.execute(command, infa_env)
 
-def create_directory(directory):
-    os.makedirs(directory, exist_ok=True)  # succeeds even if directory exists.
+    if result.code == errorcodes.COMMAND_FAILED:
+        old_result = result.message
+        result = errorcodes.INFACMD_FAILED
+        result.message = old_result
+
+    return result

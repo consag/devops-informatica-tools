@@ -21,24 +21,35 @@
 #  SOFTWARE.
 #
 
-##
-# File handling
-# @Since: 23-MAR-2019
-# @Author: Jac. Beekers
-# @Version: 20190323.0 - JBE - Initial
-
-import contextlib, os, shutil
-
-
-def removefile(filename):
-    with contextlib.suppress(FileNotFoundError):
-        os.remove(filename)
+from supporting import log
+import logging
+from cicd.informatica import buildCommand
+from cicd.informatica import executeInfacmd
+from supporting import errorcodes
+from supporting.mask_password import mask_password
 
 
-def copy_file(source, target):
-    with contextlib.suppress(FileExistsError):
-        shutil.copy2(source, target)
+class ManageSecurity:
+    """Implements wrapper around security related commands, like create a user, a group and more."""
 
+    def __init__(self, **keyword_arguments):
+        self.logger = logging.getLogger(__name__)
+        self.keyword_arguments = keyword_arguments
 
-def create_directory(directory):
-    os.makedirs(directory, exist_ok=True)  # succeeds even if directory exists.
+    def manage(self):
+        """Runs Informatica command line to create, delete, update security related objects,
+        like users and groups.
+        """
+        run_command = buildCommand.build(**self.keyword_arguments)
+
+        masked_run_command = mask_password(run_command)
+
+        log(self.logger, logging.DEBUG, __name__, "RunCommand is >" + masked_run_command + "<.")
+        result = executeInfacmd.execute(run_command)
+
+        if (result.rc != errorcodes.OK.rc):
+            oldResult = result.message
+            result = self.keyword_arguments["OnError"]
+            result.message = oldResult
+
+        return (result)

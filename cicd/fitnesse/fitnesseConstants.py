@@ -22,23 +22,20 @@
 #
 
 ##
-# File handling
-# @Since: 23-MAR-2019
+# Constants for FitNesse artifacts and deploys
+# @Since: 23-OCT-2019
 # @Author: Jac. Beekers
-# @Version: 20190323.0 - JBE - Initial
+# @Version: 20191023.0 - JBE - Initial
 
-import contextlib, os, shutil
+# Database artifacts
+varFitNesseDeployList='FITNESSE_DEPLOYLIST'
+varSourceFitNesseDir='SOURCE_FITNESSEDIR'
+varTargetFitNesseDir='TARGET_FITNESSEDIR'
 
+##
+# FitNesse artifact defaults
+DEFAULT_SOURCE_FITNESSEDIR ='.'
+DEFAULT_TARGET_FITNESSEDIR ='.'
+DEFAULT_FITNESSE_DEPLOYLIST ='fitnesse_deploylist.txt'
 
-def removefile(filename):
-    with contextlib.suppress(FileNotFoundError):
-        os.remove(filename)
-
-
-def copy_file(source, target):
-    with contextlib.suppress(FileExistsError):
-        shutil.copy2(source, target)
-
-
-def create_directory(directory):
-    os.makedirs(directory, exist_ok=True)  # succeeds even if directory exists.
+NOT_SET ='NOT_SET'

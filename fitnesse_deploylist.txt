@@ -1,0 +1,11 @@
+##
+# Structure: 
+# <directoryname>:<suppress_zips>
+# where
+#  <directoryname> can be relative or absolute and must point to a directory
+#  <suppress_zips> indicates Y=ignore any .zip files/directories in mentioned directory. N=also include .zip files (so do not ignore any files)
+# comment1
+dir1:Y
+# comment2
+dir2:N
+

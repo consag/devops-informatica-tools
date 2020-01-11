@@ -22,23 +22,32 @@
 #
 
 ##
-# File handling
-# @Since: 23-MAR-2019
+# FitNesse Artifact Checks
+# @Since: 23-OCT-2019
 # @Author: Jac. Beekers
-# @Version: 20190323.0 - JBE - Initial
+# @Version: 20191023.0 - JBE - Initial
 
-import contextlib, os, shutil
+import supporting.errorcodes as err
+import supporting, logging
+import cicd.fitnesse.fitnesseSettings as settings
+from pathlib import Path
 
-
-def removefile(filename):
-    with contextlib.suppress(FileNotFoundError):
-        os.remove(filename)
-
-
-def copy_file(source, target):
-    with contextlib.suppress(FileExistsError):
-        shutil.copy2(source, target)
+logger = logging.getLogger(__name__)
 
 
-def create_directory(directory):
-    os.makedirs(directory, exist_ok=True)  # succeeds even if directory exists.
+def fitnesseartifactchecks():
+    thisproc = "fitnesseartifactchecks"
+    supporting.log(logger, logging.DEBUG, thisproc, 'started')
+    result = err.OK
+
+    if not settings.fitnessedeploylist:
+        supporting.log(logger, err.NO_DEPLOYLIST.level, thisproc, err.NO_DEPLOYLIST.message)
+        result = err.NO_DEPLOYLIST
+    else:
+        deploylistFile = Path(settings.fitnessedeploylist)
+        if not deploylistFile.is_file():
+            supporting.log(logger, err.DEPLOYLIST_NF.level, thisproc, "fitnessedeploylist is >" + settings.fitnessedeploylist +"<. " + err.DEPLOYLIST_NF.message)
+            result = err.DEPLOYLIST_NF
+
+    supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + str(result.rc) + "<.")
+    return result

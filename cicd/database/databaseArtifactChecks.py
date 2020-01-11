@@ -22,23 +22,32 @@
 #
 
 ##
-# File handling
-# @Since: 23-MAR-2019
+# Database Artifact Checks
+# @Since: 22-MAR-2019
 # @Author: Jac. Beekers
-# @Version: 20190323.0 - JBE - Initial
+# @Version: 20190322.0 - JBE - Initial
 
-import contextlib, os, shutil
+import supporting.errorcodes as err
+import supporting, logging
+import cicd.database.dbSettings as settings
+from pathlib import Path
 
-
-def removefile(filename):
-    with contextlib.suppress(FileNotFoundError):
-        os.remove(filename)
-
-
-def copy_file(source, target):
-    with contextlib.suppress(FileExistsError):
-        shutil.copy2(source, target)
+logger = logging.getLogger(__name__)
 
 
-def create_directory(directory):
-    os.makedirs(directory, exist_ok=True)  # succeeds even if directory exists.
+def databaseartifactchecks():
+    thisproc = "databaseartifactchecks"
+    supporting.log(logger, logging.DEBUG, thisproc, 'started')
+    result = err.OK
+
+    if not settings.dbdeploylist:
+        supporting.log(logger, err.NO_DEPLOYLIST.level, thisproc, err.NO_DEPLOYLIST.message)
+        result = err.NO_DEPLOYLIST
+    else:
+        deploylistFile = Path(settings.dbdeploylist)
+        if not deploylistFile.is_file():
+            supporting.log(logger, err.DEPLOYLIST_NF.level, thisproc, "dbdeploylist is >" + settings.dbdeploylist +"<. " + err.DEPLOYLIST_NF.message)
+            result = err.DEPLOYLIST_NF
+
+    supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + str(result.rc) + "<.")
+    return result
