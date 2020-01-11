@@ -46,6 +46,8 @@ def processList(deployFile):
     latestError = err.OK
     result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
     if result.rc == 0:
+        filehandling.create_directory(settings.targetschedulertypedir)
+        filehandling.create_directory(settings.targetschedulerdir)
         for deployEntry in supporting.deploylist.deployItems:
             result = processEntry(deployEntry)
             if result.rc != 0:
@@ -67,7 +69,8 @@ def processEntry(deployEntry):
 
     result = checkSchedulerEntryType(type)
     if result.rc != 0:
-        supporting.log(logger, logging.DEBUG, thisproc, "checkSchedulerEntryType returned >" + result.message +"<. Entry ignored.")
+        supporting.log(logger, logging.DEBUG, thisproc,
+                       "checkSchedulerEntryType returned >" + result.message + "<. Entry ignored.")
         return result
 
     filePath = Path(file)
@@ -88,13 +91,13 @@ def processEntry(deployEntry):
             return result
 
     if type == constants.JOBTYPE:
-        supporting.log(logger, err.NOT_IMPLEMENTED.level, thisproc,
-                       "cannot yet deploy job types. " + err.NOT_IMPLEMENTED.message)
-        result = err.NOT_IMPLEMENTED
+        supporting.log(logger, logging.DEBUG, thisproc, 'copying job type file >' + sourcedir + file
+                       + "< to >" + settings.targetschedulertypedir + "<.")
+        filehandling.copy_file(sourcedir + file, settings.targetschedulertypedir)
     else:
         if type == constants.JOBASCODE:
             supporting.log(logger, logging.DEBUG, thisproc, 'copying jobascode file >' + sourcedir + file
-                           + "< to >" + settings.targetschedulerdir +"<.")
+                           + "< to >" + settings.targetschedulerdir + "<.")
             filehandling.copy_file(sourcedir + file, settings.targetschedulerdir)
         else:
             supporting.log(logger, logging.WARN, thisproc, 'invalid type >' + type + '<. Entry ignored.')
@@ -104,9 +107,6 @@ def processEntry(deployEntry):
 
     return result
 
-#TODO: Move to supporting package
-def create_directory(directory):
-    os.makedirs(directory, exist_ok=True)  # succeeds even if directory exists.
 
 def determinebaseSourceDirectory(type):
     if type == constants.DAGS or type == constants.JOBASCODE:
