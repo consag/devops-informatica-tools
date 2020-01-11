@@ -35,9 +35,7 @@ from cicd.scheduler import schedulerSettings as settings
 import supporting.deploylist
 from pathlib import Path
 from cicd.scheduler.schedulerArtifactChecks import checkSchedulerEntryType
-from supporting.generatezip import generate_zip
-from supporting.generatezip import addto_zip
-
+from supporting import filehandling
 
 logger = logging.getLogger(__name__)
 entrynr = 0
@@ -89,12 +87,17 @@ def processEntry(deployEntry):
             result = err.SCHEDULERFILE_NF
             return result
 
-        zipfilename = settings.targetschedulertypedir + "/" + directory.replace('/', '_') + ".zip"
-        supporting.log(logger, logging.DEBUG, thisproc, 'zipfilename is >' + zipfilename + "<.")
-#        result = generate_zip(sourcedir, directory, zipfilename, file, 'zip')
-        result = addto_zip(sourcedir, directory, zipfilename, file, 'zip')
-
-
+    if type == constants.JOBTYPE:
+        supporting.log(logger, err.NOT_IMPLEMENTED.level, thisproc,
+                       "cannot yet deploy job types. " + err.NOT_IMPLEMENTED.message)
+        result = err.NOT_IMPLEMENTED
+    else:
+        if type == constants.JOBASCODE:
+            supporting.log(logger, logging.DEBUG, thisproc, 'copying jobascode file >' + sourcedir + file
+                           + "< to >" + settings.targetschedulerdir +"<.")
+            filehandling.copy_file(sourcedir + file, settings.targetschedulerdir)
+        else:
+            supporting.log(logger, logging.WARN, thisproc, 'invalid type >' + type + '<. Entry ignored.')
 
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")
