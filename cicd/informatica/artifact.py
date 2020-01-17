@@ -55,10 +55,14 @@ def processList(what, deployFile):
         supporting.log(logger, logging.ERROR, thisproc, "Could not get deploylist")
         return errorcodes.FILE_NF
 
+
 def processEntry(what, deployEntry):
+    global entrynr
     thisproc = "processEntry"
     result = err.OK
-    supporting.log(logger, logging.DEBUG, thisproc, "Started to work on deploy entry >" + deployEntry + "<.")
+
+    entrynr += 1
+    supporting.log(logger, logging.DEBUG, thisproc, "Started to work on deploy entry# >" + entrynr + "< being >" + deployEntry + "<.")
 
     parts = deployEntry.split(':')
     if not len(parts) == 2 and not len(parts) == 4:
@@ -114,7 +118,7 @@ def create_artifact(type, object, export_control="default.ecf", export_filename 
             Domain = infaSettings.sourceDomain,
             Repository = infaSettings.sourceModelRepository,
             Project=object,
-            FilePath=generalSettings.artifactDir + "/" + object + "." + export_filename +".xml",
+            FilePath=generalSettings.artifactDir + "/" + object + "_" + entrynr + "." + export_filename +".xml",
             OverwriteExportFile = infaSettings.overwriteExportFile,
             ControlFilePath = export_control
         )
@@ -145,7 +149,7 @@ def deploy_artifact(type, object, import_control, import_filename = "export"):
             Domain = infaSettings.targetDomain,
             Repository = infaSettings.targetModelRepository,
             Project=object,
-            FilePath=generalSettings.artifactDir + "/" + object + "." + import_filename + ".xml",
+            FilePath=generalSettings.artifactDir + "/" + object + "_" + entrynr + "." + import_filename + ".xml",
             ControlFilePath = import_control
         )
     else:
