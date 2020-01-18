@@ -120,7 +120,6 @@ def create_artifact(type, object, export_control="default.ecf", export_filename=
         result = informatica.export_infadeveloper(
             Domain=infaSettings.sourceDomain,
             Repository=infaSettings.sourceModelRepository,
-            Project=object,
             FilePath=generalSettings.artifactDir + "/" + object + "_" + str(entrynr) + "." + export_filename + ".xml",
             OverwriteExportFile=infaSettings.overwriteExportFile,
             ControlFilePath=export_control
