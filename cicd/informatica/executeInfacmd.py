@@ -24,18 +24,24 @@ import logging
 import os
 from cicd.informatica import infaSettings
 from supporting import errorcodes, executeCommand
+from cicd.informatica import infaConstants as constants
 
 logger = logging.getLogger(__name__)
-entrynr = 0
 
 
-def execute(command):
+def execute(command, source_or_target):
     """Execute an Informatica command line
     Sets INFA_DEFAULT_DOMAIN_PASSWORD, INFA_DEFAULTS_DOMAIN_USER and INFA_DEFAULT_SECURITY_DOMAIN based on provided Informatica settings.
     """
-    infa_env = {**os.environ, 'INFA_DEFAULT_DOMAIN_PASSWORD': infaSettings.sourcePassword,
+    if source_or_target == constants.CREATEARTIFACT:
+        infa_env = {**os.environ, 'INFA_DEFAULT_DOMAIN_PASSWORD': infaSettings.sourcePassword,
                 'INFA_DEFAULT_DOMAIN_USER': infaSettings.sourceUsername,
                 'INFA_DEFAULT_SECURITY_DOMAIN': infaSettings.sourceSecurityDomain}
+
+    if source_or_target == constants.DEPLOYARTIFACT:
+        infa_env = {**os.environ, 'INFA_DEFAULT_DOMAIN_PASSWORD': infaSettings.targetPassword,
+                'INFA_DEFAULT_DOMAIN_USER': infaSettings.targetUsername,
+                'INFA_DEFAULT_SECURITY_DOMAIN': infaSettings.targetSecurityDomain}
 
     result = executeCommand.execute(command, infa_env)
 

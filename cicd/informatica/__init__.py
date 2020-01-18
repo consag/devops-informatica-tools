@@ -41,6 +41,7 @@ import supporting, logging
 
 from cicd.informatica import buildCommand
 from cicd.informatica import executeInfacmd
+from cicd.informatica import infaConstants as constants
 
 logger = logging.getLogger(__name__)
 
@@ -51,7 +52,7 @@ def import_infadeveloper(**KeyWordArguments):
     KeyWordArguments["Tool"] = "Import"
     ImportCommand = buildCommand.build(**KeyWordArguments)
 
-    result = executeInfacmd.execute(ImportCommand)
+    result = executeInfacmd.execute(ImportCommand, constants.DEPLOYARTIFACT)
 
     return result
 
@@ -63,7 +64,7 @@ def export_infadeveloper(**KeyWordArguments):
     ExportCommand = buildCommand.build(**KeyWordArguments)
 
     supporting.log(logger, logging.INFO, thisproc, "ExportCommand is >" + ExportCommand + "<.")
-    result = executeInfacmd.execute(ExportCommand)
+    result = executeInfacmd.execute(ExportCommand, constants.CREATEARTIFACT)
 
     return result
 
