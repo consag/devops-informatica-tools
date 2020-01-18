@@ -34,7 +34,7 @@ import supporting.errorcodes as errorcodes
 import supporting.deploylist
 import supporting.generalSettings as generalSettings
 from supporting.generalSettings import completePath
-from supporting.artifactHandling import get_artifact
+from supporting.artifactHandling import get_workspace
 import cicd.informatica.infaConstants as infaConstants
 import cicd.informatica.infaSettings as infaSettings
 from cicd import informatica
@@ -135,22 +135,21 @@ def deploy_artifact(type, object, import_control, import_filename="export"):
     thisproc = 'deployArtifact'
     supporting.log(logger, logging.DEBUG, thisproc, 'started deploy for object >' + object + '<.')
 
-    object_path = get_artifact(object)
+    workspace = get_workspace()
 
     if type == 'PROJECT':
         result = informatica.import_infadeveloper(
             Domain=infaSettings.targetDomain,
             Repository=infaSettings.targetModelRepository,
             Project=object,
-            ImportFilePath=generalSettings.artifactDir + "/" + object + "." + import_filename + ".xml",
+            ImportFilePath=workspace + "/" + object + "." + import_filename + ".xml",
             ExportRefData=infaSettings.targetExportRefData
         )
     elif type == 'CONTROLFILE':
         result = informatica.import_infadeveloper(
             Domain=infaSettings.targetDomain,
             Repository=infaSettings.targetModelRepository,
-            # FilePath=generalSettings.artifactDir + "/" + object + "_" + str(entrynr) + "." + import_filename + ".xml",
-            ImportFilePath=object_path,
+            ImportFilePath=workspace + "/" + object + "_" + str(entrynr) + "." + import_filename + ".xml",
             ControlFilePath=import_control
         )
     else:

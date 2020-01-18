@@ -41,10 +41,14 @@ def get_artifact(artifact_name):
     # something like this:    artifact = repositorytools.Artifact("group","demoArtifact","1.0.0","classifier","zip")
     # at the moment cicd runs in Azure DevOps and artifacts are stored within the pipeline.
 
-    workspace = os.environ.get(constants.varWorkspace, constants.DEFAULT_WORKSPACE)
+    workspace = get_workspace()
     supporting.log(logger, logging.DEBUG, thisproc, 'workspace is >' + workspace + "<.")
 
     return workspace + "/" + artifact_name
+
+
+def get_workspace():
+    return os.environ.get(constants.varWorkspace, constants.DEFAULT_WORKSPACE)
 
 
 def store_artifact(artifact_name):

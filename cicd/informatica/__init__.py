@@ -102,9 +102,9 @@ def ListCheckedOutObjects(**KeyWordArguments):
     Objects = [dict(KVPair.split("=") for KVPair in Line if len(KVPair.split("=")) == 2) for Line in
                OutputKeyValuePairLines]
 
-    supporting.log(logging.DEBUG, thisproc, output)
+    supporting.log(logger, logging.DEBUG, thisproc, output)
 
-    return (Objects)
+    return Objects
 
 
 def CheckIn(**KeyWordArguments):
