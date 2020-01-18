@@ -39,14 +39,18 @@
 # @Since: 19-MAY-2019
 # @Author: Jac. Beekers
 # @Version: 20190623.0 - JBE - Initial
+# @Version: 20200118.0 - JBE - restructured
 ##
 
 import logging, datetime, supporting
 import supporting.errorcodes as err
 from cicd.informatica import infaArtifactChecks
-from cicd.informatica import infaSettings
+from cicd.informatica import infaSettings as settings
 from supporting.generalSettings import logDir
 import sys, argparse
+from cicd.informatica import infaConstants
+from cicd.informatica import artifact
+
 
 now = datetime.datetime.now()
 result = err.OK
@@ -78,8 +82,8 @@ def main(argv):
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + logDir + "<.")
 
-    infaSettings.getinfaenvvars()
-    infaSettings.outinfaenvvars()
+    settings.getinfaenvvars()
+    settings.outinfaenvvars()
 
     # Check requirements for artifact generation
     result = infaArtifactChecks.infadeploychecks()
@@ -87,7 +91,7 @@ def main(argv):
         supporting.log(logger, logging.ERROR, thisproc, 'INFA Checks failed with >' + result.message + "<.")
         supporting.exitscript(resultlogger, result)
 
-    #    result = informatica.import_infadeveloper(infaConstants.DEPLOYARTIFACT, infaSettings.infadeploylist)
+    result = artifact.processList(infaConstants.DEPLOYARTIFACT, settings.infadeploylist)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
