@@ -93,7 +93,7 @@ def processEntry(what, deployEntry):
     if what == infaConstants.CREATEARTIFACT:
         result = create_artifact(type, object, exportcontrol, basename_ecf)
     elif what == infaConstants.DEPLOYARTIFACT:
-        result = deploy_artifact(type, object, importcontrol, basename_icf)
+        result = deploy_artifact(type, object, importcontrol, basename_ecf)
     else:
         result = errorcodes.COMMAND_FAILED
 
