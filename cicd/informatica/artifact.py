@@ -34,7 +34,7 @@ import supporting.errorcodes as errorcodes
 import supporting.deploylist
 import supporting.generalSettings as generalSettings
 from supporting.generalSettings import completePath
-from supporting.artifactHandling import getInformaticaArtifact
+from supporting.artifactHandling import get_artifact
 import cicd.informatica.infaConstants as infaConstants
 import cicd.informatica.infaSettings as infaSettings
 from cicd import informatica
@@ -135,7 +135,7 @@ def deploy_artifact(type, object, import_control, import_filename="export"):
     thisproc = 'deployArtifact'
     supporting.log(logger, logging.DEBUG, thisproc, 'started deploy for object >' + object + '<.')
 
-    object_path = getInformaticaArtifact(object)
+    object_path = get_artifact(object)
 
     if type == 'PROJECT':
         result = informatica.import_infadeveloper(
