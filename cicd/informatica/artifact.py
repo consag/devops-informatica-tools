@@ -118,7 +118,7 @@ def create_artifact(type, object, export_control="default.ecf", export_filename 
             Domain = infaSettings.sourceDomain,
             Repository = infaSettings.sourceModelRepository,
             Project=object,
-            FilePath=generalSettings.artifactDir + "/" + object + "_" + entrynr + "." + export_filename +".xml",
+            FilePath=generalSettings.artifactDir + "/" + object + "_" + str(entrynr) + "." + export_filename +".xml",
             OverwriteExportFile = infaSettings.overwriteExportFile,
             ControlFilePath = export_control
         )
@@ -149,7 +149,7 @@ def deploy_artifact(type, object, import_control, import_filename = "export"):
             Domain = infaSettings.targetDomain,
             Repository = infaSettings.targetModelRepository,
             Project=object,
-            FilePath=generalSettings.artifactDir + "/" + object + "_" + entrynr + "." + import_filename + ".xml",
+            FilePath=generalSettings.artifactDir + "/" + object + "_" + str(entrynr) + "." + import_filename + ".xml",
             ControlFilePath = import_control
         )
     else:
