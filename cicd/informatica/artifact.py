@@ -142,7 +142,7 @@ def deploy_artifact(type, object, import_control, import_filename="export"):
             Domain=infaSettings.targetDomain,
             Repository=infaSettings.targetModelRepository,
             Project=object,
-            FilePath=generalSettings.artifactDir + "/" + object + "." + import_filename + ".xml",
+            ImportFilePath=generalSettings.artifactDir + "/" + object + "." + import_filename + ".xml",
             ExportRefData=infaSettings.targetExportRefData
         )
     elif type == 'CONTROLFILE':
@@ -150,7 +150,7 @@ def deploy_artifact(type, object, import_control, import_filename="export"):
             Domain=infaSettings.targetDomain,
             Repository=infaSettings.targetModelRepository,
             # FilePath=generalSettings.artifactDir + "/" + object + "_" + str(entrynr) + "." + import_filename + ".xml",
-            FilePath=object_path,
+            ImportFilePath=object_path,
             ControlFilePath=import_control
         )
     else:

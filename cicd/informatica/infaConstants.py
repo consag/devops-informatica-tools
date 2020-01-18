@@ -123,6 +123,7 @@ AvailableArguments = {
     "TargetFolder": "-tf",
     "ConflictResolution": "-cr",
     "FilePath": "-ExportFilePath",
+    "ImportFilePath": "-ImportFilePath",
     "Path": "-p",
     "SourceProject": "-sp",
     "TargetProject": "-tp",
