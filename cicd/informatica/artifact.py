@@ -62,7 +62,7 @@ def processEntry(what, deployEntry):
     result = err.OK
 
     entrynr += 1
-    supporting.log(logger, logging.DEBUG, thisproc, "Started to work on deploy entry# >" + entrynr + "< being >" + deployEntry + "<.")
+    supporting.log(logger, logging.DEBUG, thisproc, "Started to work on deploy entry# >" + str(entrynr) + "< being >" + deployEntry + "<.")
 
     parts = deployEntry.split(':')
     if not len(parts) == 2 and not len(parts) == 4:
