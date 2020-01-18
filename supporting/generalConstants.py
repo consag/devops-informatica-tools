@@ -32,10 +32,20 @@
 ##
 # Generic
 varLogDir ='LOGDIR'
+DEFAULT_LOGDIR = '.'
 varResultDir ='RESULTDIR'
+DEFAULT_RESULTDIR = '.'
 varArtifactDir ='ARTIFACTDIR'
+DEFAULT_ARTIFACTDIR = '.'
 varConfigDir = 'CONFIGDIR'
+DEFAULT_CONFIGDIR = '.'
 varSourceDir = 'SOURCEDIR'
+DEFAULT_SOURCEDIR = '.'
+
+##
+# pipeline
+varWorkspace = 'PIPELINE_WORKSPACE'
+DEFAULT_WORKSPACE = '.'
 
 ##
 # Release
@@ -52,11 +62,6 @@ FALSE = "False"
 ##
 # Environment defaults
 # If not set on command line (if supported) and not as environment variable
-DEFAULT_LOGDIR = '.'
-DEFAULT_RESULTDIR = '.'
-DEFAULT_ARTIFACTDIR = '.'
-DEFAULT_CONFIGDIR = '.'
-DEFAULT_SOURCEDIR = '.'
 DEFAULT_RELEASEID = '0.1'
 
 # Nexus
