@@ -24,7 +24,7 @@
 import supporting.errorcodes as err
 import supporting.generalConstants as constants
 import logging, os, datetime
-import supporting.log
+import supporting
 
 # import repositorytools
 
