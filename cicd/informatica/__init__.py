@@ -45,16 +45,15 @@ from cicd.informatica import executeInfacmd
 logger = logging.getLogger(__name__)
 
 
-
 def import_infadeveloper(**KeyWordArguments):
     """Import IDQ Components"""
 
     KeyWordArguments["Tool"] = "Import"
     ImportCommand = buildCommand.build(**KeyWordArguments)
 
-    output, error = executeInfacmd.execute(ImportCommand)
+    result = executeInfacmd.execute(ImportCommand)
 
-    return (output, error)
+    return result
 
 
 def export_infadeveloper(**KeyWordArguments):
@@ -66,7 +65,7 @@ def export_infadeveloper(**KeyWordArguments):
     supporting.log(logger, logging.INFO, thisproc, "ExportCommand is >" + ExportCommand + "<.")
     result = executeInfacmd.execute(ExportCommand)
 
-    return (result)
+    return result
 
 
 def CreateFolder(**KeyWordArguments):
