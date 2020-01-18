@@ -40,12 +40,13 @@ import cicd.informatica.infaSettings as infaSettings
 from cicd import informatica
 
 logger = logging.getLogger(__name__)
-entrynr =0
+entrynr = 0
+
 
 def processList(what, deployFile):
     thisproc = "processList"
     latestResult = err.OK
-    supporting.log(logger, logging.DEBUG, thisproc, "deployfile is >" + deployFile +"<.")
+    supporting.log(logger, logging.DEBUG, thisproc, "deployfile is >" + deployFile + "<.")
     result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
     if result.rc == 0:
         for deployEntry in deployItems:
@@ -62,11 +63,13 @@ def processEntry(what, deployEntry):
     result = err.OK
 
     entrynr += 1
-    supporting.log(logger, logging.DEBUG, thisproc, "Started to work on deploy entry# >" + str(entrynr) + "< being >" + deployEntry + "<.")
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   "Started to work on deploy entry# >" + str(entrynr) + "< being >" + deployEntry + "<.")
 
     parts = deployEntry.split(':')
     if not len(parts) == 2 and not len(parts) == 4:
-        supporting.log(logger, logging.DEBUG, thisproc, "Insufficient entries found. Expected 2 or 4, got >" + str(len(parts)) +"<.")
+        supporting.log(logger, logging.DEBUG, thisproc,
+                       "Insufficient entries found. Expected 2 or 4, got >" + str(len(parts)) + "<.")
 
     type = parts[0]
     object = parts[1]
@@ -81,7 +84,7 @@ def processEntry(what, deployEntry):
         basename_icf = importcontrol_file.split('.')[0]
         importcontrol = completePath(generalSettings.configDir + "/" + importcontrol_file, generalSettings.sourceDir)
         supporting.log(logger, logging.DEBUG, thisproc, 'importcontrolfile is >' + importcontrol_file + "<."
-                        + "< and its complete path is >" + importcontrol + "<. basename is >" + basename_icf + "<.")
+                       + "< and its complete path is >" + importcontrol + "<. basename is >" + basename_icf + "<.")
     else:
         exportcontrol = ""
         importcontrol = ""
@@ -99,42 +102,40 @@ def processEntry(what, deployEntry):
     return result
 
 
-def create_artifact(type, object, export_control="default.ecf", export_filename = "export"):
+def create_artifact(type, object, export_control="default.ecf", export_filename="export"):
     thisproc = 'create_artifact'
     supporting.log(logger, logging.DEBUG, thisproc,
-                   "Creating artifact for object >" + object + "< of type >" + type + "<." )
+                   "Creating artifact for object >" + object + "< of type >" + type + "<.")
 
     if type == 'PROJECT':
         result = informatica.export_infadeveloper(
             Domain=infaSettings.sourceDomain,
             Repository=infaSettings.sourceModelRepository,
             Project=object,
-            FilePath=generalSettings.artifactDir + "/" + object + "." + export_filename +".xml",
+            FilePath=generalSettings.artifactDir + "/" + object + "." + export_filename + ".xml",
             OverwriteExportFile=infaSettings.overwriteExportFile,
             ExportRefData=infaSettings.sourceExportRefData
         )
     elif type == 'CONTROLFILE':
         result = informatica.export_infadeveloper(
-            Domain = infaSettings.sourceDomain,
-            Repository = infaSettings.sourceModelRepository,
+            Domain=infaSettings.sourceDomain,
+            Repository=infaSettings.sourceModelRepository,
             Project=object,
-            FilePath=generalSettings.artifactDir + "/" + object + "_" + str(entrynr) + "." + export_filename +".xml",
-            OverwriteExportFile = infaSettings.overwriteExportFile,
-            ControlFilePath = export_control
+            FilePath=generalSettings.artifactDir + "/" + object + "_" + str(entrynr) + "." + export_filename + ".xml",
+            OverwriteExportFile=infaSettings.overwriteExportFile,
+            ControlFilePath=export_control
         )
     else:
         result = errorcodes.NOT_IMPLEMENTED
 
     return result
 
-def deploy_artifact(type, object, import_control, import_filename = "export"):
-    thisproc = 'deployArtifact'
-    supporting.log(logger, logging.DEBUG, thisproc, 'started deploy for object >' + object +'<.')
 
-    result = getInformaticaArtifact(object)
-    if result.rc != 0:
-        supporting. log(logger, logging.ERROR, thisproc, 'getInformaticaArtifact failed with >' + result.message +"<.")
-        return result
+def deploy_artifact(type, object, import_control, import_filename="export"):
+    thisproc = 'deployArtifact'
+    supporting.log(logger, logging.DEBUG, thisproc, 'started deploy for object >' + object + '<.')
+
+    object_path = getInformaticaArtifact(object)
 
     if type == 'PROJECT':
         result = informatica.import_infadeveloper(
@@ -146,14 +147,14 @@ def deploy_artifact(type, object, import_control, import_filename = "export"):
         )
     elif type == 'CONTROLFILE':
         result = informatica.import_infadeveloper(
-            Domain = infaSettings.targetDomain,
-            Repository = infaSettings.targetModelRepository,
+            Domain=infaSettings.targetDomain,
+            Repository=infaSettings.targetModelRepository,
             Project=object,
-            FilePath=generalSettings.artifactDir + "/" + object + "_" + str(entrynr) + "." + import_filename + ".xml",
-            ControlFilePath = import_control
+            # FilePath=generalSettings.artifactDir + "/" + object + "_" + str(entrynr) + "." + import_filename + ".xml",
+            FilePath=object_path,
+            ControlFilePath=import_control
         )
     else:
         result = errorcodes.NOT_IMPLEMENTED
 
     return result
-
