@@ -76,24 +76,24 @@ def processEntry(what, deployEntry):
     if len(parts) == 4:
         exportcontrol_file = parts[2]
         basename_ecf = exportcontrol_file.split('.')[0]
-        exportcontrol = completePath(generalSettings.configDir + "/" + exportcontrol_file, generalSettings.sourceDir)
+        export_control = completePath(generalSettings.configDir + "/" + exportcontrol_file, generalSettings.sourceDir)
         supporting.log(logger, logging.DEBUG, thisproc, 'exportcontrolfile is >' + exportcontrol_file
-                       + "< and its complete path is >" + exportcontrol + "<. basename is >" + basename_ecf + "<.")
+                       + "< and its complete path is >" + export_control + "<. basename is >" + basename_ecf + "<.")
 
         importcontrol_file = parts[3]
         basename_icf = importcontrol_file.split('.')[0]
-        importcontrol = completePath(generalSettings.configDir + "/" + importcontrol_file, generalSettings.sourceDir)
+        import_control = completePath(generalSettings.configDir + "/" + importcontrol_file, generalSettings.sourceDir)
         supporting.log(logger, logging.DEBUG, thisproc, 'importcontrolfile is >' + importcontrol_file + "<."
-                       + "< and its complete path is >" + importcontrol + "<. basename is >" + basename_icf + "<.")
+                       + "< and its complete path is >" + import_control + "<. basename is >" + basename_icf + "<.")
     else:
-        exportcontrol = ""
-        importcontrol = ""
+        export_control = ""
+        import_control = ""
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Type is >' + type + '< and object is >' + object + '<')
     if what == infaConstants.CREATEARTIFACT:
-        result = create_artifact(type, object, exportcontrol, basename_ecf)
+        result = create_artifact(type, object, export_control, basename_ecf)
     elif what == infaConstants.DEPLOYARTIFACT:
-        result = deploy_artifact(type, object, importcontrol, basename_ecf)
+        result = deploy_artifact(type, object, import_control, basename_ecf)
     else:
         result = errorcodes.COMMAND_FAILED
 
