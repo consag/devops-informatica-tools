@@ -35,6 +35,7 @@ import cicd.database.dbSettings as settings
 import supporting.generalSettings as generalSettings
 import supporting.deploylist
 from pathlib import Path
+from supporting.filehandling import copy_file
 
 logger = logging.getLogger(__name__)
 entrynr =0
@@ -45,6 +46,7 @@ def processList(deployFile):
     latestError = err.OK
     result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
     if result.rc == 0:
+        copy_file(deployFile, generalSettings.artifactDir)
         for deployEntry in supporting.deploylist.deployItems:
             result = processEntry(deployEntry)
             if result.rc != 0:
