@@ -21,19 +21,6 @@
 #  SOFTWARE.
 #
 
-#  MIT License
-#
-#
-#  Permission is hereby granted, free of charge, to any person obtaining a copy
-#  of this software and associated documentation files (the "Software"), to deal
-#  in the Software without restriction, including without limitation the rights
-#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-#  copies of the Software, and to permit persons to whom the Software is
-#  furnished to do so, subject to the following conditions:
-#
-#
-#
-
 ##
 # generalSettings
 # @Since: 19-MAY-2019
@@ -91,7 +78,9 @@ def main(argv):
         supporting.log(logger, logging.ERROR, thisproc, 'INFA Checks failed with >' + result.message + "<.")
         supporting.exitscript(resultlogger, result)
 
+    supporting.log(logger, logging.DEBUG, 'Start processing deploy list >' + settings.infadeploylist + "<.")
     result = artifact.processList(infaConstants.DEPLOYARTIFACT, settings.infadeploylist)
+    supporting.log(logger, logging.DEBUG, 'Deploy list >' + settings.infadeploylist + "< process returned >" + str(result.rc) +"<.")
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
