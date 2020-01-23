@@ -5,6 +5,8 @@ echo "Make sure you have a build to upload."
 echo "The distribution directory will be uploaded. It contains:"
 ls -la dist/*
 
+source venv/bin/activate
+
 echo "Uploading to pypi.org..."
 python3 -m twine upload --sign dist/*
 rc=$?
