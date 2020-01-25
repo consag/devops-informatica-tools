@@ -29,7 +29,7 @@ from cicd.informatica import infaConstants as constants
 logger = logging.getLogger(__name__)
 
 
-def execute(command, source_or_target):
+def execute(command, source_or_target= constants.CREATEARTIFACT):
     """Execute an Informatica command line
     Sets INFA_DEFAULT_DOMAIN_PASSWORD, INFA_DEFAULTS_DOMAIN_USER and INFA_DEFAULT_SECURITY_DOMAIN based on provided Informatica settings.
     """

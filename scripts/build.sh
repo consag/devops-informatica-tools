@@ -5,7 +5,7 @@ python3 -m venv venv
 source venv/bin/activate
 ##
 echo "upgrading pip to get rid of the annoying 'you should blabla'"
-pip install --upgrade pip
+pip3 install --upgrade pip
 ##
 ##
 echo "preparing for build"

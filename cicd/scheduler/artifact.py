@@ -36,6 +36,7 @@ import supporting.deploylist
 from pathlib import Path
 from cicd.scheduler.schedulerArtifactChecks import checkSchedulerEntryType
 from supporting import filehandling
+import supporting.generalSettings as generalSettings
 
 logger = logging.getLogger(__name__)
 entrynr = 0
@@ -46,6 +47,7 @@ def processList(deployFile):
     latestError = err.OK
     result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
     if result.rc == 0:
+        filehandling.copy_file(deployFile, generalSettings.artifactDir)
         filehandling.create_directory(settings.targetschedulertypedir)
         filehandling.create_directory(settings.targetschedulerdir)
         for deployEntry in supporting.deploylist.deployItems:
