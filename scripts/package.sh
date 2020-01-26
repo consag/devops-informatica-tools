@@ -1,3 +1,4 @@
+source venv/bin/activate
 alias python=python3
 ##
 echo "Uploading to the real pypi !!!"
@@ -13,9 +14,9 @@ rc=$?
 if [ $rc -eq 0 ] ; then
    echo "Updating version number for git..."
    if [ -f temp/_tmp_version.tmp ] ; then
-      cp -p temp/_tmp_version.tmp plugins/__init__.py
-      git add plugins/__init__.py
-      git commit -m "$(cat plugins/__init__.py) now on pypi."
+      cp -p temp/_tmp_version.tmp version/__init__.py
+      git add version/__init__.py
+      git commit -m "$(cat version/__init__.py) now on pypi."
       git push
    else
       echo "new version file not found. version number not changed in git."
