@@ -22,7 +22,7 @@
 #
 
 ##
-# generalSettings
+# deployInformaticaPlatformArtifact
 # @Since: 19-MAY-2019
 # @Author: Jac. Beekers
 # @Version: 20190623.0 - JBE - Initial
