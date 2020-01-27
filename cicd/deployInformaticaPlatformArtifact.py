@@ -78,9 +78,9 @@ def main(argv):
         supporting.log(logger, logging.ERROR, thisproc, 'INFA Checks failed with >' + result.message + "<.")
         supporting.exitscript(resultlogger, result)
 
-    supporting.log(logger, logging.DEBUG, 'Start processing deploy list >' + settings.infadeploylist + "<.")
+    supporting.log(logger, logging.DEBUG, thisproc, 'Start processing deploy list >' + settings.infadeploylist + "<.")
     result = artifact.processList(infaConstants.DEPLOYARTIFACT, settings.infadeploylist)
-    supporting.log(logger, logging.DEBUG, 'Deploy list >' + settings.infadeploylist + "< process returned >" + str(result.rc) +"<.")
+    supporting.log(logger, logging.DEBUG, thisproc, 'Deploy list >' + settings.infadeploylist + "< process returned >" + str(result.rc) +"<.")
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
