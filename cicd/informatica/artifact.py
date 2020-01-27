@@ -137,7 +137,8 @@ def deploy_artifact(type, object, import_control, import_filename="export"):
     thisproc = 'deployArtifact'
     supporting.log(logger, logging.DEBUG, thisproc, 'started deploy for object >' + object + '<.')
 
-    workspace = get_workspace()
+#    workspace = get_workspace()
+    workspace = infaSettings.targetInformaticaDir
 
     if type == 'PROJECT':
         result = informatica.import_infadeveloper(

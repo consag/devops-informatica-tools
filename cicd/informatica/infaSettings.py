@@ -40,7 +40,7 @@ logger = logging.getLogger(__name__)
 # getInfaEnvironment
 def getinfaenvvars():
     thisproc = "getinfaenvvars"
-    global infadeploylist, overwriteExportFile
+    global infadeploylist, overwriteExportFile, targetInformaticaDir
     global sourceExportRefData, sourceInfaHome, sourceInfacmdLocation, sourceInfacmdCommand, sourceInfacmd, \
         sourceDomainInfa, sourceDomain, sourceModelRepository, sourceUsername, sourcePassword, sourceSecurityDomain, \
         sourceDIS, exportControlFile
@@ -87,6 +87,8 @@ def getinfaenvvars():
         targetInfacmdCommand = 'infacmd.sh'
     targetInfacmd = targetInfacmdLocation + '/' + targetInfacmdCommand
     targetDIS = os.environ.get(constants.varTargetDIS, constants.DEFAULT_DATAINTEGRATION_SERVICE)
+    targetInformaticaDir = os.environ.get(constants.varTargetInformaticaDir, constants.DEFAULT_TARGET_INFORMATICADIR)
+
     importControlFile = completePath(
         os.environ.get(constants.varImportControlFile, constants.DEFAULT_IMPORT_CONTROLFILE), generalsettings.sourceDir)
 
