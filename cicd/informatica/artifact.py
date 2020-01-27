@@ -52,7 +52,7 @@ def processList(what, deployFile):
     result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
     if result.rc == 0:
 #        copy_file(deployFile, generalSettings.artifactDir)
-        copy_files(os.path.dirname(deployFile))
+        copy_files(os.path.dirname(deployFile), generalSettings.artifactDir)
         for deployEntry in deployItems:
             latestResult = processEntry(what, deployEntry)
         return latestResult
