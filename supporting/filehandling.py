@@ -42,7 +42,7 @@ def copy_file(source, target):
 def copy_files(source, target):
     with contextlib.suppress(FileExistsError):
         for file in os.listdir(source):
-            shutil.copy2(file, target)
+            shutil.copy2(source + '/' + file, target)
 
 def create_directory(directory):
     os.makedirs(directory, exist_ok=True)  # succeeds even if directory exists.
