@@ -38,7 +38,8 @@ from supporting.artifactHandling import get_workspace
 import cicd.informatica.infaConstants as infaConstants
 import cicd.informatica.infaSettings as infaSettings
 from cicd import informatica
-from supporting.filehandling import copy_file
+from supporting.filehandling import copy_files
+import os
 
 logger = logging.getLogger(__name__)
 entrynr = 0
@@ -50,7 +51,8 @@ def processList(what, deployFile):
     supporting.log(logger, logging.DEBUG, thisproc, "deployfile is >" + deployFile + "<.")
     result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
     if result.rc == 0:
-        copy_file(deployFile, generalSettings.artifactDir)
+#        copy_file(deployFile, generalSettings.artifactDir)
+        copy_files(os.path.dirname(deployFile))
         for deployEntry in deployItems:
             latestResult = processEntry(what, deployEntry)
         return latestResult
