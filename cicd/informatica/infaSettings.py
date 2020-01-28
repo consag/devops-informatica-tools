@@ -100,7 +100,8 @@ def outinfaenvvars():
     thisproc = "outinfaenvvars"
     supporting.log(logger, logging.DEBUG, thisproc, 'started')
     supporting.log(logger, logging.INFO, thisproc, constants.varDeveloperDeployList + ' =>' + infadeploylist + "<.")
-    supporting.log(logger, logging.INFO, thisproc, constants.varSourceInfaHome + ' =>' + sourceInfaHome + "<.")
+    #no need to show source env vars when deploying
+    # supporting.log(logger, logging.INFO, thisproc, constants.varSourceInfaHome + ' =>' + sourceInfaHome + "<.")
     ##
     # etc. etc.
 

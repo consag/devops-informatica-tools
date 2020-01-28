@@ -55,7 +55,7 @@ varTargetPassword = 'TARGET_INFA_DEFAULT_DOMAIN_PASSWORD'
 varTargetSecurityDomain = 'TARGET_INFA_DEFAULT_SECURITY_DOMAIN'
 varTargetDomainInfa = 'TARGET_INFA_DOMAINS_FILE'
 varTargetDIS = 'TARGET_DIS'
-varTargetInformaticaDir = 'TARGET_INFORMATICA_DIR'
+varTargetInformaticaDir = 'TARGET_INFORMATICADIR'
 
 ##
 # export - import
