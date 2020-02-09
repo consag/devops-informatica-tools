@@ -43,7 +43,7 @@ def schedulerartifactchecks():
 
     if not settings.schedulerdeploylist:
         supporting.log(logger, err.NO_DEPLOYLIST.level, thisproc, err.NO_DEPLOYLIST.message)
-        supporting.log(logger, err.NO_DEPLOYLIST.level, thisproc, "Assuming scheduler is part of the solution.")
+        supporting.log(logger, err.NO_DEPLOYLIST.level, thisproc, "Assuming scheduler is NOT part of the solution.")
         result = err.IGNORE
     else:
         deploylistFile = Path(settings.schedulerdeploylist)
