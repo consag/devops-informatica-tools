@@ -42,13 +42,13 @@ def schedulerartifactchecks():
     result = err.OK
 
     if not settings.schedulerdeploylist:
-        supporting.log(logger, err.NO_DEPLOYLIST.level, thisproc, err.NO_DEPLOYLIST.message)
-        supporting.log(logger, err.NO_DEPLOYLIST.level, thisproc, "Assuming scheduler is NOT part of the solution.")
+        supporting.log(logger, err.IGNORE.level, thisproc, err.NO_DEPLOYLIST.message)
+        supporting.log(logger, err.IGNORE.level, thisproc, "Assuming scheduler is NOT part of the solution.")
         result = err.IGNORE
     else:
         deploylistFile = Path(settings.schedulerdeploylist)
         if not deploylistFile.is_file():
-            supporting.log(logger, err.DEPLOYLIST_NF.level, thisproc,
+            supporting.log(logger, err.IGNORE.level, thisproc,
                            "schedulerdeploylist is >" + settings.schedulerdeploylist + "<. "
                            + err.DEPLOYLIST_NF.message + " - Schedule artifact IGNORED.")
             result = err.IGNORE

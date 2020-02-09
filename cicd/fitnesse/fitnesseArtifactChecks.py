@@ -41,13 +41,13 @@ def fitnesseartifactchecks():
     result = err.OK
 
     if not settings.fitnessedeploylist:
-        supporting.log(logger, err.NO_DEPLOYLIST.level, thisproc, err.NO_DEPLOYLIST.message)
-        supporting.log(logger, err.NO_DEPLOYLIST.level, thisproc, "Assuming FitNesse is NOT part of the solution.")
+        supporting.log(logger, err.IGNORE.level, thisproc, err.NO_DEPLOYLIST.message)
+        supporting.log(logger, err.IGNORE.level, thisproc, "Assuming FitNesse is NOT part of the solution.")
         result = err.IGNORE
     else:
         deploylistFile = Path(settings.fitnessedeploylist)
         if not deploylistFile.is_file():
-            supporting.log(logger, err.DEPLOYLIST_NF.level, thisproc,
+            supporting.log(logger, err.IGNORE.level, thisproc,
                            "fitnessedeploylist is >" + settings.fitnessedeploylist + "<. "
                            + err.DEPLOYLIST_NF.message + " - FitNesse artifact IGNORED.")
             result = err.IGNORE
