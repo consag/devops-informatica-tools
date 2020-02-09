@@ -41,13 +41,16 @@ def databaseartifactchecks():
     result = err.OK
 
     if not settings.dbdeploylist:
-        supporting.log(logger, err.NO_DEPLOYLIST.level, thisproc, err.NO_DEPLOYLIST.message)
-        result = err.NO_DEPLOYLIST
+        supporting.log(logger, err.IGNORE.level, thisproc, err.NO_DEPLOYLIST.message)
+        supporting.log(logger, err.IGNORE.level, thisproc, "Assuming Oracle is NOT part of the solution.")
+        result = err.IGNORE
     else:
         deploylistFile = Path(settings.dbdeploylist)
         if not deploylistFile.is_file():
-            supporting.log(logger, err.DEPLOYLIST_NF.level, thisproc, "dbdeploylist is >" + settings.dbdeploylist +"<. " + err.DEPLOYLIST_NF.message)
-            result = err.DEPLOYLIST_NF
+            supporting.log(logger, err.IGNORE.level, thisproc,
+                           "dbdeploylist is >" + settings.dbdeploylist + "<. "
+                           + err.DEPLOYLIST_NF.message + " - Oracle artifact IGNORED.")
+            result = err.IGNORE
 
     supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + str(result.rc) + "<.")
     return result
