@@ -74,13 +74,19 @@ def main(argv):
 
     # Check requirements for artifact generation
     result = infaArtifactChecks.infadeploychecks()
-    if result.rc != 0:
-        supporting.log(logger, logging.ERROR, thisproc, 'INFA Checks failed with >' + result.message + "<.")
-        supporting.exitscript(resultlogger, result)
-
-    supporting.log(logger, logging.DEBUG, thisproc, 'Start processing deploy list >' + settings.infadeploylist + "<.")
-    result = artifact.processList(infaConstants.DEPLOYARTIFACT, settings.infadeploylist)
-    supporting.log(logger, logging.DEBUG, thisproc, 'Deploy list >' + settings.infadeploylist + "< process returned >" + str(result.rc) +"<.")
+    if result.rc == err.IGNORE.rc:
+        # deploylist is not mandatory since 2020-02-09
+        supporting.log(logging, result.level, thisproc, 'Artifact ignored.')
+        result = err.OK
+    else:
+        if result.rc != err.OK.rc:
+            supporting.log(logger, logging.ERROR, thisproc,
+                           'Informatica Platform Artifact Checks failed with >' + result.message + "<.")
+            supporting.exitscript(resultlogger, result)
+        else:
+            supporting.log(logger, logging.DEBUG, thisproc, 'Start processing deploy list >' + settings.infadeploylist + "<.")
+            result = artifact.processList(infaConstants.DEPLOYARTIFACT, settings.infadeploylist)
+            supporting.log(logger, logging.DEBUG, thisproc, 'Deploy list >' + settings.infadeploylist + "< process returned >" + str(result.rc) +"<.")
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
