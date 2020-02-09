@@ -77,12 +77,17 @@ class CreateSchedulerArtifact:
         settings.outschedulerenvvars()
 
         result = schedulerChecks.schedulerartifactchecks()
-        if result.rc != 0:
-            supporting.log(self.logger, logging.ERROR, thisproc,
-                           'Scheduler Artifact Checks failed with >' + result.message + "<.")
-            supporting.exitscript(self.resultlogger, result)
-
-        result = artifact.processList(settings.schedulerdeploylist)
+        if result.rc == err.IGNORE.rc:
+            # deploylist is not mandatory since 2020-02-09
+            supporting.log(logging, result.level, thisproc, 'Artifact ignored.')
+            result = err.OK
+        else:
+            if result.rc != 0:
+                supporting.log(self.logger, logging.ERROR, thisproc,
+                               'Scheduler Artifact Checks failed with >' + result.message + "<.")
+                supporting.exitscript(self.resultlogger, result)
+            else:
+                result = artifact.processList(settings.schedulerdeploylist)
 
         supporting.log(self.logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                        + '< and result code >' + result.code + "<.")

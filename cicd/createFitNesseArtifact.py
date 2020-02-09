@@ -70,12 +70,17 @@ def main(argv):
     settings.outfitnesseenvvars()
 
     result = fitnessechecks.fitnesseartifactchecks()
-    if result.rc != 0:
-        supporting.log(logger, logging.ERROR, thisproc,
-                       'FitNesse Artifact Checks failed with >' + result.message + "<.")
-        supporting.exitscript(resultlogger, result)
-
-    result = cicd.fitnesse.artifact.processList(settings.fitnessedeploylist)
+    if result.rc == err.IGNORE.rc:
+        # deploylist is not mandatory since 2020-02-09
+        supporting.log(logging, result.level, thisproc, 'Artifact ignored.')
+        result = err.OK
+    else:
+        if result.rc != err.OK.rc:
+            supporting.log(logger, logging.ERROR, thisproc,
+                           'FitNesse Artifact Checks failed with >' + result.message + "<.")
+            supporting.exitscript(resultlogger, result)
+        else:
+            result = cicd.fitnesse.artifact.processList(settings.fitnessedeploylist)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
