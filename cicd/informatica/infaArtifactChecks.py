@@ -41,16 +41,20 @@ def infaartifactchecks():
     result = err.OK
 
     if not settings.infadeploylist:
-        supporting.log(logger, err.NO_DEPLOYLIST.level, thisproc, err.NO_DEPLOYLIST.message)
-        result = err.NO_DEPLOYLIST
+        supporting.log(logger, err.IGNORE.level, thisproc, err.NO_DEPLOYLIST.message)
+        supporting.log(logger, err.IGNORE.level, thisproc, "Assuming Informatica Platform is NOT part of the solution.")
+        result = err.IGNORE
     else:
         deploylistFile = Path(settings.infadeploylist)
         if not deploylistFile.is_file():
-            supporting.log(logger, err.DEPLOYLIST_NF.level, thisproc, "deploylist is >" + settings.infadeploylist +"<. " + err.DEPLOYLIST_NF.message)
-            result = err.DEPLOYLIST_NF
+            supporting.log(logger, err.IGNORE.level, thisproc,
+                           "dbdeploylist is >" + settings.infadeploylist + "<. "
+                           + err.DEPLOYLIST_NF.message + " - Informatica Platform artifact IGNORED.")
+            result = err.IGNORE
 
     supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + str(result.rc) + "<.")
     return result
+
 
 def infadeploychecks():
     thisproc = "infadeploychecks"

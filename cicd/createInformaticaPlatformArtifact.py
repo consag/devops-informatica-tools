@@ -84,11 +84,17 @@ def main(argv):
 
     # Check requirements for artifact generation
     result = infachecks.infaartifactchecks()
-    if result.rc != 0:
-        supporting.log(logger, logging.ERROR, thisproc, 'INFA Checks failed with >' + result.message + "<.")
-        supporting.exitscript(resultlogger, result)
-
-    result = artifact.processList(infaConstants.CREATEARTIFACT, settings.infadeploylist)
+    if result.rc == err.IGNORE.rc:
+        # deploylist is not mandatory since 2020-02-09
+        supporting.log(logging, result.level, thisproc, 'Artifact ignored.')
+        result = err.OK
+    else:
+        if result.rc != 0:
+            supporting.log(logger, logging.ERROR, thisproc,
+                           'Informatica Platform Artifact Checks failed with >' + result.message + "<.")
+            supporting.exitscript(resultlogger, result)
+        else:
+            result = artifact.processList(infaConstants.CREATEARTIFACT, settings.infadeploylist)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
