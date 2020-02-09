@@ -46,7 +46,7 @@ level = 0
 def processList(deployFile):
     latestError = err.OK
     result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
-    if result.rc == 0:
+    if result.rc == err.OK.rc:
         filehandling.copy_file(deployFile, generalSettings.artifactDir)
         filehandling.create_directory(settings.targetschedulertypedir)
         filehandling.create_directory(settings.targetschedulerdir)
@@ -55,7 +55,12 @@ def processList(deployFile):
             if result.rc != 0:
                 latestError = result
     else:
-        latestError = result
+        # if no deploy list, then that is just fine.
+        if result.rc == err.IGNORE.rc:
+            latestError = err.OK
+        else:
+            latestError = result
+
     return latestError
 
 
