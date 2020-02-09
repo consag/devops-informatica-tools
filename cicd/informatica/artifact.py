@@ -38,7 +38,8 @@ from supporting.artifactHandling import get_workspace
 import cicd.informatica.infaConstants as infaConstants
 import cicd.informatica.infaSettings as infaSettings
 from cicd import informatica
-from supporting.filehandling import copy_file
+from supporting.filehandling import copy_files
+import os
 
 logger = logging.getLogger(__name__)
 entrynr = 0
@@ -50,7 +51,9 @@ def processList(what, deployFile):
     supporting.log(logger, logging.DEBUG, thisproc, "deployfile is >" + deployFile + "<.")
     result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
     if result.rc == 0:
-        copy_file(deployFile, generalSettings.artifactDir)
+        if what == infaConstants.CREATEARTIFACT:
+            supporting.log(logger, logging.DEBUG, thisproc, "Copying files in >" + os.path.dirname(deployFile) +"< to artifact.")
+            copy_files(os.path.dirname(deployFile), generalSettings.artifactDir)
         for deployEntry in deployItems:
             latestResult = processEntry(what, deployEntry)
         return latestResult
@@ -84,7 +87,7 @@ def processEntry(what, deployEntry):
 
         importcontrol_file = parts[3]
         basename_icf = importcontrol_file.split('.')[0]
-        import_control = completePath(generalSettings.configDir + "/" + importcontrol_file, generalSettings.sourceDir)
+        import_control = completePath(infaSettings.targetInformaticaDir + "/" + importcontrol_file, generalSettings.sourceDir)
         supporting.log(logger, logging.DEBUG, thisproc, 'importcontrolfile is >' + importcontrol_file + "<."
                        + "< and its complete path is >" + import_control + "<. basename is >" + basename_icf + "<.")
     else:
@@ -137,7 +140,8 @@ def deploy_artifact(type, object, import_control, import_filename="export"):
     thisproc = 'deployArtifact'
     supporting.log(logger, logging.DEBUG, thisproc, 'started deploy for object >' + object + '<.')
 
-    workspace = get_workspace()
+#    workspace = get_workspace()
+    workspace = infaSettings.targetInformaticaDir
 
     if type == 'PROJECT':
         result = informatica.import_infadeveloper(

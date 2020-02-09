@@ -55,6 +55,7 @@ varTargetPassword = 'TARGET_INFA_DEFAULT_DOMAIN_PASSWORD'
 varTargetSecurityDomain = 'TARGET_INFA_DEFAULT_SECURITY_DOMAIN'
 varTargetDomainInfa = 'TARGET_INFA_DOMAINS_FILE'
 varTargetDIS = 'TARGET_DIS'
+varTargetInformaticaDir = 'TARGET_INFORMATICADIR'
 
 ##
 # export - import
@@ -94,6 +95,7 @@ DEFAULT_USERNAME = 'notReally'
 DEFAULT_PASSWORD = 'W3Akrdu+PECXwqC/W21nXQ=='
 DEFAULT_SECURITYDOMAIN = 'Native'
 DEFAULT_DATAINTEGRATION_SERVICE = 'DIS_Demo01'
+DEFAULT_TARGET_INFORMATICADIR = '.'
 ##
 # Generic stuff
 NOT_PROVIDED = "NotProvided"
