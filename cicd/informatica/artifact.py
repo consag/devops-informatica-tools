@@ -72,13 +72,13 @@ def processEntry(what, deployEntry):
                    "Started to work on deploy entry# >" + str(entrynr) + "< being >" + deployEntry + "<.")
 
     parts = deployEntry.split(':')
-    if not len(parts) == 2 and not len(parts) == 4:
+    if not len(parts) == 2 and not len(parts) >= 4:
         supporting.log(logger, logging.DEBUG, thisproc,
                        "Insufficient entries found. Expected 2 or 4, got >" + str(len(parts)) + "<.")
 
     type = parts[0]
     object = parts[1]
-    if len(parts) == 4:
+    if len(parts) >= 4:
         exportcontrol_file = parts[2]
         basename_ecf = exportcontrol_file.split('.')[0]
         export_control = completePath(generalSettings.configDir + "/" + exportcontrol_file, generalSettings.sourceDir)
