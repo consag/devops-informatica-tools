@@ -32,6 +32,8 @@ import supporting.generalConstants as generalConstants
 ## Environment variables
 # Informatica artifacts and deploys
 varDeveloperDeployList = 'DEVELOPER_DEPLOYLIST'
+var_developer_app_deploylist = 'DEVELOPER_APP_DEPLOYLIST'
+
 varOverwriteExportFile = 'OVERWRITE_EXPORT_FILE'
 
 varSourceExportRefData = 'SOURCE_EXPORT_REFDATA'
@@ -76,6 +78,8 @@ varGroupId = "InformaticaPlatform"
 ##
 # Defaults
 DEFAULT_DEVELOPER_DEPLOYLIST = 'developer_deploylist.txt'
+DEFAULT_DEVELOPER_APP_DEPLOYLIST = 'developer_app_deploylist.txt'
+
 DEFAULT_OVERWRITE_EXPORT_FILE = generalConstants.TRUE
 DEFAULT_EXPORT_REFDATA = generalConstants.YES
 DEFAULT_IMPORT_REFDATA = generalConstants.YES
@@ -109,6 +113,8 @@ DEFAULT_POWERCENTER_DEPLOYLIST = 'powercenter_deploylist.txt'
 #
 CREATEARTIFACT = 'CreateArtifact'
 DEPLOYARTIFACT = 'DeployArtifact'
+CREATE_APP = 'CreateApp'
+DEPLOY_APP = 'DeployApp'
 
 ##
 # Informatica Connections

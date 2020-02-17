@@ -46,20 +46,42 @@ entrynr = 0
 
 
 def processList(what, deployFile):
-    thisproc = "processList"
-    latestResult = err.OK
-    supporting.log(logger, logging.DEBUG, thisproc, "deployfile is >" + deployFile + "<.")
-    result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
+    this_function = "processList"
+    latest_result = err.OK
+    supporting.log(logger, logging.DEBUG, this_function, "deployfile is >" + deployFile + "<.")
+    result, deploy_items = supporting.deploylist.getWorkitemList(deployFile)
     if result.rc == 0:
-        if what == infaConstants.CREATEARTIFACT:
-            supporting.log(logger, logging.DEBUG, thisproc, "Copying files in >" + os.path.dirname(deployFile) +"< to artifact.")
+        if what == infaConstants.DEPLOY_APP:
+            for deployEntry in deploy_items:
+                latest_result = process_deploy_app_entry(what, deployEntry)
+            return latest_result
+        elif what == infaConstants.CREATE_APP:
+            for deployEntry in deploy_items:
+                latest_result = process_create_app_entry(what, deployEntry)
+            return latest_result
+        elif what == infaConstants.CREATEARTIFACT:
+            supporting.log(logger, logging.DEBUG, this_function,
+                           "Copying files in >" + os.path.dirname(deployFile) + "< to artifact.")
             copy_files(os.path.dirname(deployFile), generalSettings.artifactDir)
-        for deployEntry in deployItems:
-            latestResult = processEntry(what, deployEntry)
-        return latestResult
+        # the following also executes if what = deploy artifact
+        for deployEntry in deploy_items:
+            latest_result = processEntry(what, deployEntry)
+        return latest_result
     else:
-        supporting.log(logger, logging.ERROR, thisproc, "Could not get deploylist")
+        supporting.log(logger, logging.ERROR, this_function, "Could not get deploylist")
         return errorcodes.FILE_NF
+
+
+def process_create_app_entry(what, deployEntry):
+    result = err.NOT_IMPLEMENTED
+    #TODO: create iar file for app
+    return result
+
+
+def process_deploy_app_entry(what, deployEntry):
+    result = err.NOT_IMPLEMENTED
+    #TODO: deploy iar-file to DIS
+    return result
 
 
 def processEntry(what, deployEntry):
@@ -87,7 +109,8 @@ def processEntry(what, deployEntry):
 
         importcontrol_file = parts[3]
         basename_icf = importcontrol_file.split('.')[0]
-        import_control = completePath(infaSettings.targetInformaticaDir + "/" + importcontrol_file, generalSettings.sourceDir)
+        import_control = completePath(infaSettings.targetInformaticaDir + "/" + importcontrol_file,
+                                      generalSettings.sourceDir)
         supporting.log(logger, logging.DEBUG, thisproc, 'importcontrolfile is >' + importcontrol_file + "<."
                        + "< and its complete path is >" + import_control + "<. basename is >" + basename_icf + "<.")
     else:
@@ -140,7 +163,7 @@ def deploy_artifact(type, object, import_control, import_filename="export"):
     thisproc = 'deployArtifact'
     supporting.log(logger, logging.DEBUG, thisproc, 'started deploy for object >' + object + '<.')
 
-#    workspace = get_workspace()
+    #    workspace = get_workspace()
     workspace = infaSettings.targetInformaticaDir
 
     if type == 'PROJECT':

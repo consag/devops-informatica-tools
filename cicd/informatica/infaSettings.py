@@ -40,7 +40,7 @@ logger = logging.getLogger(__name__)
 # getInfaEnvironment
 def getinfaenvvars():
     thisproc = "getinfaenvvars"
-    global infadeploylist, overwriteExportFile, targetInformaticaDir
+    global infadeploylist, infa_app_deploylist, overwriteExportFile, targetInformaticaDir
     global sourceExportRefData, sourceInfaHome, sourceInfacmdLocation, sourceInfacmdCommand, sourceInfacmd, \
         sourceDomainInfa, sourceDomain, sourceModelRepository, sourceUsername, sourcePassword, sourceSecurityDomain, \
         sourceDIS, exportControlFile
@@ -52,6 +52,10 @@ def getinfaenvvars():
     infadeploylist = completePath(
         os.environ.get(constants.varDeveloperDeployList, constants.DEFAULT_DEVELOPER_DEPLOYLIST),
         generalsettings.sourceDir)
+    infa_app_deploylist = completePath(
+        os.environ.get(constants.var_developer_app_deploylist, constants.DEFAULT_DEVELOPER_APP_DEPLOYLIST),
+        generalsettings.sourceDir)
+
     overwriteExportFile = os.environ.get(constants.varOverwriteExportFile, constants.DEFAULT_OVERWRITE_EXPORT_FILE)
 
     sourceExportRefData = os.environ.get(constants.varSourceExportRefData, constants.DEFAULT_EXPORT_REFDATA)
@@ -99,7 +103,6 @@ def getinfaenvvars():
 def outinfaenvvars():
     thisproc = "outinfaenvvars"
     supporting.log(logger, logging.DEBUG, thisproc, 'started')
-    supporting.log(logger, logging.INFO, thisproc, constants.varDeveloperDeployList + ' =>' + infadeploylist + "<.")
     #no need to show source env vars when deploying
     # supporting.log(logger, logging.INFO, thisproc, constants.varSourceInfaHome + ' =>' + sourceInfaHome + "<.")
     ##
