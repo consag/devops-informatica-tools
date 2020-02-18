@@ -150,6 +150,7 @@ AvailableTools = {
     "Import": ("oie", "ImportObjects"),
     "Export": ("oie", "ExportObjects"),
     "CreateIAR": ("tools", "deployApplication"),
+    "DeployIAR": ("dis", "deployApplication"),
     "CreateUser": ("isp", "CreateUser"),
     "DisableUser": ("isp", "DisableUser"),
     "DeleteUser": ("isp", "RemoveUser"),

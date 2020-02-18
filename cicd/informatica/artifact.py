@@ -74,7 +74,7 @@ def processList(what, deployFile):
 
 def process_create_app_entry(what, deployEntry):
     global entrynr
-    thisproc = "processEntry"
+    thisproc = "process_create_app_entry"
     result = err.OK
 
     entrynr += 1
@@ -95,7 +95,7 @@ def process_create_app_entry(what, deployEntry):
 
 def process_deploy_app_entry(what, deployEntry):
     global entrynr
-    thisproc = "processEntry"
+    thisproc = "process_deploy_app_entry"
     result = err.OK
 
     entrynr += 1
@@ -108,7 +108,14 @@ def process_deploy_app_entry(what, deployEntry):
         return err.IGNORE
 
     app_path = parts[0]
-    dis_name = parts[1]
+    logical_dis_name = parts[1]
+
+    # find the actual DIS name
+    actual_dis_name = infaSettings.get_dis_name(logical_dis_name)
+
+    supporting.log(logger, logging.DEBUG, thisproc, 'app_path is >' + app_path + '<, logical_dis_name is >'
+                   + logical_dis_name +'<, actual_dis_name is >' + actual_dis_name + '<.')
+    result = deploy_iar_file(app_path, actual_dis_name)
 
     return result
 
@@ -222,6 +229,18 @@ def create_iar_file(app_path):
         Domain=infaSettings.sourceDomain,
         Repository=infaSettings.sourceModelRepository,
         ApplicationPath=app_path,
+        FilePath=generalSettings.artifactDir + "/",
+    )
+
+    return result
+
+
+def deploy_iar_file(app_path, dis_name):
+    result = informatica.deploy_iar_file(
+        Domain=infaSettings.targetDomain,
+        Repository=infaSettings.targetModelRepository,
+        Application=app_path,
+        ServiceName=dis_name,
         FilePath=generalSettings.artifactDir + "/",
     )
 

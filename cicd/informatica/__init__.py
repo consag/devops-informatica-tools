@@ -146,13 +146,27 @@ def CheckInMutiple(**KeyWordArguments):
 
     return (output, error)
 
+
 def create_iar_file(**KeyWordArguments):
     thisproc = "create_iar_file"
 
     KeyWordArguments["Tool"] = "CreateIAR"
-    ExportCommand = buildCommand.build(**KeyWordArguments)
+    create_command = buildCommand.build(**KeyWordArguments)
 
-    supporting.log(logger, logging.INFO, thisproc, "Command is >" + ExportCommand + "<.")
-    result = executeInfacmd.execute(ExportCommand, constants.CREATEARTIFACT)
+    supporting.log(logger, logging.INFO, thisproc, "Command is >" + create_command + "<.")
+    result = executeInfacmd.execute(create_command, constants.CREATEARTIFACT)
 
     return result
+
+
+def deploy_iar_file(**KeyWordArguments):
+    thisproc = "deploy_iar_file"
+
+    KeyWordArguments["Tool"] = "DeployIAR"
+    deploy_command = buildCommand.build(**KeyWordArguments)
+
+    supporting.log(logger, logging.INFO, thisproc, "Command is >" + deploy_command + "<.")
+    result = executeInfacmd.execute(deploy_command, constants.DEPLOYARTIFACT)
+
+    return result
+
