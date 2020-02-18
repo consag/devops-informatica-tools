@@ -145,3 +145,14 @@ def CheckInMutiple(**KeyWordArguments):
     # output, error = (CheckInAllCommand, 0)
 
     return (output, error)
+
+def create_iar_file(**KeyWordArguments):
+    thisproc = "create_iar_file"
+
+    KeyWordArguments["Tool"] = "CreateIAR"
+    ExportCommand = buildCommand.build(**KeyWordArguments)
+
+    supporting.log(logger, logging.INFO, thisproc, "Command is >" + ExportCommand + "<.")
+    result = executeInfacmd.execute(ExportCommand, constants.CREATEARTIFACT)
+
+    return result

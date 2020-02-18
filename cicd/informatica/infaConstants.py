@@ -149,6 +149,7 @@ AvailableArguments = {
 AvailableTools = {
     "Import": ("oie", "ImportObjects"),
     "Export": ("oie", "ExportObjects"),
+    "CreateIAR": ("tools", "deployApplication"),
     "CreateUser": ("isp", "CreateUser"),
     "DisableUser": ("isp", "DisableUser"),
     "DeleteUser": ("isp", "RemoveUser"),

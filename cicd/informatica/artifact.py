@@ -73,14 +73,43 @@ def processList(what, deployFile):
 
 
 def process_create_app_entry(what, deployEntry):
-    result = err.NOT_IMPLEMENTED
-    #TODO: create iar file for app
+    global entrynr
+    thisproc = "processEntry"
+    result = err.OK
+
+    entrynr += 1
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   "Started to work on deploy entry# >" + str(entrynr) + "< being >" + deployEntry + "<.")
+    parts = deployEntry.split(':')
+    if not len(parts) == 2:
+        supporting.log(logger, logging.DEBUG, thisproc,
+                       "Insufficient entries found. Expected 2, got >" + str(len(parts)) + "<.")
+        return err.IGNORE
+
+    app_path = parts[0]
+    supporting.log(logger, logging.DEBUG, thisproc, 'app_path is >' + app_path + '<')
+    result = create_iar_file(app_path)
+
     return result
 
 
 def process_deploy_app_entry(what, deployEntry):
-    result = err.NOT_IMPLEMENTED
-    #TODO: deploy iar-file to DIS
+    global entrynr
+    thisproc = "processEntry"
+    result = err.OK
+
+    entrynr += 1
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   "Started to work on deploy entry# >" + str(entrynr) + "< being >" + deployEntry + "<.")
+    parts = deployEntry.split(':')
+    if not len(parts) == 2:
+        supporting.log(logger, logging.DEBUG, thisproc,
+                       "Insufficient entries found. Expected 2, got >" + str(len(parts)) + "<.")
+        return err.IGNORE
+
+    app_path = parts[0]
+    dis_name = parts[1]
+
     return result
 
 
@@ -95,8 +124,9 @@ def processEntry(what, deployEntry):
 
     parts = deployEntry.split(':')
     if not len(parts) == 2 and not len(parts) >= 4:
-        supporting.log(logger, logging.DEBUG, thisproc,
-                       "Insufficient entries found. Expected 2 or 4, got >" + str(len(parts)) + "<.")
+        supporting.log(logger, logging.WARNING, thisproc,
+                       "Insufficient entries found. Expected 2 or 4, got >" + str(len(parts)) + "<. Entry IGNORED")
+        return err.IGNORE
 
     type = parts[0]
     object = parts[1]
@@ -183,5 +213,16 @@ def deploy_artifact(type, object, import_control, import_filename="export"):
         )
     else:
         result = errorcodes.NOT_IMPLEMENTED
+
+    return result
+
+
+def create_iar_file(app_path):
+    result = informatica.create_iar_file(
+        Domain=infaSettings.sourceDomain,
+        Repository=infaSettings.sourceModelRepository,
+        ApplicationPath=app_path,
+        FilePath=generalSettings.artifactDir + "/",
+    )
 
     return result
