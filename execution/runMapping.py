@@ -56,7 +56,7 @@ class ExecuteInformaticaMapping:
                             , choices=["Source", "Target", "Full"], default="Source")
         parser.add_argument("-o", "--optimizationlevel", action="store", dest="optimization_level"
                             , default="3", help="Optimization level to apply", choices=["0", "1", "2", "3", "4", "5"])
-        parser.add_argument("-f", "--osprofile", type=int, action="store", dest="os_profile"
+        parser.add_argument("-f", "--osprofile", action="store", dest="os_profile"
                             , help="Informatica OSProfile to use.")
         parser.add_argument("-x", "--extra", action="store", dest="as_is_options",
                             help="any options to add. Make sure to use double-quotes!")
