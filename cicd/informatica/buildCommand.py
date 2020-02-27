@@ -72,8 +72,9 @@ def build(**KeyWordArguments):
         elif key in infaConstants.AvailableArguments:
             InfaArguments.append(infaConstants.AvailableArguments[key] + " " + '"' + value + '"')
         elif key == "AsIsOptions":
-            value=value.lstrip('"').rstrip('"')
-            InfaArguments.append(" " + value + " ")
+            new_value=value.lstrip('"').rstrip('"')
+            log(logger, logging.DEBUG, procName, "stripped value =>" + new_value + "<.")
+            InfaArguments.append(" " + new_value + " ")
         elif key == "OutputFile":
             InfaArguments.append(" >" + value + " ")
         elif key != "OnError":
