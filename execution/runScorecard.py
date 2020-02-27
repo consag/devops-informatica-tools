@@ -48,6 +48,10 @@ class ExecuteInformaticaScorecard:
         parser = argparse.ArgumentParser(prog='runScorecard')
         parser.add_argument("-s", "--scorecard", required=True, action="store", dest="object_path",
                             help="Scorecard, including path, to run.")
+        parser.add_argument("-f", "--osprofile", action="store", dest="os_profile",
+                            help="Informatica OSProfile to use.")
+        parser.add_argument("-x", "--extra", action="store", dest="as_is_options",
+                            help="any options to add. Make sure to use double-quotes!")
         args = parser.parse_args(arguments)
 
         return args
@@ -65,6 +69,8 @@ class ExecuteInformaticaScorecard:
         supporting.log(self.logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
         object_path = args.object_path
+        os_profile = args.os_profile
+        as_is_options = args.as_is_options
 
         infaSettings.getinfaenvvars()
         infaSettings.outinfaenvvars()
@@ -76,8 +82,11 @@ class ExecuteInformaticaScorecard:
                                                ObjectPathAndName=object_path,
                                                ObjectType="scorecard",
                                                Wait="true",
-                                               OnError=errorcodes.INFACMD_SCORECARD_FAILED
-                                               )
+                                               OnError=errorcodes.INFACMD_SCORECARD_FAILED,
+                                               OperatingSystemProfile=os_profile,
+                                               AsIsOptions=as_is_options
+
+        )
         result = jobManagement.JobExecution.manage(scorecard)
 
         supporting.log(self.logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)

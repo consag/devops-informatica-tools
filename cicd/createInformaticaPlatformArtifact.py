@@ -83,6 +83,7 @@ def main(argv):
     settings.outinfaenvvars()
 
     # Check requirements for artifact generation
+    # if there is no deploylist, then ignore building the artifact
     result = infachecks.infaartifactchecks()
     if result.rc == err.IGNORE.rc:
         # deploylist is not mandatory since 2020-02-09
