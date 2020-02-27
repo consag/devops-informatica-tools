@@ -48,17 +48,23 @@ entrynr = 0
 def processList(what, deployFile):
     this_function = "processList"
     latest_result = err.OK
+    overall_result = err.OK
+
     supporting.log(logger, logging.DEBUG, this_function, "deployfile is >" + deployFile + "<.")
     result, deploy_items = supporting.deploylist.getWorkitemList(deployFile)
     if result.rc == 0:
         if what == infaConstants.DEPLOY_APP:
             for deployEntry in deploy_items:
                 latest_result = process_deploy_app_entry(what, deployEntry)
-            return latest_result
+                if latest_result.rc != err.OK.rc:
+                    overall_result = latest_result
+            return overall_result
         elif what == infaConstants.CREATE_APP:
             for deployEntry in deploy_items:
                 latest_result = process_create_app_entry(what, deployEntry)
-            return latest_result
+                if latest_result.rc != err.OK.rc:
+                    overall_result = latest_result
+            return overall_result
         elif what == infaConstants.CREATEARTIFACT:
             supporting.log(logger, logging.DEBUG, this_function,
                            "Copying files in >" + os.path.dirname(deployFile) + "< to artifact.")
@@ -66,7 +72,9 @@ def processList(what, deployFile):
         # the following also executes if what = deploy artifact
         for deployEntry in deploy_items:
             latest_result = processEntry(what, deployEntry)
-        return latest_result
+            if latest_result.rc != err.OK.rc:
+                overall_result = latest_result
+        return overall_result
     else:
         supporting.log(logger, logging.ERROR, this_function, "Could not get deploylist")
         return errorcodes.FILE_NF
