@@ -91,7 +91,7 @@ def process_create_app_entry(what, deployEntry):
     parts = deployEntry.split(':')
     if not len(parts) == 2:
         supporting.log(logger, logging.DEBUG, thisproc,
-                       "Insufficient entries found. Expected 2, got >" + str(len(parts)) + "<.")
+                       "Expected 2 arguments, got >" + str(len(parts)) + "<.")
         return err.IGNORE
 
     app_path = parts[0]
@@ -237,7 +237,7 @@ def create_iar_file(app_path):
         Domain=infaSettings.sourceDomain,
         Repository=infaSettings.sourceModelRepository,
         ApplicationPath=app_path,
-        FilePath=generalSettings.artifactDir + "/",
+        OutputDirectory=generalSettings.artifactDir + "/",
     )
 
     return result
