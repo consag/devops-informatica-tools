@@ -54,17 +54,20 @@ def processList(what, deployFile):
     supporting.log(logger, logging.DEBUG, this_function, "deployfile is >" + deployFile + "<.")
     result, deploy_items = supporting.deploylist.getWorkitemList(deployFile)
     if result.rc == 0:
-        if what == infaConstants.CREATEARTIFACT:
-            supporting.log(logger, logging.DEBUG, this_function,
+        if what == infaConstants.CREATEARTIFACT or what == infaConstants.DEPLOYARTIFACT:
+            if what == infaConstants.CREATEARTIFACT:
+                supporting.log(logger, logging.DEBUG, this_function,
                            "Copying files in >" + os.path.dirname(deployFile) + "< to artifact.")
-            copy_files(os.path.dirname(deployFile), generalSettings.artifactDir)
+                copy_files(os.path.dirname(deployFile), generalSettings.artifactDir)
 
-        # the following also executes if what = deploy artifact
-        for deployEntry in deploy_items:
-            latest_result = processEntry(what, deployEntry)
-            if latest_result.rc != err.OK.rc:
-                overall_result = latest_result
-        return overall_result
+            # the following also executes if what = deploy artifact
+            for deployEntry in deploy_items:
+                latest_result = processEntry(what, deployEntry)
+                if latest_result.rc != err.OK.rc:
+                    overall_result = latest_result
+            return overall_result
+        else:
+            supporting.log(logger, logging.ERROR, this_function, "INTERNAL ERROR: Unexpected 'what' >"+ what +"<.")
     else:
         supporting.log(logger, logging.ERROR, this_function, "Could not get deploylist")
         return errorcodes.FILE_NF
