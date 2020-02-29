@@ -116,14 +116,14 @@ def process_deploy_app_entry(what, deployEntry):
         return err.IGNORE
 
     app_path = parts[0]
-    app_name = app_path.rsplit('/',1)[1]
+    app_name = app_path.rsplit('/', 1)[1]
     logical_dis_name = parts[1]
 
     # find the actual DIS name
     actual_dis_name = infaSettings.get_dis_name(logical_dis_name)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'app_name is >' + app_name + '<, logical_dis_name is >'
-                   + logical_dis_name +'<, actual_dis_name is >' + actual_dis_name + '<.')
+                   + logical_dis_name + '<, actual_dis_name is >' + actual_dis_name + '<.')
     result = deploy_iar_file(app_name, actual_dis_name)
 
     return result

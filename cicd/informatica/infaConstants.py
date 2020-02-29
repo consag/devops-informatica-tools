@@ -106,6 +106,7 @@ DEFAULT_TARGET_INFORMATICA_APP_DIR = '.'
 ##
 # Generic stuff
 NOT_PROVIDED = "NotProvided"
+NOT_FOUND = "NotFound"
 
 ##
 # PowerCenter

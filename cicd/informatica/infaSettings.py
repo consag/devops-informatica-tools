@@ -93,7 +93,7 @@ def getinfaenvvars():
     targetDIS = os.environ.get(constants.varTargetDIS, constants.DEFAULT_DATAINTEGRATION_SERVICE)
     target_informatica_dir = os.environ.get(constants.varTargetInformaticaDir, constants.DEFAULT_TARGET_INFORMATICADIR)
     target_informatica_app_dir = os.environ.get(constants.varTargetInformaticaAppDir
-                                             , constants.DEFAULT_TARGET_INFORMATICA_APP_DIR)
+                                                , constants.DEFAULT_TARGET_INFORMATICA_APP_DIR)
 
     importControlFile = completePath(
         os.environ.get(constants.varImportControlFile, constants.DEFAULT_IMPORT_CONTROLFILE), generalsettings.sourceDir)
@@ -105,7 +105,7 @@ def getinfaenvvars():
 def outinfaenvvars():
     thisproc = "outinfaenvvars"
     supporting.log(logger, logging.DEBUG, thisproc, 'started')
-    #no need to show source env vars when deploying
+    # no need to show source env vars when deploying
     # supporting.log(logger, logging.INFO, thisproc, constants.varSourceInfaHome + ' =>' + sourceInfaHome + "<.")
     ##
     # etc. etc.
@@ -157,6 +157,5 @@ def outinfaenvvars_old():
 
 
 def get_dis_name(logical_dis_name):
-
-    actual_dis_name = os.environ.get(logical_dis_name, constants.NOT_PROVIDED)
+    actual_dis_name = os.environ.get(logical_dis_name, constants.NOT_FOUND)
     return actual_dis_name
