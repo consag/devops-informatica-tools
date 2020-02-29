@@ -32,6 +32,7 @@ from supporting import errorcodes
 logger = logging.getLogger(__name__)
 entrynr = 0
 
+
 def processList(what, deployFile):
     this_function = "processList"
     latest_result = errorcodes.OK
@@ -97,6 +98,26 @@ def redeploy_iar_file(app_name, dis_name):
     return result
 
 
+def stop_app(app_name, dis_name):
+    result = informatica.stop_app(
+        Domain=infaSettings.targetDomain,
+        Application=app_name,
+        ServiceName=dis_name,
+    )
+
+    return result
+
+
+def start_app(app_name, dis_name):
+    result = informatica.start_app(
+        Domain=infaSettings.targetDomain,
+        Application=app_name,
+        ServiceName=dis_name,
+    )
+
+    return result
+
+
 def process_create_app_entry(what, deployEntry):
     global entrynr
     thisproc = "process_create_app_entry"
@@ -142,14 +163,15 @@ def process_deploy_app_entry(what, deployEntry):
     supporting.log(logger, logging.DEBUG, thisproc, 'app_name is >' + app_name + '<, logical_dis_name is >'
                    + logical_dis_name + '<, actual_dis_name is >' + actual_dis_name + '<.')
 
-    #TODO: Check if app exists, if so, run redeploy_iar_file, if not, run deploy_iar_file
+    # TODO: Check if app exists, if so, run stop_app, then redeploy_iar_file. If not, run deploy_iar_file
     result = deploy_iar_file(app_name, actual_dis_name)
     if result.rc != errorcodes.OK.rc:
         # Check the message if the failure is due to the fact the app already exists
         if infaConstants.informatica_app_already_exists in result.message:
             supporting.log(logger, logging.DEBUG, thisproc, 'Application >' + app_name
                            + '< already exists, will update it. (Code contains TODO to optimize the process)')
+            stop_app(app_name, actual_dis_name)
             result = redeploy_iar_file(app_name, actual_dis_name)
-
+            # Also needed? start_app(app_name, actual_dis_name)
 
     return result

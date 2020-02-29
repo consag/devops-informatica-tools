@@ -184,7 +184,9 @@ AvailableTools = {
     "SetConnectionPermissions": ("isp", "setConnectionPermissions"),
     "ExportConnections": ("isp", "exportDomainObjects"),
     "ImportConnections": ("isp", "importDomainObjects"),
-    "ListApplications": ("dis", "listApplications")
+    "ListApplications": ("dis", "listApplications"),
+    "StopApp": ("dis", "stopApplication"),
+    "StartApp": ("dis", "startApplication"),
 
 }
 

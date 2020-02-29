@@ -181,3 +181,15 @@ def redeploy_iar_file(**KeyWordArguments):
     result = executeInfacmd.execute(deploy_command, constants.DEPLOYARTIFACT)
 
     return result
+
+
+def stop_app(**KeyWordArguments):
+    thisproc = "stop_app"
+
+    KeyWordArguments["Tool"] = "StopApp"
+    deploy_command = buildCommand.build(**KeyWordArguments)
+
+    supporting.log(logger, logging.INFO, thisproc, "Command is >" + deploy_command + "<.")
+    result = executeInfacmd.execute(deploy_command, constants.DEPLOYARTIFACT)
+
+    return result
