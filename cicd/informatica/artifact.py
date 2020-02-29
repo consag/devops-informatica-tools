@@ -155,7 +155,7 @@ def processEntry(what, deployEntry):
 
         importcontrol_file = parts[3]
         basename_icf = importcontrol_file.split('.')[0]
-        import_control = completePath(infaSettings.targetInformaticaDir + "/" + importcontrol_file,
+        import_control = completePath(infaSettings.target_informatica_dir + "/" + importcontrol_file,
                                       generalSettings.sourceDir)
         supporting.log(logger, logging.DEBUG, thisproc, 'importcontrolfile is >' + importcontrol_file + "<."
                        + "< and its complete path is >" + import_control + "<. basename is >" + basename_icf + "<.")
@@ -210,7 +210,7 @@ def deploy_artifact(type, object, import_control, import_filename="export"):
     supporting.log(logger, logging.DEBUG, thisproc, 'started deploy for object >' + object + '<.')
 
     #    workspace = get_workspace()
-    workspace = infaSettings.targetInformaticaDir
+    workspace = infaSettings.target_informatica_dir
 
     if type == 'PROJECT':
         result = informatica.import_infadeveloper(
@@ -245,11 +245,13 @@ def create_iar_file(app_path):
 
 
 def deploy_iar_file(app_name, dis_name):
+    informatica_app_dir = infaSettings.target_informatica_app_dir
+
     result = informatica.deploy_iar_file(
         Domain=infaSettings.targetDomain,
         Application=app_name,
         ServiceName=dis_name,
-        FileName=generalSettings.artifactDir + "/" + app_name
+        FileName=informatica_app_dir + "/" + app_name
     )
 
     return result

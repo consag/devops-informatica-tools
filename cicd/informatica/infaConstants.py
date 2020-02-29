@@ -26,7 +26,7 @@
 # @Since: 10-APR-2019
 # @Author: Jac. Beekers
 # @License: MIT
-# @Version: 20190712.0 - Added some more
+# @Version: 20200219.0 - Added Informatica App
 import supporting.generalConstants as generalConstants
 
 ## Environment variables
@@ -58,6 +58,7 @@ varTargetSecurityDomain = 'TARGET_INFA_DEFAULT_SECURITY_DOMAIN'
 varTargetDomainInfa = 'TARGET_INFA_DOMAINS_FILE'
 varTargetDIS = 'TARGET_DIS'
 varTargetInformaticaDir = 'TARGET_INFORMATICADIR'
+varTargetInformaticaAppDir = 'TARGET_INFORMATICA_APP_DIR'
 
 ##
 # export - import
@@ -100,6 +101,8 @@ DEFAULT_PASSWORD = 'W3Akrdu+PECXwqC/W21nXQ=='
 DEFAULT_SECURITYDOMAIN = 'Native'
 DEFAULT_DATAINTEGRATION_SERVICE = 'DIS_Demo01'
 DEFAULT_TARGET_INFORMATICADIR = '.'
+DEFAULT_TARGET_INFORMATICA_APP_DIR = '.'
+
 ##
 # Generic stuff
 NOT_PROVIDED = "NotProvided"
