@@ -30,7 +30,7 @@ from supporting import generalSettings
 from supporting import errorcodes
 
 logger = logging.getLogger(__name__)
-entry = 0
+entrynr = 0
 
 def processList(what, deployFile):
     this_function = "processList"
