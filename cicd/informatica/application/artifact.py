@@ -22,7 +22,7 @@
 #
 import logging
 
-import supporting
+import supporting.deploylist
 from cicd import informatica
 from cicd.informatica import infaSettings
 from cicd.informatica import infaConstants
