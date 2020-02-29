@@ -116,14 +116,15 @@ def process_deploy_app_entry(what, deployEntry):
         return err.IGNORE
 
     app_path = parts[0]
+    app_name = app_path.rsplit('/',1)[1]
     logical_dis_name = parts[1]
 
     # find the actual DIS name
     actual_dis_name = infaSettings.get_dis_name(logical_dis_name)
 
-    supporting.log(logger, logging.DEBUG, thisproc, 'app_path is >' + app_path + '<, logical_dis_name is >'
+    supporting.log(logger, logging.DEBUG, thisproc, 'app_name is >' + app_name + '<, logical_dis_name is >'
                    + logical_dis_name +'<, actual_dis_name is >' + actual_dis_name + '<.')
-    result = deploy_iar_file(app_path, actual_dis_name)
+    result = deploy_iar_file(app_name, actual_dis_name)
 
     return result
 
@@ -243,13 +244,12 @@ def create_iar_file(app_path):
     return result
 
 
-def deploy_iar_file(app_path, dis_name):
+def deploy_iar_file(app_name, dis_name):
     result = informatica.deploy_iar_file(
         Domain=infaSettings.targetDomain,
-        Repository=infaSettings.targetModelRepository,
-        Application=app_path,
+        Application=app_name,
         ServiceName=dis_name,
-        FilePath=generalSettings.artifactDir + "/",
+        FileName=generalSettings.artifactDir + "/" + app_name
     )
 
     return result
