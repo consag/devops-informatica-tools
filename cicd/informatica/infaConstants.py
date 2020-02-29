@@ -182,7 +182,8 @@ AvailableTools = {
     "RemoveConnectionPermissions": ("isp", "removeConnectionPermissions"),
     "SetConnectionPermissions": ("isp", "setConnectionPermissions"),
     "ExportConnections": ("isp", "exportDomainObjects"),
-    "ImportConnections": ("isp", "importDomainObjects")
+    "ImportConnections": ("isp", "importDomainObjects"),
+    "ListApplications": ("dis", "listApplications")
 
 }
 
