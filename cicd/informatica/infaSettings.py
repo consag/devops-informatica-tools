@@ -157,5 +157,13 @@ def outinfaenvvars_old():
 
 
 def get_dis_name(logical_dis_name):
+    thisproc = 'get_dis_name'
+    supporting.log(logger, logging.DEBUG, thisproc, 'started')
+
+    supporting.log(logger, logging.DEBUG, thisproc, 'logical_dis_name is >' + logical_dis_name +'<.')
+
     actual_dis_name = os.environ.get(logical_dis_name, constants.NOT_FOUND)
+    supporting.log(logger, logging.DEBUG, thisproc, 'actual_dis_name is >' + actual_dis_name +'<.')
+
+    supporting.log(logger, logging.DEBUG, thisproc, 'completed')
     return actual_dis_name
