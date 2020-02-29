@@ -170,3 +170,14 @@ def deploy_iar_file(**KeyWordArguments):
 
     return result
 
+
+def redeploy_iar_file(**KeyWordArguments):
+    thisproc = "redeploy_iar_file"
+
+    KeyWordArguments["Tool"] = "RedeployIAR"
+    deploy_command = buildCommand.build(**KeyWordArguments)
+
+    supporting.log(logger, logging.INFO, thisproc, "Command is >" + deploy_command + "<.")
+    result = executeInfacmd.execute(deploy_command, constants.DEPLOYARTIFACT)
+
+    return result

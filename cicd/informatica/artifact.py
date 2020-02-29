@@ -2,7 +2,7 @@
     Process deploy list for database artifacts
     @Since: 23-MAR-2019
     @Author: Jac. Beekers
-    @Version: 20190324.0 - JBE - Initial
+    @Version: 20200229.0 - JBE - Infa App added
 """
 
 #  MIT License
@@ -33,6 +33,7 @@ import supporting, logging
 import supporting.errorcodes as errorcodes
 import supporting.deploylist
 import supporting.generalSettings as generalSettings
+from cicd.informatica.application.artifact import process_deploy_app_entry, process_create_app_entry
 from supporting.generalSettings import completePath
 from supporting.artifactHandling import get_workspace
 import cicd.informatica.infaConstants as infaConstants
@@ -53,22 +54,11 @@ def processList(what, deployFile):
     supporting.log(logger, logging.DEBUG, this_function, "deployfile is >" + deployFile + "<.")
     result, deploy_items = supporting.deploylist.getWorkitemList(deployFile)
     if result.rc == 0:
-        if what == infaConstants.DEPLOY_APP:
-            for deployEntry in deploy_items:
-                latest_result = process_deploy_app_entry(what, deployEntry)
-                if latest_result.rc != err.OK.rc:
-                    overall_result = latest_result
-            return overall_result
-        elif what == infaConstants.CREATE_APP:
-            for deployEntry in deploy_items:
-                latest_result = process_create_app_entry(what, deployEntry)
-                if latest_result.rc != err.OK.rc:
-                    overall_result = latest_result
-            return overall_result
-        elif what == infaConstants.CREATEARTIFACT:
+        if what == infaConstants.CREATEARTIFACT:
             supporting.log(logger, logging.DEBUG, this_function,
                            "Copying files in >" + os.path.dirname(deployFile) + "< to artifact.")
             copy_files(os.path.dirname(deployFile), generalSettings.artifactDir)
+
         # the following also executes if what = deploy artifact
         for deployEntry in deploy_items:
             latest_result = processEntry(what, deployEntry)
@@ -78,55 +68,6 @@ def processList(what, deployFile):
     else:
         supporting.log(logger, logging.ERROR, this_function, "Could not get deploylist")
         return errorcodes.FILE_NF
-
-
-def process_create_app_entry(what, deployEntry):
-    global entrynr
-    thisproc = "process_create_app_entry"
-    result = err.OK
-
-    entrynr += 1
-    supporting.log(logger, logging.DEBUG, thisproc,
-                   "Started to work on deploy entry# >" + str(entrynr) + "< being >" + deployEntry + "<.")
-    parts = deployEntry.split(':')
-    if not len(parts) == 2:
-        supporting.log(logger, logging.DEBUG, thisproc,
-                       "Expected 2 arguments, got >" + str(len(parts)) + "<.")
-        return err.IGNORE
-
-    app_path = parts[0]
-    supporting.log(logger, logging.DEBUG, thisproc, 'app_path is >' + app_path + '<')
-    result = create_iar_file(app_path)
-
-    return result
-
-
-def process_deploy_app_entry(what, deployEntry):
-    global entrynr
-    thisproc = "process_deploy_app_entry"
-    result = err.OK
-
-    entrynr += 1
-    supporting.log(logger, logging.DEBUG, thisproc,
-                   "Started to work on deploy entry# >" + str(entrynr) + "< being >" + deployEntry + "<.")
-    parts = deployEntry.split(':')
-    if not len(parts) == 2:
-        supporting.log(logger, logging.DEBUG, thisproc,
-                       "Insufficient entries found. Expected 2, got >" + str(len(parts)) + "<.")
-        return err.IGNORE
-
-    app_path = parts[0]
-    app_name = app_path.rsplit('/', 1)[1]
-    logical_dis_name = parts[1]
-
-    # find the actual DIS name
-    actual_dis_name = infaSettings.get_dis_name(logical_dis_name)
-
-    supporting.log(logger, logging.DEBUG, thisproc, 'app_name is >' + app_name + '<, logical_dis_name is >'
-                   + logical_dis_name + '<, actual_dis_name is >' + actual_dis_name + '<.')
-    result = deploy_iar_file(app_name, actual_dis_name)
-
-    return result
 
 
 def processEntry(what, deployEntry):
@@ -233,25 +174,3 @@ def deploy_artifact(type, object, import_control, import_filename="export"):
     return result
 
 
-def create_iar_file(app_path):
-    result = informatica.create_iar_file(
-        Domain=infaSettings.sourceDomain,
-        Repository=infaSettings.sourceModelRepository,
-        ApplicationPath=app_path,
-        OutputDirectory=generalSettings.artifactDir + "/",
-    )
-
-    return result
-
-
-def deploy_iar_file(app_name, dis_name):
-    informatica_app_dir = infaSettings.target_informatica_app_dir
-
-    result = informatica.deploy_iar_file(
-        Domain=infaSettings.targetDomain,
-        Application=app_name,
-        ServiceName=dis_name,
-        FileName=informatica_app_dir + "/" + app_name + '.iar'
-    )
-
-    return result

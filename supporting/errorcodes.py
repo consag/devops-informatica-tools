@@ -91,6 +91,8 @@ INFACMD_EXPORT_CONN_FAILED = err.Errorcode(20, 'INFACICD-0006', 'Export Connecti
                                            'Check the error message.', 'ExportConnections', logging.ERROR)
 INFACMD_IMPORT_CONN_FAILED = err.Errorcode(20, 'INFACICD-0007', 'Import Connections failed.',
                                            'Check the error message.', 'ImportConnections', logging.ERROR)
+INVALID_DEPLOY_TYPE = err.Errorcode(20, 'INFACICD-0008', 'INTERNAL ERROR: Invalid deploy type.',
+                                    'Internal error: Contact the development team.', 'InformaticaApp', logging.ERROR)
 
 # Informatica run errors. Return code will be 30
 INFACMD_NOPROFILE = err.Errorcode(30, 'INFARUN-0001', 'No profile name provided.',

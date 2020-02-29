@@ -35,7 +35,7 @@ from cicd.informatica import infaSettings as settings
 from supporting.generalSettings import logDir
 import sys, argparse
 from cicd.informatica import infaConstants
-from cicd.informatica import artifact
+from cicd.informatica.application import artifact
 
 
 now = datetime.datetime.now()

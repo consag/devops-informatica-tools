@@ -155,6 +155,7 @@ AvailableTools = {
     "Export": ("oie", "ExportObjects"),
     "CreateIAR": ("tools", "deployApplication"),
     "DeployIAR": ("dis", "deployApplication"),
+    "RedeployIAR": ("dis", "updateApplication"),
     "CreateUser": ("isp", "CreateUser"),
     "DisableUser": ("isp", "DisableUser"),
     "DeleteUser": ("isp", "RemoveUser"),
@@ -196,3 +197,7 @@ optimization_level = {
     "Normal": 2,
     "Full": 3
 }
+
+##
+# Informatica error codes captured
+informatica_app_already_exists = 'DSCMN_10020'

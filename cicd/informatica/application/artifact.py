@@ -25,10 +25,39 @@ import logging
 import supporting
 from cicd import informatica
 from cicd.informatica import infaSettings
+from cicd.informatica import infaConstants
 from supporting import generalSettings
 from supporting import errorcodes
 
 logger = logging.getLogger(__name__)
+entry = 0
+
+def processList(what, deployFile):
+    this_function = "processList"
+    latest_result = errorcodes.OK
+    overall_result = errorcodes.OK
+
+    supporting.log(logger, logging.DEBUG, this_function, "deployfile is >" + deployFile + "<.")
+    result, deploy_items = supporting.deploylist.getWorkitemList(deployFile)
+    if result.rc == 0:
+        if what == infaConstants.DEPLOY_APP:
+            for deployEntry in deploy_items:
+                latest_result = process_deploy_app_entry(what, deployEntry)
+                if latest_result.rc != errorcodes.OK.rc:
+                    overall_result = latest_result
+        elif what == infaConstants.CREATE_APP:
+            for deployEntry in deploy_items:
+                latest_result = process_create_app_entry(what, deployEntry)
+                if latest_result.rc != errorcodes.OK.rc:
+                    overall_result = latest_result
+        else:
+            supporting.log(logger, logging.ERROR, this_function, 'Invalid "what" value >' + what + '.')
+            overall_result = errorcodes.INVALID_DEPLOY_TYPE
+
+        return overall_result
+    else:
+        supporting.log(logger, logging.ERROR, this_function, "Could not get deploylist")
+        return errorcodes.FILE_NF
 
 
 def create_iar_file(app_path):
@@ -46,6 +75,19 @@ def deploy_iar_file(app_name, dis_name):
     informatica_app_dir = infaSettings.target_informatica_app_dir
 
     result = informatica.deploy_iar_file(
+        Domain=infaSettings.targetDomain,
+        Application=app_name,
+        ServiceName=dis_name,
+        FileName=informatica_app_dir + "/" + app_name + '.iar'
+    )
+
+    return result
+
+
+def redeploy_iar_file(app_name, dis_name):
+    informatica_app_dir = infaSettings.target_informatica_app_dir
+
+    result = informatica.redeploy_iar_file(
         Domain=infaSettings.targetDomain,
         Application=app_name,
         ServiceName=dis_name,
@@ -99,6 +141,15 @@ def process_deploy_app_entry(what, deployEntry):
 
     supporting.log(logger, logging.DEBUG, thisproc, 'app_name is >' + app_name + '<, logical_dis_name is >'
                    + logical_dis_name + '<, actual_dis_name is >' + actual_dis_name + '<.')
+
+    #TODO: Check if app exists, if so, run redeploy_iar_file, if not, run deploy_iar_file
     result = deploy_iar_file(app_name, actual_dis_name)
+    if result.rc != errorcodes.OK.rc:
+        # Check the message if the failure is due to the fact the app already exists
+        if infaConstants.informatica_app_already_exists in result.message:
+            supporting.log(logger, logging.DEBUG, thisproc, 'Application >' + app_name
+                           + '< already exists, will update it. (Code contains TODO to optimize the process)')
+            result = redeploy_iar_file(app_name, actual_dis_name)
+
 
     return result
