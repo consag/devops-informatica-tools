@@ -251,7 +251,7 @@ def deploy_iar_file(app_name, dis_name):
         Domain=infaSettings.targetDomain,
         Application=app_name,
         ServiceName=dis_name,
-        FileName=informatica_app_dir + "/" + app_name
+        FileName=informatica_app_dir + "/" + app_name + '.iar'
     )
 
     return result
