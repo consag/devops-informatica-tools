@@ -56,6 +56,7 @@ class OracleUtilities:
             self.spool_clause_on = ""
             self.spool_clause_off = ""
 
+
     def run_sqlplus(self, sqlfile):
         thisproc = "run_sqlplus"
         result = err.OK

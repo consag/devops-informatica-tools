@@ -21,6 +21,4 @@
 #  SOFTWARE.
 #
 
-def OracleUtilities(db_user, db_password, db_connection, on_sql_error, output_file):
-    OracleUtilities(db_user, db_password, db_connection, on_sql_error, output_file)
 
