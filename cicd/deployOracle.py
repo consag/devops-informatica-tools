@@ -37,7 +37,7 @@
 from supporting import log
 import supporting
 import logging
-from cicd import database as util
+from cicd.database import utilities
 # from os import listdir
 import sys, argparse
 from supporting import generalSettings
@@ -85,7 +85,7 @@ class DeployOracle:
                 log(self.logger, logging.INFO, thisproc, "Ignored non-sql file >" + sqlfile + "<.")
                 continue
             log(self.logger, logging.INFO, thisproc, "Processing sql file >" + sqlfile + "<.")
-            oracle_util = util.OracleUtilities(self.database_user
+            oracle_util = utilities.OracleUtilities(self.database_user
                                                , self.database_user_password
                                                , self.database_tns_name
                                                , 'REPORT'
