@@ -61,7 +61,7 @@ def getschemaenvvars(schema):
     global database_user, database_schema, database_user_password, database_tns_name
     # Database user etc.
     database_user = os.environ.get(schema + '_' + constants.varOracleDatabaseUser, constants.NOT_SET)
-    database_user_password = os.environ.get(schema + '_' + constants.varDatabaseUserPassword, constants.NOT_SET)
+    database_user_password = os.environ.get(schema + '_' + constants.varDatabaseUserPassword, None)
     database_schema = os.environ.get(schema + '_' + constants.varOracleSchemaName, constants.NOT_SET)
     database_tns_name = os.environ.get(schema + '_' + constants.varOracleTNSName, constants.NOT_SET)
 
