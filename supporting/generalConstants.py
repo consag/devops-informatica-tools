@@ -31,16 +31,18 @@
 # Environment variable values
 ##
 # Generic
-varLogDir ='LOGDIR'
+varLogDir = 'LOGDIR'
 DEFAULT_LOGDIR = '.'
-varResultDir ='RESULTDIR'
+varResultDir = 'RESULTDIR'
 DEFAULT_RESULTDIR = '.'
-varArtifactDir ='ARTIFACTDIR'
+varArtifactDir = 'ARTIFACTDIR'
 DEFAULT_ARTIFACTDIR = '.'
 varConfigDir = 'CONFIGDIR'
 DEFAULT_CONFIGDIR = '.'
 varSourceDir = 'SOURCEDIR'
 DEFAULT_SOURCEDIR = '.'
+varDoNotRun = 'DO_NOT_RUN'
+DEFAULT_DO_NOT_RUN = 'False'
 
 ##
 # pipeline

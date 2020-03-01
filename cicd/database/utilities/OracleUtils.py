@@ -25,6 +25,7 @@
 from subprocess import Popen, PIPE
 import logging
 import supporting.errorcodes as err
+from supporting import generalSettings
 
 logger = logging.getLogger(__name__)
 from cicd.database import dbSettings
@@ -56,34 +57,42 @@ class OracleUtilities:
             self.spool_clause_on = ""
             self.spool_clause_off = ""
 
-
     def run_sqlplus(self, sqlfile):
         thisproc = "run_sqlplus"
         result = err.OK
 
         try:
-            log(logger, logging.INFO, thisproc,
-                "Running script >" + sqlfile + "< on database >" + self.database_connection + "<.")
-            p = Popen([dbSettings.sqlplus_command, "-s", "/NOLOG"], universal_newlines=True, stdin=PIPE, stdout=PIPE,
-                      stderr=PIPE)
-            stdoutput = p.communicate(input=self.error_clause_sql
-                                            + "\n" + self.error_clause_os
-                                            + "\n" + self.spool_clause_on
-                                            + "\n" + self.connect_string
-                                            + "\n" + "@" + sqlfile
-                                            + "\n" + self.spool_clause_off
-                                            + "\n" + "exit 0")[0]
-            log(logger, logging.INFO, thisproc, "SQLPlus output: " + stdoutput)
-            if p.returncode == 0:
+            if generalSettings.do_not_run == 'True':
+                log(logger, logging.INFO, thisproc,
+                    "DO_NOT_RUN is set to True. NOT running script >" + sqlfile + "< on database >"
+                    + self.database_connection + "<.")
+                script_input = self.error_clause_sql + "\n" + self.error_clause_os + "\n" + self.spool_clause_on + "\n" + self.connect_string + "\n" + "@" + sqlfile + "\n" + self.spool_clause_off + "\n" + "exit 0"
+                log(logger, logging.INFO, thisproc, 'input for sqlplus is >' + script_input + '<.')
                 return err.OK
             else:
-                if self.on_sql_error == "ABORT":
-                    err.SQLPLUS_ERROR.message = stdoutput
-                    return err.SQLPLUS_ERROR
-                else:
-                    log(logger, logging.WARNING, thisproc, "Errors occurred but were ignored as on_sql_error is >"
-                        + self.on_sql_error + "<. You may want to check >" + self.output_file + "<.")
+                log(logger, logging.INFO, thisproc,
+                    "Running script >" + sqlfile + "< on database >" + self.database_connection + "<.")
+                p = Popen([dbSettings.sqlplus_command, "-s", "/NOLOG"], universal_newlines=True, stdin=PIPE,
+                          stdout=PIPE,
+                          stderr=PIPE)
+                stdoutput = p.communicate(input=self.error_clause_sql
+                                                + "\n" + self.error_clause_os
+                                                + "\n" + self.spool_clause_on
+                                                + "\n" + self.connect_string
+                                                + "\n" + "@" + sqlfile
+                                                + "\n" + self.spool_clause_off
+                                                + "\n" + "exit 0")[0]
+                log(logger, logging.INFO, thisproc, "SQLPlus output: " + stdoutput)
+                if p.returncode == 0:
                     return err.OK
+                else:
+                    if self.on_sql_error == "ABORT":
+                        err.SQLPLUS_ERROR.message = stdoutput
+                        return err.SQLPLUS_ERROR
+                    else:
+                        log(logger, logging.WARNING, thisproc, "Errors occurred but were ignored as on_sql_error is >"
+                            + self.on_sql_error + "<. You may want to check >" + self.output_file + "<.")
+                        return err.OK
 
         except FileNotFoundError as e:
             log(logger, logging.ERROR, thisproc, e.strerror + ": " + dbSettings.sqlplus_command)
