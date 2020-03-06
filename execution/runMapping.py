@@ -96,7 +96,7 @@ class ExecuteInformaticaMapping:
 
         """with AsIsOptions, you can speficy e.g. a parameter set
             Example:
-            runMapping myApp myMapping Source 3 "-ParameterSet myParameterSet -OperatingSystemProfile myOSProfile"
+            runMapping myApp myMapping Source 3 "-ParameterSet myParameterSet"
             It is important to supply the AsIsOptions as one single string
         """
         mapping = jobManagement.JobExecution(Tool="RunMapping",
