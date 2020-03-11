@@ -29,21 +29,21 @@ from cicd.informatica import infaConstants as constants
 logger = logging.getLogger(__name__)
 
 
-def execute(command, source_or_target= constants.CREATEARTIFACT):
+def execute(command, source_or_target=constants.CREATEARTIFACT, pre_command=None):
     """Execute an Informatica command line
     Sets INFA_DEFAULT_DOMAIN_PASSWORD, INFA_DEFAULTS_DOMAIN_USER and INFA_DEFAULT_SECURITY_DOMAIN based on provided Informatica settings.
     """
     if source_or_target == constants.CREATEARTIFACT:
         infa_env = {**os.environ, 'INFA_DEFAULT_DOMAIN_PASSWORD': infaSettings.sourcePassword,
-                'INFA_DEFAULT_DOMAIN_USER': infaSettings.sourceUsername,
-                'INFA_DEFAULT_SECURITY_DOMAIN': infaSettings.sourceSecurityDomain}
+                    'INFA_DEFAULT_DOMAIN_USER': infaSettings.sourceUsername,
+                    'INFA_DEFAULT_SECURITY_DOMAIN': infaSettings.sourceSecurityDomain}
 
     if source_or_target == constants.DEPLOYARTIFACT:
         infa_env = {**os.environ, 'INFA_DEFAULT_DOMAIN_PASSWORD': infaSettings.targetPassword,
-                'INFA_DEFAULT_DOMAIN_USER': infaSettings.targetUsername,
-                'INFA_DEFAULT_SECURITY_DOMAIN': infaSettings.targetSecurityDomain}
+                    'INFA_DEFAULT_DOMAIN_USER': infaSettings.targetUsername,
+                    'INFA_DEFAULT_SECURITY_DOMAIN': infaSettings.targetSecurityDomain}
 
-    result = executeCommand.execute(command, infa_env)
+    result = executeCommand.execute(command=command, env=infa_env, pre_command=pre_command)
 
     if result.code == errorcodes.COMMAND_FAILED:
         old_result = result.message

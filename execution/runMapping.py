@@ -37,9 +37,10 @@ class ExecuteInformaticaMapping:
         Runs an Informatica Mapping
     """
 
-    def __init__(self, argv, log_on_console = True):
+    def __init__(self, argv, log_on_console = True, pre_command=None):
         self.arguments = argv
         self.mainProc = 'runMapping'
+        self.pre_command = pre_command
         self.resultlogger = supporting.configurelogger(self.mainProc, log_on_console)
         self.logger = supporting.logger
 
@@ -99,7 +100,8 @@ class ExecuteInformaticaMapping:
             runMapping myApp myMapping Source 3 "-ParameterSet myParameterSet"
             It is important to supply the AsIsOptions as one single string
         """
-        mapping = jobManagement.JobExecution(Tool="RunMapping",
+        mapping = jobManagement.JobExecution(pre_command=self.pre_command,
+                                             Tool="RunMapping",
                                              Domain=infaSettings.sourceDomain,
                                              ServiceName=infaSettings.sourceDIS,
                                              Application=application_name,
