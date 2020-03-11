@@ -46,12 +46,12 @@ def execute(command, env, pre_command = None):
     result = errorcodes.OK
 
     if pre_command is None:
-        log(logger, logging.DEBUG, thisproc, "No pre_command provided.")
+        log(logger, logging.INFO, thisproc, "No pre_command provided.")
     else:
-        log(logger, logging.DEBUG, thisproc, "pre_command is >" + pre_command + "<.")
+        log(logger, logging.INFO, thisproc, "pre_command is >" + pre_command + "<.")
         command = pre_command + ' && '+ command
 
-    log(logger, logging.DEBUG, thisproc, "Executing command >" + mask_password(command) + "<.")
+    log(logger, logging.INFO, thisproc, "Executing command >" + mask_password(command) + "<.")
 
     pipes = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, env=env)
     pipes.wait()
