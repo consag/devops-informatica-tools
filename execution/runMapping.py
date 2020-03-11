@@ -23,7 +23,7 @@
 
 import logging, datetime, supporting
 from supporting import errorcodes
-from cicd.informatica import infaSettings, jobManagement
+from cicd.informatica import infaSettings, jobManagement, infaConstants
 from supporting import generalSettings
 import sys
 import argparse
@@ -102,8 +102,8 @@ class ExecuteInformaticaMapping:
         """
         mapping = jobManagement.JobExecution(pre_command=self.pre_command,
                                              Tool="RunMapping",
-                                             Domain=infaSettings.sourceDomain,
-                                             ServiceName=infaSettings.sourceDIS,
+                                             Domain='$' + infaConstants.varSourceDomain,
+                                             ServiceName='$' + infaConstants.varSourceDIS,
                                              Application=application_name,
                                              Mapping=mapping_name,
                                              PushdownType=pushdown_type,

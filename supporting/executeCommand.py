@@ -45,7 +45,10 @@ def execute(command, env, pre_command = None):
     process = ""
     result = errorcodes.OK
 
-    if not pre_command is None:
+    if pre_command is None:
+        log(logger, logging.DEBUG, thisproc, "No pre_command provided.")
+    else:
+        log(logger, logging.DEBUG, thisproc, "pre_command is >" + pre_command + "<.")
         command = pre_command + ' && '+ command
 
     log(logger, logging.DEBUG, thisproc, "Executing command >" + mask_password(command) + "<.")
