@@ -39,10 +39,10 @@ class JobExecution:
         RunCommand = buildCommand.build(**self.keyword_arguments)
 
         if self.pre_command is None:
-            log(self.logger, logging.DEBUG, __name__, "no pre_command provided.")
+            log(self.logger, logging.INFO, __name__, "no pre_command provided.")
         else:
-            log(self.logger, logging.DEBUG, __name__, "preCommand is >" + self.pre_command + "<.")
-        log(self.logger, logging.DEBUG, __name__, "RunCommand is >" + RunCommand + "<.")
+            log(self.logger, logging.INFO, __name__, "preCommand is >" + self.pre_command + "<.")
+        log(self.logger, logging.INFO, __name__, "RunCommand is >" + RunCommand + "<.")
         result = executeInfacmd.execute(command=RunCommand, pre_command=self.pre_command)
 
         if result.rc != errorcodes.OK.rc:
