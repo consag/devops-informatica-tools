@@ -56,7 +56,7 @@ class ExecuteInformaticaMapping:
         parser.add_argument("-p", "--pushdown", help="Database push-down type", action="store", dest="pushdown_type"
                             , choices=["Source", "Target", "Full"], default="Source")
         parser.add_argument("-o", "--optimizationlevel", action="store", dest="optimization_level"
-                            , default="3", help="Optimization level to apply", choices=["0", "1", "2", "3", "4", "5"])
+                            , default="-1", help="Optimization level to apply", choices=["0", "1", "2", "3", "-1"])
         parser.add_argument("-f", "--osprofile", action="store", dest="os_profile"
                             , help="Informatica OSProfile to use.")
         parser.add_argument("-x", "--extra", action="store", dest="as_is_options",
