@@ -107,7 +107,7 @@ def processEntry(deployEntry):
         filehandling.copy_file(sourcedir + file, settings.targetschedulerdir)
     elif type == constants.DAGS:
         supporting.log(logger, logging.DEBUG, thisproc, 'copying Airflow dag file >' + sourcedir + file
-                       + "< to >" + settings.targetschedulerdir + "<.")
+                       + "< to >" + settings.targetschedulerdir + "/" + directory + "<.")
         filehandling.copy_file(sourcedir + file, settings.targetschedulerdir)
     elif type == constants.PLUGINS:
         supporting.log(logger, logging.DEBUG, thisproc, 'copying Airflow plugin file >' + sourcedir + file
