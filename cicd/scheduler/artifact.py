@@ -98,16 +98,23 @@ def processEntry(deployEntry):
             return result
 
     if type == constants.JOBTYPE:
-        supporting.log(logger, logging.DEBUG, thisproc, 'copying job type file >' + sourcedir + file
+        supporting.log(logger, logging.DEBUG, thisproc, 'copying Control-M job type file >' + sourcedir + file
                        + "< to >" + settings.targetschedulertypedir + "<.")
         filehandling.copy_file(sourcedir + file, settings.targetschedulertypedir)
+    elif type == constants.JOBASCODE:
+        supporting.log(logger, logging.DEBUG, thisproc, 'copying Control-M jobascode file >' + sourcedir + file
+                       + "< to >" + settings.targetschedulerdir + "<.")
+        filehandling.copy_file(sourcedir + file, settings.targetschedulerdir)
+    elif type == constants.DAGS:
+        supporting.log(logger, logging.DEBUG, thisproc, 'copying Airflow dag file >' + sourcedir + file
+                       + "< to >" + settings.targetschedulerdir + "<.")
+        filehandling.copy_file(sourcedir + file, settings.targetschedulerdir)
+    elif type == constants.PLUGINS:
+        supporting.log(logger, logging.DEBUG, thisproc, 'copying Airflow plugin file >' + sourcedir + file
+                       + "< to >" + settings.targetschedulerdir + "<.")
+        filehandling.copy_file(sourcedir + file, settings.targetschedulertypedir)
     else:
-        if type == constants.JOBASCODE:
-            supporting.log(logger, logging.DEBUG, thisproc, 'copying jobascode file >' + sourcedir + file
-                           + "< to >" + settings.targetschedulerdir + "<.")
-            filehandling.copy_file(sourcedir + file, settings.targetschedulerdir)
-        else:
-            supporting.log(logger, logging.WARN, thisproc, 'invalid type >' + type + '<. Entry ignored.')
+        supporting.log(logger, logging.WARN, thisproc, 'invalid type >' + type + '<. Entry ignored.')
 
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")
