@@ -1,0 +1,13 @@
+No Python documentation found for 'createInformaticaPlatformApp'.
+Use help() to get the interactive help utility.
+Use help(str) for help on the str class.
+
+IMPORTS
+    import logging, datetime, supporting
+    import supporting.errorcodes as err
+    from cicd.informatica import infaAppChecks
+    from cicd.informatica import infaSettings as settings
+    from supporting.generalSettings import logDir
+    import sys, argparse
+    from cicd.informatica import infaConstants
+    from cicd.informatica.application import artifact

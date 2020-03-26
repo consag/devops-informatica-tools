@@ -1,81 +1,14 @@
-Help on module deployOracle:
-
-NAME
-    deployOracle
-
-DESCRIPTION
-    #  MIT License
-    #
-    #  Copyright (c) 2019 Jac. Beekers
-    #
-    #  Permission is hereby granted, free of charge, to any person obtaining a copy
-    #  of this software and associated documentation files (the "Software"), to deal
-    #  in the Software without restriction, including without limitation the rights
-    #  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    #  copies of the Software, and to permit persons to whom the Software is
-    #  furnished to do so, subject to the following conditions:
-    #
-    #  The above copyright notice and this permission notice shall be included in all
-    #  copies or substantial portions of the Software.
-    #
-    #  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    #  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    #  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    #  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    #  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    #  SOFTWARE.
-    #
-
-CLASSES
-    builtins.object
-        DeployOracle
-    
-    class DeployOracle(builtins.object)
-     |  Deploys a previously built Oracle package
-     |  
-     |  Methods defined here:
-     |  
-     |  __init__(self, schema)
-     |      Initialize self.  See help(type(self)) for accurate signature.
-     |  
-     |  deployArtifact(self)
-     |  
-     |  ----------------------------------------------------------------------
-     |  Data descriptors defined here:
-     |  
-     |  __dict__
-     |      dictionary for instance variables (if defined)
-     |  
-     |  __weakref__
-     |      list of weak references to the object (if defined)
-
-FUNCTIONS
-    main(argv)
-        Deploy the Oracle artifact to the target environment.
-        Usage: deployOracle.py [-h] -s SCHEMA_NAME
-        The module uses environment variables to steer the deployment, like target Oracle database, connections and such.
-        For more information check the deployOracle docs.
-    
-    parse_the_arguments(argv)
-        Parses the provided arguments and exits on an error.
-        Use the option -h on the command line to get an overview of the required and optional arguments.
-
-DATA
-    logger = <Logger deployOracle (WARNING)>
-
-FILE
-    /Users/jacbeekers/gitrepos/devops-informatica-tools/deployOracle.py
-
+No Python documentation found for 'deployOracle'.
+Use help() to get the interactive help utility.
+Use help(str) for help on the str class.
 
 IMPORTS
     from supporting import log
     import supporting
     import logging
-    import database.utilities.Oracle as util
+    from cicd.database.utilities import OracleUtils
     import sys, argparse
     from supporting import generalSettings
-    import database.dbSettings as dbSettings
-    import database.dbConstants as dbConstants
+    import cicd.database.dbSettings as dbSettings
     import glob
     import supporting.errorcodes as err

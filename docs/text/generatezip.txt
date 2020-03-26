@@ -1,0 +1,11 @@
+No Python documentation found for 'generatezip'.
+Use help() to get the interactive help utility.
+Use help(str) for help on the str class.
+
+IMPORTS
+    import supporting.errorcodes as err
+    from zipfile import ZipFile
+    import os
+    import logging
+    import supporting
+    import fnmatch

@@ -1,0 +1,9 @@
+No Python documentation found for 'artifactHandling'.
+Use help() to get the interactive help utility.
+Use help(str) for help on the str class.
+
+IMPORTS
+    import supporting.errorcodes as err
+    import supporting.generalConstants as constants
+    import logging, os, datetime
+    import supporting

@@ -1,0 +1,12 @@
+No Python documentation found for 'createFitNesseArtifact'.
+Use help() to get the interactive help utility.
+Use help(str) for help on the str class.
+
+IMPORTS
+    import logging, datetime, supporting
+    import supporting.errorcodes as err
+    import cicd.fitnesse.fitnesseArtifactChecks as fitnessechecks
+    import cicd.fitnesse.artifact
+    import cicd.fitnesse.fitnesseSettings as settings
+    import supporting.generalSettings as generalsettings
+    import sys, argparse

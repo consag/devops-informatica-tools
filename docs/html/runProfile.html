@@ -8,7 +8,7 @@
 <td valign=bottom>&nbsp;<br>
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>runProfile</strong></big></big></font></td
 ><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/jacbeekers/gitrepos/devops-informatica-tools/runProfile.py">/Users/jacbeekers/gitrepos/devops-informatica-tools/runProfile.py</a></font></td></tr></table>
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/ik/GitRepos/devops-informatica-tools/execution/runProfile.py">/Users/ik/GitRepos/devops-informatica-tools/execution/runProfile.py</a></font></td></tr></table>
     <p><tt>#&nbsp;&nbsp;MIT&nbsp;License<br>
 #<br>
 #&nbsp;&nbsp;Copyright&nbsp;(c)&nbsp;2019&nbsp;Jac.&nbsp;Beekers<br>
@@ -42,29 +42,62 @@
 <a href="datetime.html">datetime</a><br>
 <a href="supporting.errorcodes.html">supporting.errorcodes</a><br>
 </td><td width="25%" valign=top><a href="supporting.generalSettings.html">supporting.generalSettings</a><br>
-<a href="informatica.infaSettings.html">informatica.infaSettings</a><br>
-<a href="informatica.jobManagement.html">informatica.jobManagement</a><br>
-</td><td width="25%" valign=top><a href="logging.html">logging</a><br>
+<a href="cicd.informatica.infaConstants.html">cicd.informatica.infaConstants</a><br>
+<a href="cicd.informatica.infaSettings.html">cicd.informatica.infaSettings</a><br>
+</td><td width="25%" valign=top><a href="cicd.informatica.jobManagement.html">cicd.informatica.jobManagement</a><br>
+<a href="logging.html">logging</a><br>
 <a href="supporting.html">supporting</a><br>
-<a href="sys.html">sys</a><br>
-</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td></tr></table></td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
-<tr bgcolor="#eeaa77">
+<tr bgcolor="#ee77aa">
 <td colspan=3 valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
     
-<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><dl><dt><a name="-main"><strong>main</strong></a>(argv)</dt><dd><tt>Runs&nbsp;a&nbsp;Profile.<br>
-usage:&nbsp;runProfile.py&nbsp;[-h]&nbsp;-p&nbsp;OBJECT_PATH</tt></dd></dl>
- <dl><dt><a name="-parse_the_arguments"><strong>parse_the_arguments</strong></a>(argv)</dt><dd><tt>Parses&nbsp;the&nbsp;provided&nbsp;arguments&nbsp;and&nbsp;exits&nbsp;on&nbsp;an&nbsp;error.<br>
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="runProfile.html#ExecuteInformaticaProfile">ExecuteInformaticaProfile</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ExecuteInformaticaProfile">class <strong>ExecuteInformaticaProfile</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#ExecuteInformaticaProfile">ExecuteInformaticaProfile</a>(argv,&nbsp;log_on_console=True,&nbsp;pre_command=None)<br>
+&nbsp;<br>
+Runs&nbsp;an&nbsp;Informatica&nbsp;Profile<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="ExecuteInformaticaProfile-__init__"><strong>__init__</strong></a>(self, argv, log_on_console=True, pre_command=None)</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<dl><dt><a name="ExecuteInformaticaProfile-parse_the_arguments"><strong>parse_the_arguments</strong></a>(self, arguments)</dt><dd><tt>Parses&nbsp;the&nbsp;provided&nbsp;arguments&nbsp;and&nbsp;exits&nbsp;on&nbsp;an&nbsp;error.<br>
 Use&nbsp;the&nbsp;option&nbsp;-h&nbsp;on&nbsp;the&nbsp;command&nbsp;line&nbsp;to&nbsp;get&nbsp;an&nbsp;overview&nbsp;of&nbsp;the&nbsp;required&nbsp;and&nbsp;optional&nbsp;arguments.</tt></dd></dl>
-</td></tr></table><p>
+
+<dl><dt><a name="ExecuteInformaticaProfile-runit"><strong>runit</strong></a>(self, arguments)</dt><dd><tt>Runs&nbsp;a&nbsp;Profile.<br>
+usage:&nbsp;runProfile.py&nbsp;[-h]&nbsp;-p&nbsp;OBJECT_PATH</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#55aa55">
 <td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
     
 <tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><strong>now</strong> = datetime.datetime(2019, 10, 18, 3, 12, 58, 908976)<br>
+<td width="100%"><strong>now</strong> = datetime.datetime(2020, 3, 26, 21, 0, 28, 251104)<br>
 <strong>result</strong> = &lt;supporting.errorcode.Errorcode object&gt;</td></tr></table>
 </body></html>

@@ -1,0 +1,7 @@
+No Python documentation found for 'randomize'.
+Use help() to get the interactive help utility.
+Use help(str) for help on the str class.
+
+IMPORTS
+    import random
+    import string
