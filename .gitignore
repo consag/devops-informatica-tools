@@ -116,3 +116,7 @@ venv.bak/
 # mypy
 .mypy_cache/
 .idea/workspace.xml
+
+#macos
+.DS_Store
+
