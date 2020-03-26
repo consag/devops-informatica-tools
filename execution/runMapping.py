@@ -23,7 +23,7 @@
 
 import logging, datetime, supporting
 from supporting import errorcodes
-from cicd.informatica import infaSettings, jobManagement
+from cicd.informatica import infaSettings, jobManagement, infaConstants
 from supporting import generalSettings
 import sys
 import argparse
@@ -37,9 +37,10 @@ class ExecuteInformaticaMapping:
         Runs an Informatica Mapping
     """
 
-    def __init__(self, argv, log_on_console = True):
+    def __init__(self, argv, log_on_console = True, pre_command=None):
         self.arguments = argv
         self.mainProc = 'runMapping'
+        self.pre_command = pre_command
         self.resultlogger = supporting.configurelogger(self.mainProc, log_on_console)
         self.logger = supporting.logger
 
@@ -55,10 +56,10 @@ class ExecuteInformaticaMapping:
         parser.add_argument("-p", "--pushdown", help="Database push-down type", action="store", dest="pushdown_type"
                             , choices=["Source", "Target", "Full"], default="Source")
         parser.add_argument("-o", "--optimizationlevel", action="store", dest="optimization_level"
-                            , default="3", help="Optimization level to apply", choices=["0", "1", "2", "3", "4", "5"])
-        parser.add_argument("-l", "--loglevel", type=int, action="store", dest="loglevel", choices=[0, 1, 2, 3, 4, 5]
-                            , help="log level from 0=fatal to 5=verbose")
-        parser.add_argument("-x", "-extra", action="store", dest="as_is_options",
+                            , default="-1", help="Optimization level to apply", choices=["0", "1", "2", "3", "-1"])
+        parser.add_argument("-f", "--osprofile", action="store", dest="os_profile"
+                            , help="Informatica OSProfile to use.")
+        parser.add_argument("-x", "--extra", action="store", dest="as_is_options",
                             help="any options to add. Make sure to use double-quotes!")
         args = parser.parse_args(arguments)
 
@@ -87,6 +88,7 @@ class ExecuteInformaticaMapping:
 
         pushdown_type = args.pushdown_type
         optimization_level = args.optimization_level
+        os_profile = args.os_profile
         as_is_options = args.as_is_options
 
         infaSettings.getinfaenvvars()
@@ -95,18 +97,20 @@ class ExecuteInformaticaMapping:
 
         """with AsIsOptions, you can speficy e.g. a parameter set
             Example:
-            runMapping myApp myMapping Source 3 "-ParameterSet myParameterSet -OperatingSystemProfile myOSProfile"
+            runMapping myApp myMapping Source 3 "-ParameterSet myParameterSet"
             It is important to supply the AsIsOptions as one single string
         """
-        mapping = jobManagement.JobExecution(Tool="RunMapping",
-                                             Domain=infaSettings.sourceDomain,
-                                             ServiceName=infaSettings.sourceDIS,
+        mapping = jobManagement.JobExecution(pre_command=self.pre_command,
+                                             Tool="RunMapping",
+                                             Domain='$' + infaConstants.varSourceDomain,
+                                             ServiceName='$' + infaConstants.varSourceDIS,
                                              Application=application_name,
                                              Mapping=mapping_name,
                                              PushdownType=pushdown_type,
                                              OptimizationLevel=optimization_level,
                                              Wait="true",
                                              OnError=errorcodes.INFACMD_MAPPING_FAILED,
+                                             OperatingSystemProfile=os_profile,
                                              AsIsOptions=as_is_options
                                              )
         result = jobManagement.JobExecution.manage(mapping)

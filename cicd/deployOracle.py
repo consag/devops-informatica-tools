@@ -37,7 +37,7 @@
 from supporting import log
 import supporting
 import logging
-from cicd import database as util
+from cicd.database.utilities import OracleUtils
 # from os import listdir
 import sys, argparse
 from supporting import generalSettings
@@ -80,12 +80,13 @@ class DeployOracle:
         log(self.logger, logging.DEBUG, thisproc, "schema_directory is >" + schema_directory + "<.")
         sql_files = [f for f in glob.glob(schema_directory + "**/*.sql")]
         log(self.logger, logging.DEBUG, thisproc, "sql_files found >" + str(len(sql_files)) + "<.")
+        sql_files.sort()
         for sqlfile in sql_files:
             if sqlfile[-4:] != ".sql":
                 log(self.logger, logging.INFO, thisproc, "Ignored non-sql file >" + sqlfile + "<.")
                 continue
             log(self.logger, logging.INFO, thisproc, "Processing sql file >" + sqlfile + "<.")
-            oracle_util = util.OracleUtilities(self.database_user
+            oracle_util = OracleUtils.OracleUtilities(self.database_user
                                                , self.database_user_password
                                                , self.database_tns_name
                                                , 'REPORT'
@@ -105,7 +106,7 @@ def parse_the_arguments(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument("-s", "--schema", required=True, action="store", dest="schema_name",
                         help="Deploy mentioned schema.")
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     return args
 
@@ -130,7 +131,7 @@ def main(argv):
     supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
     schema = args.schema_name
-    supporting.log(logger, logging.INFO, thisproc, "Schema to deployed is >" + schema + "<.")
+    supporting.log(logger, logging.INFO, thisproc, "Schema to be deployed is >" + schema + "<.")
     depl = DeployOracle(schema)
     result = depl.deployArtifact()
     supporting.exitscript(resultlogger, result)

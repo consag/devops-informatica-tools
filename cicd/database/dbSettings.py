@@ -60,10 +60,10 @@ def getschemaenvvars(schema):
     thisproc="getschemaenvvars"
     global database_user, database_schema, database_user_password, database_tns_name
     # Database user etc.
-    database_user = os.environ.get(constants.varOracleDatabaseUser + "_" + schema, constants.NOT_SET)
-    database_user_password = os.environ.get(constants.varDatabaseUserPassword + "_" + schema, constants.NOT_SET)
-    database_schema = os.environ.get(constants.varOracleSchemaName + "_" + schema, constants.NOT_SET)
-    database_tns_name = os.environ.get(constants.varOracleTNSName + "_" + schema, constants.NOT_SET)
+    database_user = os.environ.get(schema + '_' + constants.varOracleDatabaseUser, constants.NOT_SET)
+    database_user_password = os.environ.get(schema + '_' + constants.varDatabaseUserPassword, None)
+    database_schema = os.environ.get(schema + '_' + constants.varOracleSchemaName, constants.NOT_SET)
+    database_tns_name = os.environ.get(schema + '_' + constants.varOracleTNSName, constants.NOT_SET)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'completed')
     return database_tns_name, database_schema, database_user, database_user_password

@@ -28,6 +28,7 @@
 # @Version: 20190323.0 - JBE - Initial
 
 import contextlib, os, shutil
+from supporting import generalSettings, randomize
 
 
 def removefile(filename):
@@ -40,5 +41,24 @@ def copy_file(source, target):
         shutil.copy2(source, target)
 
 
+def copy_files(source, target):
+    with contextlib.suppress(FileExistsError):
+        for file in os.listdir(source):
+            shutil.copy2(source + '/' + file, target)
+
+
 def create_directory(directory):
     os.makedirs(directory, exist_ok=True)  # succeeds even if directory exists.
+
+
+def generate_tmp_filename():
+    generalSettings.getenvvars()
+    tmp_file_name = generalSettings.logDir + '/' + randomize.randomStringDigits() + '.tmp'
+    return tmp_file_name
+
+
+def convert_content_to_array(file):
+    with open(file, 'r') as f:
+        list = f.read().splitlines()
+    return list
+

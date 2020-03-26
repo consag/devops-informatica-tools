@@ -2,4 +2,5 @@
 #informatica-airflow-plugin>=0.1.10
 cryptography==2.8
 pycryptodome==3.9.0
+six
 #pygit2==0.28.2

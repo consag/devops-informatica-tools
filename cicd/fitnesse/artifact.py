@@ -35,6 +35,8 @@ import supporting.deploylist
 from pathlib import Path
 from supporting.generatezip import generate_zip
 from supporting.generatezip import addto_zip
+from supporting.filehandling import copy_file
+import supporting.generalSettings as generalSettings
 
 logger = logging.getLogger(__name__)
 entrynr = 0
@@ -45,13 +47,18 @@ previous_schema = 'AUQW&^D*AD&FS'
 def processList(deployFile):
     latestError = err.OK
     result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
-    if result.rc == 0:
+    if result.rc == err.OK.rc:
+        copy_file(deployFile, generalSettings.artifactDir)
         for deployEntry in supporting.deploylist.deployItems:
             result = processEntry(deployEntry)
             if result.rc != 0:
                 latestError = result
     else:
-        latestError = result
+        # if no deploy list, then that is just fine.
+        if result.rc == err.IGNORE.rc:
+            latestError = err.OK
+        else:
+            latestError = result
     return latestError
 
 

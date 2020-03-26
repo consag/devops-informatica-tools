@@ -22,8 +22,8 @@
 # 
 
 ##
-# Create Scheduler Artifact
-# @Since: 25-OCT-2019
+# Deploy Scheduler Artifact
+# @Since: 12-JAN-2020
 # @Author: Jac. Beekers
 
 import logging, datetime, supporting
@@ -31,7 +31,7 @@ import supporting.errorcodes as err
 from cicd.scheduler import schedulerArtifactChecks as schedulerChecks
 from cicd.scheduler import schedulerSettings as settings
 from cicd.scheduler import artifact as artifact
-#from cicd.scheduler import schedulerConstants as constants
+# from cicd.scheduler import schedulerConstants as constants
 import supporting.generalSettings as generalSettings
 import sys, argparse
 
@@ -39,14 +39,14 @@ now = datetime.datetime.now()
 result = err.OK
 
 
-class CreateSchedulerArtifact:
+class DeploySchedulerArtifact:
     """
-        Creates an artifact with Schedules from file system
+        Deploys an artifact with Schedules
     """
 
     def __init__(self, argv, log_on_console=True):
         self.arguments = argv
-        self.mainProc = 'createSchedulerArtifact'
+        self.mainProc = 'deploySchedulerArtifact'
         self.resultlogger = supporting.configurelogger(self.mainProc, log_on_console)
         self.logger = supporting.logger
 
@@ -54,13 +54,13 @@ class CreateSchedulerArtifact:
         """Parses the provided arguments and exits on an error.
         Use the option -h on the command line to get an overview of the required and optional arguments.
         """
-        parser = argparse.ArgumentParser(prog='createSchedulerArtifact')
+        parser = argparse.ArgumentParser(prog='deploySchedulerArtifact')
         args = parser.parse_args(arguments)
 
         return args
 
     def runit(self, arguments):
-        """Creates a scheduler artifact.
+        """Deploys a scheduler artifact.
         """
         thisproc = "runit"
 
@@ -68,7 +68,7 @@ class CreateSchedulerArtifact:
 
         generalSettings.getenvvars()
 
-        supporting.log(self.logger, logging.DEBUG, thisproc, 'Started')
+        supporting.log(self.logger, logging.DEBUG, thisproc, 'DUMMY DUMMY Started')
         supporting.log(self.logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
         # Check requirements for artifact generation
@@ -77,17 +77,12 @@ class CreateSchedulerArtifact:
         settings.outschedulerenvvars()
 
         result = schedulerChecks.schedulerartifactchecks()
-        if result.rc == err.IGNORE.rc:
-            # deploylist is not mandatory since 2020-02-09
-            supporting.log(logging, result.level, thisproc, 'Artifact ignored.')
-            result = err.OK
-        else:
-            if result.rc != 0:
-                supporting.log(self.logger, logging.ERROR, thisproc,
-                               'Scheduler Artifact Checks failed with >' + result.message + "<.")
-                supporting.exitscript(self.resultlogger, result)
-            else:
-                result = artifact.processList(settings.schedulerdeploylist)
+        if result.rc != 0:
+            supporting.log(self.logger, logging.ERROR, thisproc,
+                           'Scheduler Artifact Checks failed with >' + result.message + "<.")
+            supporting.exitscript(self.resultlogger, result)
+
+        #        result = artifact.processList(settings.schedulerdeploylist)
 
         supporting.log(self.logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                        + '< and result code >' + result.code + "<.")
@@ -96,6 +91,6 @@ class CreateSchedulerArtifact:
 
 
 if __name__ == '__main__':
-    create_artifact = CreateSchedulerArtifact(sys.argv[1:], log_on_console=True)
-    result = create_artifact.runit(create_artifact.arguments)
-    supporting.exitscript(create_artifact.resultlogger, result)
+    deploy_artifact = DeploySchedulerArtifact(sys.argv[1:], log_on_console=True)
+    result = deploy_artifact.runit(deploy_artifact.arguments)
+    supporting.exitscript(deploy_artifact.resultlogger, result)

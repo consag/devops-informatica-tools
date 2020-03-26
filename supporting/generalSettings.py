@@ -25,7 +25,7 @@
 # generalSettings
 # @Since: 22-MAR-2019
 # @Author: Jac. Beekers
-# @Version: 20190410.0 - JBE - Initial
+# @Version: 20200301.0 - JBE - Added DO_NOT_RUN
 
 import os, logging
 import supporting
@@ -39,10 +39,11 @@ resultDir = constants.DEFAULT_RESULTDIR
 artifactDir = constants.DEFAULT_ARTIFACTDIR
 configDir = constants.DEFAULT_CONFIGDIR
 sourceDir = constants.DEFAULT_SOURCEDIR
+do_not_run = constants.DEFAULT_DO_NOT_RUN
 
 def getenvvars():
     thisproc = "getenvvars"
-    global logDir, resultDir, artifactDir, configDir, sourceDir, releaseID
+    global logDir, resultDir, artifactDir, configDir, sourceDir, releaseID, do_not_run
 
     supporting.log(logger, logging.DEBUG, thisproc, 'started')
 
@@ -63,6 +64,9 @@ def getenvvars():
 
     releaseID = os.environ.get(constants.varReleaseId, constants.DEFAULT_RELEASEID)
     supporting.log(logger, logging.DEBUG, thisproc, 'releaseID set to >' + releaseID + "<.")
+
+    do_not_run = os.environ.get(constants.varDoNotRun, constants.DEFAULT_DO_NOT_RUN)
+    supporting.log(logger, logging.DEBUG, thisproc, 'do_not_run set to >' + do_not_run + "<.")
 
     supporting.log(logger, logging.DEBUG, thisproc, 'completed')
 

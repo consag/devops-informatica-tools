@@ -21,11 +21,24 @@
 #  SOFTWARE.
 #
 
+#  MIT License
+#
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy
+#  of this software and associated documentation files (the "Software"), to deal
+#  in the Software without restriction, including without limitation the rights
+#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#  copies of the Software, and to permit persons to whom the Software is
+#  furnished to do so, subject to the following conditions:
+#
+#
+#
+
 ##
-# Informatica Artifact Checks
-# @Since: 12-APR-2019
+# Informatica App Checks
+# @Since: 17-FEB-2020
 # @Author: Jac. Beekers
-# @Version: 20190414.0 - JBE - Initial
+# @Version: 20200217.0 - JBE - Initial
 
 import supporting.errorcodes as err
 import supporting, logging
@@ -35,33 +48,33 @@ from pathlib import Path
 logger = logging.getLogger(__name__)
 
 
-def infaartifactchecks():
-    thisproc = "infaartifactchecks"
+def infa_app_checks():
+    thisproc = "infa_app_checks"
     supporting.log(logger, logging.DEBUG, thisproc, 'started')
     result = err.OK
 
-    if not settings.infadeploylist:
+    if not settings.infa_app_deploylist:
         supporting.log(logger, err.IGNORE.level, thisproc, err.NO_DEPLOYLIST.message)
-        supporting.log(logger, err.IGNORE.level, thisproc, "Assuming Informatica Platform is NOT part of the solution.")
+        supporting.log(logger, err.IGNORE.level, thisproc, "Assuming Informatica Apps are NOT part of the solution.")
         result = err.IGNORE
     else:
-        deploylistFile = Path(settings.infadeploylist)
+        deploylistFile = Path(settings.infa_app_deploylist)
         if not deploylistFile.is_file():
             supporting.log(logger, err.IGNORE.level, thisproc,
-                           "deploylist is >" + settings.infadeploylist + "<. "
-                           + err.DEPLOYLIST_NF.message + " - Informatica Platform artifact IGNORED.")
+                           "deploylist is >" + settings.infa_app_deploylist + "<. "
+                           + err.DEPLOYLIST_NF.message + " - Informatica Apps IGNORED.")
             result = err.IGNORE
 
     supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + str(result.rc) + "<.")
     return result
 
 
-def infadeploychecks():
+def infa_deploy_checks():
     thisproc = "infadeploychecks"
     supporting.log(logger, logging.DEBUG, thisproc, 'started')
 
     # for now the checks for deploys and artifacts are the same
-    result = infaartifactchecks()
+    result = infa_app_checks()
 
     supporting.log(logger, logging.DEBUG, thisproc, 'completed with >' + str(result.rc) + "<.")
     return result

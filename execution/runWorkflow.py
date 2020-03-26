@@ -31,12 +31,13 @@ import argparse
 now = datetime.datetime.now()
 result = errorcodes.OK
 
+
 class ExecuteInformaticaWorkflow:
     """
         Runs an Informatica Workflow
     """
 
-    def __init__(self, argv, log_on_console = True):
+    def __init__(self, argv, log_on_console=True):
         self.arguments = argv
         self.mainProc = 'runWorkflow'
         self.resultlogger = supporting.configurelogger(self.mainProc, log_on_console)
@@ -54,8 +55,8 @@ class ExecuteInformaticaWorkflow:
                             dest="workflow_name")
         parser.add_argument("-c", "--completion", help="Wait for workflow completion", action="store", dest="wait"
                             , choices=["True", "False"], default="False")
-        parser.add_argument("-l", "--loglevel", type=int, action="store", dest="loglevel", choices=[0, 1, 2, 3, 4, 5]
-                            , help="log level from 0=fatal to 5=verbose")
+        parser.add_argument("-f", "--osprofile", action="store", dest="os_profile",
+                            help="Informatica OSProfile to use.")
         parser.add_argument("-x", "-extra", action="store", dest="as_is_options",
                             help="any options to add. Make sure to use double-quotes!")
         args = parser.parse_args(arguments)
@@ -68,7 +69,7 @@ class ExecuteInformaticaWorkflow:
     def runit(self, arguments):
         """Runs a Workflow.
         usage: runWorkflow.py [-h] -a APPLICATION_NAME -w WORKFLOW_NAME
-                          [-c {True,False}] [-l {0,1,2,3,4,5}] [-x AS_IS_OPTIONS]
+                          [-c {True,False}] [-x AS_IS_OPTIONS]
         with AsIsOptions, you can speficy e.g. a parameter set
             Example:
             runMapping myApp myMapping Source 3 "-ParameterSet myParameterSet -OperatingSystemProfile myOSProfile"
@@ -87,18 +88,21 @@ class ExecuteInformaticaWorkflow:
         workflow_name = args.workflow_name
         wait = args.wait
         as_is_options = args.as_is_options
+        os_profile = args.os_profile
 
         infaSettings.getinfaenvvars()
         infaSettings.outinfaenvvars()
-#        supporting.logentireenv()
+        #        supporting.logentireenv()
 
-        workflow = jobManagement.JobExecution(Tool="RunWorkflow",  # this will translate to StartWorkflow for the infacmd
-                                           Domain=infaSettings.sourceDomain,
+        workflow = jobManagement.JobExecution(Tool="RunWorkflow",
+                                              # this will translate to StartWorkflow for the infacmd
+                                              Domain=infaSettings.sourceDomain,
                                               ServiceName=infaSettings.sourceDIS,
                                               Application=application_name,
                                               Workflow=workflow_name,
                                               Wait=wait,
                                               OnError=errorcodes.INFACMD_WORKFLOW_FAILED,
+                                              OperatingSystemProfile=os_profile,
                                               AsIsOptions=as_is_options
                                               )
         result = jobManagement.JobExecution.manage(workflow)

@@ -30,17 +30,22 @@ from supporting import errorcodes
 
 class JobExecution:
 
-    def __init__(self, **keyword_arguments):
+    def __init__(self, pre_command=None, **keyword_arguments):
         self.logger = logging.getLogger(__name__)
         self.keyword_arguments = keyword_arguments
+        self.pre_command = pre_command
 
     def manage(self):
         RunCommand = buildCommand.build(**self.keyword_arguments)
 
+        if self.pre_command is None:
+            log(self.logger, logging.INFO, __name__, "no pre_command provided.")
+        else:
+            log(self.logger, logging.INFO, __name__, "preCommand is >" + self.pre_command + "<.")
         log(self.logger, logging.INFO, __name__, "RunCommand is >" + RunCommand + "<.")
-        result = executeInfacmd.execute(RunCommand)
+        result = executeInfacmd.execute(command=RunCommand, pre_command=self.pre_command)
 
-        if(result.rc != errorcodes.OK.rc):
+        if result.rc != errorcodes.OK.rc:
             oldResult = result.message
             result = self.keyword_arguments["OnError"]
             result.message = oldResult

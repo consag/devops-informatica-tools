@@ -34,20 +34,9 @@ MIT
 ## Examples
 Check the examples folder for more info on the structure of deploy lists.
 
-## Implemented Scheduler functions
-### runMapping
-Runs an Informatica Mapping
-Usage: python3 runMapping.py -a <ApplicationName> -m <MappingName>
-	
-### runProfile
-Runs an Informatica Data Quality Profile
-Usage: python3 runProfile.py -p <CompletePathToProfile>
-	
-### runScorecard
-Runs an Informatica Data Quality Scorecard
-Usage: python3 runScorecard -s <CompletePathToScorecard>
+## Implemented functions
+### createOracleArtifact
+Generates an ordered sql based on the deploylist.
 
-### runWorkflow
-Runs an Informatica Human Task Workflow
-Usage: python3 runWorkflow -a <ApplicationName> -w <WorkflowName> [-c {True|False}]
-	where: -c waits on completion (True) or not (False)
+### createDeveloperArtifact
+Generates an Informatica export file and reference data zip file based on the deploylist.

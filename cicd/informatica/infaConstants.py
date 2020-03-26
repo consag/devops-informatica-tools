@@ -26,12 +26,14 @@
 # @Since: 10-APR-2019
 # @Author: Jac. Beekers
 # @License: MIT
-# @Version: 20190712.0 - Added some more
+# @Version: 20200219.0 - Added Informatica App
 import supporting.generalConstants as generalConstants
 
 ## Environment variables
 # Informatica artifacts and deploys
 varDeveloperDeployList = 'DEVELOPER_DEPLOYLIST'
+var_developer_app_deploylist = 'DEVELOPER_APP_DEPLOYLIST'
+
 varOverwriteExportFile = 'OVERWRITE_EXPORT_FILE'
 
 varSourceExportRefData = 'SOURCE_EXPORT_REFDATA'
@@ -55,6 +57,8 @@ varTargetPassword = 'TARGET_INFA_DEFAULT_DOMAIN_PASSWORD'
 varTargetSecurityDomain = 'TARGET_INFA_DEFAULT_SECURITY_DOMAIN'
 varTargetDomainInfa = 'TARGET_INFA_DOMAINS_FILE'
 varTargetDIS = 'TARGET_DIS'
+varTargetInformaticaDir = 'TARGET_INFORMATICADIR'
+varTargetInformaticaAppDir = 'TARGET_INFORMATICA_APP_DIR'
 
 ##
 # export - import
@@ -75,6 +79,8 @@ varGroupId = "InformaticaPlatform"
 ##
 # Defaults
 DEFAULT_DEVELOPER_DEPLOYLIST = 'developer_deploylist.txt'
+DEFAULT_DEVELOPER_APP_DEPLOYLIST = 'developer_app_deploylist.txt'
+
 DEFAULT_OVERWRITE_EXPORT_FILE = generalConstants.TRUE
 DEFAULT_EXPORT_REFDATA = generalConstants.YES
 DEFAULT_IMPORT_REFDATA = generalConstants.YES
@@ -94,9 +100,13 @@ DEFAULT_USERNAME = 'notReally'
 DEFAULT_PASSWORD = 'W3Akrdu+PECXwqC/W21nXQ=='
 DEFAULT_SECURITYDOMAIN = 'Native'
 DEFAULT_DATAINTEGRATION_SERVICE = 'DIS_Demo01'
+DEFAULT_TARGET_INFORMATICADIR = '.'
+DEFAULT_TARGET_INFORMATICA_APP_DIR = '.'
+
 ##
 # Generic stuff
 NOT_PROVIDED = "NotProvided"
+NOT_FOUND = "NotFound"
 
 ##
 # PowerCenter
@@ -107,6 +117,8 @@ DEFAULT_POWERCENTER_DEPLOYLIST = 'powercenter_deploylist.txt'
 #
 CREATEARTIFACT = 'CreateArtifact'
 DEPLOYARTIFACT = 'DeployArtifact'
+CREATE_APP = 'CreateApp'
+DEPLOY_APP = 'DeployApp'
 
 ##
 # Informatica Connections
@@ -123,6 +135,7 @@ AvailableArguments = {
     "TargetFolder": "-tf",
     "ConflictResolution": "-cr",
     "FilePath": "-ExportFilePath",
+    "ImportFilePath": "-ImportFilePath",
     "Path": "-p",
     "SourceProject": "-sp",
     "TargetProject": "-tp",
@@ -140,6 +153,9 @@ AvailableArguments = {
 AvailableTools = {
     "Import": ("oie", "ImportObjects"),
     "Export": ("oie", "ExportObjects"),
+    "CreateIAR": ("tools", "deployApplication"),
+    "DeployIAR": ("dis", "deployApplication"),
+    "RedeployIAR": ("dis", "updateApplication"),
     "CreateUser": ("isp", "CreateUser"),
     "DisableUser": ("isp", "DisableUser"),
     "DeleteUser": ("isp", "RemoveUser"),
@@ -167,7 +183,10 @@ AvailableTools = {
     "RemoveConnectionPermissions": ("isp", "removeConnectionPermissions"),
     "SetConnectionPermissions": ("isp", "setConnectionPermissions"),
     "ExportConnections": ("isp", "exportDomainObjects"),
-    "ImportConnections": ("isp", "importDomainObjects")
+    "ImportConnections": ("isp", "importDomainObjects"),
+    "ListApplications": ("dis", "listApplications"),
+    "StopApp": ("dis", "stopApplication"),
+    "StartApp": ("dis", "startApplication"),
 
 }
 
@@ -180,3 +199,7 @@ optimization_level = {
     "Normal": 2,
     "Full": 3
 }
+
+##
+# Informatica error codes captured
+informatica_app_already_exists = 'DSCMN_10020'

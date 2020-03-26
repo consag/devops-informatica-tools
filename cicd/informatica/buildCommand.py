@@ -71,12 +71,15 @@ def build(**KeyWordArguments):
         # value to InfaArguments
         elif key in infaConstants.AvailableArguments:
             InfaArguments.append(infaConstants.AvailableArguments[key] + " " + '"' + value + '"')
-        elif key == "AsIsOptions":
-            InfaArguments.append(" " + value + " ")
-        elif key == "OutputFile":
-            InfaArguments.append(" >" + value + " ")
-        elif key != "OnError":
-            InfaArguments.append("-" + key + " " + '"' + value + '"')
+        elif value is not None and value != "NONE":
+            if key == "AsIsOptions":
+                new_value = value.lstrip('"').rstrip('"')
+                log(logger, logging.DEBUG, procName, "stripped value =>" + new_value + "<.")
+                InfaArguments.append(" " + new_value + " ")
+            elif key == "OutputFile":
+                InfaArguments.append(" >" + value + " ")
+            elif key != "OnError":
+                InfaArguments.append("-" + key + " " + '"' + value + '"')
 
     # Put all parts of the command in the same list, in correct order, and join them into one
     # string

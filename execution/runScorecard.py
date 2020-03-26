@@ -23,7 +23,7 @@
 
 import logging, datetime, supporting
 from supporting import errorcodes
-from cicd.informatica import infaSettings, jobManagement
+from cicd.informatica import infaSettings, jobManagement, infaConstants
 from supporting import generalSettings
 import sys
 import argparse
@@ -31,13 +31,16 @@ import argparse
 now = datetime.datetime.now()
 result = errorcodes.OK
 
+
 class ExecuteInformaticaScorecard:
     """
         Runs an Informatica Scorecard
     """
-    def __init__(self, argv, log_on_console = True):
+
+    def __init__(self, argv, log_on_console=True, pre_command=None):
         self.arguments = argv
-        self.mainProc = 'runProfile'
+        self.mainProc = 'runScorecard'
+        self.pre_command = pre_command
         self.resultlogger = supporting.configurelogger(self.mainProc, log_on_console)
         self.logger = supporting.logger
 
@@ -48,7 +51,14 @@ class ExecuteInformaticaScorecard:
         parser = argparse.ArgumentParser(prog='runScorecard')
         parser.add_argument("-s", "--scorecard", required=True, action="store", dest="object_path",
                             help="Scorecard, including path, to run.")
+        parser.add_argument("-f", "--osprofile", action="store", dest="os_profile",
+                            help="Informatica OSProfile to use.")
+        parser.add_argument("-x", "--extra", action="store", dest="as_is_options",
+                            help="any options to add. Make sure to use double-quotes!")
         args = parser.parse_args(arguments)
+
+        if args.as_is_options is None:
+            args.as_is_options = ""
 
         return args
 
@@ -65,23 +75,28 @@ class ExecuteInformaticaScorecard:
         supporting.log(self.logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
         object_path = args.object_path
+        os_profile = args.os_profile
+        as_is_options = args.as_is_options
 
         infaSettings.getinfaenvvars()
         infaSettings.outinfaenvvars()
 
         scorecard = jobManagement.JobExecution(Tool="RunScorecard",
-                                               Domain=infaSettings.sourceDomain,
-                                               MrsServiceName=infaSettings.sourceModelRepository,
-                                               DsServiceName=infaSettings.sourceDIS,
+                                               Domain='$' + infaConstants.varSourceDomain,
+                                               DsServiceName='$' + infaConstants.varSourceDIS,
+                                               MrsServiceName='$' + infaConstants.varSourceModelRepository,
                                                ObjectPathAndName=object_path,
                                                ObjectType="scorecard",
                                                Wait="true",
-                                               OnError=errorcodes.INFACMD_SCORECARD_FAILED
+                                               OnError=errorcodes.INFACMD_SCORECARD_FAILED,
+                                               OperatingSystemProfile=os_profile,
+                                               AsIsOptions=as_is_options
+
                                                )
         result = jobManagement.JobExecution.manage(scorecard)
 
         supporting.log(self.logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
-                   + '< and result code >' + result.code + "<.")
+                       + '< and result code >' + result.code + "<.")
         return result
 
 

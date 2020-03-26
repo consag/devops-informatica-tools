@@ -1,6 +1,6 @@
 #  MIT License
 #
-#  Copyright (c) 2019 Jac. Beekers
+#  Copyright (c) 2020 Jac. Beekers
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a copy
 #  of this software and associated documentation files (the "Software"), to deal
@@ -21,34 +21,22 @@
 #  SOFTWARE.
 #
 
-#  MIT License
-#
-#
-#  Permission is hereby granted, free of charge, to any person obtaining a copy
-#  of this software and associated documentation files (the "Software"), to deal
-#  in the Software without restriction, including without limitation the rights
-#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-#  copies of the Software, and to permit persons to whom the Software is
-#  furnished to do so, subject to the following conditions:
-#
-#
-#
-
 ##
-# generalSettings
-# @Since: 22-MAR-2019
+# deployInformaticaPlatformApp
+# @Since: 17-JAN-2020
 # @Author: Jac. Beekers
-# @Version: 20190412.0 - JBE - Initial
+# @Version: 20200217.0 - JBE - initial
 ##
 
 import logging, datetime, supporting
 import supporting.errorcodes as err
-import cicd.informatica.infaArtifactChecks as infachecks
-from cicd.informatica import artifact
+from cicd.informatica import infaAppChecks
 from cicd.informatica import infaSettings as settings
-import supporting.generalSettings as generalsettings
-from cicd.informatica import infaConstants
+from supporting.generalSettings import logDir
 import sys, argparse
+from cicd.informatica import infaConstants
+from cicd.informatica.application import artifact
+
 
 now = datetime.datetime.now()
 result = err.OK
@@ -58,7 +46,6 @@ def parse_the_arguments(argv):
     """Parses the provided arguments and exits on an error.
     Use the option -h on the command line to get an overview of the required and optional arguments.
      """
-
     parser = argparse.ArgumentParser()
     args = parser.parse_args()
 
@@ -66,10 +53,12 @@ def parse_the_arguments(argv):
 
 
 def main(argv):
-    """Generate an Informatica Platform artifact based on environment variables
+    """Deploys an Informatica Platform application to a DIS
+    Usage: deployInformaticaPlatformApp.py [-h]
+    The module uses environment variables to steer the import on the target environment
     """
     thisproc = "MAIN"
-    mainProc = 'CreateInformaticaPlatformArtifact'
+    mainProc = 'deployInformaticaPlatformApp'
 
     resultlogger = supporting.configurelogger(mainProc)
     logger = logging.getLogger(mainProc)
@@ -77,29 +66,29 @@ def main(argv):
     args = parse_the_arguments(argv)
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Started')
-    supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + generalsettings.logDir + "<.")
+    supporting.log(logger, logging.DEBUG, thisproc, 'logDir is >' + logDir + "<.")
 
     settings.getinfaenvvars()
     settings.outinfaenvvars()
 
     # Check requirements for artifact generation
-    # if there is no deploylist, then ignore building the artifact
-    result = infachecks.infaartifactchecks()
+    result = infaAppChecks.infa_deploy_checks()
     if result.rc == err.IGNORE.rc:
         # deploylist is not mandatory since 2020-02-09
-        supporting.log(logging, result.level, thisproc, 'Artifact ignored.')
+        supporting.log(logging, result.level, thisproc, 'Apps ignored.')
         result = err.OK
     else:
-        if result.rc != 0:
+        if result.rc != err.OK.rc:
             supporting.log(logger, logging.ERROR, thisproc,
-                           'Informatica Platform Artifact Checks failed with >' + result.message + "<.")
+                           'Informatica Platform App Checks failed with >' + result.message + "<.")
             supporting.exitscript(resultlogger, result)
         else:
-            result = artifact.processList(infaConstants.CREATEARTIFACT, settings.infadeploylist)
+            supporting.log(logger, logging.DEBUG, thisproc, 'Start processing deploy list >' + settings.infa_app_deploylist + "<.")
+            result = artifact.processList(infaConstants.DEPLOY_APP, settings.infa_app_deploylist)
+            supporting.log(logger, logging.DEBUG, thisproc, 'Deploy list >' + settings.infa_app_deploylist + "< process returned >" + str(result.rc) +"<.")
 
     supporting.log(logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
                    + '< and result code >' + result.code + "<.")
-    #    supporting.writeresult(resultlogger, result)
     supporting.exitscript(resultlogger, result)
 
 

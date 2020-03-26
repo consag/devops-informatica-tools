@@ -36,6 +36,7 @@ import supporting.deploylist
 from pathlib import Path
 from cicd.scheduler.schedulerArtifactChecks import checkSchedulerEntryType
 from supporting import filehandling
+import supporting.generalSettings as generalSettings
 
 logger = logging.getLogger(__name__)
 entrynr = 0
@@ -45,7 +46,8 @@ level = 0
 def processList(deployFile):
     latestError = err.OK
     result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
-    if result.rc == 0:
+    if result.rc == err.OK.rc:
+        filehandling.copy_file(deployFile, generalSettings.artifactDir)
         filehandling.create_directory(settings.targetschedulertypedir)
         filehandling.create_directory(settings.targetschedulerdir)
         for deployEntry in supporting.deploylist.deployItems:
@@ -53,7 +55,12 @@ def processList(deployFile):
             if result.rc != 0:
                 latestError = result
     else:
-        latestError = result
+        # if no deploy list, then that is just fine.
+        if result.rc == err.IGNORE.rc:
+            latestError = err.OK
+        else:
+            latestError = result
+
     return latestError
 
 
@@ -91,16 +98,24 @@ def processEntry(deployEntry):
             return result
 
     if type == constants.JOBTYPE:
-        supporting.log(logger, logging.DEBUG, thisproc, 'copying job type file >' + sourcedir + file
+        supporting.log(logger, logging.DEBUG, thisproc, 'copying Control-M job type file >' + sourcedir + file
                        + "< to >" + settings.targetschedulertypedir + "<.")
         filehandling.copy_file(sourcedir + file, settings.targetschedulertypedir)
+    elif type == constants.JOBASCODE:
+        supporting.log(logger, logging.DEBUG, thisproc, 'copying Control-M jobascode file >' + sourcedir + file
+                       + "< to >" + settings.targetschedulerdir + "<.")
+        filehandling.copy_file(sourcedir + file, settings.targetschedulerdir)
+    elif type == constants.DAGS:
+        supporting.log(logger, logging.DEBUG, thisproc, 'copying Airflow dag file >' + sourcedir + file
+                       + "< to >" + settings.targetschedulerdir + "/" + directory + "<.")
+        filehandling.create_directory(settings.targetschedulerdir + "/" + directory)
+        filehandling.copy_file(sourcedir + file, settings.targetschedulerdir + "/" + directory + "/")
+    elif type == constants.PLUGINS:
+        supporting.log(logger, logging.DEBUG, thisproc, 'copying Airflow plugin file >' + sourcedir + file
+                       + "< to >" + settings.targetschedulerdir + "<.")
+        filehandling.copy_file(sourcedir + file, settings.targetschedulertypedir)
     else:
-        if type == constants.JOBASCODE:
-            supporting.log(logger, logging.DEBUG, thisproc, 'copying jobascode file >' + sourcedir + file
-                           + "< to >" + settings.targetschedulerdir + "<.")
-            filehandling.copy_file(sourcedir + file, settings.targetschedulerdir)
-        else:
-            supporting.log(logger, logging.WARN, thisproc, 'invalid type >' + type + '<. Entry ignored.')
+        supporting.log(logger, logging.WARN, thisproc, 'invalid type >' + type + '<. Entry ignored.')
 
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Completed with rc >" + str(result.rc) + "< and code >" + result.code + "<.")

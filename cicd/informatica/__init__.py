@@ -41,9 +41,9 @@ import supporting, logging
 
 from cicd.informatica import buildCommand
 from cicd.informatica import executeInfacmd
+from cicd.informatica import infaConstants as constants
 
 logger = logging.getLogger(__name__)
-
 
 
 def import_infadeveloper(**KeyWordArguments):
@@ -52,9 +52,9 @@ def import_infadeveloper(**KeyWordArguments):
     KeyWordArguments["Tool"] = "Import"
     ImportCommand = buildCommand.build(**KeyWordArguments)
 
-    output, error = executeInfacmd.execute(ImportCommand)
+    result = executeInfacmd.execute(ImportCommand, constants.DEPLOYARTIFACT)
 
-    return (output, error)
+    return result
 
 
 def export_infadeveloper(**KeyWordArguments):
@@ -64,9 +64,9 @@ def export_infadeveloper(**KeyWordArguments):
     ExportCommand = buildCommand.build(**KeyWordArguments)
 
     supporting.log(logger, logging.INFO, thisproc, "ExportCommand is >" + ExportCommand + "<.")
-    result = executeInfacmd.execute(ExportCommand)
+    result = executeInfacmd.execute(ExportCommand, constants.CREATEARTIFACT)
 
-    return (result)
+    return result
 
 
 def CreateFolder(**KeyWordArguments):
@@ -103,9 +103,9 @@ def ListCheckedOutObjects(**KeyWordArguments):
     Objects = [dict(KVPair.split("=") for KVPair in Line if len(KVPair.split("=")) == 2) for Line in
                OutputKeyValuePairLines]
 
-    supporting.log(logging.DEBUG, thisproc, output)
+    supporting.log(logger, logging.DEBUG, thisproc, output)
 
-    return (Objects)
+    return Objects
 
 
 def CheckIn(**KeyWordArguments):
@@ -145,3 +145,51 @@ def CheckInMutiple(**KeyWordArguments):
     # output, error = (CheckInAllCommand, 0)
 
     return (output, error)
+
+
+def create_iar_file(**KeyWordArguments):
+    thisproc = "create_iar_file"
+
+    KeyWordArguments["Tool"] = "CreateIAR"
+    create_command = buildCommand.build(**KeyWordArguments)
+
+    supporting.log(logger, logging.INFO, thisproc, "Command is >" + create_command + "<.")
+    result = executeInfacmd.execute(create_command, constants.CREATEARTIFACT)
+
+    return result
+
+
+def deploy_iar_file(**KeyWordArguments):
+    thisproc = "deploy_iar_file"
+
+    KeyWordArguments["Tool"] = "DeployIAR"
+    deploy_command = buildCommand.build(**KeyWordArguments)
+
+    supporting.log(logger, logging.INFO, thisproc, "Command is >" + deploy_command + "<.")
+    result = executeInfacmd.execute(deploy_command, constants.DEPLOYARTIFACT)
+
+    return result
+
+
+def redeploy_iar_file(**KeyWordArguments):
+    thisproc = "redeploy_iar_file"
+
+    KeyWordArguments["Tool"] = "RedeployIAR"
+    deploy_command = buildCommand.build(**KeyWordArguments)
+
+    supporting.log(logger, logging.INFO, thisproc, "Command is >" + deploy_command + "<.")
+    result = executeInfacmd.execute(deploy_command, constants.DEPLOYARTIFACT)
+
+    return result
+
+
+def stop_app(**KeyWordArguments):
+    thisproc = "stop_app"
+
+    KeyWordArguments["Tool"] = "StopApp"
+    deploy_command = buildCommand.build(**KeyWordArguments)
+
+    supporting.log(logger, logging.INFO, thisproc, "Command is >" + deploy_command + "<.")
+    result = executeInfacmd.execute(deploy_command, constants.DEPLOYARTIFACT)
+
+    return result

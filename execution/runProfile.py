@@ -23,7 +23,7 @@
 
 import logging, datetime, supporting
 from supporting import errorcodes
-from cicd.informatica import infaSettings, jobManagement
+from cicd.informatica import infaSettings, jobManagement, infaConstants
 from supporting import generalSettings
 import sys
 import argparse
@@ -31,13 +31,16 @@ import argparse
 now = datetime.datetime.now()
 result = errorcodes.OK
 
+
 class ExecuteInformaticaProfile:
     """
         Runs an Informatica Profile
     """
-    def __init__(self, argv, log_on_console = True):
+
+    def __init__(self, argv, log_on_console=True, pre_command=None):
         self.arguments = argv
         self.mainProc = 'runProfile'
+        self.pre_command = pre_command
         self.resultlogger = supporting.configurelogger(self.mainProc, log_on_console)
         self.logger = supporting.logger
 
@@ -49,10 +52,17 @@ class ExecuteInformaticaProfile:
         parser = argparse.ArgumentParser(prog='runProfile')
         parser.add_argument("-p", "--profile", required=True, action="store", dest="object_path",
                             help="Profile, including path, to run.")
+        parser.add_argument("-f", "--osprofile", action="store", dest="os_profile",
+                            help="Informatica OSProfile to use.")
+        parser.add_argument("-x", "--extra", action="store", dest="as_is_options",
+                            help="any options to add. Make sure to use double-quotes!")
+
         args = parser.parse_args(arguments)
 
-        return args
+        if args.as_is_options is None:
+            args.as_is_options = ""
 
+        return args
 
     def runit(self, arguments):
         """Runs a Profile.
@@ -67,27 +77,31 @@ class ExecuteInformaticaProfile:
         supporting.log(self.logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
         object_path = args.object_path
+        os_profile = args.os_profile
+        as_is_options = args.as_is_options
 
         infaSettings.getinfaenvvars()
         infaSettings.outinfaenvvars()
 
         profile = jobManagement.JobExecution(Tool="RunProfile",
-                                         Domain=infaSettings.sourceDomain,
-                                         MrsServiceName=infaSettings.sourceModelRepository,
-                                         DsServiceName=infaSettings.sourceDIS,
-                                         ObjectPathAndName=object_path,
-                                         ObjectType="profile",
-                                         Wait="true",
-                                         OnError=errorcodes.INFACMD_PROFILE_FAILED
-                                         )
+                                             Domain='$' + infaConstants.varSourceDomain,
+                                             DsServiceName='$' + infaConstants.varSourceDIS,
+                                             MrsServiceName='$' + infaConstants.varSourceModelRepository,
+                                             ObjectPathAndName=object_path,
+                                             ObjectType="profile",
+                                             Wait="true",
+                                             OnError=errorcodes.INFACMD_PROFILE_FAILED,
+                                             OperatingSystemProfile=os_profile,
+                                             AsIsOptions=as_is_options
+                                             )
         result = jobManagement.JobExecution.manage(profile)
 
         supporting.log(self.logger, logging.DEBUG, thisproc, 'Completed with return code >' + str(result.rc)
-                   + '< and result code >' + result.code + "<.")
+                       + '< and result code >' + result.code + "<.")
         return result
+
 
 if __name__ == '__main__':
     infa = ExecuteInformaticaProfile(sys.argv[1:], log_on_console=True)
     result = infa.runit(infa.arguments)
     supporting.exitscript(infa.resultlogger, result)
-
