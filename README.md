@@ -34,9 +34,3 @@ MIT
 ## Examples
 Check the examples folder for more info on the structure of deploy lists.
 
-## Implemented functions
-### createOracleArtifact
-Generates an ordered sql based on the deploylist.
-
-### createDeveloperArtifact
-Generates an Informatica export file and reference data zip file based on the deploylist.
