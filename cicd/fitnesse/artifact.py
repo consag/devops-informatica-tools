@@ -36,6 +36,7 @@ from pathlib import Path
 from supporting.generatezip import generate_zip
 from supporting.generatezip import addto_zip
 from supporting.filehandling import copy_file
+from supporting import filehandling
 import supporting.generalSettings as generalSettings
 
 logger = logging.getLogger(__name__)
@@ -48,6 +49,7 @@ def processList(deployFile):
     latestError = err.OK
     result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
     if result.rc == err.OK.rc:
+        filehandling.create_directory(settings.targetfitnessedir)
         copy_file(deployFile, generalSettings.artifactDir)
         for deployEntry in supporting.deploylist.deployItems:
             result = processEntry(deployEntry)
