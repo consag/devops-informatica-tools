@@ -27,6 +27,7 @@
 # @Author: Jac. Beekers
 # @Version: 20190410.0 - JBE - Initial
 # @Version: 20190817.0 - JBE - Added user/password functionality
+# @Version: 20200511.0 - JBE - Added on_error
 
 # Database artifacts
 varOracleSchemaName='ORACLE_SCHEMA'
@@ -37,6 +38,7 @@ varSqlPrefix = 'SQL_PREFIX'
 varOracleDatabaseUser = 'ORACLE_USER'
 varDatabaseUserPassword = 'ORACLE_PASSWORD' # encrypted
 varOracleTNSName = 'ORACLE_TNS'
+varOnError = 'ORACLE_ON_ERROR'
 
 ##
 # Database artifact defaults
@@ -46,5 +48,6 @@ DEFAULT_ORACLE_DEPLOYLIST ='oracle_deploylist.txt'
 DEFAULT_SQL_DEPLOYLIST ='sqlserver_deploylist.txt'
 DEFAULT_DB2_DEPLOYLIST ='db2_deploylist.txt'
 DEFAULT_SQL_PREFIX = ''
+DEFAULT_ON_ERROR = 'REPORT'
 
 NOT_SET ='NOT_SET'

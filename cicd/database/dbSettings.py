@@ -27,6 +27,7 @@
 # @Author: Jac. Beekers
 # @Version: 20190410.0 - JBE - Initial
 # @Version: 20190817.0 - JBE - Added user/password functionality
+# @Version: 20200511.0 - JBE - Added on_error
 ##
 
 import cicd.database.dbConstants as constants
@@ -40,6 +41,8 @@ sourcesqldir = constants.DEFAULT_SOURCE_SQLDIR
 targetsqldir = constants.DEFAULT_TARGET_SQLDIR
 databaseType = 'UNKNOWN'
 sqlprefix = constants.DEFAULT_SQL_PREFIX
+on_error = constants.DEFAULT_ON_ERROR
+
 if os.name == 'nt':
     sqlplus_command = 'sqlplus.exe'
 else:
@@ -54,6 +57,7 @@ def getdbenvvars():
     targetsqldir = completePath(os.environ.get(constants.varTargetSqlDir, constants.DEFAULT_TARGET_SQLDIR), generalsettings.sourceDir)
     # prefix for ordered sql files
     sqlprefix = os.environ.get(constants.varSqlPrefix, constants.DEFAULT_SQL_PREFIX)
+    on_error = os.environ.get(constants.varOnError, constants.DEFAULT_ON_ERROR)
 
 
 def getschemaenvvars(schema):
@@ -74,6 +78,7 @@ def outdbenvvars():
     supporting.log(logger, logging.INFO,  thisproc, 'dbdeploylist is >' + dbdeploylist + "<.")
     supporting.log(logger, logging.INFO,  thisproc, 'sourcesqldir is >' + sourcesqldir +"<.")
     supporting.log(logger, logging.INFO,  thisproc, 'targetsqldir is >' + targetsqldir +"<.")
+    supporting.log(logger, logging.INFO, thisproc, 'on_error is >' + on_error + '<.')
 
 
 def outschemaenvvars():
