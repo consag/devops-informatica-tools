@@ -1,6 +1,6 @@
 #  MIT License
 #
-#  Copyright (c) 2019 Jac. Beekers
+#  Copyright (c) 2020 Jac. Beekers
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a copy
 #  of this software and associated documentation files (the "Software"), to deal
@@ -21,18 +21,6 @@
 #  SOFTWARE.
 #
 
-#  MIT License
-#
-#
-#  Permission is hereby granted, free of charge, to any person obtaining a copy
-#  of this software and associated documentation files (the "Software"), to deal
-#  in the Software without restriction, including without limitation the rights
-#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-#  copies of the Software, and to permit persons to whom the Software is
-#  furnished to do so, subject to the following conditions:
-#
-#
-#
 
 from supporting import log
 import supporting
@@ -59,6 +47,7 @@ class DeployOracle:
         self.database_tns_name, self.database_schema, self.database_user, self.database_user_password = dbSettings.getschemaenvvars(
             schema)
         self.sqldir = dbSettings.targetsqldir
+        self.on_error = dbSettings.on_error
         dbSettings.outdbenvvars()
         dbSettings.outschemaenvvars()
 
@@ -89,10 +78,10 @@ class DeployOracle:
             oracle_util = OracleUtils.OracleUtilities(self.database_user
                                                , self.database_user_password
                                                , self.database_tns_name
-                                               , 'REPORT'
+                                               , self.on_error
                                                , self.database_schema + '_sqloutput.log')
             sqlplus_result = oracle_util.run_sqlplus(sqlfile)
-            if sqlplus_result.rc != 0:
+            if sqlplus_result.rc != err.OK:
                 log(self.logger, logging.WARNING, thisproc, "sqlplus returned >" + sqlplus_result.code + "<.")
                 overall_result = sqlplus_result
 

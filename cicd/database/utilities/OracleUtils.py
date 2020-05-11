@@ -83,16 +83,36 @@ class OracleUtilities:
                                                 + "\n" + self.spool_clause_off
                                                 + "\n" + "exit 0")[0]
                 log(logger, logging.INFO, thisproc, "SQLPlus output: " + stdoutput)
-                if p.returncode == 0:
+                if self.on_sql_error == "IGNORE":
+                    log(logger, logging.INFO, thisproc
+                        , "on_sql_error=IGNORE, surpressed all output and errors. Returning OK.")
                     return err.OK
-                else:
+                if p.returncode == 0:
+                    # if the script reaches the end, it will execute the exit 0 statement
                     if self.on_sql_error == "ABORT":
-                        err.SQLPLUS_ERROR.message = stdoutput
-                        return err.SQLPLUS_ERROR
-                    else:
-                        log(logger, logging.WARNING, thisproc, "Errors occurred but were ignored as on_sql_error is >"
-                            + self.on_sql_error + "<. You may want to check >" + self.output_file + "<.")
+                        # ABORT also had set whenever sqlerror, so returncode==0 means everything is ok
                         return err.OK
+                    else:
+                        if self.on_sql_error == "REPORT":
+                            if "ORA-" in stdoutput:
+                                log(logger, logging.ERROR, thisproc, "Found ORA- error in >" + stdoutput
+                                    + "<. Failing...")
+                                err.SQLPLUS_ERROR.message = stdoutput
+                                return err.SQLPLUS_ERROR
+                            else:
+                                log(logger, logging.INFO, thisproc, "No Oracle error found.")
+                                return err.OK
+                        else:
+                            log(logger, logging.WARNING, thisproc,
+                                "on_sql_error is >" + self.on_sql_error
+                                + "<, but should be IGNORE, ABORT or REPORT. Failing...")
+                            err.SQLPLUS_ERROR.message = stdoutput
+                            return err.SQLPLUS_ERROR
+                else:
+                    log(logger, logging.ERROR, thisproc, "sqlplus exited with return code >" + str(p.returncode)
+                        + "<. Failing...")
+                    err.SQLPLUS_ERROR.message = stdoutput
+                    return err.SQLPLUS_ERROR
 
         except FileNotFoundError as e:
             log(logger, logging.ERROR, thisproc, e.strerror + ": " + dbSettings.sqlplus_command)
