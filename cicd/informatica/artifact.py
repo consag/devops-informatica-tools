@@ -150,7 +150,7 @@ def create_artifact(type, object, export_control="default.ecf", export_filename=
 
 
 def deploy_artifact(type, object, import_control, import_filename="export"):
-    thisproc = 'deployArtifact'
+    thisproc = 'deploy_artifact'
     supporting.log(logger, logging.DEBUG, thisproc, 'started deploy for object >' + object + '<.')
 
     #    workspace = get_workspace()
