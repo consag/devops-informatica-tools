@@ -5,10 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.8.1" />
 <title>cicd.createFitNesseArtifact API documentation</title>
-<meta name="description" content="@Name: Create FitNesse Artifact
-@Since: 23-OCT-2019
-@Author: Jac. Beekers
-@Version: 20200528.0" />
+<meta name="description" content=".. versionchanged:: 20200528.0
+* documentation only" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
@@ -23,10 +21,12 @@
 <h1 class="title">Module <code>cicd.createFitNesseArtifact</code></h1>
 </header>
 <section id="section-intro">
-<p>@Name: Create FitNesse Artifact
-@Since: 23-OCT-2019
-@Author: Jac. Beekers
-@Version: 20200528.0</p>
+<div class="admonition versionchanged">
+<p class="admonition-title">Changed in version:&ensp;20200528.0</p>
+<ul>
+<li>documentation only</li>
+</ul>
+</div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -55,11 +55,15 @@
 #
 
 &#34;&#34;&#34;
- @Name: Create FitNesse Artifact
- @Since: 23-OCT-2019
- @Author: Jac. Beekers
- @Version: 20200528.0
+.. versionchanged:: 20200528.0
+    * documentation only
 &#34;&#34;&#34;
+__since__ = &#39;23-OCT-2019&#39;
+__version__ = &#39;20200528.0&#39;
+__author__ = &#39;Jac. Beekers&#39;
+__licence__ = &#39;MIT&#39;
+__url__ = &#39;https://github.com/consag/devops-informatica-tools&#39;
+
 
 import logging, datetime, supporting
 import supporting.errorcodes as err
@@ -76,6 +80,12 @@ result = err.OK
 def parse_the_arguments(argv):
     &#34;&#34;&#34;Parses the provided arguments and exits on an error.
     Use the option -h on the command line to get an overview of the required and optional arguments.
+
+    Args:
+        argv: List containing command line arguments
+
+    Returns:
+        A list with validated command line arguments
      &#34;&#34;&#34;
     parser = argparse.ArgumentParser()
     args = parser.parse_args()
@@ -87,6 +97,9 @@ def main(argv):
     &#34;&#34;&#34;Creates a FitNesse artifact, consisting on collected test directories and files
     It uses a deploy list that contains subdirectories.
     Module uses environment variables that steer the artifact creation.
+
+    Args:
+        None
     &#34;&#34;&#34;
     thisproc = &#34;MAIN&#34;
     mainProc = &#39;CreateFitNesseArtifact&#39;
@@ -140,7 +153,12 @@ if __name__ == &#39;__main__&#39;:
 <dd>
 <div class="desc"><p>Creates a FitNesse artifact, consisting on collected test directories and files
 It uses a deploy list that contains subdirectories.
-Module uses environment variables that steer the artifact creation.</p></div>
+Module uses environment variables that steer the artifact creation.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>None</code></strong></dt>
+<dd>&nbsp;</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -149,6 +167,9 @@ Module uses environment variables that steer the artifact creation.</p></div>
     &#34;&#34;&#34;Creates a FitNesse artifact, consisting on collected test directories and files
     It uses a deploy list that contains subdirectories.
     Module uses environment variables that steer the artifact creation.
+
+    Args:
+        None
     &#34;&#34;&#34;
     thisproc = &#34;MAIN&#34;
     mainProc = &#39;CreateFitNesseArtifact&#39;
@@ -190,7 +211,17 @@ Module uses environment variables that steer the artifact creation.</p></div>
 </code></dt>
 <dd>
 <div class="desc"><p>Parses the provided arguments and exits on an error.
-Use the option -h on the command line to get an overview of the required and optional arguments.</p></div>
+Use the option -h on the command line to get an overview of the required and optional arguments.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>argv</code></strong></dt>
+<dd>List containing command line arguments</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>A list with validated command line arguments</code></dt>
+<dd>&nbsp;</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -198,6 +229,12 @@ Use the option -h on the command line to get an overview of the required and opt
 <pre><code class="python">def parse_the_arguments(argv):
     &#34;&#34;&#34;Parses the provided arguments and exits on an error.
     Use the option -h on the command line to get an overview of the required and optional arguments.
+
+    Args:
+        argv: List containing command line arguments
+
+    Returns:
+        A list with validated command line arguments
      &#34;&#34;&#34;
     parser = argparse.ArgumentParser()
     args = parser.parse_args()

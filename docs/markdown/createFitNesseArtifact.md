@@ -1,5 +1,5 @@
-Module cicd.createFitNesseArtifact
-==================================
+Module createFitNesseArtifact
+=============================
 .. versionchanged:: 20200528.0
     * documentation only
 
