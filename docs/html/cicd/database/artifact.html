@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.8.1" />
+<title>cicd.database.artifact API documentation</title>
+<meta name="description" content="" />
+<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>cicd.database.artifact</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#  MIT License
+#
+#  Copyright (c) 2019 Jac. Beekers
+#
+#  Permission is hereby granted, free of charge, to any person obtaining a copy
+#  of this software and associated documentation files (the &#34;Software&#34;), to deal
+#  in the Software without restriction, including without limitation the rights
+#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+#  copies of the Software, and to permit persons to whom the Software is
+#  furnished to do so, subject to the following conditions:
+#
+#  The above copyright notice and this permission notice shall be included in all
+#  copies or substantial portions of the Software.
+#
+#  THE SOFTWARE IS PROVIDED &#34;AS IS&#34;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+#  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+#  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+#  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+#  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+#  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+#  SOFTWARE.
+#
+
+##
+# Process deploy list for database artifacts
+# @Since: 23-MAR-2019
+# @Author: Jac. Beekers
+# @Version: 20190324.0 - JBE - Initial
+
+import supporting.errorcodes as err
+import supporting, logging
+import supporting.filehandling as filehandling
+import re, os
+import cicd.database.dbSettings as settings
+import supporting.generalSettings as generalSettings
+import supporting.deploylist
+from pathlib import Path
+from supporting.filehandling import copy_file
+
+logger = logging.getLogger(__name__)
+entrynr =0
+level =0
+previous_schema = &#39;AUQW&amp;^D*AD&amp;FS&#39;
+
+def processList(deployFile):
+    latestError = err.OK
+    result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
+    if result.rc == 0:
+        copy_file(deployFile, generalSettings.artifactDir)
+        for deployEntry in supporting.deploylist.deployItems:
+            result = processEntry(deployEntry)
+            if result.rc != 0:
+                latestError = result
+    else:
+        latestError = result
+    return latestError
+
+def processEntry(deployEntry):
+    thisproc = &#34;processEntry&#34;
+    result = err.OK
+    supporting.log(logger, logging.DEBUG, thisproc, &#34;Current directory is &gt;&#34; + os.getcwd() +&#34;&lt;.&#34;)
+    supporting.log(logger, logging.DEBUG, thisproc, &#34;Started to work on deploy entry &gt;&#34; + deployEntry + &#34;&lt;.&#34;)
+
+    schema, sqlfile = deployEntry.split(&#39;:&#39;, 2)
+    supporting.log(logger, logging.DEBUG, thisproc, &#39;Schema is &gt;&#39; + schema + &#39;&lt; and sqlfile is &gt;&#39; + sqlfile + &#39;&lt;&#39;)
+    sqlfile = schema + &#34;/&#34; + sqlfile
+
+    sqlfilePath = Path(sqlfile)
+    if sqlfilePath.is_file():
+        supporting.log(logger, logging.DEBUG, thisproc, &#39;Found sqlfile &gt;&#39; + sqlfile + &#34;&lt;.&#34;)
+        sourcesqldir = &#34;&#34;
+    else:
+        sourcesqldir = settings.sourcesqldir + &#34;/&#34; + settings.databaseType + &#34;/&#34;
+        supporting.log(logger, logging.DEBUG, thisproc, &#39;sqlfile &gt;&#39; + sqlfile + &#39;&lt; not found. Trying &gt;&#39;
+                       + sourcesqldir + sqlfile + &#39;&lt;...&#39;)
+#        sqlfile = sourcesqldir + sqlfile
+        sqlfilePath = Path(sourcesqldir + sqlfile)
+        if sqlfilePath.is_file():
+            supporting.log(logger, logging.DEBUG, thisproc, &#39;Found sqlfile &gt;&#39; + sourcesqldir + sqlfile + &#34;&lt;.&#34;)
+        else:
+            supporting.log(logger, err.SQLFILE_NF.level, thisproc,
+                       &#34;sqlfile checked &gt;&#34; + sourcesqldir + sqlfile + &#34;&lt;. &#34; + err.SQLFILE_NF.message)
+            result = err.SQLFILE_NF
+            return result
+
+    result = generate_orderedsql(sourcesqldir, schema, sqlfile)
+
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   &#34;Completed with rc &gt;&#34; + str(result.rc) + &#34;&lt; and code &gt;&#34; + result.code + &#34;&lt;.&#34;)
+    return result
+
+
+def generate_orderedsql(sourcesqldir, schema, input_sqlfile):
+    thisproc = &#34;generate_orderedsql&#34;
+    global entrynr, previous_schema
+    result = err.OK
+    supporting.log(logger, logging.DEBUG, thisproc, &#34;Started to work on sql file &gt;&#34; + input_sqlfile + &#34;&lt; in schema &gt;&#34; +schema +&#34;&lt;.&#34;)
+    supporting.log(logger, logging.DEBUG, thisproc, &#34;settings.targetsqldir is &gt;&#34; + settings.targetsqldir + &#34;&lt;.&#34;)
+
+    the_source_sqlfile = input_sqlfile
+    if schema == previous_schema:
+        entrynr = entrynr + 1
+    else:
+        entrynr = 1
+
+    prefixReleaseID = settings.sqlprefix + &#34;%02d&#34; % entrynr
+
+    orderedsqlfilename = settings.targetsqldir + &#34;/&#34; + schema + &#34;/&#34; + prefixReleaseID + &#34;_&#34; + schema + &#34;_&#34; + generalSettings.releaseID + &#34;.sql&#34;
+    create_directory(settings.targetsqldir + &#34;/&#34; + schema)
+    supporting.log(logger, logging.INFO, thisproc,
+                   &#34;orderedsqlfilename is &gt;&#34; + orderedsqlfilename + &#34;&lt;. Based on prefixReleaseID &gt;&#34; + prefixReleaseID + &#34;, settings.targetsqldir &gt;&#34;
+                   + settings.targetsqldir + &#34;&lt;, schema &gt;&#34; + schema +&#34;&lt; and generalSettings.releaseID &gt;&#34; + generalSettings.releaseID +&#34;&lt;.&#34;)
+
+    filehandling.removefile(orderedsqlfilename)
+    global level
+    level = 0
+    result = processlines(sourcesqldir, schema, the_source_sqlfile, orderedsqlfilename)
+
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   &#34;Completed with rc &gt;&#34; + str(result.rc) + &#34;&lt; and code &gt;&#34; + result.code + &#34;&lt;.&#34;)
+
+    previous_schema = schema
+    return result
+
+#TODO: Move to supporting package
+def create_directory(directory):
+    os.makedirs(directory, exist_ok=True)  # succeeds even if directory exists.
+
+
+def ignoreline(line):
+    if(re.match(&#34;^--&#34;, line) or re.match(&#34;^\n$&#34;,line)):
+        return True
+    return False
+
+
+def calltosubsql(line):
+    thisproc=&#34;calltosubsql&#34;
+    if(re.match(&#34;^@@&#34;, line)):
+        return True
+    return False
+
+
+def processlines(the_source_sqldir, schema, the_source_sqlfile, orderedsqlfilename):
+    result = err.OK
+    global level
+    level +=1
+    thisproc=&#34;processlines-&#34; + &#34;%03d&#34; % level
+    supporting.log(logger, logging.DEBUG, thisproc, &#34;level is &gt;&#34; + &#34;%03d&#34; % level +&#34;&lt;.&#34;)
+
+    try:
+        with open(the_source_sqldir + the_source_sqlfile) as thesql:
+            for line in thesql:
+                if ignoreline(line):
+                    continue
+                if calltosubsql(line):
+                    supporting.log(logger, logging.DEBUG, thisproc, &#34;Found &#39;@@&#39;, a call to another script.&#34;)
+                    write2file(orderedsqlfilename, &#34;-- Start expansion -- &#34; + line)
+                    subsql = line[2:-1].split(&#39; &#39;, 1)[0]
+                    completepathsql = the_source_sqldir + subsql
+                    supporting.log(logger, logging.DEBUG, thisproc, &#34;Sub file name determined as &gt;&#34; + subsql +&#34;&lt;. Complete file path &gt;&#34;
+                                   + completepathsql +&#34;&lt;.&#34;)
+                    processlines(the_source_sqldir, schema, schema +&#34;/&#34; + subsql, orderedsqlfilename)
+                    write2file(orderedsqlfilename, &#34;-- End expansion -- &#34; + line)
+                else:
+                    write2file(orderedsqlfilename, line)
+
+    except IOError:
+        supporting.log(logger, logging.ERROR, thisproc, &#34;Could not find file &gt;&#34; + the_source_sqlfile + &#34;&lt;.&#34;)
+        write2file(orderedsqlfilename,&#34;ERROR: Could not find file &gt;&#34; + the_source_sqlfile +&#34;&lt;.&#34;)
+        result = err.FILE_NF
+
+    return result
+
+#TODO: Move to supporting package
+def write2file(filename, line):
+    thisproc=&#34;write_sql&#34;
+    result = err.OK
+
+    try:
+        with open(filename, &#39;a&#39;) as the_result_file:
+            if &#34;\n&#34; == line[-1]:
+                the_result_file.write(line)
+            else:
+                the_result_file.write(line +&#34;\n&#34;)
+    except IOError:
+        supporting.log(logger, logging.ERROR, thisproc, &#34;Could not write to file &gt;&#34; + filename + &#34;&lt;.&#34;)
+        result = err.FILE_NW
+
+    return result</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="cicd.database.artifact.calltosubsql"><code class="name flex">
+<span>def <span class="ident">calltosubsql</span></span>(<span>line)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calltosubsql(line):
+    thisproc=&#34;calltosubsql&#34;
+    if(re.match(&#34;^@@&#34;, line)):
+        return True
+    return False</code></pre>
+</details>
+</dd>
+<dt id="cicd.database.artifact.create_directory"><code class="name flex">
+<span>def <span class="ident">create_directory</span></span>(<span>directory)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_directory(directory):
+    os.makedirs(directory, exist_ok=True)  # succeeds even if directory exists.</code></pre>
+</details>
+</dd>
+<dt id="cicd.database.artifact.generate_orderedsql"><code class="name flex">
+<span>def <span class="ident">generate_orderedsql</span></span>(<span>sourcesqldir, schema, input_sqlfile)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def generate_orderedsql(sourcesqldir, schema, input_sqlfile):
+    thisproc = &#34;generate_orderedsql&#34;
+    global entrynr, previous_schema
+    result = err.OK
+    supporting.log(logger, logging.DEBUG, thisproc, &#34;Started to work on sql file &gt;&#34; + input_sqlfile + &#34;&lt; in schema &gt;&#34; +schema +&#34;&lt;.&#34;)
+    supporting.log(logger, logging.DEBUG, thisproc, &#34;settings.targetsqldir is &gt;&#34; + settings.targetsqldir + &#34;&lt;.&#34;)
+
+    the_source_sqlfile = input_sqlfile
+    if schema == previous_schema:
+        entrynr = entrynr + 1
+    else:
+        entrynr = 1
+
+    prefixReleaseID = settings.sqlprefix + &#34;%02d&#34; % entrynr
+
+    orderedsqlfilename = settings.targetsqldir + &#34;/&#34; + schema + &#34;/&#34; + prefixReleaseID + &#34;_&#34; + schema + &#34;_&#34; + generalSettings.releaseID + &#34;.sql&#34;
+    create_directory(settings.targetsqldir + &#34;/&#34; + schema)
+    supporting.log(logger, logging.INFO, thisproc,
+                   &#34;orderedsqlfilename is &gt;&#34; + orderedsqlfilename + &#34;&lt;. Based on prefixReleaseID &gt;&#34; + prefixReleaseID + &#34;, settings.targetsqldir &gt;&#34;
+                   + settings.targetsqldir + &#34;&lt;, schema &gt;&#34; + schema +&#34;&lt; and generalSettings.releaseID &gt;&#34; + generalSettings.releaseID +&#34;&lt;.&#34;)
+
+    filehandling.removefile(orderedsqlfilename)
+    global level
+    level = 0
+    result = processlines(sourcesqldir, schema, the_source_sqlfile, orderedsqlfilename)
+
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   &#34;Completed with rc &gt;&#34; + str(result.rc) + &#34;&lt; and code &gt;&#34; + result.code + &#34;&lt;.&#34;)
+
+    previous_schema = schema
+    return result</code></pre>
+</details>
+</dd>
+<dt id="cicd.database.artifact.ignoreline"><code class="name flex">
+<span>def <span class="ident">ignoreline</span></span>(<span>line)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ignoreline(line):
+    if(re.match(&#34;^--&#34;, line) or re.match(&#34;^\n$&#34;,line)):
+        return True
+    return False</code></pre>
+</details>
+</dd>
+<dt id="cicd.database.artifact.processEntry"><code class="name flex">
+<span>def <span class="ident">processEntry</span></span>(<span>deployEntry)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def processEntry(deployEntry):
+    thisproc = &#34;processEntry&#34;
+    result = err.OK
+    supporting.log(logger, logging.DEBUG, thisproc, &#34;Current directory is &gt;&#34; + os.getcwd() +&#34;&lt;.&#34;)
+    supporting.log(logger, logging.DEBUG, thisproc, &#34;Started to work on deploy entry &gt;&#34; + deployEntry + &#34;&lt;.&#34;)
+
+    schema, sqlfile = deployEntry.split(&#39;:&#39;, 2)
+    supporting.log(logger, logging.DEBUG, thisproc, &#39;Schema is &gt;&#39; + schema + &#39;&lt; and sqlfile is &gt;&#39; + sqlfile + &#39;&lt;&#39;)
+    sqlfile = schema + &#34;/&#34; + sqlfile
+
+    sqlfilePath = Path(sqlfile)
+    if sqlfilePath.is_file():
+        supporting.log(logger, logging.DEBUG, thisproc, &#39;Found sqlfile &gt;&#39; + sqlfile + &#34;&lt;.&#34;)
+        sourcesqldir = &#34;&#34;
+    else:
+        sourcesqldir = settings.sourcesqldir + &#34;/&#34; + settings.databaseType + &#34;/&#34;
+        supporting.log(logger, logging.DEBUG, thisproc, &#39;sqlfile &gt;&#39; + sqlfile + &#39;&lt; not found. Trying &gt;&#39;
+                       + sourcesqldir + sqlfile + &#39;&lt;...&#39;)
+#        sqlfile = sourcesqldir + sqlfile
+        sqlfilePath = Path(sourcesqldir + sqlfile)
+        if sqlfilePath.is_file():
+            supporting.log(logger, logging.DEBUG, thisproc, &#39;Found sqlfile &gt;&#39; + sourcesqldir + sqlfile + &#34;&lt;.&#34;)
+        else:
+            supporting.log(logger, err.SQLFILE_NF.level, thisproc,
+                       &#34;sqlfile checked &gt;&#34; + sourcesqldir + sqlfile + &#34;&lt;. &#34; + err.SQLFILE_NF.message)
+            result = err.SQLFILE_NF
+            return result
+
+    result = generate_orderedsql(sourcesqldir, schema, sqlfile)
+
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   &#34;Completed with rc &gt;&#34; + str(result.rc) + &#34;&lt; and code &gt;&#34; + result.code + &#34;&lt;.&#34;)
+    return result</code></pre>
+</details>
+</dd>
+<dt id="cicd.database.artifact.processList"><code class="name flex">
+<span>def <span class="ident">processList</span></span>(<span>deployFile)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def processList(deployFile):
+    latestError = err.OK
+    result, deployItems = supporting.deploylist.getWorkitemList(deployFile)
+    if result.rc == 0:
+        copy_file(deployFile, generalSettings.artifactDir)
+        for deployEntry in supporting.deploylist.deployItems:
+            result = processEntry(deployEntry)
+            if result.rc != 0:
+                latestError = result
+    else:
+        latestError = result
+    return latestError</code></pre>
+</details>
+</dd>
+<dt id="cicd.database.artifact.processlines"><code class="name flex">
+<span>def <span class="ident">processlines</span></span>(<span>the_source_sqldir, schema, the_source_sqlfile, orderedsqlfilename)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def processlines(the_source_sqldir, schema, the_source_sqlfile, orderedsqlfilename):
+    result = err.OK
+    global level
+    level +=1
+    thisproc=&#34;processlines-&#34; + &#34;%03d&#34; % level
+    supporting.log(logger, logging.DEBUG, thisproc, &#34;level is &gt;&#34; + &#34;%03d&#34; % level +&#34;&lt;.&#34;)
+
+    try:
+        with open(the_source_sqldir + the_source_sqlfile) as thesql:
+            for line in thesql:
+                if ignoreline(line):
+                    continue
+                if calltosubsql(line):
+                    supporting.log(logger, logging.DEBUG, thisproc, &#34;Found &#39;@@&#39;, a call to another script.&#34;)
+                    write2file(orderedsqlfilename, &#34;-- Start expansion -- &#34; + line)
+                    subsql = line[2:-1].split(&#39; &#39;, 1)[0]
+                    completepathsql = the_source_sqldir + subsql
+                    supporting.log(logger, logging.DEBUG, thisproc, &#34;Sub file name determined as &gt;&#34; + subsql +&#34;&lt;. Complete file path &gt;&#34;
+                                   + completepathsql +&#34;&lt;.&#34;)
+                    processlines(the_source_sqldir, schema, schema +&#34;/&#34; + subsql, orderedsqlfilename)
+                    write2file(orderedsqlfilename, &#34;-- End expansion -- &#34; + line)
+                else:
+                    write2file(orderedsqlfilename, line)
+
+    except IOError:
+        supporting.log(logger, logging.ERROR, thisproc, &#34;Could not find file &gt;&#34; + the_source_sqlfile + &#34;&lt;.&#34;)
+        write2file(orderedsqlfilename,&#34;ERROR: Could not find file &gt;&#34; + the_source_sqlfile +&#34;&lt;.&#34;)
+        result = err.FILE_NF
+
+    return result</code></pre>
+</details>
+</dd>
+<dt id="cicd.database.artifact.write2file"><code class="name flex">
+<span>def <span class="ident">write2file</span></span>(<span>filename, line)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write2file(filename, line):
+    thisproc=&#34;write_sql&#34;
+    result = err.OK
+
+    try:
+        with open(filename, &#39;a&#39;) as the_result_file:
+            if &#34;\n&#34; == line[-1]:
+                the_result_file.write(line)
+            else:
+                the_result_file.write(line +&#34;\n&#34;)
+    except IOError:
+        supporting.log(logger, logging.ERROR, thisproc, &#34;Could not write to file &gt;&#34; + filename + &#34;&lt;.&#34;)
+        result = err.FILE_NW
+
+    return result</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="cicd.database" href="index.html">cicd.database</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="cicd.database.artifact.calltosubsql" href="#cicd.database.artifact.calltosubsql">calltosubsql</a></code></li>
+<li><code><a title="cicd.database.artifact.create_directory" href="#cicd.database.artifact.create_directory">create_directory</a></code></li>
+<li><code><a title="cicd.database.artifact.generate_orderedsql" href="#cicd.database.artifact.generate_orderedsql">generate_orderedsql</a></code></li>
+<li><code><a title="cicd.database.artifact.ignoreline" href="#cicd.database.artifact.ignoreline">ignoreline</a></code></li>
+<li><code><a title="cicd.database.artifact.processEntry" href="#cicd.database.artifact.processEntry">processEntry</a></code></li>
+<li><code><a title="cicd.database.artifact.processList" href="#cicd.database.artifact.processList">processList</a></code></li>
+<li><code><a title="cicd.database.artifact.processlines" href="#cicd.database.artifact.processlines">processlines</a></code></li>
+<li><code><a title="cicd.database.artifact.write2file" href="#cicd.database.artifact.write2file">write2file</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+</body>
+</html>

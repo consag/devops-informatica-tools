@@ -1,6 +1,6 @@
 #  MIT License
 #
-#  Copyright (c) 2019 Jac. Beekers
+#  Copyright (c) 2020 Jac. Beekers
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a copy
 #  of this software and associated documentation files (the "Software"), to deal
@@ -21,10 +21,12 @@
 #  SOFTWARE.
 #
 
-##
-# Create FitNesse Artifact
-# @Since: 23-OCT-2019
-# @Author: Jac. Beekers
+"""
+ @Name: Create FitNesse Artifact
+ @Since: 23-OCT-2019
+ @Author: Jac. Beekers
+ @Version: 20200528.0
+"""
 
 import logging, datetime, supporting
 import supporting.errorcodes as err
