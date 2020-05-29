@@ -4,3 +4,6 @@ cryptography==2.8
 pycryptodome==3.9.0
 six
 #pygit2==0.28.2
+devops-supporting-tools>=1.2.21
+#devops-fitnesse_tools
+
