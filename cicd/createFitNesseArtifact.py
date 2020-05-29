@@ -22,8 +22,9 @@
 #
 
 """
-.. versionchanged:: 20200528.0
-    * documentation only
+.. deprecated:: 20200530.0
+   Use devops_fitnesse_tools instead
+
 """
 __since__ = '23-OCT-2019'
 __version__ = '20200528.0'

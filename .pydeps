@@ -17,5 +17,4 @@ exclude =
     setuptools
 rmprefix = devops_informatica_tools.
 #cluster = True
-T = png
 
