@@ -20,12 +20,14 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 #  SOFTWARE.
 #
-import supporting.errorcodes as err
-from zipfile import ZipFile
-import os
-import logging
-import supporting
 import fnmatch
+import logging
+import os
+from pathlib import Path
+from zipfile import ZipFile
+
+import supporting
+import supporting.errorcodes as err
 
 logger = logging.getLogger(__name__)
 
@@ -37,14 +39,14 @@ def generate_zip(basedirectory, directory, zipFileName, filter='*', suppress_ext
                    "Creating new zip >" + zipFileName + "<...")
     # create a ZipFile object
     with ZipFile(zipFileName, 'w') as zipObj:
-        additemto_zip(zipObj, basedirectory, directory, filter, suppress_extension)
+        result = additemto_zip(zipObj, basedirectory, directory, filter, suppress_extension)
     supporting.log(logger, logging.DEBUG, thisproc,
-                   "Done.")
+                   "Done. Result is: " + result.code)
 
-    return err.OK
+    return result
 
 
-def addto_zip(basedirectory, directory, zipFileName, filter='*', suppress_extension='7Al!#%ˆˆ'):
+def addto_zip(basedirectory, directory_or_file, zipFileName, filter='*', suppress_extension='7Al!#%ˆˆ'):
     thisproc = "addto_zip"
 
     supporting.log(logger, logging.DEBUG, thisproc,
@@ -52,12 +54,41 @@ def addto_zip(basedirectory, directory, zipFileName, filter='*', suppress_extens
 
     # create a ZipFile object
     with ZipFile(zipFileName, 'a') as zipObj:
-        additemto_zip(zipObj, basedirectory, directory, filter, suppress_extension)
+        if Path(directory_or_file).is_file():
+            result = addfileto_zip(zipObj, basedirectory, directory_or_file)
+        else:
+            if Path(directory_or_file).is_dir():
+                result = additemto_zip(zipObj, basedirectory, directory_or_file, filter, suppress_extension)
+            else:
+                supporting.log(logger, logging.ERROR, thisproc, "File >" + directory_or_file + "< not found.")
+                result = err.FILE_NF
 
     supporting.log(logger, logging.DEBUG, thisproc,
-                   "Done.")
+                   "Done with result: " + result.code)
 
-    return err.OK
+    return result
+
+
+def addfileto_zip(zipObj, basedirectory, filename):
+    thisproc = "addfileto_zip"
+    result = err.OK
+
+    filePath = os.path.join(basedirectory, filename)
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   "Adding file >" + filename + "< filePath is >" + filePath + "<.")
+    if Path(filePath).is_file():
+        archive_name = filePath[len(basedirectory):]
+        zipObj.write(filePath, archive_name)
+        try:
+            zipObj.getinfo(archive_name)
+        except KeyError:
+            supporting.log(logger, logging.ERROR, thisproc, "File >" + filename + "< was not added.")
+            result = err.FILE_NF
+    else:
+        supporting.log(logger, logging.ERROR, thisproc, "filePath >" + filePath + "< for >" + filename
+                       + "< could not be found.")
+        result = err.FILE_NF
+    return result
 
 
 def additemto_zip(zipObj, basedirectory, item, filter='*', suppress_extension='7Al!#%ˆˆ'):
