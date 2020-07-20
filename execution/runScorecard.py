@@ -64,7 +64,7 @@ class ExecuteInformaticaScorecard:
 
     def runit(self, arguments):
         """Runs a Scorecard.
-        usage: runScorecard.py [-h] -p OBJECT_PATH
+        usage: runScorecard.py [-h] -s OBJECT_PATH
         """
         thisproc = "runit"
         args = self.parse_the_arguments(arguments)
@@ -74,7 +74,7 @@ class ExecuteInformaticaScorecard:
         supporting.log(self.logger, logging.DEBUG, thisproc, 'Started')
         supporting.log(self.logger, logging.DEBUG, thisproc, 'logDir is >' + generalSettings.logDir + "<.")
 
-        object_path = args.object_path
+        object_path = args.object_path.strip()
         os_profile = args.os_profile
         as_is_options = args.as_is_options
 
