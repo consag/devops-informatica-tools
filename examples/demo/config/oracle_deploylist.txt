@@ -6,4 +6,15 @@
 #
 # You can have multiple sql files per feature. These will be processed in the order listed.
 #
-DEMO:initdeploy.sql
+## Example ##
+#
+#STAGING:undeploy.sql
+#STAGING:reset.sql
+#STAGING:initial.sql
+#STAGING:redeploy.sql
+## run DML
+## STAGING:dml_init_all_tables.sql
+
+## SHARED ##
+SHARED:reset.sql
+SHARED:initial.sql

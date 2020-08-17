@@ -1,0 +1,8 @@
+# Structure:
+# <ApplicationPath>:<DISReference>:<GroupList>:<ListWithGroupPrivileges>
+# where: 
+#  - <DISReference> has to be a variable in a azure devops variable group
+#  - <ListWithGroupPrivileges> has format <GroupName>=[+V][+E][+G][|<GroupName>=[+V][+E][+G]]...
+#    where V=View, E=Execute, G=Grant
+/p_TEST/ToTest_Deployer/APP_Deployer_Test:DIS_FRAMEWORK:Grp_DevOps=+V+E+G|Grp_Support=+V+E
+#/p_TEST/ToTest_Deployer/APP_Deployer_Test:DIS_FRAMEWORK
