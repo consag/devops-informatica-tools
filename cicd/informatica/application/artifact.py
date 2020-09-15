@@ -162,9 +162,9 @@ def process_create_app_entry(what, deployEntry):
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Started to work on deploy entry# >" + str(entrynr) + "< being >" + deployEntry + "<.")
     parts = deployEntry.split(':')
-    if not len(parts) == 2:
+    if not len(parts) < 2 or len(parts) > 3:
         supporting.log(logger, logging.DEBUG, thisproc,
-                       "Expected 2 arguments, got >" + str(len(parts)) + "<.")
+                       "Expected 2 or 3 arguments, got >" + str(len(parts)) + "<.")
         return errorcodes.IGNORE
 
     app_path = parts[0]
