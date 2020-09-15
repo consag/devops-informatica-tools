@@ -1,0 +1,2 @@
+Module cicd.informatica.infaConstants
+=====================================

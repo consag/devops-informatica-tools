@@ -1,16 +1,11 @@
-thisDir=$(pwd)
-for f in cicd/*.py execution/*.py supporting/*.py scripts/*.py ; do
-  if [ $(basename $f) == "setup.py" ] ; then
-     continue
-  fi
-  module=$(echo "$(basename $f)" | cut -d"." -f1)
-  dir=$(dirname $f)
-  pydoc3 $module > docs/text/${module}.txt
-  echo "IMPORTS" >> docs/text/${module}.txt
-  while read -r line ; do
-     echo "    $line" >> docs/text/${module}.txt
-  done < <(grep -e "^import" -e "^from.*import" $f)
-  pydoc3 -w $f
-  mv ${module}.html ${thisDir}/docs/html/
-done
+source venv/bin/activate
+pip3 install pdoc3 pydeps >/dev/null
+#
+PACKAGE_NAME=cicd
+#
+pdoc3 --force --output-dir docs/markdown $PACKAGE_NAME
+pdoc3 --force --html --output-dir docs/html $PACKAGE_NAME
+#
+# generate dependency graph
+pydeps --log ERROR $PACKAGE_NAME
 

@@ -91,18 +91,29 @@ def processEntry(what, deployEntry):
     type = parts[0]
     object = parts[1]
     if len(parts) >= 4:
+        supporting.log(logger, logging.DEBUG, thisproc, 'line contains 4 or more parts. Expecting part#3 to be export control file and part#4 to be import control file.')
         exportcontrol_file = parts[2]
-        basename_ecf = exportcontrol_file.split('.')[0]
-        export_control = completePath(generalSettings.configDir + "/" + exportcontrol_file, generalSettings.sourceDir)
-        supporting.log(logger, logging.DEBUG, thisproc, 'exportcontrolfile is >' + exportcontrol_file
-                       + "< and its complete path is >" + export_control + "<. basename is >" + basename_ecf + "<.")
+        if exportcontrol_file == 'NONE':
+            supporting.log(logger, logging.DEBUG, thisproc,
+                           'Export control file was set to NONE. Ignoring it.')
+            export_control = ""
+        else:
+            basename_ecf = exportcontrol_file.split('.')[0]
+            export_control = completePath(generalSettings.configDir + "/" + exportcontrol_file, generalSettings.sourceDir)
+            supporting.log(logger, logging.DEBUG, thisproc, 'exportcontrolfile is >' + exportcontrol_file
+                           + "< and its complete path is >" + export_control + "<. basename is >" + basename_ecf + "<.")
 
         importcontrol_file = parts[3]
-        basename_icf = importcontrol_file.split('.')[0]
-        import_control = completePath(infaSettings.target_informatica_dir + "/" + importcontrol_file,
-                                      generalSettings.sourceDir)
-        supporting.log(logger, logging.DEBUG, thisproc, 'importcontrolfile is >' + importcontrol_file + "<."
-                       + "< and its complete path is >" + import_control + "<. basename is >" + basename_icf + "<.")
+        if importcontrol_file == 'NONE':
+            supporting.log(logger, logging.DEBUG, thisproc,
+                           'Import control file was set to NONE. Ignoring it.')
+            import_control = ""
+        else:
+            basename_icf = importcontrol_file.split('.')[0]
+            import_control = completePath(infaSettings.target_informatica_dir + "/" + importcontrol_file,
+                                          generalSettings.sourceDir)
+            supporting.log(logger, logging.DEBUG, thisproc, 'importcontrolfile is >' + importcontrol_file + "<."
+                           + "< and its complete path is >" + import_control + "<. basename is >" + basename_icf + "<.")
     else:
         export_control = ""
         import_control = ""
@@ -150,7 +161,7 @@ def create_artifact(type, object, export_control="default.ecf", export_filename=
 
 
 def deploy_artifact(type, object, import_control, import_filename="export"):
-    thisproc = 'deployArtifact'
+    thisproc = 'deploy_artifact'
     supporting.log(logger, logging.DEBUG, thisproc, 'started deploy for object >' + object + '<.')
 
     #    workspace = get_workspace()
@@ -175,5 +186,4 @@ def deploy_artifact(type, object, import_control, import_filename="export"):
         result = errorcodes.NOT_IMPLEMENTED
 
     return result
-
 

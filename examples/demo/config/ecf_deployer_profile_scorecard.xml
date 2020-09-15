@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<exportParams xmlns="http://www.informatica.com/oie/exportControl/9">
+ <folders>
+
+   <folder path="/ToTest_Deployer" recursive="false">
+
+      <objectList type="Profile">
+      </objectList>
+      <objectList type="Scorecard">
+      </objectList>
+
+    </folder>
+ </folders>
+</exportParams>

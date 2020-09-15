@@ -187,7 +187,7 @@ AvailableTools = {
     "ListApplications": ("dis", "listApplications"),
     "StopApp": ("dis", "stopApplication"),
     "StartApp": ("dis", "startApplication"),
-
+    "AppPrivileges": ("dis", "SetApplicationPermissions")
 }
 
 ##

@@ -1,8 +1,0 @@
-No Python documentation found for 'generalSettings'.
-Use help() to get the interactive help utility.
-Use help(str) for help on the str class.
-
-IMPORTS
-    import os, logging
-    import supporting
-    import supporting.generalConstants as constants

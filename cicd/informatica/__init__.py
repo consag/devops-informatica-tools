@@ -193,3 +193,14 @@ def stop_app(**KeyWordArguments):
     result = executeInfacmd.execute(deploy_command, constants.DEPLOYARTIFACT)
 
     return result
+
+def set_app_privileges(**KeyWordArguments):
+    thisproc = "set_app_privileges"
+
+    KeyWordArguments["Tool"] = "AppPrivileges"
+    deploy_command = buildCommand.build(**KeyWordArguments)
+
+    supporting.log(logger, logging.INFO, thisproc, "Command is >" + deploy_command + "<.")
+    result = executeInfacmd.execute(deploy_command, constants.DEPLOYARTIFACT)
+
+    return result

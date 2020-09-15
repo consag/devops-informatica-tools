@@ -24,10 +24,10 @@ import logging
 
 import supporting.deploylist
 from cicd import informatica
-from cicd.informatica import infaSettings
 from cicd.informatica import infaConstants
-from supporting import generalSettings
+from cicd.informatica import infaSettings
 from supporting import errorcodes
+from supporting import generalSettings
 
 logger = logging.getLogger(__name__)
 entrynr = 0
@@ -118,6 +118,41 @@ def start_app(app_name, dis_name):
     return result
 
 
+def set_app_privileges(actual_dis_name, app_name, privileges_list):
+    thisproc = "artifact.set_app_privileges"
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   "Started to work on privileges list >" + privileges_list + "<.")
+
+    privileges_entries = privileges_list.split("|")
+    overall_result = errorcodes.OK
+
+    for privileges_entry in privileges_entries:
+        supporting.log(logger, logging.DEBUG, thisproc, "Privilege entry >" + privileges_entry + "<.")
+        splitted = privileges_entry.split("=")
+        if len(splitted) != 2:
+            supporting.log(logger, logging.ERROR, thisproc, "Invalid entry. Must consist of GroupName=Privs.")
+            latest_result = errorcodes.INVALID_PRIVILEGE_ENTRY
+        else:
+            group_name = splitted[0]
+            permissions = splitted[1]
+            latest_result = informatica.set_app_privileges(
+                Domain=infaSettings.targetDomain,
+                Application=app_name,
+                ServiceName=actual_dis_name,
+                GranteeGroupName=group_name,
+                AllowedPermissions=permissions
+            )
+        if latest_result.rc != errorcodes.OK.rc:
+            overall_result = latest_result
+
+    result = overall_result
+    supporting.log(logger, logging.DEBUG, thisproc,
+                   "Completed work on privileges list >" + privileges_list + "< with return code >"
+                   + str(result.rc) + "< (" + result.code + "). Message >" + result.message + "<.")
+
+    return result
+
+
 def process_create_app_entry(what, deployEntry):
     global entrynr
     thisproc = "process_create_app_entry"
@@ -127,9 +162,9 @@ def process_create_app_entry(what, deployEntry):
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Started to work on deploy entry# >" + str(entrynr) + "< being >" + deployEntry + "<.")
     parts = deployEntry.split(':')
-    if not len(parts) == 2:
+    if len(parts) < 2 or len(parts) > 3:
         supporting.log(logger, logging.DEBUG, thisproc,
-                       "Expected 2 arguments, got >" + str(len(parts)) + "<.")
+                       "Expected 2 or 3 arguments, got >" + str(len(parts)) + "<.")
         return errorcodes.IGNORE
 
     app_path = parts[0]
@@ -148,14 +183,18 @@ def process_deploy_app_entry(what, deployEntry):
     supporting.log(logger, logging.DEBUG, thisproc,
                    "Started to work on deploy entry# >" + str(entrynr) + "< being >" + deployEntry + "<.")
     parts = deployEntry.split(':')
-    if not len(parts) == 2:
+    if len(parts) < 2 or len(parts) > 3:
         supporting.log(logger, logging.DEBUG, thisproc,
-                       "Insufficient entries found. Expected 2, got >" + str(len(parts)) + "<.")
+                       "Incorrect number of entries found. Expected 2 or 3, got >" + str(len(parts)) + "<.")
         return errorcodes.IGNORE
 
     app_path = parts[0]
     app_name = app_path.rsplit('/', 1)[1]
     logical_dis_name = parts[1]
+    privileges_part = infaConstants.NOT_PROVIDED
+    if len(parts) >= 3:
+        privileges_part = parts[2]
+        supporting.log(logger, logging.DEBUG, thisproc, 'Found privs entry >' + privileges_part + '<.')
 
     # find the actual DIS name
     actual_dis_name = infaSettings.get_dis_name(logical_dis_name)
@@ -173,5 +212,8 @@ def process_deploy_app_entry(what, deployEntry):
             stop_app(app_name, actual_dis_name)
             result = redeploy_iar_file(app_name, actual_dis_name)
             # Also needed? start_app(app_name, actual_dis_name)
+
+    if result.rc == errorcodes.OK.rc and privileges_part != infaConstants.NOT_PROVIDED:
+        result = set_app_privileges(actual_dis_name, app_name, privileges_part)
 
     return result

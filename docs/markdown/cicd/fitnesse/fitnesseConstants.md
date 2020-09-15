@@ -1,0 +1,2 @@
+Module cicd.fitnesse.fitnesseConstants
+======================================

@@ -1,6 +1,6 @@
 #  MIT License
 #
-#  Copyright (c) 2019 Jac. Beekers
+#  Copyright (c) 2020 Jac. Beekers
 #
 #  Permission is hereby granted, free of charge, to any person obtaining a copy
 #  of this software and associated documentation files (the "Software"), to deal
@@ -21,10 +21,17 @@
 #  SOFTWARE.
 #
 
-##
-# Create FitNesse Artifact
-# @Since: 23-OCT-2019
-# @Author: Jac. Beekers
+"""
+.. deprecated:: 20200530.0
+   Use devops_fitnesse_tools instead
+
+"""
+__since__ = '23-OCT-2019'
+__version__ = '20200528.0'
+__author__ = 'Jac. Beekers'
+__licence__ = 'MIT'
+__url__ = 'https://github.com/consag/devops-informatica-tools'
+
 
 import logging, datetime, supporting
 import supporting.errorcodes as err
@@ -41,6 +48,12 @@ result = err.OK
 def parse_the_arguments(argv):
     """Parses the provided arguments and exits on an error.
     Use the option -h on the command line to get an overview of the required and optional arguments.
+
+    Args:
+        argv: List containing command line arguments
+
+    Returns:
+        A list with validated command line arguments
      """
     parser = argparse.ArgumentParser()
     args = parser.parse_args()
@@ -52,6 +65,9 @@ def main(argv):
     """Creates a FitNesse artifact, consisting on collected test directories and files
     It uses a deploy list that contains subdirectories.
     Module uses environment variables that steer the artifact creation.
+
+    Args:
+        None
     """
     thisproc = "MAIN"
     mainProc = 'CreateFitNesseArtifact'

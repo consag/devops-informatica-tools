@@ -1,0 +1,20 @@
+[pydeps]
+max_bacon = 2 
+verbose = 0
+pylib = True
+exclude =
+    os 
+    re
+    sys
+    types 
+    _*
+    enum
+    fnmatch
+    string
+    contextlib
+    datetime
+    ast
+    setuptools
+rmprefix = devops_informatica_tools.
+#cluster = True
+

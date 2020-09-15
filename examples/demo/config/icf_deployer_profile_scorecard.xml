@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<importParams xmlns="http://www.informatica.com/oie/importControl/9">
+ <folderMaps>
+  <folderMap sourceProject="p_TEST" targetProject="p_TEST"
+	resolution="replace" />
+ </folderMaps>
+
+</importParams>

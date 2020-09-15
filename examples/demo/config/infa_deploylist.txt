@@ -4,7 +4,5 @@
 # For all others:
 #   CONTROLFILE:<projectname>:<export_control_filename>:<import_control_filename>
 
-
-#PROJECT:Demo
-#PROJECT:Demo_NoRefTables
-CONTROLFILE:KSV_4_Mappings:ecf_appl_ksvsignals.xml:icf_appl_ksvsignals.xml
+CONTROLFILE:p_TEST:ecf_appl_deployer.xml:icf_appl_deployer.xml
+CONTROLFILE:p_TEST:ecf_deployer_profile_scorecard.xml:icf_deployer_profile_scorecard.xml
